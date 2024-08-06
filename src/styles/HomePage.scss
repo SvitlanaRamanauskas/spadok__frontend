@@ -1,6 +1,8 @@
 @import './utils/mixins';
 
 .home {
+    max-width: 1136px;
+    margin: 0 auto;
     &__catalog {
 
     }
@@ -11,8 +13,9 @@
 }
 
 .category {
-    height: 150px;
+    height: 400px;
     display: block;
+    border: 1px solid #000;
 
     grid-column: 1 / -1;
 
@@ -21,30 +24,105 @@
     }
 
     &__container {
+        @include on-Small-Desktop {
+            grid-template-rows: repeat(7, 200px);
+        }
+
         @include pageGrid;
+        row-gap: 16px;
     }
 
     &--women {
+        @include on-Small-Tablet {
+            grid-column: 1 / 5;
+        }
+
         @include on-Tablet {
-            grid-column: 1 / 4;
+            grid-row: 1 / 3;
+            grid-column: 1 / 5;
+        }
+
+        @include on-Small-Desktop {
+            grid-column: 1 / 7;
+        }
+
+        @include on-Desktop {
+            grid-column: 1 / 8;
         }
     }
 
     &--men {
+        @include on-Small-Tablet {
+            grid-column: 5 / 9;
+        }
+
         @include on-Tablet {
-            grid-column: 4 / 7;
+            grid-row: 2 / 4;
+            grid-column: 5 / 9;
+        }
+
+        @include on-Small-Desktop {
+            grid-column: 7 / 13;
+        }
+
+        @include on-Desktop {
+            grid-column: 9 / 16;
         }
     }
 
     &--girls {
+        @include on-Small-Tablet {
+            grid-column: 1 / 5;
+        }
+
         @include on-Tablet {
-            grid-column: 7 / 10;
+            grid-row: 3 / 5;
+            grid-column: 9 / 13;
+        }
+
+        @include on-Small-Desktop {
+            grid-column: 13 / 19;
+        }
+
+        @include on-Desktop {
+            grid-column: 17 / 24;
         }
     }
 
     &--boys {
+        @include on-Small-Tablet {
+            grid-column: 5 / 9;
+        }
         @include on-Tablet {
-            grid-column: 10 / 13;
+            grid-row: 5 / 7;
+            grid-column: 7 / 11;
+        }
+
+        @include on-Small-Desktop {
+            grid-column: 4 / 10;
+        }
+
+        @include on-Desktop {
+            grid-column: 13 / 20;
+        }
+    }
+
+    &--books {
+        @include on-Small-Tablet {
+            grid-column: 1 / 5;
+        }
+
+        @include on-Tablet {
+            grid-row: 6 / 8;
+            grid-column: 3 / 7;
+        }
+
+        @include on-Small-Desktop {
+            grid-column: 10 / 16;
+        }
+
+        @include on-Desktop {
+            grid-column: 5 / 12;
         }
     }
 

@@ -105,9 +105,10 @@ function App() {
 
         {location.pathname ===  '/' && (
           <h1 className="app__title">Nash_Spadok</h1>
-        )}  
-        
-        {asideIsOpen && (
+        )}
+      </div>
+
+      {asideIsOpen && (
           <aside className="menu">
             <ul className="nav__list menu__list">
               <li className="nav__item menu__item">
@@ -133,8 +134,6 @@ function App() {
             </ul>
           </aside>
         )}
-        
-      </div>
 
       <main className="main">
         <Outlet />

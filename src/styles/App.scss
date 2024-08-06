@@ -1,7 +1,7 @@
 @import './utils/variables';
 @import './utils/mixins';
 
-p {
+p, h1 {
   margin: 0;
   padding: 0;
 }
@@ -37,6 +37,7 @@ button {
 
 .app {
   &__title {
+    padding-block: 100px;
     font-size: 48px;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     padding-left: 10px;
@@ -62,8 +63,10 @@ button {
 }
 
 .header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   background-color: transparent;
   height: 70px;
   display: flex;
@@ -215,7 +218,7 @@ button {
 }
 
 .main {
-  height: 1000px;
+  // width: 100%;
   padding-inline: 16px;
 
   @include on-Tablet {
@@ -223,7 +226,7 @@ button {
   }
 
   @include on-Desktop {
-    max-width: 1136px;
+
   }
 }
 

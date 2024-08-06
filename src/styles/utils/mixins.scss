@@ -1,11 +1,11 @@
-@mixin on-Tablet {
-    @media(min-width: 768px) {
+@mixin on-Small-Tablet {
+    @media(min-width: 640px) {
         @content;
     }
 }
 
-@mixin on-Desktop {
-    @media(min-width: 1200px) {
+@mixin on-Tablet {
+    @media(min-width: 768px) {
         @content;
     }
 }
@@ -16,15 +16,28 @@
     }
 }
 
+@mixin on-Desktop {
+    @media(min-width: 1200px) {
+        @content;
+    }
+}
+
 @mixin pageGrid {
     --columns: 4;
     display: grid;
     column-gap: 16px;;
     grid-template-columns: repeat(var(--columns), 1fr);
 
+    @include on-Small-Tablet {
+        --columns: 8;
+    }
+
     @include on-Tablet {
         --columns: 12;
+    }
 
+    @include on-Small-Desktop {
+        --columns: 18;
     }
 
     @include on-Desktop {
