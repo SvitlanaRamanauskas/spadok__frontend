@@ -1,0 +1,52 @@
+@import './utils/mixins';
+
+.home {
+    &__catalog {
+
+    }
+
+    &__title {
+
+    }
+}
+
+.category {
+    height: 150px;
+    display: block;
+
+    grid-column: 1 / -1;
+
+    &__title {
+
+    }
+
+    &__container {
+        @include pageGrid;
+    }
+
+    &--women {
+        @include on-Tablet {
+            grid-column: 1 / 4;
+        }
+    }
+
+    &--men {
+        @include on-Tablet {
+            grid-column: 4 / 7;
+        }
+    }
+
+    &--girls {
+        @include on-Tablet {
+            grid-column: 7 / 10;
+        }
+    }
+
+    &--boys {
+        @include on-Tablet {
+            grid-column: 10 / 13;
+        }
+    }
+
+
+}

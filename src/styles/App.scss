@@ -1,0 +1,255 @@
+@import './utils/variables';
+@import './utils/mixins';
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+
+input[type="search" i] {
+  appearance: none;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  font-size: 17px;
+  &::-ms-clear {
+    display: none;
+  }
+  &::-webkit-search-cancel-button {
+    display: none;
+  }
+}
+
+body {
+  margin: 0;
+  background-color: #e5e2cd;
+  scroll-behavior: smooth;
+}
+
+button {
+  outline: none;
+  background-color: transparent;
+  border: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+
+.app {
+  &__title {
+    font-size: 48px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding-left: 10px;
+
+    @include on-Tablet {
+      font-size: 80px;
+      padding-left: 30px;
+    }
+
+    @include on-Desktop {
+      font-size: 180px;
+      padding-left: 50px;
+    }
+  }
+}
+
+.background-container {
+  height: 700px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+  background-image: url(./images/45_main-v1586682109.jpg);
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  background-color: transparent;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 10px;
+  padding-left: 20px;
+  transition: background-color 0.3s ease;
+
+  &--scrolled {
+    background-color: #e5e2cd;
+  }
+
+  &__logo {
+    &-link {
+      display: block;
+    }
+  }
+
+  &__right {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  &__nav {
+    display: none;
+
+    @include on-Tablet {
+      display: block;
+    }
+  }
+
+  &__search {
+    display: flex;
+    gap: 10px;
+
+    &-icon {
+      transform: translateY(5px);
+    }
+  
+    &-input {
+      background-color: transparent;
+      color: $text-color;
+      font-size: 15px;
+      padding-block: 5px;
+      padding-left: 4px;
+      width: 70px;
+
+      ::placeholder {
+        color: $text-color;
+        font-size: 24px;
+      }
+
+      @include on-Tablet {
+        width: 150px;
+      }
+
+      @include on-Small-Desktop {
+        width: 250px;
+      }
+    }
+  }
+
+  &__icon {
+    padding: 10px;
+
+    &--burger {
+      display: block;
+
+      @include on-Tablet {
+        display: none;
+      }
+    }
+  }
+}
+
+.nav {
+  &__list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__item {
+    position: relative;
+    &::after {
+      position: absolute;
+      display: block;
+      height: 1px;
+      width: 0;
+      content: "";
+      bottom: -3px;
+      background-color: #41413f;
+      transition: width 0.5s ease, color 0.5s ease;
+    }
+
+    &:hover {
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    color: $text-color;
+    font-size: 17px;
+    transition: color 0.5s ease;
+    text-transform: uppercase;
+
+    &:hover {
+      color: #41413f;
+    }
+  }
+}
+
+.menu {
+  height: 500px;
+  width: 320px;
+  padding-top: 40px;
+  background-color: #fff;
+  
+  &__list {
+    flex-direction: column;
+  }
+
+  &__item {
+    &::after {
+      color: #000;
+
+      &:hover {
+        color: #282c34;
+      }
+    }
+  }
+
+  &__link {
+    color: #000;
+
+    &:hover {
+      color: #282c34;
+    }
+  }
+}
+
+.main {
+  height: 1000px;
+  padding-inline: 16px;
+
+  @include on-Tablet {
+    padding-inline: 24px;
+  }
+
+  @include on-Desktop {
+    max-width: 1136px;
+  }
+}
+
+.footer {
+  height: 200px;
+  padding-top: 20px;
+  background-color: #c78c06;
+
+  &__list {
+    flex-direction: column;
+  }
+
+  &__rights {
+    &-icon {
+      height: 25px;
+      width: 25px;
+    }
+  }
+}
+
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
