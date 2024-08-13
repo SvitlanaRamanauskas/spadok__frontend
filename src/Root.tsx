@@ -11,6 +11,9 @@ import { AppProvider } from "./components/appContext"
 import { MenPage } from "./pages/MenPage"
 import { BoysPage } from "./pages/BoysPage"
 import { GirlsPage } from "./pages/GirlsPage"
+import { FavoritePage } from "./pages/FavoritePage"
+import { CartPage } from "./pages/CartPage"
+import { VyshyvankaDetailsPage } from "./pages/VyshyvankaDetailsPage"
 
 export const Root = () => {
     return (    
@@ -22,19 +25,26 @@ export const Root = () => {
                         <Route index element={<HomePage />} />
                         <Route path="women">
                             <Route index element={<WomenPage />} />
+                            <Route path=":vyshyvankaId" element={<VyshyvankaDetailsPage />} />
                         </Route>
 
                         <Route path="men">
                             <Route index element={<MenPage />} />
+                            <Route path=":vyshyvankaId" element={<VyshyvankaDetailsPage />} />
                         </Route>
 
                         <Route path="boys">
                             <Route index element={<BoysPage />} />
+                            <Route path=":vyshyvankaId" element={<VyshyvankaDetailsPage />} />
                         </Route>
 
                         <Route path="girls">
                             <Route index element={<GirlsPage />} />
+                            <Route path=":vyshyvankaId" element={<VyshyvankaDetailsPage />} />
                         </Route>
+
+                        <Route path="/favorites" element={<FavoritePage />} />
+                        <Route path="/cart" element={<CartPage />} />
                     </Route>
                 </Routes>
             </Router>

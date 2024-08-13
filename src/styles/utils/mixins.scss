@@ -44,3 +44,15 @@
         --columns: 24;
       }
 }
+
+@mixin pagePaddings {
+    padding-inline : 16px;
+
+    @include on-Small-Tablet() {
+      padding-inline: 24px;
+    }
+
+    @include on-Desktop {
+        padding-inline: 0;
+    }
+}

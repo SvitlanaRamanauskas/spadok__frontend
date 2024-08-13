@@ -1,0 +1,8 @@
+@import './utils/mixins';
+@import './utils/variables';
+
+
+
+.favorites {
+    min-height: calc(100vh - #{$headers-height} - #{$footers-height});
+}

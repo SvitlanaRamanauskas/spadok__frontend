@@ -1,26 +1,156 @@
 @import './utils/mixins';
+@import './utils/variables';
 
 .home {
-    max-width: 1136px;
-    margin: 0 auto;
-    &__catalog {
+    display: grid;
+    row-gap: 24px;
+    margin-bottom: 16px;
 
+    @include on-Small-Tablet {
+        margin-bottom: 40px;
+        row-gap: 50px;
+    }
+
+    @include on-Desktop {
+        margin-bottom: 64px;
+        row-gap: 70px;
+    }
+
+    &__background-container {
+        height: 700px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: top;
+        background-image: url(./images/45_main-v1586682109.jpg);
+        opacity: 90%;
     }
 
     &__title {
+        padding-block: 100px;
+        font-size: 48px;
+        font-weight: lighter;
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        padding-left: 10px;
+    
+        @include on-Tablet {
+          font-size: 80px;
+          padding-left: 30px;
+        }
+    
+        @include on-Desktop {
+          font-size: 180px;
+          padding-left: 50px;
+        }
+    }
 
+    &__text {
+        
+    }
+
+    &__about {
+        &-sub-title {
+            text-wrap: nowrap;
+        }
+
+        display: flex;
+        gap: 50px;
+        align-items: flex-start;
+        @include pagePaddings;
+
+        @include on-Desktop {
+            width: 1136px;
+            margin-inline: auto;
+        }
+    }
+
+    &__catalog {
+        &-sub-title {
+            text-align: center
+        }
+        margin-bottom: 16px;
+        @include pagePaddings;
+        @include on-Desktop {
+            margin-bottom: 24px;
+            width: 1136px;
+            margin-inline: auto;
+        }
+    }
+
+    &__contact {
+        &-sub-title {
+            text-align: center
+        }
+        @include pagePaddings;
+        @include on-Desktop {
+            width: 1136px;
+            margin-inline: auto;
+        }
     }
 }
 
-.category {
+.topic {
+    position: relative;
     height: 400px;
     display: block;
-    border: 1px solid #000;
-
     grid-column: 1 / -1;
+    transition: opacity 0.3s ease;
+
+    &__background {
+        position: relative;
+        z-index: -1;
+        height: 400px;
+        background-position: center;
+        background-size: cover;
+        opacity: 100%;
+
+        &:hover {
+            opacity: 80%;
+        }
+
+        &--women {
+            background-image: url(../styles/images/vyshyvanka_zhinocha.jpg);
+            background-position: bottom;
+        }
+
+        &--men {
+            background-image: url(../styles/images/men.png);
+        }
+
+        &--girls {
+            background-image: url(../styles/images/girls_vyshyvanka.png);
+        }
+
+        &--boys {
+            background-image: url(../styles/images/boys_vyshyvanka.png);
+        }
+
+        &--books {
+            background-image: url(../styles/images/books_category2.png);
+        }
+    }
 
     &__title {
+        color: $brown;
+        transition: color 0.3s ease;
+        position: relative;
 
+        &::after {
+            display: block;
+            position: absolute;
+            content: '';
+            width: 100%;
+            height: 1px;
+            background-color: $brown;
+        }
+
+        &:hover {
+            color:#000;
+        }
+
+        &-wrapper {
+            position: absolute;
+            bottom: -30px;
+        }
     }
 
     &__container {
@@ -29,7 +159,7 @@
         }
 
         @include pageGrid;
-        row-gap: 16px;
+        row-gap: 50px;
     }
 
     &--women {
@@ -125,6 +255,23 @@
             grid-column: 5 / 12;
         }
     }
-
-
 }
+
+.contact {
+    &__phone-number {
+        text-decoration: none;
+        color: $choco;
+    }
+
+    &__description {
+        text-align: center;
+    }
+
+    &__phone-number {
+        display: block;
+        text-align: center;
+        font-weight: bold;
+        padding-top: 10px;
+    }
+}
+

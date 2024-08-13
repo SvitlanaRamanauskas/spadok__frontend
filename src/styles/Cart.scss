@@ -1,0 +1,6 @@
+@import './utils/mixins';
+@import './utils/variables';
+
+.cart {
+    min-height: calc(100vh - #{$headers-height} - #{$footers-height});
+}

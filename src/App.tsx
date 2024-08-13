@@ -2,11 +2,22 @@ import { useLayoutEffect, useState } from "react";
 import cn from 'classnames';
 import "./styles/App.scss";
 import { Link, Outlet, useLocation } from "react-router-dom";
+import { scroller } from 'react-scroll';
 
 
 function App() {
   const [asideIsOpen, setAsideIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const handleNavigation = (section: any) => {
+    setTimeout(() => {
+      scroller.scrollTo(section, {
+        duration: 800,
+        delay: 0,
+        smooth: 'easeInOutQuart',
+      });
+    }, 100); // Delay to ensure the page is loaded
+  };
 
   const location = useLocation();
 
@@ -34,103 +45,127 @@ function App() {
 
   return (
     <div className="app">
-      <div className={cn({ "background-container": location.pathname ===  '/'})}>
-        <header className={cn('header', {'header--scrolled' : scrolled} )}>
-       
-          {asideIsOpen ? (
-            <button
-              type="button"
-              className="header__icon  header__icon--close"
-              onClick={toggleMenuButton}
-            >
-              <img src={require('./styles/icons/Close.svg').default} alt="close" />
-            </button>
-          ) : (
-            <button
-              type="button"
-              className="header__icon  header__icon--burger"
-              onClick={toggleMenuButton}
-            >
-              <img src={require('./styles/icons/Burger.svg').default} alt="menu" />
-            </button>
-          )}
-          <nav className="header__nav">
-            <ul className="nav__list">
-              <li className="nav__item">
-                <Link to="women" className="nav__link">
-                  жінкам
-                </Link>
-              </li>
-              <li className="nav__item">
-                <Link to="men" className="nav__link">
-                  чоловікам
-                </Link>
-              </li>
-              <li className="nav__item">
-                <Link to="boys" className="nav__link">
-                  хлопчикам
-                </Link>
-              </li>
-              <li className="nav__item">
-                <Link to="girls" className="nav__link">
-                  дівчаткам
-                </Link>
-              </li>
-            </ul>
-          </nav>
-          <div className="header__logo">
-            <Link to="/home" className="header__logo-link">
-              <img src={require('./styles/icons/Logo.svg').default} alt="Logo" />
+      <header className={cn('header', {'header--scrolled' : scrolled} )}>
+      
+        {asideIsOpen ? (
+          <button
+            type="button"
+            className="header__icon  header__icon--close"
+            onClick={toggleMenuButton}
+          >
+            <img src={require('./styles/icons/Close.svg').default} alt="close" />
+          </button>
+        ) : (
+          <button
+            type="button"
+            className="header__icon  header__icon--burger"
+            onClick={toggleMenuButton}
+          >
+            <img src={require('./styles/icons/Burger.svg').default} alt="menu" />
+          </button>
+        )}
+        <nav className="header__nav">
+          <ul className="nav__list">
+            <li className="nav__item">
+              <Link to="women" className="nav__link">
+                жінкам
+              </Link>
+            </li>
+            <li className="nav__item">
+              <Link to="men" className="nav__link">
+                чоловікам
+              </Link>
+            </li>
+            <li className="nav__item">
+              <Link to="boys" className="nav__link">
+                хлопчикам
+              </Link>
+            </li>
+            <li className="nav__item">
+              <Link to="girls" className="nav__link">
+                дівчаткам
+              </Link>
+            </li>
+          </ul>
+        </nav>
+        <div className="header__logo">
+          <Link to="/home" className="header__logo-link">
+            <img src={require('./styles/icons/Logo.svg').default} alt="Logo" />
+          </Link>
+        </div>
+        <div className="header__right">
+          <div className="header__search">
+            <img src={require('./styles/icons/Search.svg').default} alt="search" />
+            <input
+              type="search"
+              className="header__search-input"
+              placeholder="search"
+            />
+          </div>
+          <div className="header__icons">
+            <Link to="/favorites" className="header__icon header__icon--favorite">
+              <img src={require('./styles/icons/Favourites-Heart-Like.svg').default} alt="heart" />
+            </Link>
+            <Link to="/cart" className="header__icon header__icon--cart">
+              <img src={require('./styles/icons/CartSmall.svg').default} alt="cart" />
             </Link>
           </div>
-          <div className="header__right">
-            <div className="header__search">
-              <img src={require('./styles/icons/Search.svg').default} alt="search" />
-              <input
-                type="search"
-                className="header__search-input"
-                placeholder="search"
-              />
-            </div>
-            <div className="header__icons">
-              <a href="" className="header__icon header__icon--favorite">
-                <img src={require('./styles/icons/Favourites-Heart-Like.svg').default} alt="heart" />
-              </a>
-              <a href="" className="header__icon header__icon--cart">
-                <img src={require('./styles/icons/CartSmall.svg').default} alt="cart" />
-              </a>
-            </div>
-          </div>
-        </header>
-
-        {location.pathname ===  '/' && (
-          <h1 className="app__title">Nash_Spadok</h1>
-        )}
-      </div>
+        </div>
+      </header>
 
       {asideIsOpen && (
           <aside className="menu">
             <ul className="nav__list menu__list">
               <li className="nav__item menu__item">
-                <Link to="women" className="nav__link menu__link">
+                <Link 
+                  to="women" 
+                  className="nav__link menu__link"
+                  onClick={() => setAsideIsOpen(false)}
+                >
                   жінкам
                 </Link>
               </li>
               <li className="nav__item menu__item">
-                <Link to="men" className="nav__link menu__link">
+                <Link 
+                  to="men" 
+                  className="nav__link menu__link"
+                  onClick={() => setAsideIsOpen(false)}
+                >
                   чоловікам
                 </Link>
               </li>
               <li className="nav__item menu__item">
-                <Link to="boys" className="nav__link menu__link">
+                <Link 
+                  to="boys" 
+                  className="nav__link menu__link"
+                  onClick={() => setAsideIsOpen(false)}
+                >
                   хлопчикам
                 </Link>
               </li>
               <li className="nav__item menu__item">
-                <Link to="girls" className="nav__link menu__link">
+                <Link 
+                  to="girls" 
+                  className="nav__link menu__link"
+                  onClick={() => setAsideIsOpen(false)}
+                >
                   дівчаткам
                 </Link>
               </li>
+
+              <li className="nav__item menu__item">
+                <Link 
+                  to="/" 
+                  className="nav__link menu__link"
+                  onClick={() => {
+                    setAsideIsOpen(false)
+                    handleNavigation("contact_us")
+                  }}
+                >
+                  Зв'язатись з нами
+                </Link>
+              </li>
+              
             </ul>
           </aside>
         )}

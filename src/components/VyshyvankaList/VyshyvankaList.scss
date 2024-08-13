@@ -1,0 +1,77 @@
+@import '../../styles/utils/mixins.scss';
+@import '../../styles/utils/variables.scss';
+
+.vyshyvanka {
+    &__list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+        @include on-Desktop {
+            grid-template-columns: repeat(4, 1fr);
+        }
+        gap: 16px;
+    }
+
+    &__card {
+        color: $choco;
+
+        @include on-Tablet {
+            grid-column: auto;
+        }
+
+        width: 100%;
+        grid-column: 1 / -1;
+    }
+
+    &__product {
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+        justify-content: flex-start;
+    }
+}
+
+.product {
+    &__photo-link {
+    }
+
+    &__image {
+        width: 100%;
+        height: auto;
+    }
+
+    &__sizes {
+        display: flex;
+        justify-content: flex-start;
+        gap: 15px;
+    }
+
+    &__size {
+        font-size: 18px;
+        color: $choco;
+        height: 40px;
+        line-height: 40px;
+
+        &-box {
+            position: relative;
+            height: 40px;
+            width: 40px;
+            display: flex;
+            justify-content: center;
+            background-color: transparent;
+
+            &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: $brown;
+            opacity: 0.3;
+            z-index: -1;
+            }
+        }
+
+    }
+}

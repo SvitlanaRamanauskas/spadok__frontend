@@ -1,11 +1,10 @@
 @import './utils/variables';
 @import './utils/mixins';
 
-p, h1 {
+p, h1, h2, h3, ul {
   margin: 0;
   padding: 0;
 }
-
 
 input[type="search" i] {
   appearance: none;
@@ -21,10 +20,15 @@ input[type="search" i] {
   }
 }
 
-body {
-  margin: 0;
-  background-color: #e5e2cd;
+html {
   scroll-behavior: smooth;
+}
+
+body {
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  margin: 0;
+  background-color: $bg-color;
+  box-sizing: border-box;
 }
 
 button {
@@ -36,39 +40,17 @@ button {
 }
 
 .app {
-  &__title {
-    padding-block: 100px;
-    font-size: 48px;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    padding-left: 10px;
 
-    @include on-Tablet {
-      font-size: 80px;
-      padding-left: 30px;
-    }
-
-    @include on-Desktop {
-      font-size: 180px;
-      padding-left: 50px;
-    }
-  }
-}
-
-.background-container {
-  height: 700px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: top;
-  background-image: url(./images/45_main-v1586682109.jpg);
 }
 
 .header {
+  z-index: 1000;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   background-color: transparent;
-  height: 70px;
+  height: $headers-height;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -120,6 +102,23 @@ button {
         color: $text-color;
         font-size: 24px;
       }
+
+      &::-webkit-input-placeholder {
+        color: $text-color;
+      }
+    
+      &::-moz-placeholder {
+        color: $text-color;
+      }
+    
+      &:-ms-input-placeholder {
+        color: $text-color;
+      }
+    
+      &:-moz-placeholder {
+        color: $text-color;
+      }
+
 
       @include on-Tablet {
         width: 150px;
@@ -191,7 +190,7 @@ button {
 .menu {
   height: 500px;
   width: 320px;
-  padding-top: 40px;
+  padding-top: 150px;
   background-color: #fff;
   
   &__list {
@@ -217,34 +216,66 @@ button {
   }
 }
 
-.main {
-  // width: 100%;
-  padding-inline: 16px;
-
-  @include on-Tablet {
-    padding-inline: 24px;
-  }
+.main > :not(.home) {
+  margin-top: $headers-height;
+  @include pagePaddings;
 
   @include on-Desktop {
-
+    margin-inline: auto;
+    width: 1136px;
   }
+
 }
 
 .footer {
-  height: 200px;
+  height: $footers-height;
   padding-top: 20px;
-  background-color: #c78c06;
+  background-color: $choco;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  
 
   &__list {
     flex-direction: column;
   }
 
+  &__link {
+    color: $bg-color;
+  }
+
   &__rights {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+
+    &-text {
+      color: $bg-color;
+    }
+
     &-icon {
-      height: 25px;
-      width: 25px;
+      height: 15px;
+      width: 15px;
     }
   }
+}
+
+.sub-title {
+  font-size: 48px;
+
+  @include on-Small-Tablet {
+    font-size: 64px;
+  }
+
+  @include on-Desktop {
+    font-size: 98px;
+  }
+
+  color: $choco;
+  font-weight: lighter;
+ 
 }
 
 

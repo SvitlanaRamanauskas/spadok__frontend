@@ -1,0 +1,9 @@
+[
+  {
+    "id": "waxs",
+    "name": "Marichka",
+    "sizeAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/women_images/marichka.jpg", "", ""],
+    "price": 1700
+  }
+]
