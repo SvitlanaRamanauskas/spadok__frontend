@@ -1,81 +1,69 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { CartItem } from "../../types/CartItem";
 import { RootState } from "../store";
 import { Vyshyvanka } from "../../types/Vyshyvanka";
+import { FavoritesItem } from "../../types/FavoritesItem";
 
-const saveCartToLocalStorage = (state: CartState) => {
-    localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
-    localStorage.setItem("totalCartQuantity", JSON.stringify(state.totalCartQuantity));
-    localStorage.setItem("totalCartPrice", JSON.stringify(state.totalCartPrice));
+const saveFavoritesToLocalStorage = (state: FavoritesState) => {
+    localStorage.setItem("favoritesItems", JSON.stringify(state.favoritesItems));
+    localStorage.setItem("totalFavoritesQuantity", JSON.stringify(state.totalFavoritesQuantity));
 };
 
-const loadCartFromLocalStorage = (): CartState => {
-    const cartItems = localStorage.getItem("cartItems");
-    const totalCartQuantity = localStorage.getItem("totalCartQuantity");
-    const totalCartPrice = localStorage.getItem("totalCartPrice");
+const loadFavoritesFromLocalStorage = (): FavoritesState => {
+    const favoritesItems = localStorage.getItem("favoritesItems");
+    const totalFavoritesQuantity = localStorage.getItem("totalFavoritesQuantity");
 
     return {
-        cartItems: cartItems ? JSON.parse(cartItems) : [],
-        totalCartQuantity: totalCartQuantity ? JSON.parse(totalCartQuantity) : 0,
-        totalCartPrice: totalCartPrice ? JSON.parse(totalCartPrice) : 0,
+        favoritesItems: favoritesItems ? JSON.parse(favoritesItems) : [],
+        totalFavoritesQuantity: totalFavoritesQuantity ? JSON.parse(totalFavoritesQuantity) : 0,
     };
 };
 
-
-interface CartState {
-    cartItems: CartItem[];
-    totalCartQuantity: number;
-    totalCartPrice: number;
+interface FavoritesState {
+    favoritesItems: FavoritesItem[];
+    totalFavoritesQuantity: number;
 }
 
-export const initialState: CartState =  loadCartFromLocalStorage();
+export const initialState: FavoritesState = loadFavoritesFromLocalStorage();
 
-export const cartSelector = (state: RootState) => state.cart.cartItems;
-export const totalCartQuantitySelector = (state: RootState) => state.cart.totalCartQuantity;
-export const totalCartPriceSelector = (state: RootState) => state.cart.totalCartPrice;
+export const favoritesSelector = (state: RootState) => state.favorites.favoritesItems;
+export const totalFavoritesQuantitySelector = (state: RootState) => state.favorites.totalFavoritesQuantity;
 
-export const cartSlice = createSlice({
-    name: 'cart',
+export const favoritesSlice = createSlice({
+    name: 'favorites',
     initialState,
     reducers: {
         addItem: (state, action: PayloadAction<Vyshyvanka>) => {
             const newItem = action.payload;
-            const existingItem = state.cartItems.find(item => item.item.id === newItem.id);
-            state.totalCartQuantity += 1;
+            const existingItem = state.favoritesItems.find(item => item.item.id === newItem.id);
+            state.totalFavoritesQuantity += 1;
             if (!existingItem) {
-                state.cartItems.push({
+                state.favoritesItems.push({
                     item: newItem,
-                    id: state.cartItems.length + 1,
-                    quantity: 1,
+                    id: state.favoritesItems.length + 1,
                 });
-                state.totalCartPrice += +newItem.price;
-            } else {
-                state.totalCartPrice += +existingItem.item.price;
-                existingItem.quantity +=1;
             }
 
-            saveCartToLocalStorage(state);
+            saveFavoritesToLocalStorage(state);
         },
 
         removeItem: (state, action: PayloadAction<Vyshyvanka>) => {
             const itemToDelete = action.payload;
-            const existingItem = state.cartItems.find(item => item.item.id === itemToDelete.id);
-
+            const existingItem = state.favoritesItems.find(item => item.item.id === itemToDelete.id);
+            console.log(state.favoritesItems)
             if (existingItem) {
-                state.totalCartQuantity -= 1;
-                state.totalCartPrice -= existingItem.item.price;
-    
-                state.cartItems = state.cartItems.filter(item => item.item.id !== itemToDelete.id);
+                state.totalFavoritesQuantity -= 1;
+                state.favoritesItems = state.favoritesItems.filter(item => item.item.id !== itemToDelete.id);
             }
+            console.log(existingItem, itemToDelete)
 
-            saveCartToLocalStorage(state);
+            saveFavoritesToLocalStorage(state);
         }
     }
 });
 
-export const { addItem, removeItem } = cartSlice.actions;
+export const { addItem, removeItem } = favoritesSlice.actions;
 
-export default cartSlice.reducer;
+export default favoritesSlice.reducer;
 
 
 

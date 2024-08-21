@@ -3,7 +3,9 @@ import './ProductCard.scss';
 import { Vyshyvanka } from '../../types/Vyshyvanka';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { addItem, cartSelector } from '../../redux/cart/reducerCart';
+import { addItem as addItemToCart, cartSelector } from '../../redux/cart/reducerCart';
+import { addItem as addItemToFavorites, favoritesSelector, removeItem } from '../../redux/cart/reducerFavorites';
+import { FavoritesItem } from '../../types/FavoritesItem';
 
 export type Props = {
     items: Vyshyvanka[];
@@ -15,9 +17,22 @@ export const ProductCard: React.FC<Props> = ({ items, item }) => {
 
     const dispatch = useAppDispatch();
     const cartItems = useAppSelector(cartSelector);
+    const favoritesItems = useAppSelector(favoritesSelector);
+
+    const addedToFavorites = (itemsInFavorites: FavoritesItem[], id: string) => {
+        return itemsInFavorites.some(item => item.item.id === id);
+    }
 
     const handleAddToCart = (product: Vyshyvanka) => {
-        dispatch(addItem(product));
+        dispatch(addItemToCart(product));
+    };
+    
+    const handleAddToFavorites = (product: Vyshyvanka) => {
+        if (addedToFavorites(favoritesItems, product.id)) {
+            dispatch(removeItem(product));
+        } else {
+            dispatch(addItemToFavorites(product));
+        }
     }
 
     return (
@@ -34,7 +49,7 @@ export const ProductCard: React.FC<Props> = ({ items, item }) => {
                 <button 
                     type="button" 
                     className="product__icon-bg product__icon-bg--favorites"
-                    // onClick={() => handleAddToFavorites(item)}
+                    onClick={() => handleAddToFavorites(item)}
                 >
                     <img 
                         src={require('../../styles/icons/Favourites-Heart-Like.svg').default} 
@@ -42,6 +57,7 @@ export const ProductCard: React.FC<Props> = ({ items, item }) => {
                         className="product__icon product__icon--favorites"
                     />
                 </button>
+
                 <button 
                     type="button"
                     className="product__icon-bg product__icon-bg--cart"
