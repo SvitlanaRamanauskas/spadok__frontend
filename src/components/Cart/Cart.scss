@@ -1,0 +1,137 @@
+@import '../../styles/utils/mixins.scss';
+@import '../../styles/utils/variables';
+
+.cart {
+    min-height: calc(100vh - #{$headers-height} - #{$footers-height});
+
+    &-container {
+        margin: 0 auto;
+
+    }
+
+    &__wrapper {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    
+        @include on-Tablet {
+            flex-direction: row;
+        }
+    }
+
+    &__order {
+        width: 100%;
+    }
+
+    &__summary {
+        margin-top: 30px;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    &__list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 38px;
+    }
+    
+    &__item {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 50px;
+
+        @include on-Tablet {
+            gap: 26px;
+            margin-bottom: 30px;
+        }
+    }
+
+}
+
+.item {
+    font-size: 13px;
+    &__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    
+        display: block;
+        max-height: 100%;
+    }
+
+    &__remove {
+        text-align: left;
+    }
+
+    &__quantity {
+        &-setters {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+    
+        &-setter {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #000;
+            width: 25px;
+            height: 25px;
+        }
+    }
+
+    &__image-wrap {
+        min-width: 181px;
+        flex: 1 1 181px;
+        @include on-Tablet {
+          flex: 1 1 50%;
+        }
+        @include on-Desktop {
+          min-width: 252px;
+        }
+        /* Set the max height to limit the image size */
+        max-height: 250px;
+    }
+
+    &__info {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        justify-content: center;
+    }
+}
+
+.summary {
+    text-align: center;
+
+    margin-bottom: 30px;
+
+
+    &__wrapper {
+        border: 1px solid $choco;
+        padding: 20px;
+        @include on-Tablet {
+            height:300px;
+        }
+        
+    }
+
+    &__title {
+        padding-top: 5px;
+        margin-bottom: 21px;
+    }
+
+    &__group {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    &__button {
+        margin-top: 33px;
+        width: 100%;
+    }
+}

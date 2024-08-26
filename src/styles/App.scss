@@ -1,12 +1,32 @@
 @import './utils/variables';
 @import './utils/mixins';
 
-p, h1, h2, h3, ul {
+@font-face {
+  font-family: 'inter';
+  src: url('../fonts/static/Inter_18pt-Regular.ttf');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'lev_type';
+  src: url('../fonts/LevType_Hryvnia_v.1.013/Static/TTF/LevTypeHryvnia-Regular.ttf');
+  font-weight: 500;
+  font-style: normal;
+}
+
+p, h1, h2, h3, h4, h5, ul {
   margin: 0;
   padding: 0;
 }
 
-input[type="search" i] {
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+input{
   appearance: none;
   box-sizing: border-box;
   border: none;
@@ -19,16 +39,16 @@ input[type="search" i] {
     display: none;
   }
 }
-
-html {
-  scroll-behavior: smooth;
-}
-
 body {
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   margin: 0;
   background-color: $bg-color;
   box-sizing: border-box;
+  font-family: "inter", serif;
+}
+
+html {
+  scroll-behavior: smooth;
+
 }
 
 button {
@@ -144,6 +164,7 @@ button {
 }
 
 .nav {
+
   &__list {
     list-style: none;
     display: flex;
@@ -155,6 +176,7 @@ button {
   }
 
   &__item {
+    font-family: 'lev_type';
     position: relative;
     &::after {
       position: absolute;
@@ -264,6 +286,7 @@ button {
 
 .sub-title {
   font-size: 48px;
+  font-family: 'lev_type';
 
   @include on-Small-Tablet {
     font-size: 64px;

@@ -27,9 +27,9 @@
 
     &__title {
         padding-block: 100px;
-        font-size: 48px;
-        font-weight: lighter;
-        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-size: 50px;
+        font-weight: 500;
+        font-family: 'lev_type';
         padding-left: 10px;
     
         @include on-Tablet {
@@ -38,7 +38,7 @@
         }
     
         @include on-Desktop {
-          font-size: 180px;
+          font-size: 150px;
           padding-left: 50px;
         }
     }

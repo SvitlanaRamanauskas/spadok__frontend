@@ -1,31 +1,36 @@
 import { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { Vyshyvanka } from "../types/Vyshyvanka";
 import { fetchFemaleVyshyvanky } from "../helper/fetch";
 import { VyshyvankaList } from "../components/VyshyvankaList";
+import { Loader } from "../components/Loader";
 
 export const WomenPage = () => {
+  const [femaleVyshyvanky, setFemaleVyshyvanky] = useState<Vyshyvanka[]>([]);
+  const [femaleProductsLoading, setFemaleProductsLoading] = useState(false);
 
-const [femaleVyshyvankyy, setFemaleVyshyvanky] = useState<Vyshyvanka[]>([]);
-const [femaleProductsLoading, setFemaleProductsLoading] = useState(false);
-
-useEffect(() => {
+  useEffect(() => {
     setFemaleProductsLoading(true);
 
-    fetchFemaleVyshyvanky()
-    .then(femaleProducts => setFemaleVyshyvanky(femaleProducts))
-    .catch(error => {
-        throw new Error('Error fetching female vyshyvanky:', error);
-      }
-    )
-    .finally(() => setFemaleProductsLoading(false))
-}, [])
+    setTimeout(() => {
+        fetchFemaleVyshyvanky()
+        .then((femaleProducts) => 
+            setFemaleVyshyvanky(femaleProducts)
+        )
+        .catch((error) => {
+          throw new Error("Error fetching female vyshyvanky:", error);
+        })
+        .finally(() => setFemaleProductsLoading(false));
+    }, 1000);
+  }, []);
 
-    return  (
-        <div>
-            <h2 className="category__sub-title sub-title">Для неї</h2>
+  return (
+    <div>
+      <h2 className="category__sub-title sub-title">Для неї</h2>
 
-            <VyshyvankaList items={femaleVyshyvankyy} />
-        </div>
-    )
-}
+      {femaleProductsLoading && <Loader />}
+
+      <VyshyvankaList items={femaleVyshyvanky} />
+    </div>
+  );
+};

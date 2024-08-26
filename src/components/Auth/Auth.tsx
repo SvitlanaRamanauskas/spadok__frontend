@@ -1,6 +1,7 @@
 import { useState } from "react";
 import cn from "classnames";
 import "./Auth.scss";
+import "../../styles/App.scss";
 
 type Props = {
     authIsOpen: boolean;
@@ -14,6 +15,7 @@ export const Auth: React.FC<Props> = ({ authIsOpen, setAuthIsOpen }) => {
   const [error, setError] = useState("");
 
   const validateInput = (value: string) => {
+    setError("");
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     const phonePattern =
@@ -43,10 +45,10 @@ export const Auth: React.FC<Props> = ({ authIsOpen, setAuthIsOpen }) => {
         })}>
         <div className="auth__content">
           <button className="auth__button--close" onClick={() => setAuthIsOpen(false)}>x</button>
-          <form action="POST" className="auth__form">
-            <fieldset>
-              <legend>Log In</legend>
-              <div>
+          <form onSubmit={handleSubmit} className="auth__form">
+            <fieldset className="auth__fieldset">
+              <h3 className="auth__title">Log In</h3>
+              <div className="auth__input-container">
                 <label htmlFor="name"></label>
                 <input
                   id="name"
@@ -59,7 +61,7 @@ export const Auth: React.FC<Props> = ({ authIsOpen, setAuthIsOpen }) => {
                 />
               </div>
 
-              <div>
+              <div className="auth__input-container">
                 <label htmlFor="password"></label>
                 <input
                   id="password"
@@ -76,10 +78,15 @@ export const Auth: React.FC<Props> = ({ authIsOpen, setAuthIsOpen }) => {
               </div>
 
               {error && <p style={{ color: "red" }}>{error}</p>}
-              <button type="submit" disabled={!!error}>
+              <button className="button auth__button--submit" type="submit" disabled={!!error}>
                 Submit
               </button>
             </fieldset>
+
+            <div className="auth__options">
+              <button type="button" className="auth__reset-password">Забули пароль?</button>
+              <button type="button" className="auth__sign">Зареєструватися</button> 
+            </div>
           </form>
         </div>
       </div>
