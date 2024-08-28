@@ -17,6 +17,7 @@ import {
   removeItem,
 } from "../../redux/cart/reducerFavorites";
 import { FavoritesItem } from "../../types/FavoritesItem";
+import { CartItem } from "../../types/CartItem";
 
 export const ProductDetails: React.FC = () => {
   const { selectedProduct, setSelectedProduct } = useContext(AppContext);
@@ -36,6 +37,10 @@ export const ProductDetails: React.FC = () => {
 
   const addedToFavorites = (itemsInFavorites: FavoritesItem[], id: string) => {
     return itemsInFavorites.some((item) => item.item.id === id);
+  };
+
+  const addedToCart = (cartItemsAdded: CartItem[], itemId: string) => {
+    return cartItemsAdded.some((itemInCart) => itemInCart.item.id === itemId);
   };
 
   const handleAddToFavorites = (product: VyshyvankaDetails) => {
@@ -117,7 +122,10 @@ export const ProductDetails: React.FC = () => {
 
                   <button
                     type="button"
-                    className="details__icon-bg details__icon-bg--favorites"
+                    className={classNames('details__icon-bg', {
+                      'details__icon-bg--active' : selectedProduct 
+                       && addedToFavorites(favoritesItems, selectedProduct?.id)
+                    })}
                     onClick={() => handleAddToFavorites(selectedProduct)}
                   >
                     <img
@@ -203,7 +211,7 @@ export const ProductDetails: React.FC = () => {
                     handleAddToCart(selectedProduct);
                   }}
                 >
-                  Додати до кошика
+                  {`${selectedProduct && addedToCart(cartItems, selectedProduct.id) ? 'Додано до кошика' : 'Додати до кошика'}`}
                 </button>
               </div>
             </div>

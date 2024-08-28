@@ -56,6 +56,7 @@ export const cartSlice = createSlice({
             }
 
             saveCartToLocalStorage(state);
+            // localStorage.clear()
         },
 
         removeItem: (state, action: PayloadAction<VyshyvankaDetails>) => {
