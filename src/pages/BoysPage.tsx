@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Vyshyvanka } from "../types/Vyshyvanka";
 import { fetchBoysVyshyvanky } from "../helper/fetch";
-import { VyshyvankaList } from "../components/VyshyvankaList";
+import { VyshyvankaList } from "../components/ProductList";
 import { Loader } from "../components/Loader";
 
 export const BoysPage = () => {

@@ -1,0 +1,102 @@
+@import '../../styles/utils/variables';
+
+.details {
+
+    &__picture {
+        width: 100%;
+    }
+
+    &__container {
+        display: flex;
+    }
+
+    &__images-wrapper {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+    }
+
+    &__main-image-container {
+        position: relative;
+        grid-column: 2 / 4;
+        grid-row: 1 / -1;
+    }
+
+    &__small-images {
+        grid-column: 1 / 2;
+    }
+
+    &__icon-bg {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        background-color: #f0f8ff;
+        opacity: 0.7;
+        z-index: 10;
+
+        &--favorites {
+            top: 10px;
+            right: 10px;
+        }
+    }
+
+    &__icon {
+        height: 25px;
+        width: 25px;
+    }
+}
+
+.size {
+    &__elements {
+        display: flex;
+        justify-content: flex-start;
+        gap: 15px;
+    }
+
+    &__value {
+        font-size: 18px;
+        color: $choco;
+        height: 40px;
+        line-height: 40px;
+    }
+
+    &__box {
+        position: relative;
+        height: 40px;
+        width: 40px;
+        display: flex;
+        justify-content: center;
+        background-color: transparent;
+
+        &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: $brown;
+        opacity: 0.3;
+        z-index: -1;
+        }
+
+        &--active {
+            &::before {
+                background-color: gray;
+            }
+        }
+    }
+}
+
+.info {
+    &__button {
+        height: 60px;
+        width: 100%;
+        background-color: $choco;
+        color: $bg-color;
+    }
+}

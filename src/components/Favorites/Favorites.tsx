@@ -2,7 +2,7 @@ import { removeItem } from "../../redux/cart/reducerCart";
 import { favoritesSelector, totalFavoritesQuantitySelector } from "../../redux/cart/reducerFavorites";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { FavoritesItem } from "../../types/FavoritesItem";
-import { Vyshyvanka } from "../../types/Vyshyvanka";
+import { VyshyvankaDetails } from "../../types/VyshyvankaDetails";
 
 export const Favorites = () => {
     const items: FavoritesItem[] = useAppSelector(favoritesSelector);
@@ -10,7 +10,7 @@ export const Favorites = () => {
   
     const dispatch = useAppDispatch();
   
-    const handleRemoveItem = (item: Vyshyvanka) => {
+    const handleRemoveItem = (item: VyshyvankaDetails) => {
       dispatch(removeItem(item));
     };
 

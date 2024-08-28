@@ -8,9 +8,9 @@ import {
 } from "../../redux/cart/reducerCart";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { CartItem } from "../../types/CartItem";
-import { Vyshyvanka } from "../../types/Vyshyvanka";
 import "./Cart.scss";
 import "../../styles/button.scss";
+import { VyshyvankaDetails } from "../../types/VyshyvankaDetails";
 
 export const Cart = () => {
   const items: CartItem[] = useAppSelector(cartSelector);
@@ -19,15 +19,15 @@ export const Cart = () => {
 
   const dispatch = useAppDispatch();
 
-  const handlePlus = (item: Vyshyvanka) => {
+  const handlePlus = (item: VyshyvankaDetails) => {
     dispatch(plusItem(item));
   };
 
-  const handleMinus = (item: Vyshyvanka) => {
+  const handleMinus = (item: VyshyvankaDetails) => {
     dispatch(minusItem(item));
   };
 
-  const handleRemoveItem = (item: Vyshyvanka) => {
+  const handleRemoveItem = (item: VyshyvankaDetails) => {
     dispatch(removeItem(item));
   };
 
@@ -42,7 +42,7 @@ export const Cart = () => {
               {items.map((item) => (
                 <li key={item.id} className="cart__item item">
                   <div className="item__image-wrap">
-                    <img src={item.item.image} alt="" className="item__image" />
+                    <img src={item.item.images[0]} alt="" className="item__image" />
                   </div>
 
                   <div className="item__info">

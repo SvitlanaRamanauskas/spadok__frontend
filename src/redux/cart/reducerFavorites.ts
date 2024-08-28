@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
-import { Vyshyvanka } from "../../types/Vyshyvanka";
 import { FavoritesItem } from "../../types/FavoritesItem";
+import { VyshyvankaDetails } from "../../types/VyshyvankaDetails";
 
 const saveFavoritesToLocalStorage = (state: FavoritesState) => {
     localStorage.setItem("favoritesItems", JSON.stringify(state.favoritesItems));
@@ -32,7 +32,7 @@ export const favoritesSlice = createSlice({
     name: 'favorites',
     initialState,
     reducers: {
-        addItem: (state, action: PayloadAction<Vyshyvanka>) => {
+        addItem: (state, action: PayloadAction<VyshyvankaDetails>) => {
             const newItem = action.payload;
             const existingItem = state.favoritesItems.find(item => item.item.id === newItem.id);
             state.totalFavoritesQuantity += 1;
@@ -46,7 +46,7 @@ export const favoritesSlice = createSlice({
             saveFavoritesToLocalStorage(state);
         },
 
-        removeItem: (state, action: PayloadAction<Vyshyvanka>) => {
+        removeItem: (state, action: PayloadAction<VyshyvankaDetails>) => {
             const itemToDelete = action.payload;
             const existingItem = state.favoritesItems.find(item => item.item.id === itemToDelete.id);
             console.log(state.favoritesItems)

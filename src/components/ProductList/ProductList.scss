@@ -1,0 +1,22 @@
+@import '../../styles/utils/mixins.scss';
+@import '../../styles/utils/variables.scss';
+
+.list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+
+    @include on-Desktop {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    &__card {
+        color: $choco;
+        width: 100%;
+        grid-column: 1 / -1;
+
+        @include on-Tablet {
+            grid-column: auto;
+        }
+    }
+}

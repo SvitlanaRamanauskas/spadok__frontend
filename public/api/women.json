@@ -1,0 +1,19 @@
+[
+  {
+    "id": "waxs",
+    "name": "Marichka",
+    "size": "XS",
+    "sizesAvailable": ["XS", "S", "M"],
+    "images": ["img/women_images/marichka.jpg", "img/women_images/Zoriana.jpg", "img/women_images/Agnelia"],
+    "price": 1000
+  },
+
+  {
+    "id": "was",
+    "name": "Marichka",
+    "size": "S",
+    "sizesAvailable": ["XS", "S", "M"],
+    "images": ["img/women_images/marichka.jpg", "img/women_images/Zoriana.jpg", "img/women_images/Agnelia"],
+    "price": 1000
+  }
+]

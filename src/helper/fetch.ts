@@ -1,4 +1,5 @@
 import { Vyshyvanka } from "../types/Vyshyvanka";
+import { VyshyvankaDetails } from "../types/VyshyvankaDetails";
 
 export const fetchVyshyvanky = async() : Promise<Vyshyvanka[]> => {
     try {
@@ -11,6 +12,34 @@ export const fetchVyshyvanky = async() : Promise<Vyshyvanka[]> => {
         throw new Error(`Error fetching products: ${error.message}`);
     }
 }
+
+export const getProductDetails = async (
+    productId: string,
+    productCategory: string,
+  ): Promise<VyshyvankaDetails | null> => {
+    try {
+      const response = await fetch(`./api/${productCategory}.json`, {
+        method: 'GET',
+      });
+  
+      if (!response.ok) {
+        if (response.status === 404) {
+          return null;
+        }
+  
+        throw new Error(`${response.status} ${response.statusText}`);
+      }
+  
+      const productDetails = await response.json();
+      const product = productDetails.find(
+        (prod: VyshyvankaDetails) => prod.id === productId,
+      );
+  
+      return product || null;
+    } catch (error: any) {
+      throw new Error(`Error fetching product details: ${error.message}`);
+    }
+  };
 
 export const fetchFemaleVyshyvanky = () => {
     return fetchVyshyvanky()
