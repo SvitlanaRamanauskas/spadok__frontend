@@ -1,0 +1,42 @@
+[
+    {
+        "id": "faaa",
+        "title" : "Біжу аби бігти",
+        "genre": "novel",
+        "price": "350",
+        "image": "img/women_images/marichka.jpg"
+    },
+
+    {
+        "id": "wadfvfvxs",
+        "title" : "книга 2",
+        "genre": "novel",
+        "price": "300",
+        "image": "img/women_images/marichka.jpg"
+    },
+
+    {
+        "id": "ervsrv",
+        "title" : "книга 3",
+        "genre": "novel",
+        "price": "250",
+        "image": "img/women_images/marichka.jpg"
+    },
+
+    {
+        "id": "rvrbvrb",
+        "title" : "книга 4",
+        "genre": "novel",
+        "price": "200",
+        "image": "img/women_images/marichka.jpg"
+    },
+
+    {
+        "id": "rggbbrbg",
+        "title" : "книга 5",
+        "genre": "novel",
+        "price": "300",
+        "image": "img/women_images/marichka.jpg"
+    }
+]
+

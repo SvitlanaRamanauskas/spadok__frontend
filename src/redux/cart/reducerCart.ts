@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { CartItem } from "../../types/CartItem";
 import { RootState } from "../store";
-import { Vyshyvanka } from "../../types/Vyshyvanka";
 import { VyshyvankaDetails } from "../../types/VyshyvankaDetails";
 
 const saveCartToLocalStorage = (state: CartState) => {
@@ -21,7 +20,6 @@ const loadCartFromLocalStorage = (): CartState => {
         totalCartPrice: totalCartPrice ? JSON.parse(totalCartPrice) : 0,
     };
 };
-
 
 interface CartState {
     cartItems: CartItem[];

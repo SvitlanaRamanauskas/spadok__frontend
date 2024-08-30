@@ -1,3 +1,4 @@
+import { Book } from "../types/Book";
 import { Vyshyvanka } from "../types/Vyshyvanka";
 import { VyshyvankaDetails } from "../types/VyshyvankaDetails";
 
@@ -11,6 +12,18 @@ export const fetchVyshyvanky = async() : Promise<Vyshyvanka[]> => {
     } catch (error: any) {
         throw new Error(`Error fetching products: ${error.message}`);
     }
+}
+
+export const fetchBooks = async() : Promise<Book[]> => {
+  try {
+      const response = await fetch('./api/books.json', { method: 'GET'});
+      if (!response.ok) {
+          throw new Error(`${response.status} ${response.statusText}`);
+      }
+      return await response.json();
+  } catch (error: any) {
+      throw new Error(`Error fetching products: ${error.message}`);
+  }
 }
 
 export const getProductDetails = async (

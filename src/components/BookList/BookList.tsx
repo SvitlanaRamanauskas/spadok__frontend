@@ -1,23 +1,22 @@
 import { Link } from "react-router-dom";
-import { Vyshyvanka } from "../../types/Vyshyvanka";
-import './ProductList.scss';
+import './BookList.scss';
 import '../../styles/App.scss';
-import { ProductCard } from "../ProductCard";
 import { Book } from "../../types/Book";
+import { BookCard } from "../BookCard";
 
 type Props = {
-    items: Vyshyvanka[];
+    items: Book[];
 }
 
-export const VyshyvankaList: React.FC<Props> = ({ items }) => {
+export const BookList: React.FC<Props> = ({ items }) => {
     return (
         <div className="list">
-            {items.map((item: Vyshyvanka) => (
+            {items.map((item: Book) => (
                 <div 
                     className="list__card"
                     key={item.id}
                 >
-                   <ProductCard item={item} items={items} />
+                   <BookCard item={item} />
                 </div>
             ))}
         </div>

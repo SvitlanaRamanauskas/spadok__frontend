@@ -1,0 +1,23 @@
+@import '../../styles/utils/variables.scss';
+@import '../../styles/utils/mixins.scss';
+
+.card {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    justify-content: flex-start;
+
+    &__photo-container {
+        position: relative;
+    }
+    
+    &__photo-link {
+        display: block;
+    }
+
+    &__image {
+        width: 100%;
+        height: auto;
+    }
+
+}

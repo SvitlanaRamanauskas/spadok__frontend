@@ -16,6 +16,7 @@ import { ProductDetailsPage } from "./pages/ProductDetailsPage"
 import store from "./redux/store"
 import { Provider } from "react-redux"
 import { FavoritesPage } from "./pages/FavoritesPage"
+import { BooksPage } from "./pages/BooksPage"
 
 export const Root = () => {
     return (    
@@ -40,6 +41,10 @@ export const Root = () => {
                             </Route>
                             <Route path="girls">
                                 <Route index element={<GirlsPage />} />
+                                <Route path=":productId" element={<ProductDetailsPage />} />
+                            </Route>
+                            <Route path="books">
+                                <Route index element={<BooksPage />} />
                                 <Route path=":productId" element={<ProductDetailsPage />} />
                             </Route>
                             <Route path="/favorites" element={<FavoritesPage />} />

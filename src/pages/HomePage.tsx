@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import cn from "classnames";
 import "../styles/HomePage.scss";
+import "../styles/App.scss";
 import { Element } from "react-scroll";
 
 export const HomePage = () => {
@@ -8,15 +9,22 @@ export const HomePage = () => {
     <div className="home">
       <section>
         <div className="home__background-container">
-          <h1 className="home__title">Nash_Spadok</h1>
+          <h1 className="home__title">Наш спадок</h1>
         </div>
       </section>
 
-      <section className="home__about">
+      <Element name="about_us" className="home__about">
+          <img src={require("../styles/icons/Line 10_m_horizontal.svg").default} className="curve curve--top-left" alt="Logo" />
+          <img src={require("../styles/icons/Line 10_m_horizontal.svg").default} className="curve curve--bottom-left" alt="Logo" />
+
+          <img src={require("../styles/icons/Line 10_m_horizontal.svg").default} className="curve curve--top-right" alt="Logo" />
+          <img src={require("../styles/icons/Line 10_m_horizontal.svg").default} className="curve curve--bottom-right" alt="Logo" />
+
         <h2 className="sub-title home__about-sub-title">Про нас </h2>
         <p className="home__text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero, voluptatem fugiat, necessitatibus dolorum culpa vitae reprehenderit recusandae quo deleniti fugit ullam neque repellendus cum earum possimus magni voluptas illo quidem tempore veniam numquam qui explicabo, perspiciatis aliquam. Nihil amet modi cum vel incidunt aliquid deleniti possimus alias laborum, esse ipsa perspiciatis iusto itaque tempora, porro molestiae cumque eaque odit? Dolore dolores hic praesentium voluptatibus nostrum. Amet exercitationem autem, fugiat porro optio excepturi cum vitae perspiciatis unde laboriosam. Neque, sunt illo quod officia laudantium consequuntur ducimus soluta ut quasi doloribus maiores velit veniam, magni in sed animi quibusdam provident modi nam.</p>
-      </section>
-      <section className="home__catalog">
+      </Element>
+
+      <Element name="catalog" className="home__catalog">
         <h2 className="sub-title home__catalog-sub-title">Каталог</h2>
         <div className="topic__container">
           <Link to="/women" className="topic topic--women">
@@ -56,7 +64,7 @@ export const HomePage = () => {
             </div>
           </Link>
         </div>
-      </section>
+      </Element>
 
       <Element name="contact_us">
         <section id="contact" className="home__contact">
