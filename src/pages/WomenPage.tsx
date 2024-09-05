@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { Vyshyvanka } from "../types/Vyshyvanka";
 import { fetchFemaleVyshyvanky } from "../helper/fetch";
 import { VyshyvankaList } from "../components/ProductList";

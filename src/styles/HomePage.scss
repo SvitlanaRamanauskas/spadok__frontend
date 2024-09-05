@@ -6,6 +6,13 @@
     row-gap: 24px;
     margin-bottom: 16px;
 
+    &__section {
+        position: relative;
+        padding-top: 111px;         
+        border-top: 1px solid black;
+        margin-inline: 24px;
+    }
+
     @include on-Small-Tablet {
         margin-bottom: 40px;
         row-gap: 50px;
@@ -32,6 +39,7 @@
         font-size: 50px;
         font-weight: 500;
         font-family: 'lev_type';
+        color: white;
         padding-left: 10px;
     
         @include on-Tablet {
@@ -50,9 +58,6 @@
     }
 
     &__about {
-        position: relative;
-        border-top: 1px solid black;
-        margin-inline: 24px;
         &-sub-title {
             text-wrap: nowrap;
         }
@@ -68,10 +73,9 @@
         }
     }
 
-    &__catalog {
-        &-sub-title {
-            text-align: center
-        }
+    &__find {
+        @include pageGrid;
+        grid-template-rows: 281px 26px 16px 16px 396px 113px;
         margin-bottom: 16px;
         @include pagePaddings;
         @include on-Desktop {
@@ -79,11 +83,12 @@
             width: 1136px;
             margin-inline: auto;
         }
-    }
+      }
+
 
     &__contact {
         &-sub-title {
-            text-align: center
+            text-align: center;
         }
         @include pagePaddings;
         @include on-Desktop {
@@ -93,173 +98,58 @@
     }
 }
 
-.topic {
-    position: relative;
-    height: 400px;
-    display: block;
-    grid-column: 1 / -1;
-    transition: opacity 0.3s ease;
-
-    &__background {
-        position: relative;
-        z-index: -1;
-        height: 400px;
-        background-position: center;
-        background-size: cover;
-        opacity: 100%;
-
-        &:hover {
-            opacity: 80%;
-        }
-
-        &--women {
-            background-image: url(../styles/images/vyshyvanka_zhinocha.jpg);
-            background-position: bottom;
-        }
-
-        &--men {
-            background-image: url(../styles/images/men.png);
-        }
-
-        &--girls {
-            background-image: url(../styles/images/girls_vyshyvanka.png);
-        }
-
-        &--boys {
-            background-image: url(../styles/images/boys_vyshyvanka.png);
-        }
-
-        &--books {
-            background-image: url(../styles/images/books_category2.png);
-        }
+.find {
+    &-sub-title {
+        text-align: center;
+        white-space: nowrap;
     }
 
-    &__title {
-        color: $brown;
-        transition: color 0.3s ease;
-        position: relative;
-
-        &::after {
-            display: block;
-            position: absolute;
-            content: '';
+    &__photo {
+        &--1 {
+            background-image: url(../styles/images/find_yours1.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
             width: 100%;
-            height: 1px;
-            background-color: $brown;
+            height: 749px;
+            grid-row: 1 / 6;
+            grid-column: 1 / 11;
         }
 
-        &:hover {
-            color:#000;
-        }
 
-        &-wrapper {
-            position: absolute;
-            bottom: -30px;
+        &--2 {
+            background-image: url(../styles/images/find_yours2.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            width: 100%;
+            height: 523px;
+            grid-row: 4 / 7;
+            grid-column: -1 / -9;
         }
     }
 
-    &__container {
-        @include on-Small-Desktop {
-            grid-template-rows: repeat(7, 200px);
-        }
-
-        @include pageGrid;
-        row-gap: 50px;
+    &__text {
+        grid-row: 1 / 2;
+        grid-column: 11 / -3;
     }
 
-    &--women {
-        @include on-Small-Tablet {
-            grid-column: 1 / 5;
+    &__open {
+        grid-row: 3 / 5;
+        grid-column: 11 / -6;
+        &-link {
+            text-decoration: none;
         }
-
-        @include on-Tablet {
-            grid-row: 1 / 3;
-            grid-column: 1 / 5;
-        }
-
-        @include on-Small-Desktop {
-            grid-column: 1 / 7;
-        }
-
-        @include on-Desktop {
-            grid-column: 1 / 8;
+        &-text {
+            font-family: 'lev_type';
+            font-size: 24px;
+            font-weight: 500;
+            line-height: 28.8px;
+            text-align: left;
+            text-transform: uppercase;
         }
     }
 
-    &--men {
-        @include on-Small-Tablet {
-            grid-column: 5 / 9;
-        }
-
-        @include on-Tablet {
-            grid-row: 2 / 4;
-            grid-column: 5 / 9;
-        }
-
-        @include on-Small-Desktop {
-            grid-column: 7 / 13;
-        }
-
-        @include on-Desktop {
-            grid-column: 9 / 16;
-        }
-    }
-
-    &--girls {
-        @include on-Small-Tablet {
-            grid-column: 1 / 5;
-        }
-
-        @include on-Tablet {
-            grid-row: 3 / 5;
-            grid-column: 9 / 13;
-        }
-
-        @include on-Small-Desktop {
-            grid-column: 13 / 19;
-        }
-
-        @include on-Desktop {
-            grid-column: 17 / 24;
-        }
-    }
-
-    &--boys {
-        @include on-Small-Tablet {
-            grid-column: 5 / 9;
-        }
-        @include on-Tablet {
-            grid-row: 5 / 7;
-            grid-column: 7 / 11;
-        }
-
-        @include on-Small-Desktop {
-            grid-column: 4 / 10;
-        }
-
-        @include on-Desktop {
-            grid-column: 13 / 20;
-        }
-    }
-
-    &--books {
-        @include on-Small-Tablet {
-            grid-column: 1 / 5;
-        }
-
-        @include on-Tablet {
-            grid-row: 6 / 8;
-            grid-column: 3 / 7;
-        }
-
-        @include on-Small-Desktop {
-            grid-column: 10 / 16;
-        }
-
-        @include on-Desktop {
-            grid-column: 5 / 12;
-        }
-    }
 }
 
 .contact {

@@ -1,24 +1,33 @@
-import { useLayoutEffect, useState } from "react";
+import { useContext, useLayoutEffect, useState } from "react";
 import cn from "classnames";
 import "./styles/App.scss";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { scroller } from "react-scroll";
-import { Auth } from "./components/Auth";
+import { AsideMenu } from "./components/AsideMenu";
+import { AppContext } from "./components/appContext";
+
+export const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+};
+
+export const handleNavigation = (section: any) => {
+  setTimeout(() => {
+    scroller.scrollTo(section, {
+      duration: 800,
+      delay: 0,
+      smooth: "easeInOutQuart",
+    });
+  }, 100); // Delay to ensure the page is loaded
+};
 
 function App() {
-  const [asideIsOpen, setAsideIsOpen] = useState(false);
+  const { setAsideIsOpen, asideIsOpen } = useContext(AppContext);
+
   const [scrolled, setScrolled] = useState(false);
   const [authIsOpen, setAuthIsOpen] = useState(false);
-
-  const handleNavigation = (section: any) => {
-    setTimeout(() => {
-      scroller.scrollTo(section, {
-        duration: 800,
-        delay: 0,
-        smooth: "easeInOutQuart",
-      });
-    }, 100); // Delay to ensure the page is loaded
-  };
 
   const location = useLocation();
 
@@ -48,66 +57,112 @@ function App() {
     <div className="app">
       <header className={cn("header", { "header--scrolled": scrolled })}>
         <div className="header__logo">
-          <img src={require("./styles/icons/Line 10_m_horizontal.svg").default} className="curve curve--top-left" alt="Logo" />
-          <img src={require("./styles/icons/Line 10_m_horizontal.svg").default} className="curve curve--bottom-left" alt="Logo" />
+          <img
+            src={require("./styles/icons/curve_line.svg").default}
+            className="curve curve--top-left"
+            alt="Logo"
+          />
+          <img
+            src={require("./styles/icons/curve_line.svg").default}
+            className="curve curve--bottom-left"
+            alt="Logo"
+          />
 
-          <img src={require("./styles/icons/Line 10_m_horizontal.svg").default} className="curve curve--top-right" alt="Logo" />
-          <img src={require("./styles/icons/Line 10_m_horizontal.svg").default} className="curve curve--bottom-right" alt="Logo" />
+          <img
+            src={require("./styles/icons/curve_line.svg").default}
+            className="curve curve--top-right"
+            alt="Logo"
+          />
+          <img
+            src={require("./styles/icons/curve_line.svg").default}
+            className="curve curve--bottom-right"
+            alt="Logo"
+          />
 
           <Link to="/home" className="header__logo-link">
             <img src={require("./styles/icons/Logo.svg").default} alt="Logo" />
           </Link>
 
-          <img src={require("./styles/icons/Line 10_m_horizontal.svg").default} className="curve curve__below--top-left" alt="Logo" />
-          <img src={require("./styles/icons/Line 10_m_horizontal.svg").default} className="curve curve__below--bottom-left" alt="Logo" />
+          <img
+            src={require("./styles/icons/curve_line.svg").default}
+            className="curve curve__below--top-left"
+            alt="Logo"
+          />
+          <img
+            src={require("./styles/icons/curve_line.svg").default}
+            className="curve curve__below--bottom-left"
+            alt="Logo"
+          />
 
-          <img src={require("./styles/icons/Line 10_m_horizontal.svg").default} className="curve curve__below--top-right" alt="Logo" />
-          <img src={require("./styles/icons/Line 10_m_horizontal.svg").default} className="curve curve__below--bottom-right" alt="Logo" />
-
+          <img
+            src={require("./styles/icons/curve_line.svg").default}
+            className="curve curve__below--top-right"
+            alt="Logo"
+          />
+          <img
+            src={require("./styles/icons/curve_line.svg").default}
+            className="curve curve__below--bottom-right"
+            alt="Logo"
+          />
         </div>
         <div className="header__right">
-          <img src={require("./styles/icons/Line 10_m_horizontal.svg").default} className="curve curve--top-left" alt="Logo" />
-          <img src={require("./styles/icons/Line 10_m_horizontal.svg").default} className="curve curve--bottom-left" alt="Logo" />
+          <img
+            src={require("./styles/icons/curve_line.svg").default}
+            className="curve curve--top-left"
+            alt="Logo"
+          />
+          <img
+            src={require("./styles/icons/curve_line.svg").default}
+            className="curve curve--bottom-left"
+            alt="Logo"
+          />
 
-          <img src={require("./styles/icons/Line 10_m_horizontal.svg").default} className="curve curve--top-right" alt="Logo" />
-          <img src={require("./styles/icons/Line 10_m_horizontal.svg").default} className="curve curve--bottom-right" alt="Logo" />
-
+          <img
+            src={require("./styles/icons/curve_line.svg").default}
+            className="curve curve--top-right"
+            alt="Logo"
+          />
+          <img
+            src={require("./styles/icons/curve_line.svg").default}
+            className="curve curve--bottom-right"
+            alt="Logo"
+          />
 
           <nav className="header__nav">
             <ul className="nav__list">
               <li className="nav__item">
-                <Link to="women" className="nav__link">
+                <Link to="/catalog/women" className="nav__link">
                   жінкам
                 </Link>
               </li>
               <li className="nav__item">
-                <Link to="men" className="nav__link">
+                <Link to="/catalog/men" className="nav__link">
                   чоловікам
                 </Link>
               </li>
               <li className="nav__item">
-                <Link to="boys" className="nav__link">
+                <Link to="/catalog/boys" className="nav__link">
                   хлопчикам
                 </Link>
               </li>
               <li className="nav__item">
-                <Link to="girls" className="nav__link">
+                <Link to="/catalog/girls" className="nav__link">
                   дівчаткам
                 </Link>
               </li>
 
               <li className="nav__item">
-                <Link to="books" className="nav__link">
+                <Link to="/catalog/books" className="nav__link">
                   книгі
                 </Link>
               </li>
             </ul>
           </nav>
 
-          {(location.pathname === "/women" ||
+          {(location.pathname === "catalog/women" ||
             location.pathname === "/men" ||
             location.pathname === "/girls" ||
-            location.pathname == "/boys") && (
+            location.pathname == "catalog/boys") && (
             <div className="header__search">
               <img
                 src={require("./styles/icons/Search.svg").default}
@@ -166,68 +221,32 @@ function App() {
             )}
           </div>
 
-          <img src={require("./styles/icons/Line 10_m_horizontal.svg").default} className="curve curve__below--top-left" alt="Logo" />
-          <img src={require("./styles/icons/Line 10_m_horizontal.svg").default} className="curve curve__below--bottom-left" alt="Logo" />
+          <img
+            src={require("./styles/icons/curve_line.svg").default}
+            className="curve curve__below--top-left"
+            alt="Logo"
+          />
+          <img
+            src={require("./styles/icons/curve_line.svg").default}
+            className="curve curve__below--bottom-left"
+            alt="Logo"
+          />
 
-          <img src={require("./styles/icons/Line 10_m_horizontal.svg").default} className="curve curve__below--top-right" alt="Logo" />
-          <img src={require("./styles/icons/Line 10_m_horizontal.svg").default} className="curve curve__below--bottom-right" alt="Logo" />
+          <img
+            src={require("./styles/icons/curve_line.svg").default}
+            className="curve curve__below--top-right"
+            alt="Logo"
+          />
+          <img
+            src={require("./styles/icons/curve_line.svg").default}
+            className="curve curve__below--bottom-right"
+            alt="Logo"
+          />
         </div>
       </header>
 
       {asideIsOpen && (
-        <aside className="menu">
-          <ul className="nav__list menu__list">
-            <li className="nav__item menu__item">
-              <Link
-                to="women"
-                className="nav__link menu__link"
-                onClick={() => setAsideIsOpen(false)}
-              >
-                жінкам
-              </Link>
-            </li>
-            <li className="nav__item menu__item">
-              <Link
-                to="men"
-                className="nav__link menu__link"
-                onClick={() => setAsideIsOpen(false)}
-              >
-                чоловікам
-              </Link>
-            </li>
-            <li className="nav__item menu__item">
-              <Link
-                to="boys"
-                className="nav__link menu__link"
-                onClick={() => setAsideIsOpen(false)}
-              >
-                хлопчикам
-              </Link>
-            </li>
-            <li className="nav__item menu__item">
-              <Link
-                to="girls"
-                className="nav__link menu__link"
-                onClick={() => setAsideIsOpen(false)}
-              >
-                дівчаткам
-              </Link>
-            </li>
-
-            <li className="nav__item menu__item">
-              <Link
-                to="/"
-                className="nav__link menu__link"
-                onClick={() => {
-                  setAsideIsOpen(false);
-                  handleNavigation("contact_us");
-                }}
-              >
-                Зв'язатись з нами
-              </Link>
-            </li>
-          </ul>
-        </aside>
+       <AsideMenu />
       )}
 
       <main className="main">
@@ -249,13 +268,13 @@ function App() {
               <div className="arrow__bottom--right"></div>
             </div>
             <div className="footer__follow">
-              <div className="footer__follow-text">Завітай на сторінку</div>
+              <div className="footer__follow-text">Стежити за нами</div>
               <a
                 href="https://www.instagram.com/julia_hapeka/"
                 target="_blank"
                 className="nav__link footer__link"
               >
-                instagram
+                <img src={require("./styles/icons/instagram21.svg").default} />
               </a>
             </div>
           </div>
@@ -275,9 +294,9 @@ function App() {
               </li>
               <li className="footer__item">
                 <Link
-                  to="/"
+                  to="/catalog"
                   className="footer__link"
-                  onClick={() => handleNavigation("catalog")}
+                  // onClick={() => handleNavigation("catalog")}
                 >
                   Каталог
                 </Link>

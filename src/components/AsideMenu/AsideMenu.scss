@@ -1,0 +1,29 @@
+.menu {
+    height: 500px;
+    width: 320px;
+    padding-top: 150px;
+    background-color: #fff;
+    
+    &__list {
+      flex-direction: column;
+    }
+  
+    &__item {
+      &::after {
+        color: #000;
+  
+        &:hover {
+          color: #282c34;
+        }
+      }
+    }
+  
+    &__link {
+      color: #000;
+  
+      &:hover {
+        color: #282c34;
+      }
+    }
+  }
+  

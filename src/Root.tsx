@@ -17,6 +17,7 @@ import store from "./redux/store"
 import { Provider } from "react-redux"
 import { FavoritesPage } from "./pages/FavoritesPage"
 import { BooksPage } from "./pages/BooksPage"
+import { CatalogPage } from "./pages/CatalogPage"
 
 export const Root = () => {
     return (    
@@ -27,26 +28,28 @@ export const Root = () => {
                         <Route element={<App />}>
                             <Route path="home" element={<Navigate to="/" replace />} />
                             <Route index element={<HomePage />} />
-                            <Route path="women">
-                                <Route index element={<WomenPage />} />
-                                <Route path=":productId" element={<ProductDetailsPage />} />
-                            </Route>
-                            <Route path="men">
-                                <Route index element={<MenPage />} />
-                                <Route path=":productId" element={<ProductDetailsPage />} />
-                            </Route>
-                            <Route path="boys">
-                                <Route index element={<BoysPage />} />
-                                <Route path=":productId" element={<ProductDetailsPage />} />
-                            </Route>
-                            <Route path="girls">
-                                <Route index element={<GirlsPage />} />
-                                <Route path=":productId" element={<ProductDetailsPage />} />
-                            </Route>
-                            <Route path="books">
-                                <Route index element={<BooksPage />} />
-                                <Route path=":productId" element={<ProductDetailsPage />} />
-                            </Route>
+                                <Route path="catalog" element={<CatalogPage />} >
+                                    <Route path="women">
+                                        <Route index element={<WomenPage />} />
+                                        <Route path=":productId" element={<ProductDetailsPage />} />
+                                    </Route>
+                                    <Route path="men">
+                                        <Route index element={<MenPage />} />
+                                        <Route path=":productId" element={<ProductDetailsPage />} />
+                                    </Route>
+                                    <Route path="boys">
+                                        <Route index element={<BoysPage />} />
+                                        <Route path=":productId" element={<ProductDetailsPage />} />
+                                    </Route>
+                                    <Route path="girls">
+                                        <Route index element={<GirlsPage />} />
+                                        <Route path=":productId" element={<ProductDetailsPage />} />
+                                    </Route>
+                                    <Route path="books">
+                                        <Route index element={<BooksPage />} />
+                                        <Route path=":productId" element={<ProductDetailsPage />} />
+                                    </Route>
+                                </Route>
                             <Route path="/favorites" element={<FavoritesPage />} />
                             <Route path="/cart" element={<CartPage />} />
                         </Route>

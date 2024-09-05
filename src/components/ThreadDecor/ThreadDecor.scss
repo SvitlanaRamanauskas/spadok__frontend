@@ -1,0 +1,86 @@
+.curve {
+    position: absolute;
+    
+    &--top {
+      &-left {
+        top: -4.96px;
+        left: 0;
+      }
+  
+      &-right {
+        top: -4.96px;
+        right: 0;
+      }
+    }
+  
+    &--bottom {
+      &-left {
+        top: -1px;
+        left: 0;
+        transform: rotate(180deg);
+      }
+  
+      &-right {
+        top: -1px;
+        right: 0;
+        transform: rotate(180deg);
+      }
+    }
+  
+    &__below {
+      &--top {
+        &-left {
+          bottom: -1px;
+          left: 0;
+        }
+    
+        &-right {
+          bottom: -1px;
+          right: 0;
+        }
+      }
+    
+      &--bottom {
+        &-left {
+          bottom: -4.96px;
+          left: 0;
+          transform: rotate(180deg);
+        }
+    
+        &-right {
+          bottom: -4.96px;
+          right: 0;
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+
+  .thread {
+    position: absolute;
+    top: -35px;
+  
+    &--top {
+      &-left {
+        transform: rotate(180deg);
+        left: 30px;
+      }
+  
+      &-right {
+        right: 30px;
+        transform: rotate(180deg);
+      }
+    }
+  
+  
+    &--bottom {
+      &-left {
+        left: 30px;
+      }
+  
+      &-right {
+        right: 30px;;
+      }
+    }
+  }
+  

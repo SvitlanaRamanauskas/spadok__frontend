@@ -1,0 +1,83 @@
+@import '../../styles/utils/mixins.scss';
+@import '../../styles/utils/variables.scss';
+
+.slider {
+    &__content {
+        margin-top: 30px;
+    }
+
+    &__images {
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        transition: transform 0.5s ease-in-out;
+
+        @include on-Tablet {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @include on-Desktop {
+            max-width: 1136px;
+            margin: 0 auto;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+    }
+
+    &__image {
+        grid-row: 1 / -1;
+        height: 250px;
+        width: 100%;
+
+        &-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        &--1 {
+            grid-column: 1 / 2;
+        }
+        &--2 {
+            grid-column: 2 / 3;
+        }
+
+        transition: display 0.5s ease-in-out;
+        &--hidden {
+           display: none;
+        }
+        &--visible {
+            display: block;
+        }
+    }
+
+    &__button {
+        background-color: #fff;
+        color: #872a2a;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 50%;
+    
+        &--prev {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            transform: translateX(-50%);
+        }
+    
+        &--next {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            transform: translateX(50%);
+        }
+    }
+}
+
+
+  
+
+
+

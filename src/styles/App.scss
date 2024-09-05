@@ -10,7 +10,7 @@
 
 @font-face {
   font-family: 'lev_type';
-  src: url('../fonts/LevType_Hryvnia_v.1.013/Static/TTF/LevTypeHryvnia-Regular.ttf');
+  src: url('../fonts/LevType_Hryvnia_v.1.013/Static/WEB/LevTypeHryvnia-Regular.ttf');
   font-weight: 500;
   font-style: normal;
 }
@@ -179,65 +179,6 @@ button {
   }
 }
 
-
-.curve {
-  position: absolute;
-  
-  &--top {
-    &-left {
-      top: -4.96px;
-      left: 0;
-    }
-
-    &-right {
-      top: -4.96px;
-      right: 0;
-    }
-  }
-
-  &--bottom {
-    &-left {
-      top: -1px;
-      left: 0;
-      transform: rotate(180deg);
-    }
-
-    &-right {
-      top: -1px;
-      right: 0;
-      transform: rotate(180deg);
-    }
-  }
-
-  &__below {
-    &--top {
-      &-left {
-        bottom: -1px;
-        left: 0;
-      }
-  
-      &-right {
-        bottom: -1px;
-        right: 0;
-      }
-    }
-  
-    &--bottom {
-      &-left {
-        bottom: -4.96px;
-        left: 0;
-        transform: rotate(180deg);
-      }
-  
-      &-right {
-        bottom: -4.96px;
-        right: 0;
-        transform: rotate(180deg);
-      }
-    }
-  }
-}
-
 .nav {
   &__list {
     list-style: none;
@@ -279,35 +220,6 @@ button {
 
     &:hover {
       color: #41413f;
-    }
-  }
-}
-
-.menu {
-  height: 500px;
-  width: 320px;
-  padding-top: 150px;
-  background-color: #fff;
-  
-  &__list {
-    flex-direction: column;
-  }
-
-  &__item {
-    &::after {
-      color: #000;
-
-      &:hover {
-        color: #282c34;
-      }
-    }
-  }
-
-  &__link {
-    color: #000;
-
-    &:hover {
-      color: #282c34;
     }
   }
 }
@@ -412,13 +324,183 @@ button {
   }
 
   @include on-Desktop {
-    font-size: 98px;
+    font-size: 85px;
   }
 
   color: $choco;
   font-weight: lighter;
  
 }
+
+.topic {
+  position: relative;
+  height: 400px;
+  display: block;
+  grid-column: 1 / -1;
+  transition: opacity 0.3s ease;
+
+  &__background {
+      position: relative;
+      z-index: -1;
+      height: 400px;
+      background-position: center;
+      background-size: cover;
+      opacity: 100%;
+
+      &:hover {
+          opacity: 80%;
+      }
+
+      &--women {
+          background-image: url(../styles/images/vyshyvanka_zhinocha.jpg);
+          background-position: bottom;
+      }
+
+      &--men {
+          background-image: url(../styles/images/men_vyshyvanka.png);
+      }
+
+      &--girls {
+          background-image: url(../styles/images/girls_vyshyvanka.png);
+      }
+
+      &--boys {
+          background-image: url(../styles/images/boys_vyshyvanka.png);
+      }
+
+      &--books {
+          background-image: url(../styles/images/books_category2.png);
+      }
+  }
+
+  &__title {
+      color: $brown;
+      transition: color 0.3s ease;
+      position: relative;
+
+      &::after {
+          display: block;
+          position: absolute;
+          content: '';
+          width: 100%;
+          height: 1px;
+          background-color: $brown;
+      }
+
+      &:hover {
+          color:#000;
+      }
+
+      &-wrapper {
+          position: absolute;
+          bottom: -30px;
+      }
+  }
+
+  &__container {
+      @include on-Small-Desktop {
+          grid-template-rows: repeat(7, 200px);
+      }
+
+      @include pageGrid;
+      row-gap: 50px;
+  }
+
+  &--women {
+      @include on-Small-Tablet {
+          grid-column: 1 / 5;
+      }
+
+      @include on-Tablet {
+          grid-row: 1 / 3;
+          grid-column: 1 / 5;
+      }
+
+      @include on-Small-Desktop {
+          grid-column: 1 / 7;
+      }
+
+      @include on-Desktop {
+          grid-column: 1 / 8;
+      }
+  }
+
+  &--men {
+      @include on-Small-Tablet {
+          grid-column: 5 / 9;
+      }
+
+      @include on-Tablet {
+          grid-row: 2 / 4;
+          grid-column: 5 / 9;
+      }
+
+      @include on-Small-Desktop {
+          grid-column: 7 / 13;
+      }
+
+      @include on-Desktop {
+          grid-column: 9 / 16;
+      }
+  }
+
+  &--girls {
+      @include on-Small-Tablet {
+          grid-column: 1 / 5;
+      }
+
+      @include on-Tablet {
+          grid-row: 3 / 5;
+          grid-column: 9 / 13;
+      }
+
+      @include on-Small-Desktop {
+          grid-column: 13 / 19;
+      }
+
+      @include on-Desktop {
+          grid-column: 17 / 24;
+      }
+  }
+
+  &--boys {
+      @include on-Small-Tablet {
+          grid-column: 5 / 9;
+      }
+      @include on-Tablet {
+          grid-row: 5 / 7;
+          grid-column: 7 / 11;
+      }
+
+      @include on-Small-Desktop {
+          grid-column: 4 / 10;
+      }
+
+      @include on-Desktop {
+          grid-column: 13 / 20;
+      }
+  }
+
+  &--books {
+      @include on-Small-Tablet {
+          grid-column: 1 / 5;
+      }
+
+      @include on-Tablet {
+          grid-row: 6 / 8;
+          grid-column: 3 / 7;
+      }
+
+      @include on-Small-Desktop {
+          grid-column: 10 / 16;
+      }
+
+      @include on-Desktop {
+          grid-column: 5 / 12;
+      }
+  }
+}
+
 
 
 @keyframes App-logo-spin {
