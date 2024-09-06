@@ -2,7 +2,10 @@ $primary: #282c34;
 $text-color: #000;
 $brown: #964b00;
 $choco: #311e08;
-$bg-color: #d8edac;
+$bg-color:#E6E2CD;
+$main-picture-height: 788px;
+$main-picture-padding-top: 42px;
+$half-menu-height: ($main-picture-height + $main-picture-padding-top) / 2;
 $max-width: 1440px;
 
 $headers-height: 80px;

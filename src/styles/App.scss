@@ -70,8 +70,8 @@ button {
   top: 0;
   margin-top: 10px;
   margin-inline: 24px;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  border-top: 1px solid $choco;
+  border-bottom: 1px solid $choco;
   height: $headers-height;
   background-color: $bg-color;
 
@@ -107,6 +107,10 @@ button {
     align-items: center;
     height: $headers-height;
     position: relative;
+
+    @include on-Desktop {
+      gap: 20px;
+    }
   }
 
   &__nav {
@@ -159,7 +163,7 @@ button {
         width: 150px;
       }
 
-      @include on-Small-Desktop {
+      @include on-Desktop {
         width: 250px;
       }
     }
@@ -167,7 +171,15 @@ button {
 
   &__icons {
     display: flex;
-    gap: 37px;
+    gap: 8px;
+
+    @include on-Tablet {
+      gap: 10px;
+    }
+    @include on-Desktop {
+      gap: 20px;
+    }
+   
   }
 
   &__icon {
@@ -175,6 +187,9 @@ button {
 
     &--burger {
       display: block;
+    }
+    &--close {
+      width: 44px;
     }
   }
 }
@@ -185,9 +200,14 @@ button {
     display: flex;
     align-items: center;
     flex-direction: row;
-    gap: 20px;
+    gap: 10px;
     padding: 0;
     margin: 0;
+
+
+    @include on-Desktop {
+      gap: 20px;
+    }
   }
 
   &__item {
@@ -200,8 +220,8 @@ button {
       width: 0;
       content: "";
       bottom: -3px;
-      background-color: #41413f;
-      transition: width 0.5s ease, color 0.5s ease;
+      background-color: $brown;
+      transition: width 0.5s ease, color 0.5s ease, background-color 0.5s ease;
     }
 
     &:hover {
@@ -213,13 +233,13 @@ button {
 
   &__link {
     text-decoration: none;
-    color: $text-color;
+    color: $choco;
     font-size: 17px;
     transition: color 0.5s ease;
     text-transform: uppercase;
 
     &:hover {
-      color: #41413f;
+      color: $brown;
     }
   }
 }
@@ -237,20 +257,48 @@ button {
 
 .footer {
   height: $footers-height;
-  padding-top: 20px;
   padding-inline: 31px;
   background-color: $bg-color;
+  border-top: 1px solid $choco;
 
 
   &__wrapper {
+    position: relative;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-direction: column;
 
-    @include on-Desktop {
+    @include on-Tablet {
       flex-direction: row;
     }
+  }
+
+  &__left {
+    margin-top: 65px;
+  }
+
+  &__right {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+    @include on-Tablet {
+      flex-direction: row;
+      gap: 40px;
+    }
+
+    @include on-Desktop {
+      gap: 100px;
+    }
+
+    margin-top: 80px;
+  }
+
+  &__logo {
+    position: relative;
+    border-bottom: 1px solid $choco;
+    padding-bottom: 20px;
   }
 
   &__title {
@@ -262,12 +310,22 @@ button {
     }
   }
 
+  &__follow {
+    display: flex;
+    gap: 7px;
+    margin-top: 40px;
+
+    &-text {
+      padding-right: 5px;
+      border-right: 1px solid $choco;
+      text-transform: uppercase;
+    }
+  }
+
   &__block {
     color: $choco;
+    align-self: baseline;
 
-    &--left {
-
-    }
     &--categories {
 
     }
@@ -275,14 +333,10 @@ button {
 
     }
 
-    &--right {
-      padding-right: 213px;
+    &--contact-data {
+
     }
   }
-
-
-
-
 
   &__list {
     flex-direction: column;
@@ -300,17 +354,12 @@ button {
 
   &__rights {
     display: flex;
-    gap: 6px;
     align-items: center;
     justify-content: center;
+    margin-top: 35px;
 
     &-text {
       color: $choco;
-    }
-
-    &-icon {
-      height: 15px;
-      width: 15px;
     }
   }
 }
@@ -319,7 +368,7 @@ button {
   font-size: 48px;
   font-family: 'lev_type';
 
-  @include on-Small-Tablet {
+  @include on-Tablet {
     font-size: 64px;
   }
 
@@ -398,7 +447,7 @@ button {
   }
 
   &__container {
-      @include on-Small-Desktop {
+      @include on-Desktop {
           grid-template-rows: repeat(7, 200px);
       }
 
@@ -407,18 +456,12 @@ button {
   }
 
   &--women {
-      @include on-Small-Tablet {
-          grid-column: 1 / 5;
-      }
 
       @include on-Tablet {
           grid-row: 1 / 3;
           grid-column: 1 / 5;
       }
 
-      @include on-Small-Desktop {
-          grid-column: 1 / 7;
-      }
 
       @include on-Desktop {
           grid-column: 1 / 8;
@@ -426,17 +469,10 @@ button {
   }
 
   &--men {
-      @include on-Small-Tablet {
-          grid-column: 5 / 9;
-      }
 
       @include on-Tablet {
           grid-row: 2 / 4;
           grid-column: 5 / 9;
-      }
-
-      @include on-Small-Desktop {
-          grid-column: 7 / 13;
       }
 
       @include on-Desktop {
@@ -445,17 +481,10 @@ button {
   }
 
   &--girls {
-      @include on-Small-Tablet {
-          grid-column: 1 / 5;
-      }
 
       @include on-Tablet {
           grid-row: 3 / 5;
           grid-column: 9 / 13;
-      }
-
-      @include on-Small-Desktop {
-          grid-column: 13 / 19;
       }
 
       @include on-Desktop {
@@ -464,16 +493,10 @@ button {
   }
 
   &--boys {
-      @include on-Small-Tablet {
-          grid-column: 5 / 9;
-      }
+
       @include on-Tablet {
           grid-row: 5 / 7;
           grid-column: 7 / 11;
-      }
-
-      @include on-Small-Desktop {
-          grid-column: 4 / 10;
       }
 
       @include on-Desktop {
@@ -482,17 +505,10 @@ button {
   }
 
   &--books {
-      @include on-Small-Tablet {
-          grid-column: 1 / 5;
-      }
 
       @include on-Tablet {
           grid-row: 6 / 8;
           grid-column: 3 / 7;
-      }
-
-      @include on-Small-Desktop {
-          grid-column: 10 / 16;
       }
 
       @include on-Desktop {
@@ -512,6 +528,3 @@ button {
   }
 }
 
-.arrow {
-  width: 100%;
-}

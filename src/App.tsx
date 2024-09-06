@@ -5,11 +5,13 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 import { scroller } from "react-scroll";
 import { AsideMenu } from "./components/AsideMenu";
 import { AppContext } from "./components/appContext";
+import { ArrowDecorTop } from "./components/ArrowDecorTop";
+import { ArrowDecorBelow } from "./components/ArrowDecorBelow";
 
 export const scrollToTop = () => {
   window.scrollTo({
     top: 0,
-    behavior: 'smooth',
+    behavior: "smooth",
   });
 };
 
@@ -57,76 +59,16 @@ function App() {
     <div className="app">
       <header className={cn("header", { "header--scrolled": scrolled })}>
         <div className="header__logo">
-          <img
-            src={require("./styles/icons/curve_line.svg").default}
-            className="curve curve--top-left"
-            alt="Logo"
-          />
-          <img
-            src={require("./styles/icons/curve_line.svg").default}
-            className="curve curve--bottom-left"
-            alt="Logo"
-          />
-
-          <img
-            src={require("./styles/icons/curve_line.svg").default}
-            className="curve curve--top-right"
-            alt="Logo"
-          />
-          <img
-            src={require("./styles/icons/curve_line.svg").default}
-            className="curve curve--bottom-right"
-            alt="Logo"
-          />
+          <ArrowDecorTop />
 
           <Link to="/home" className="header__logo-link">
             <img src={require("./styles/icons/Logo.svg").default} alt="Logo" />
           </Link>
 
-          <img
-            src={require("./styles/icons/curve_line.svg").default}
-            className="curve curve__below--top-left"
-            alt="Logo"
-          />
-          <img
-            src={require("./styles/icons/curve_line.svg").default}
-            className="curve curve__below--bottom-left"
-            alt="Logo"
-          />
-
-          <img
-            src={require("./styles/icons/curve_line.svg").default}
-            className="curve curve__below--top-right"
-            alt="Logo"
-          />
-          <img
-            src={require("./styles/icons/curve_line.svg").default}
-            className="curve curve__below--bottom-right"
-            alt="Logo"
-          />
+          <ArrowDecorBelow />
         </div>
         <div className="header__right">
-          <img
-            src={require("./styles/icons/curve_line.svg").default}
-            className="curve curve--top-left"
-            alt="Logo"
-          />
-          <img
-            src={require("./styles/icons/curve_line.svg").default}
-            className="curve curve--bottom-left"
-            alt="Logo"
-          />
-
-          <img
-            src={require("./styles/icons/curve_line.svg").default}
-            className="curve curve--top-right"
-            alt="Logo"
-          />
-          <img
-            src={require("./styles/icons/curve_line.svg").default}
-            className="curve curve--bottom-right"
-            alt="Logo"
-          />
+          <ArrowDecorTop />
 
           <nav className="header__nav">
             <ul className="nav__list">
@@ -221,33 +163,11 @@ function App() {
             )}
           </div>
 
-          <img
-            src={require("./styles/icons/curve_line.svg").default}
-            className="curve curve__below--top-left"
-            alt="Logo"
-          />
-          <img
-            src={require("./styles/icons/curve_line.svg").default}
-            className="curve curve__below--bottom-left"
-            alt="Logo"
-          />
-
-          <img
-            src={require("./styles/icons/curve_line.svg").default}
-            className="curve curve__below--top-right"
-            alt="Logo"
-          />
-          <img
-            src={require("./styles/icons/curve_line.svg").default}
-            className="curve curve__below--bottom-right"
-            alt="Logo"
-          />
+            <ArrowDecorBelow />
         </div>
       </header>
 
-      {asideIsOpen && (
-       <AsideMenu />
-      )}
+      {asideIsOpen && <AsideMenu />}
 
       <main className="main">
         <Outlet />
@@ -255,20 +175,16 @@ function App() {
 
       <footer className="footer">
         <div className="footer__wrapper">
-          <div className="footer__block footer__block--left">
+          <ArrowDecorTop />
+
+          <div className="footer__block footer__left">
             <div className="footer__logo">
               <h4 className="footer__title--logo">наш спадок</h4>
+              <ArrowDecorBelow />
             </div>
 
-            <div className="footer__arrow arrow">
-              <div className="arrow__main"></div>
-              <div className="arrow__top--left"></div>
-              <div className="arrow__top--right"></div>
-              <div className="arrow__bottom--left"></div>
-              <div className="arrow__bottom--right"></div>
-            </div>
             <div className="footer__follow">
-              <div className="footer__follow-text">Стежити за нами</div>
+              <div className="footer__follow-text">Стежити</div>
               <a
                 href="https://www.instagram.com/julia_hapeka/"
                 target="_blank"
@@ -279,92 +195,94 @@ function App() {
             </div>
           </div>
 
-          <nav className="footer__block footer__block--categories">
-            <h3 className="footer__title">Категорії</h3>
-
-            <ul className="footer__list">
-              <li className="footer__item">
-                <Link
-                  to="/"
-                  className="footer__link"
-                  onClick={() => handleNavigation("about_us")}
-                >
-                  про нас
-                </Link>
-              </li>
-              <li className="footer__item">
-                <Link
-                  to="/catalog"
-                  className="footer__link"
-                  // onClick={() => handleNavigation("catalog")}
-                >
-                  Каталог
-                </Link>
-              </li>
-              <li className="footer__item">
-                <Link
-                  to="/"
-                  className="footer__link"
-                  onClick={() => handleNavigation("contact_us")}
-                >
-                  Наші контакти
-                </Link>
-              </li>
-              <li className="footer__item">
-                <a href="@julia_hapeka" className="footer__link">
-                  <img src="" alt="" />
-                </a>
-              </li>
-            </ul>
-          </nav>
-
-          <nav className="footer__block footer__block--support">
-            <h3 className="footer__title">Підтримка</h3>
-            <ul className="footer__list">
-              <li className="footer__item">
-                <Link
-                  to="/"
-                  className="footer__link"
-                  onClick={() => handleNavigation("about_us")}
-                >
-                  Доставка & Оплата
-                </Link>
-              </li>
-
-              <li className="footer__item">
-                <Link
-                  to="/"
-                  className="footer__link"
-                  onClick={() => handleNavigation("about_us")}
-                >
-                  Допомога & Підтримка
-                </Link>
-              </li>
-            </ul>
-          </nav>
-
-          <div className="footer__block footer__block--right">
-            <ul className="footer__list">
-              <li className="footer__item">
-                <a
-                  href="tel:+380%2063%20415%2018%2053"
-                  className="nav__link footer__link"
-                >
-                  +38 096 3061416
-                </a>
-              </li>
-              <li className="footer__item">
-                <a href="jhapeka@gmail.com" className="nav__link footer__link">
-                  jhapeka@gmail.com
-                </a>
-              </li>
-            </ul>
+          <div className="footer__right">
+            <nav className="footer__block footer__block--categories">
+              <h3 className="footer__title">Категорії</h3>
+              <ul className="footer__list">
+                <li className="footer__item">
+                  <Link
+                    to="/"
+                    className="footer__link"
+                    onClick={() => handleNavigation("about_us")}
+                  >
+                    про нас
+                  </Link>
+                </li>
+                <li className="footer__item">
+                  <Link
+                    to="/catalog"
+                    className="footer__link"
+                    // onClick={() => handleNavigation("catalog")}
+                  >
+                    Каталог
+                  </Link>
+                </li>
+                <li className="footer__item">
+                  <Link
+                    to="/"
+                    className="footer__link"
+                    onClick={() => handleNavigation("contact_us")}
+                  >
+                    Наші контакти
+                  </Link>
+                </li>
+                <li className="footer__item">
+                  <a href="@julia_hapeka" className="footer__link">
+                    <img src="" alt="" />
+                  </a>
+                </li>
+              </ul>
+            </nav>
+            <nav className="footer__block footer__block--support">
+              <h3 className="footer__title">Підтримка</h3>
+              <ul className="footer__list">
+                <li className="footer__item">
+                  <Link
+                    to="/"
+                    className="footer__link"
+                    onClick={() => handleNavigation("about_us")}
+                  >
+                    Доставка & Оплата
+                  </Link>
+                </li>
+                <li className="footer__item">
+                  <Link
+                    to="/"
+                    className="footer__link"
+                    onClick={() => handleNavigation("about_us")}
+                  >
+                    Допомога & Підтримка
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+            <div className="footer__block footer__block--contact-data">
+              <ul className="footer__list">
+                <li className="footer__item">
+                  <a
+                    href="tel:+380%2063%20415%2018%2053"
+                    className="nav__link footer__link"
+                  >
+                    +38 096 3061416
+                  </a>
+                </li>
+                <li className="footer__item">
+                  <a
+                    href="jhapeka@gmail.com"
+                    className="nav__link footer__link"
+                  >
+                    jhapeka@gmail.com
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 
         <div className="footer__rights">
-          <img src={require("./styles/icons/copyrighting-icon.svg").default} />
-          <p className="footer__rights-text">all rights reserved</p>
+          <p className="footer__rights-text">
+            Nash_Spadok ©Copyright 2024. All rights reserved.
+          </p>
         </div>
       </footer>
     </div>

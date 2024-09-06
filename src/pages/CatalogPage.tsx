@@ -3,6 +3,7 @@ import "../styles/App.scss";
 import { Outlet, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { scrollToTop } from "../App";
+import { Breadcrumbs } from "../components/Breadcrumbs";
 
 
 
@@ -14,6 +15,8 @@ export const CatalogPage = () => {
 
   return (
     <>
+
+    <Breadcrumbs />
       {location.pathname === "/catalog" && (
         <div className="topic__container">
           <Link to="/women" className="topic topic--women">

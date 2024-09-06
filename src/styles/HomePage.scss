@@ -13,7 +13,7 @@
         margin-inline: 24px;
     }
 
-    @include on-Small-Tablet {
+    @include on-Tablet {
         margin-bottom: 40px;
         row-gap: 50px;
     }
@@ -24,13 +24,13 @@
     }
 
     &__background-container {
-        height: 700px;
+        height: $main-picture-height;
         background-repeat: no-repeat;
         background-size: cover;
         background-position: top;
         background-image: url(./images/Rectangle1118.png);
         opacity: 90%;
-        margin-top: 42px;
+        margin-top: $main-picture-padding-top;
     }
 
     &__title {
