@@ -2,22 +2,23 @@
 @import '../../styles/utils/mixins.scss';
 
 .card {
-    display: flex;
-    flex-direction: column;
-    row-gap: 10px;
-    justify-content: flex-start;
-
-    &__photo-container {
-        position: relative;
-    }
+    &__book {
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+        justify-content: flex-start;
     
-    &__photo-link {
-        display: block;
+        &-photo-container {
+            position: relative;
+        }
+        
+        &-photo-link {
+            display: block;
+        }
+    
+        &-image {
+            width: 100%;
+            height: auto;
+        }
     }
-
-    &__image {
-        width: 100%;
-        height: auto;
-    }
-
 }

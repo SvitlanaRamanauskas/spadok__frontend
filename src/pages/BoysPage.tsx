@@ -24,7 +24,6 @@ export const BoysPage = () => {
     
     return  (
         <div>
-            <h2 className="category__sub-title sub-title">Для хлопця</h2>
 
             {boyProductsLoading && <Loader />}
 

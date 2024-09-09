@@ -1,8 +1,4 @@
 import "./PhotoSlider.scss";
-
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules"; // Import directly from 'swiper'
-import "swiper/swiper-bundle.css";
 import { useEffect, useState } from "react";
 
 export const PhotoSlider = () => {
@@ -10,16 +6,16 @@ export const PhotoSlider = () => {
   const [visibleImages, setVisibleImages] = useState<number[]>([0, 1, 2, 3]);
 
   const images = [
-    { url: "/img/45.jpg" },
-    { url: "/img/46.jpg" },
-    { url: "/img/47.jpg" },
-    { url: "/img/48.jpg" },
-    { url: "/img/49.jpg" },
-    { url: "/img/50.jpg" },
-    { url: "/img/51.jpg" },
-    { url: "/img/52.jpg" },
-    { url: "/img/53.jpg" },
-    { url: "/img/54.jpg" },
+    { url: "/img/45.png" },
+    { url: "/img/46.png" },
+    { url: "/img/47.png" },
+    { url: "/img/48.png" },
+    { url: "/img/49.png" },
+    { url: "/img/50.png" },
+    { url: "/img/51.png" },
+    { url: "/img/52.png" },
+    { url: "/img/53.png" },
+    { url: "/img/54.png" },
   ];
   const totalImages = images.length;
   useEffect(() => {    

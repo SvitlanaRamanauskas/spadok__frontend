@@ -68,7 +68,7 @@
         @include pagePaddings;
 
         @include on-Desktop {
-            width: 1136px;
+            width: $max-content-width;
             margin-inline: auto;
         }
     }
@@ -80,7 +80,7 @@
         @include pagePaddings;
         @include on-Desktop {
             margin-bottom: 24px;
-            width: 1136px;
+            width: $max-content-width;
             margin-inline: auto;
         }
       }
@@ -92,7 +92,7 @@
         }
         @include pagePaddings;
         @include on-Desktop {
-            width: 1136px;
+            width: $max-content-width;
             margin-inline: auto;
         }
     }
@@ -136,10 +136,25 @@
 
     &__open {
         grid-row: 3 / 5;
-        grid-column: 11 / -6;
+        grid-column: 11 / 14;
+        display: flex;
+
         &-link {
             text-decoration: none;
+            display: block;
+            position: relative;
+
+            &::after {
+                display: block;
+                position: absolute;
+                content: '';
+                width: 100%;
+                height: 1px;
+                background-color: $choco;
+            }
+
         }
+
         &-text {
             font-family: 'lev_type';
             font-size: 24px;

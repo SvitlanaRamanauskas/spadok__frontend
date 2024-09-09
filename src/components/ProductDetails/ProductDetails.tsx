@@ -1,9 +1,8 @@
 import classNames from "classnames";
-import { Vyshyvanka } from "../../types/Vyshyvanka";
 import { VyshyvankaDetails } from "../../types/VyshyvankaDetails";
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../appContext";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { getProductDetails } from "../../helper/fetch";
 import "./ProductDetails.scss";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
@@ -18,6 +17,7 @@ import {
 } from "../../redux/cart/reducerFavorites";
 import { FavoritesItem } from "../../types/FavoritesItem";
 import { CartItem } from "../../types/CartItem";
+import { Loader } from "../Loader";
 
 export const ProductDetails: React.FC = () => {
   const { selectedProduct, setSelectedProduct } = useContext(AppContext);
@@ -52,13 +52,10 @@ export const ProductDetails: React.FC = () => {
   };
 
   const location = useLocation();
-  const productCategory = location.pathname.slice(
-    1,
-    location.pathname.indexOf("/", 1)
-  );
+  const pathArr = location.pathname.split("/");
+  const category = pathArr[2];
 
   const { productId } = useParams<{ productId?: string }>();
-  console.log(productCategory);
 
   useEffect(() => {
     setProductNotFound(false);
@@ -66,9 +63,9 @@ export const ProductDetails: React.FC = () => {
 
     if (productId) {
       setTimeout(() => {
-        getProductDetails(productId, productCategory)
+        getProductDetails(productId, category)
           .then((productData) => {
-            if (productData !== null && Array.isArray(productData.images)) {
+            if (productData !== null) {
               setSelectedProduct(productData);
               setCurrentImage(
                 productData.images.length > 0 ? productData.images[0] : ""
@@ -86,7 +83,13 @@ export const ProductDetails: React.FC = () => {
           });
       }, 1000);
     }
-  }, [productId, productCategory]);
+  }, [productId]);
+
+  const navigate = useNavigate();
+
+  const goBack = () => {
+    navigate(-1);
+  }
 
   const handleImageClick = (clickedImage: string) => {
     setCurrentImage(clickedImage);
@@ -122,9 +125,10 @@ export const ProductDetails: React.FC = () => {
 
                   <button
                     type="button"
-                    className={classNames('details__icon-bg', {
-                      'details__icon-bg--active' : selectedProduct 
-                       && addedToFavorites(favoritesItems, selectedProduct?.id)
+                    className={classNames("details__icon-bg", {
+                      "details__icon-bg--active":
+                        selectedProduct &&
+                        addedToFavorites(favoritesItems, selectedProduct?.id),
                     })}
                     onClick={() => handleAddToFavorites(selectedProduct)}
                   >
@@ -139,31 +143,50 @@ export const ProductDetails: React.FC = () => {
                   </button>
                 </div>
 
-                <div className="details__small-images">
-                  {selectedProduct.images.map((image, index) => (
-                    <button
-                      className={classNames("details__image", {
+                {selectedProduct.images.map((image, index) => (
+                  <button
+                    className={classNames(
+                      "details__image-button",
+                      `details__image-button--${index + 1}`,
+                      {
                         "details__image--active": currentImage === image,
-                      })}
-                      type="button"
-                      onClick={() => handleImageClick(image)}
-                      key={image}
-                    >
-                      <img
-                        src={selectedProduct.images[index]}
-                        alt={`item ${index}`}
-                        className="details__picture"
-                      />
-                    </button>
-                  ))}
-                </div>
+                      }
+                    )}
+                    type="button"
+                    onClick={() => handleImageClick(image)}
+                    key={image}
+                  >
+                    <img
+                      src={selectedProduct.images[index]}
+                      alt={`item ${index}`}
+                      className="details__picture"
+                    />
+                  </button>
+                ))}
               </div>
 
               <div className="details__info info">
+                <div className="back details__back">
+                  <img
+                    src={require("../../styles/icons/arrow-back.svg").default}
+                    alt="arrow"
+                    className="back__arrow"
+                    onClick={goBack}
+                  />
+                  <button
+                    type="button"
+                    className="back__button"
+                    onClick={goBack}
+                    data-cy="backButton"
+                  >
+                    Повернутися
+                  </button>
+                </div>
+
                 <h3 className="info__title">{selectedProduct.name}</h3>
-                <p className="info__price">{selectedProduct.price}</p>
+                <p className="info__price"> &#x20b4; {selectedProduct.price}</p>
                 <div className="info__size size">
-                  <p className="size__title">Size</p>
+                  <p className="size__title">Розмір</p>
 
                   <div className="size__elements">
                     {selectedProduct.sizesAvailable.map((size) => (
@@ -182,11 +205,15 @@ export const ProductDetails: React.FC = () => {
                         key={size}
                         aria-label={`Select ${size} size`}
                       >
-                        <div
+                        <p
                           className={`
                               size__value
+                              size__value--active
                               size__value--${size}`}
-                        />
+                        >
+                          {size}
+                        </p>
+
                       </button>
                     ))}
                   </div>
@@ -211,12 +238,16 @@ export const ProductDetails: React.FC = () => {
                     handleAddToCart(selectedProduct);
                   }}
                 >
-                  {`${selectedProduct && addedToCart(cartItems, selectedProduct.id) ? 'Додано до кошика' : 'Додати до кошика'}`}
+                  {`${selectedProduct && addedToCart(cartItems, selectedProduct.id) ? "Додано до кошика" : "Додати до кошика"}`}
                 </button>
               </div>
             </div>
           </div>
         )}
+
+      {productDetailsLoading &&
+        !productNotFound &&
+        selectedProduct !== null && <Loader />}
     </>
   );
 };

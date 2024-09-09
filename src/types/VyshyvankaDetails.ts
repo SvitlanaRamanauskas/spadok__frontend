@@ -1,9 +1,9 @@
 export type VyshyvankaDetails = {
     id: string;
     name: string;
-    category: string;
-    sizesAvailable: string[];
     size: string;
+    sizesAvailable: string[];
     images: string[];
     price: number;
+    category: string;
   };

@@ -1,0 +1,21 @@
+@import '../../styles/utils/variables';
+
+.breadcrumbs {
+    &__line {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: auto;
+    }
+
+    &__link {
+        display: flex;           // Ensure the link element itself is a flex container
+        align-items: center;     // Align items within the link
+        text-decoration: none;   // Remove underline from the link
+        margin-right: 8px;   
+    }
+    &__text {
+        color: $choco;
+        text-transform: capitalize;
+    }
+}

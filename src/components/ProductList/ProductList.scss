@@ -7,7 +7,9 @@
     gap: 16px;
 
     @include on-Desktop {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        max-width: $max-content-width;
     }
 
     &__card {
@@ -17,6 +19,33 @@
 
         @include on-Tablet {
             grid-column: auto;
+        }
+    }
+
+    &__button {
+        width: 255px;
+        height: 40px;
+        background-color: $choco;
+        color: #fff;
+        font-size: 18px;
+
+        @include on-Desktop {
+            width: 100%;
+            height: 56px;
+            font-size: 22px;
+        }
+        
+
+        &-wrapper {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: center;
+            margin-block: 32px 35px;
+
+            @include on-Desktop {
+                grid-column: 2 / 3;
+                margin-top: 80px;
+            }
         }
     }
 }

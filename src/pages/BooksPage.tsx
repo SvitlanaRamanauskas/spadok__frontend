@@ -24,8 +24,7 @@ export const BooksPage = () => {
     
     return  (
         <div>
-            <h2 className="category__sub-title sub-title">Книги</h2>
-
+            
             {booksProductsLoading && <Loader />}
 
             <BookList items={books} />

@@ -9,6 +9,10 @@ export const WomenPage = () => {
   const [femaleProductsLoading, setFemaleProductsLoading] = useState(false);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     setFemaleProductsLoading(true);
 
     setTimeout(() => {
@@ -25,7 +29,6 @@ export const WomenPage = () => {
 
   return (
     <div>
-      <h2 className="category__sub-title sub-title">Для неї</h2>
 
       {femaleProductsLoading && <Loader />}
 

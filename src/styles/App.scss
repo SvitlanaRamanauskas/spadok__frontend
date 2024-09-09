@@ -26,7 +26,7 @@ p, h1, h2, h3, h4, h5, ul {
   box-sizing: border-box;
 }
 
-input{
+input {
   appearance: none;
   box-sizing: border-box;
   border: none;
@@ -85,7 +85,7 @@ button {
 
   &--scrolled {
     background-color: $bg-color;
-    margin-inline: 0;
+    margin-inline: 24px;
   }
 
   &__logo {
@@ -250,9 +250,8 @@ button {
 
   @include on-Desktop {
     margin-inline: auto;
-    width: 1136px;
+    width: $max-content-width;
   }
-
 }
 
 .footer {
@@ -381,139 +380,63 @@ button {
  
 }
 
-.topic {
-  position: relative;
-  height: 400px;
-  display: block;
-  grid-column: 1 / -1;
-  transition: opacity 0.3s ease;
+.catalog {
+  display: grid;
+  row-gap: 24px;
+  column-gap: 24px;
+  grid-template-columns: repeat(2, 1fr);
 
-  &__background {
-      position: relative;
-      z-index: -1;
-      height: 400px;
-      background-position: center;
-      background-size: cover;
-      opacity: 100%;
+  @include on-Desktop {
+    grid-template-columns: repeat(3, 1fr);
+    margin: 0 auto;
+  }
 
-      &:hover {
-          opacity: 80%;
+  &__category {
+    display: block;
+    position: relative;
+    height: 197px;
+    opacity: 100%;
+    transition: opacity 0.3s ease;
+
+
+    @include on-Tablet {
+      height: 350px;
+    }
+
+    @include on-Desktop {
+      height: 492px;
+    }
+
+    &:hover {
+        opacity: 80%;
+    }
+
+    &-wrapper {
+      height: 197px;
+      width: 100%;
+
+
+      @include on-Tablet {
+        height: 350px;
       }
-
-      &--women {
-          background-image: url(../styles/images/vyshyvanka_zhinocha.jpg);
-          background-position: bottom;
-      }
-
-      &--men {
-          background-image: url(../styles/images/men_vyshyvanka.png);
-      }
-
-      &--girls {
-          background-image: url(../styles/images/girls_vyshyvanka.png);
-      }
-
-      &--boys {
-          background-image: url(../styles/images/boys_vyshyvanka.png);
-      }
-
-      &--books {
-          background-image: url(../styles/images/books_category2.png);
+  
+      @include on-Desktop {
+        height: 492px;
       }
   }
 
-  &__title {
+    &-title {
       color: $brown;
       transition: color 0.3s ease;
       position: relative;
-
-      &::after {
-          display: block;
-          position: absolute;
-          content: '';
-          width: 100%;
-          height: 1px;
-          background-color: $brown;
-      }
-
-      &:hover {
-          color:#000;
-      }
-
-      &-wrapper {
-          position: absolute;
-          bottom: -30px;
-      }
   }
+}
 
-  &__container {
-      @include on-Desktop {
-          grid-template-rows: repeat(7, 200px);
-      }
-
-      @include pageGrid;
-      row-gap: 50px;
-  }
-
-  &--women {
-
-      @include on-Tablet {
-          grid-row: 1 / 3;
-          grid-column: 1 / 5;
-      }
-
-
-      @include on-Desktop {
-          grid-column: 1 / 8;
-      }
-  }
-
-  &--men {
-
-      @include on-Tablet {
-          grid-row: 2 / 4;
-          grid-column: 5 / 9;
-      }
-
-      @include on-Desktop {
-          grid-column: 9 / 16;
-      }
-  }
-
-  &--girls {
-
-      @include on-Tablet {
-          grid-row: 3 / 5;
-          grid-column: 9 / 13;
-      }
-
-      @include on-Desktop {
-          grid-column: 17 / 24;
-      }
-  }
-
-  &--boys {
-
-      @include on-Tablet {
-          grid-row: 5 / 7;
-          grid-column: 7 / 11;
-      }
-
-      @include on-Desktop {
-          grid-column: 13 / 20;
-      }
-  }
-
-  &--books {
-
-      @include on-Tablet {
-          grid-row: 6 / 8;
-          grid-column: 3 / 7;
-      }
-
-      @include on-Desktop {
-          grid-column: 5 / 12;
-      }
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-position: top;
+    object-fit: cover;
   }
 }
 

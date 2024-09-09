@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
 import './ProductCard.scss';
 import { Vyshyvanka } from '../../types/Vyshyvanka';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
 import { FavoritesItem } from '../../types/FavoritesItem';
 import { VyshyvankaDetails } from '../../types/VyshyvankaDetails';
+import { AppContext } from '../appContext';
 
 export type Props = {
     items: Vyshyvanka[];
@@ -13,17 +14,19 @@ export type Props = {
 }
 
 export const ProductCard: React.FC<Props> = ({ items, item }) => {
-    const [selectedSize, setSelectedSize] = useState('');
-
-
+    const { setSelectedCard } = useContext(AppContext);
 
     return (
         <div className="card">
             <div className="card__photo-container">
-                <Link to={`/women/${item.id}`} className="card__photo-link">
+                <Link 
+                    to={`/catalog/women/${item.id}`} 
+                    className="card__photo-link"
+                    onClick={() => setSelectedCard(item)}
+                >
                     <img
                         src={`/${item.image}`}
-                        alt="product`s image"
+                        alt="productCard"
                         className="card__image"
                     />
                 </Link>

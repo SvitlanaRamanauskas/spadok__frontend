@@ -4,8 +4,9 @@
     "name": "Marichka",
     "size": "XS",
     "sizesAvailable": ["XS", "S", "M"],
-    "images": ["img/women_images/marichka.jpg", "img/women_images/Zoriana.jpg", "img/women_images/Agnelia"],
-    "price": 1000
+    "images": ["img/women_images/marichka.jpg", "img/women_images/Zoriana.jpg", "img/women_images/Agnelia.jpg"],
+    "price": 1000,
+    "category": "women"
   },
 
   {
@@ -13,7 +14,18 @@
     "name": "Marichka",
     "size": "S",
     "sizesAvailable": ["XS", "S", "M"],
-    "images": ["img/women_images/marichka.jpg", "img/women_images/Zoriana.jpg", "img/women_images/Agnelia"],
-    "price": 1000
+    "images": ["img/women_images/marichka.jpg", "img/women_images/Zoriana.jpg", "img/women_images/Agnelia.jpg"],
+    "price": 1000,
+    "category": "women"
+  },
+
+  {
+    "id": "wam",
+    "name": "Marichka",
+    "size": "M",
+    "sizesAvailable": ["XS", "S", "M"],
+    "images": ["img/women_images/19281.png", "img/women_images/19304.png", "img/women_images/19305.png"],
+    "price": 1000,
+    "category": "women"
   }
 ]
