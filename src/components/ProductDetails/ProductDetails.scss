@@ -8,15 +8,39 @@
         min-height: 0;
     }
 
-    &__container {
+    &__container {        
+        margin-bottom: 100px;
+
+        @include on-Tablet {
+            padding-inline: 40px;
+        }
+    }
+
+    &__img-inf-wrapper {
         display: flex;
-        width: 100%;
-        height: 709px;
+        height: 204px;
+        
+
+        @include on-Tablet {
+            height: 400px;
+        }
+
+        @include on-Desktop {
+            height: 709px;
+        }
     }
 
     &__info {
         flex: 0 0 40%;
-        padding-left: 100px;
+        padding-left: 9px;
+
+        @include on-Tablet {
+            padding-left: 20px;
+        }
+
+        @include on-Desktop {
+            padding-left: 100px;
+        }
     }
 
     &__images-wrapper {
@@ -24,11 +48,28 @@
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(3, 1fr);
-        gap: 24px;
+        gap: 8px;
+
+        @include on-Tablet {
+            gap: 16px;
+        }
+
+        @include on-Desktop {
+            gap: 24px;
+        }
     }
 
     &__main-image {
-        height: 709px;
+        height: 204px;
+
+        @include on-Tablet {
+            height: 400px;
+        }
+
+        @include on-Desktop {
+            height: 709px;
+        }
+
         &-container {
             position: relative;
             grid-column: 2 / 4;
@@ -38,8 +79,16 @@
 
 
     &__image-button {
-        height: 220px;
+        height: 62px;
         width: 100%;
+
+        @include on-Tablet {
+            height: 120px;
+        }
+
+        @include on-Desktop {
+            height: 220px;
+        }
 
         &--1 {
           grid-row: 1 / 2; 
@@ -55,7 +104,6 @@
     }
 
     &__picture {
-
         object-fit: cover;
         width: 100%;
         height: 100%;
@@ -92,6 +140,7 @@
         display: flex;
         justify-content: flex-start;
         gap: 15px;
+        margin-top: 24px;
     }
 
     &__value {
@@ -113,10 +162,14 @@
         justify-content: center;
         align-items: center;
         background-color: transparent;
-        height: 23px;
-        width: 45px;
+        height: 18px;
+        width: 18px;
         border: 1px solid $gray-not-active;
 
+        @include on-Desktop {
+            height: 23px;
+            width: 45px;
+        }
 
         &--active {
             border-color: $choco;
@@ -125,29 +178,82 @@
 }
 
 .info {
-    &__button {
-        height: 60px;
-        width: 100%;
-        background-color: $choco;
-        color: $bg-color;
-    }
-
     &__title {
+        font-size: 16px;
         font-family: 'lev-type';
-        font-size: 40px;
         font-weight: 400;
         line-height: 48px;
         text-align: left;
         color: $choco;
         text-transform: uppercase;
+
+        @include on-Desktop {
+            font-size: 40px;
+        }
     }
 
     &__price {
         font-family: "inter", serif;
-        font-size: 24px;
+        font-size: 16px;
         font-weight: 700;
         line-height: 32px;
         text-align: left;
+        margin-block: 8px;
+        
+        @include on-Desktop {
+            margin-block: 16px;
+            font-size: 24px;
+        }
+    }
+}
+
+.description {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 50px;
+
+    &--mobile {
+        display: block;
+
+        @include on-Desktop {
+            display: none;
+        }
+    }
+
+    &--desktop {
+        display: none;
+
+        @include on-Desktop {
+            display: block;
+        }
+    }
+
+    &__title {
+        margin-bottom: 24px;
+    }
+
+    &__button {
+        height: 40px;
+        width: 100%;
+        background-color: $choco;
+        color: $bg-color;
+        margin-top: 24px;
+
+        @include on-Tablet {
+            height: 56px;
+            width: 448px;
+        }
+
+        @include on-Desktop {
+            height: 56px;
+            width: 100%;
+        }
+
+        &-wrapper {
+            display: flex;
+            justify-content: center;
+        }
     }
 }
 
@@ -155,8 +261,14 @@
     display: flex;
     align-items: flex-end;
     gap: 5px;
+    margin-bottom: 8px;
+
+    @include on-Desktop {
+        margin-bottom: 24px;
+    }
 
     &__arrow {
+        cursor: pointer;
         width: 20px;
         height: 20px;
     }
@@ -164,11 +276,14 @@
     &__button {
         text-transform: uppercase;
         font-family: "inter", serif;
-        font-size: 16px;
+        font-size: 10px;
         font-weight: 400;
         line-height: 16px;
         letter-spacing: 0.875px;
         text-align: left;
 
+        @include on-Desktop {
+            font-size: 16px;
+        }
     }
 }

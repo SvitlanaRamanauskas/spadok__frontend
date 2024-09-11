@@ -3,7 +3,7 @@ import { VyshyvankaDetails } from "../../types/VyshyvankaDetails";
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../appContext";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { getProductDetails } from "../../helper/fetch";
+import { fetchVyshyvanky, getProductDetails } from "../../helper/fetch";
 import "./ProductDetails.scss";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
@@ -18,9 +18,11 @@ import {
 import { FavoritesItem } from "../../types/FavoritesItem";
 import { CartItem } from "../../types/CartItem";
 import { Loader } from "../Loader";
+import { Vyshyvanka } from "../../types/Vyshyvanka";
 
 export const ProductDetails: React.FC = () => {
   const { selectedProduct, setSelectedProduct } = useContext(AppContext);
+  const [vyshyvanky, setVyshyvanky] = useState<Vyshyvanka[]>([]);
 
   const [activeSize, setActiveSize] = useState("");
   const [currentImage, setCurrentImage] = useState("");
@@ -62,34 +64,35 @@ export const ProductDetails: React.FC = () => {
     setProductDetailsLoading(true);
 
     if (productId) {
-      setTimeout(() => {
-        getProductDetails(productId, category)
-          .then((productData) => {
-            if (productData !== null) {
-              setSelectedProduct(productData);
-              setCurrentImage(
-                productData.images.length > 0 ? productData.images[0] : ""
-              );
-            } else {
-              setProductNotFound(true);
-            }
-          })
-          .catch((error) => {
-            console.error("Error fetching product details:", error);
+      getProductDetails(productId, category)
+        .then((productData) => {
+          if (productData !== null) {
+            setSelectedProduct(productData);
+            setActiveSize(productData.size);
+            setCurrentImage(
+              productData.images.length > 0 ? productData.images[0] : ""
+            );
+          } else {
             setProductNotFound(true);
-          })
-          .finally(() => {
-            setProductDetailsLoading(false);
-          });
-      }, 1000);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching product details:", error);
+          setProductNotFound(true);
+        })
+        .finally(() => {
+          setProductDetailsLoading(false);
+        });
     }
+
+    fetchVyshyvanky().then((fetchedProducts) => setVyshyvanky(fetchedProducts));
   }, [productId]);
 
   const navigate = useNavigate();
 
   const goBack = () => {
     navigate(-1);
-  }
+  };
 
   const handleImageClick = (clickedImage: string) => {
     setCurrentImage(clickedImage);
@@ -100,10 +103,37 @@ export const ProductDetails: React.FC = () => {
   };
 
   const handleSetAnotherProductBySize = (
-    currentProductId: string,
-    anotherSize: string
+    currentProdName: string,
+    clickedSize: string
   ) => {
     setProductDetailsLoading(true);
+    const anotherSizeProd = vyshyvanky.find(
+      (vyshyvanka) =>
+        vyshyvanka.name === currentProdName && vyshyvanka.size === clickedSize
+    );
+    if (anotherSizeProd !== undefined) {
+      setTimeout(() => {
+        getProductDetails(anotherSizeProd?.id, anotherSizeProd?.category).then(
+          (prodData) => {
+            if (prodData) {
+              setSelectedProduct(prodData);
+
+              setCurrentImage(
+                prodData.images.length > 0 ? prodData.images[0] : ""
+              );
+
+              navigate(
+                `/catalog/${anotherSizeProd?.category}/${anotherSizeProd?.id}`
+              );
+            } else {
+              setProductNotFound(true);
+            }
+          }
+        );
+        setProductDetailsLoading(false);
+        console.log(selectedProduct);
+      }, 1000);
+    }
   };
 
   return (
@@ -113,133 +143,156 @@ export const ProductDetails: React.FC = () => {
         selectedProduct !== null && (
           <div className="details">
             <div className="details__container">
-              <div className="details__images-wrapper">
-                <div className="details__main-image-container">
-                  <div className="details__main-image">
+              <div className="details__img-inf-wrapper">
+                <div className="details__images-wrapper">
+                  <div className="details__main-image-container">
+                    <div className="details__main-image">
+                      <img
+                        src={currentImage}
+                        alt="product"
+                        className="details__picture"
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      className={classNames("details__icon-bg", {
+                        "details__icon-bg--active":
+                          selectedProduct &&
+                          addedToFavorites(favoritesItems, selectedProduct?.id),
+                      })}
+                      onClick={() => handleAddToFavorites(selectedProduct)}
+                    >
+                      <img
+                        src={
+                          require("../../styles/icons/Favourites-Heart-Like.svg")
+                            .default
+                        }
+                        alt=""
+                        className="details__icon details__icon--favorites"
+                      />
+                    </button>
+                  </div>
+                  {selectedProduct.images.map((image, index) => (
+                    <button
+                      className={classNames(
+                        "details__image-button",
+                        `details__image-button--${index + 1}`,
+                        {
+                          "details__image--active": currentImage === image,
+                        }
+                      )}
+                      type="button"
+                      onClick={() => handleImageClick(image)}
+                      key={image}
+                    >
+                      <img
+                        src={selectedProduct.images[index]}
+                        alt={`item ${index}`}
+                        className="details__picture"
+                      />
+                    </button>
+                  ))}
+                </div>
+                <div className="details__info info">
+                  <div className="back details__back">
                     <img
-                      src={currentImage}
-                      alt="product"
-                      className="details__picture"
+                      src={require("../../styles/icons/arrow-back.svg").default}
+                      alt="arrow"
+                      className="back__arrow"
+                      onClick={goBack}
                     />
+                    <button
+                      type="button"
+                      className="back__button"
+                      onClick={goBack}
+                      data-cy="backButton"
+                    >
+                      Повернутися
+                    </button>
+                  </div>
+                  <h3 className="info__title">{selectedProduct.name}</h3>
+                  <p className="info__price">
+                    {" "}
+                    &#x20b4; {selectedProduct.price}
+                  </p>
+                  <div className="info__size size">
+                    <p className="size__title">Розмір</p>
+                    <div className="size__elements">
+                      {selectedProduct.sizesAvailable.map((size) => (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            handleSizeClick(size);
+                            handleSetAnotherProductBySize(
+                              selectedProduct?.name,
+                              size
+                            );
+                          }}
+                          className={classNames("size__box", {
+                            "size__box--active": activeSize === size,
+                          })}
+                          key={size}
+                          aria-label={`Select ${size} size`}
+                        >
+                          <p
+                            className={classNames("size__value",`size__value--${size}`, {
+                              "size__value--active": activeSize === size,
+                            })}
+                          >
+                            {size}
+                          </p>
+                        </button>
+                      ))}
+                    </div>
                   </div>
 
-                  <button
-                    type="button"
-                    className={classNames("details__icon-bg", {
-                      "details__icon-bg--active":
-                        selectedProduct &&
-                        addedToFavorites(favoritesItems, selectedProduct?.id),
-                    })}
-                    onClick={() => handleAddToFavorites(selectedProduct)}
-                  >
-                    <img
-                      src={
-                        require("../../styles/icons/Favourites-Heart-Like.svg")
-                          .default
-                      }
-                      alt=""
-                      className="details__icon details__icon--favorites"
-                    />
-                  </button>
-                </div>
+                  <div className="description description--desktop">
+                    <p className="description__title">Опис</p>
+                    <p className="description__body">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Quos omnis eligendi odit ab, eum a suscipit nam, voluptas
+                      ea blanditiis unde quasi laudantium minima aut corporis
+                      excepturi accusamus deleniti modi facere possimus magnam
+                      doloremque tempore ipsam quia? Illo, tempora sit. Eum ut
+                      architecto tempore, dicta impedit nihil praesentium facere
+                      perspiciatis.
+                    </p>
 
-                {selectedProduct.images.map((image, index) => (
-                  <button
-                    className={classNames(
-                      "details__image-button",
-                      `details__image-button--${index + 1}`,
-                      {
-                        "details__image--active": currentImage === image,
-                      }
-                    )}
-                    type="button"
-                    onClick={() => handleImageClick(image)}
-                    key={image}
-                  >
-                    <img
-                      src={selectedProduct.images[index]}
-                      alt={`item ${index}`}
-                      className="details__picture"
-                    />
-                  </button>
-                ))}
+                    <button
+                      type="button"
+                      className="description__button"
+                      onClick={() => {
+                        handleAddToCart(selectedProduct);
+                      }}
+                    >
+                      {`${selectedProduct && addedToCart(cartItems, selectedProduct.id) ? "Додано до кошика" : "Додати до кошика"}`}
+                    </button>
+                  </div>
+                </div>
               </div>
 
-              <div className="details__info info">
-                <div className="back details__back">
-                  <img
-                    src={require("../../styles/icons/arrow-back.svg").default}
-                    alt="arrow"
-                    className="back__arrow"
-                    onClick={goBack}
-                  />
+              <div className="description description--mobile">
+                <p className="description__title">Опис</p>
+                <p className="description__body">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos
+                  omnis eligendi odit ab, eum a suscipit nam, voluptas ea
+                  blanditiis unde quasi laudantium minima aut corporis excepturi
+                  accusamus deleniti modi facere possimus magnam doloremque
+                  tempore ipsam quia? Illo, tempora sit. Eum ut architecto
+                  tempore, dicta impedit nihil praesentium facere perspiciatis.
+                </p>
+
+                <div className="description__button-wrapper">
                   <button
                     type="button"
-                    className="back__button"
-                    onClick={goBack}
-                    data-cy="backButton"
+                    className="description__button"
+                    onClick={() => {
+                      handleAddToCart(selectedProduct);
+                    }}
                   >
-                    Повернутися
+                    {`${selectedProduct && addedToCart(cartItems, selectedProduct.id) ? "Додано до кошика" : "Додати до кошика"}`}
                   </button>
                 </div>
-
-                <h3 className="info__title">{selectedProduct.name}</h3>
-                <p className="info__price"> &#x20b4; {selectedProduct.price}</p>
-                <div className="info__size size">
-                  <p className="size__title">Розмір</p>
-
-                  <div className="size__elements">
-                    {selectedProduct.sizesAvailable.map((size) => (
-                      <button
-                        type="button"
-                        onClick={() => {
-                          handleSizeClick(size);
-                          handleSetAnotherProductBySize(
-                            selectedProduct?.id,
-                            size
-                          );
-                        }}
-                        className={classNames("size__box", {
-                          "size__box--active": activeSize === size,
-                        })}
-                        key={size}
-                        aria-label={`Select ${size} size`}
-                      >
-                        <p
-                          className={`
-                              size__value
-                              size__value--active
-                              size__value--${size}`}
-                        >
-                          {size}
-                        </p>
-
-                      </button>
-                    ))}
-                  </div>
-                </div>
-                <div className="info__description">
-                  <p className="info__description-title">Опис</p>
-                  <p className="info__description-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Quos omnis eligendi odit ab, eum a suscipit nam, voluptas ea
-                    blanditiis unde quasi laudantium minima aut corporis
-                    excepturi accusamus deleniti modi facere possimus magnam
-                    doloremque tempore ipsam quia? Illo, tempora sit. Eum ut
-                    architecto tempore, dicta impedit nihil praesentium facere
-                    perspiciatis.
-                  </p>
-                </div>
-
-                <button
-                  type="button"
-                  className="info__button"
-                  onClick={() => {
-                    handleAddToCart(selectedProduct);
-                  }}
-                >
-                  {`${selectedProduct && addedToCart(cartItems, selectedProduct.id) ? "Додано до кошика" : "Додати до кошика"}`}
-                </button>
               </div>
             </div>
           </div>
