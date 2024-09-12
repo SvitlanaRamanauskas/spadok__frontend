@@ -1,6 +1,7 @@
 import classNames from "classnames";
+import cn from "classnames";
 import { VyshyvankaDetails } from "../../types/VyshyvankaDetails";
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../appContext";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { fetchVyshyvanky, getProductDetails } from "../../helper/fetch";
@@ -28,6 +29,7 @@ export const ProductDetails: React.FC = () => {
   const [currentImage, setCurrentImage] = useState("");
   const [productDetailsLoading, setProductDetailsLoading] = useState(false);
   const [productNotFound, setProductNotFound] = useState(false);
+  const [selectedChapter, setSelectedChapter] = useState("characteristics");
 
   const cartItems = useAppSelector(cartSelector);
   const favoritesItems = useAppSelector(favoritesSelector);
@@ -235,9 +237,13 @@ export const ProductDetails: React.FC = () => {
                           aria-label={`Select ${size} size`}
                         >
                           <p
-                            className={classNames("size__value",`size__value--${size}`, {
-                              "size__value--active": activeSize === size,
-                            })}
+                            className={classNames(
+                              "size__value",
+                              `size__value--${size}`,
+                              {
+                                "size__value--active": activeSize === size,
+                              }
+                            )}
                           >
                             {size}
                           </p>
@@ -247,20 +253,59 @@ export const ProductDetails: React.FC = () => {
                   </div>
 
                   <div className="description description--desktop">
-                    <p className="description__title">Опис</p>
-                    <p className="description__body">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Quos omnis eligendi odit ab, eum a suscipit nam, voluptas
-                      ea blanditiis unde quasi laudantium minima aut corporis
-                      excepturi accusamus deleniti modi facere possimus magnam
-                      doloremque tempore ipsam quia? Illo, tempora sit. Eum ut
-                      architecto tempore, dicta impedit nihil praesentium facere
-                      perspiciatis.
-                    </p>
+                    <div className="description__buttons-titles">
+                      <button
+                        onClick={() => setSelectedChapter("characteristics")}
+                        className={classNames("description__title", {
+                          "description__title--active": selectedChapter === "characteristics",
+                        })}
+                      >
+                        Опис
+                      </button>
+                      <button
+                        onClick={() => setSelectedChapter("care")}
+                        className={classNames("description__title", {
+                          "description__title--active": selectedChapter === "care",
+                        })}
+                      >
+                        Особливості догляду
+                      </button>
+                      <button
+                        onClick={() => setSelectedChapter("size-table")}
+                        className={classNames("description__title", {
+                          "description__title--active": selectedChapter === "size-table",
+                        })}
+                      >
+                        Розмірна сітка
+                      </button>
+                    </div>
+
+                    {selectedChapter === "characteristics" && (
+                      <p className="description__body">
+                        {selectedProduct.description
+                          .split("\n")
+                          .map((line, index) => (
+                            <React.Fragment key={index}>
+                              {line}
+                              <br />
+                            </React.Fragment>
+                          ))}
+                      </p>
+                    )}
+
+                    {selectedChapter === "care" && (
+                      <p className="description__body">
+                        {
+                          "Прання - машинне автомат або ручне не більше 40 градусів. Нитки - водостійкі, DCM Муліне. Прасування - найкраще: після прання, ще трохи вологу сорочку попрасувати і вивісити."
+                        }
+                      </p>
+                    )}
 
                     <button
                       type="button"
-                      className="description__button"
+                      className={cn("description__button", {
+                        "description__button--prod-added" : selectedProduct && addedToCart(cartItems, selectedProduct.id)
+                      })}
                       onClick={() => {
                         handleAddToCart(selectedProduct);
                       }}
@@ -272,20 +317,55 @@ export const ProductDetails: React.FC = () => {
               </div>
 
               <div className="description description--mobile">
-                <p className="description__title">Опис</p>
-                <p className="description__body">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos
-                  omnis eligendi odit ab, eum a suscipit nam, voluptas ea
-                  blanditiis unde quasi laudantium minima aut corporis excepturi
-                  accusamus deleniti modi facere possimus magnam doloremque
-                  tempore ipsam quia? Illo, tempora sit. Eum ut architecto
-                  tempore, dicta impedit nihil praesentium facere perspiciatis.
-                </p>
+                <div className="description__buttons-titles">
+                  <button
+                    onClick={() => setSelectedChapter("characteristics")}
+                    className="description__title"
+                  >
+                    Опис
+                  </button>
+                  <button
+                    onClick={() => setSelectedChapter("care")}
+                    className="description__title"
+                  >
+                    Особливості догляду
+                  </button>
+
+                  <button
+                    onClick={() => setSelectedChapter("size-table")}
+                    className="description__title"
+                  >
+                    Розмірна сітка
+                  </button>
+                </div>
+
+                {selectedChapter === "characteristics" && (
+                  <p className="description__body">
+                    {selectedProduct.description
+                      .split("\n")
+                      .map((line, index) => (
+                        <React.Fragment key={index}>
+                          {line}
+                          <br />
+                        </React.Fragment>
+                      ))}
+                  </p>
+                )}
+
+                {selectedChapter === "care" && (
+                  <p className="description__body">
+                    {
+                      "Прання - машинне автомат або ручне не більше 40 градусів. Нитки - водостійкі, DCM Муліне. Прасування - найкраще: після прання, ще трохи вологу сорочку попрасувати і вивісити."
+                    }
+                  </p>
+                )}
 
                 <div className="description__button-wrapper">
                   <button
                     type="button"
-                    className="description__button"
+                    className={cn("description__button", {
+                      "description__button--prod-added" : selectedProduct && addedToCart(cartItems, selectedProduct.id)
+                    })}
                     onClick={() => {
                       handleAddToCart(selectedProduct);
                     }}

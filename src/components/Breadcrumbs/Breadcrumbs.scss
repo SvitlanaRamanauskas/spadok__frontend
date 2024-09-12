@@ -1,6 +1,12 @@
 @import '../../styles/utils/variables';
+@import '../../styles/utils/mixins';
 
 .breadcrumbs {
+    margin-block: 30px;
+
+    @include on-Desktop {
+        margin-block: 50px;
+    }
     &__line {
         display: flex;
         flex-direction: row;

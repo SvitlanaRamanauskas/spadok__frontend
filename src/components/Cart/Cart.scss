@@ -2,12 +2,26 @@
 @import '../../styles/utils/variables';
 
 .cart {
-    min-height: calc(100vh - #{$headers-height} - #{$footers-height});
-
     &-container {
         margin: 0 auto;
-
+        min-height: calc(100vh - #{$headers-height} - #{$footers-height});
     }
+
+    &__title {
+        font-family: "inter";
+        font-size: 22px;
+        font-weight: 500;
+        line-height: 32px;
+        text-align: left;
+        color: $choco;
+
+        &-wrapper {
+
+            padding-block: 36px;
+        }
+    }
+    
+
 
     &__wrapper {
         height: 100%;
@@ -15,9 +29,6 @@
         display: flex;
         flex-direction: column;
     
-        @include on-Tablet {
-            flex-direction: row;
-        }
     }
 
     &__order {
@@ -31,16 +42,22 @@
     }
 
     &__list {
+        position: relative;
+        border-top: 1px solid $choco;
+        border-bottom: 1px solid $choco;
+        padding-block: 36px;
         list-style: none;
         display: flex;
         flex-direction: column;
         gap: 38px;
+
     }
     
     &__item {
         display: flex;
         gap: 16px;
         margin-bottom: 50px;
+        align-items: center;
 
         @include on-Tablet {
             gap: 26px;
@@ -51,7 +68,38 @@
 }
 
 .item {
+    position: relative;
     font-size: 13px;
+
+    &__info {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 140px;
+
+        &--left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            font-family: "inter";
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 24px;
+            width: 121px;
+
+            @include on-Desktop {
+                font-size: 22px;
+                line-height: 42px;
+                width: auto;
+            }
+        }
+
+        &--right {
+            height: 48px;
+            padding-top: 24px;
+        }
+    }
     &__image {
         width: 100%;
         height: 100%;
@@ -59,10 +107,34 @@
     
         display: block;
         max-height: 100%;
+
+        &-wrap {
+            width: 124px;
+            height: 161px;
+
+            @include on-Desktop {
+                width: 210px;
+                height: 267px;        
+            }
+        }
+    }
+
+    &__price {
+        font-family: "inter";
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 24px;
+        text-align: left;
+
+        @include on-Desktop {
+          font-size: 22px;
+        }
     }
 
     &__remove {
-        text-align: left;
+        position: absolute;
+        right: 0;
+        top: 0;
     }
 
     &__quantity {
@@ -80,27 +152,6 @@
             width: 25px;
             height: 25px;
         }
-    }
-
-    &__image-wrap {
-        min-width: 181px;
-        flex: 1 1 181px;
-        @include on-Tablet {
-          flex: 1 1 50%;
-        }
-        @include on-Desktop {
-          min-width: 252px;
-        }
-        /* Set the max height to limit the image size */
-        max-height: 250px;
-    }
-
-    &__info {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-        justify-content: center;
     }
 }
 

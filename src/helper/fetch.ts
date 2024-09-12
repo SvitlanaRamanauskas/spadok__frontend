@@ -73,3 +73,34 @@ export const fetchGirlsVyshyvanky = () => {
     return fetchVyshyvanky()
       .then(products => products.filter(product => product.category === 'girls'));
 }
+
+export const includesQuery = (productsName: string | null, input: string) => {
+  return productsName?.trim().toLowerCase().includes(input.trim().toLowerCase());
+};
+
+export const getPreparedVyshyvanky = (products: Vyshyvanka[], params: any) => {
+  const preparedProducts = [...products];
+
+  if (params.query) {
+    return preparedProducts.filter(prod => {
+      return includesQuery(prod.name, params.query);
+    });
+  }
+
+  if (params.sort) {
+    return preparedProducts.sort((a, b) => {
+      switch (params.sort) {
+        case 'name':
+          return a.name.localeCompare(b.name);
+        case 'priceFromLow':
+          return a.price - b.price;
+        case 'priceFromHigh':
+          return b.price - a.price;
+          default:
+            return 0;
+      }
+    });
+  }
+
+  return preparedProducts;
+};

@@ -101,23 +101,6 @@ function App() {
             </ul>
           </nav>
 
-          {(location.pathname === "catalog/women" ||
-            location.pathname === "/men" ||
-            location.pathname === "/girls" ||
-            location.pathname == "catalog/boys") && (
-            <div className="header__search">
-              <img
-                src={require("./styles/icons/Search.svg").default}
-                alt="search"
-              />
-              <input
-                type="search"
-                className="header__search-input"
-                placeholder="search"
-              />
-            </div>
-          )}
-
           <div className="header__icons">
             <Link
               to="/favorites"
@@ -163,7 +146,7 @@ function App() {
             )}
           </div>
 
-            <ArrowDecorBelow />
+          <ArrowDecorBelow />
         </div>
       </header>
 
@@ -179,7 +162,7 @@ function App() {
 
           <div className="footer__block footer__left">
             <div className="footer__logo">
-              <h4 className="footer__title--logo">наш спадок</h4>
+              <h6 className="footer__title--logo">наш спадок</h6>
               <ArrowDecorBelow />
             </div>
 
@@ -190,7 +173,7 @@ function App() {
                 target="_blank"
                 className="nav__link footer__link"
               >
-                <img src={require("./styles/icons/instagram21.svg").default} />
+                <img className="footer__follow-icon" src={require("./styles/icons/instagram21.svg").default} />
               </a>
             </div>
           </div>
@@ -263,13 +246,18 @@ function App() {
                     href="tel:+380%2063%20415%2018%2053"
                     className="nav__link footer__link"
                   >
-                    +38 096 3061416
+                    <p className="footer__phone-number">+38 096 3061416</p>
                   </a>
                 </li>
+
                 <li className="footer__item">
                   <a
                     href="jhapeka@gmail.com"
-                    className="nav__link footer__link"
+                    className="
+                      nav__link 
+                      footer__link 
+                      footer__link--gmail
+                    "
                   >
                     jhapeka@gmail.com
                   </a>

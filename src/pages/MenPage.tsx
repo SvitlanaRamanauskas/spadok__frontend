@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { VyshyvankaList } from "../components/ProductList";
+import { List } from "../components/List";
 import { Vyshyvanka } from "../types/Vyshyvanka";
 import { fetchMaleVyshyvanky } from "../helper/fetch";
 import { Loader } from "../components/Loader";
@@ -27,7 +27,7 @@ export const MenPage = () => {
             
             {maleProductsLoading && <Loader />}
 
-            <VyshyvankaList items={maleVyshyvanky} />
+            <List items={maleVyshyvanky} />
         </div>
     )
 }

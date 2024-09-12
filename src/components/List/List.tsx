@@ -1,14 +1,18 @@
 import { Vyshyvanka } from "../../types/Vyshyvanka";
-import "./ProductList.scss";
+import "./List.scss";
 import "../../styles/App.scss";
 import { ProductCard } from "../ProductCard";
 import { useState } from "react";
+import { SearchAndSort } from "../SearchAndSort";
+import { useSearchParams } from "react-router-dom";
+import { getPreparedVyshyvanky } from "../../helper/fetch";
 
 type Props = {
   items: Vyshyvanka[];
 };
 
-export const VyshyvankaList: React.FC<Props> = ({ items }) => {
+export const List: React.FC<Props> = ({ items }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [visibleItemsCountMobile, setVisibleItemsCountMobile] = useState(6);
   const [visibleItemsCountDesktop, setVisibleItemsCountDesktop] = useState(9);
 
@@ -27,12 +31,18 @@ export const VyshyvankaList: React.FC<Props> = ({ items }) => {
       });
     }
   };
+  const preparedVyshyvanky = getPreparedVyshyvanky(items, Object.fromEntries(searchParams));
 
   return (
     <>
+      <SearchAndSort 
+        searchParams={searchParams}
+        setSearchParams={setSearchParams}
+      />
+
       {innerWidth < 1200 ? (
         <div className="list">
-          {items.slice(0, visibleItemsCountMobile).map((item: Vyshyvanka) => (
+          {preparedVyshyvanky.slice(0, visibleItemsCountMobile).map((item: Vyshyvanka) => (
             <div className="list__card" key={item.id}>
               <ProductCard item={item} items={items} />
             </div>
@@ -48,7 +58,7 @@ export const VyshyvankaList: React.FC<Props> = ({ items }) => {
         </div>
       ) : (
         <div className="list">
-          {items.slice(0, visibleItemsCountDesktop).map((item: Vyshyvanka) => (
+          {preparedVyshyvanky.slice(0, visibleItemsCountDesktop).map((item: Vyshyvanka) => (
             <div className="list__card" key={item.id}>
               <ProductCard item={item} items={items} />
             </div>

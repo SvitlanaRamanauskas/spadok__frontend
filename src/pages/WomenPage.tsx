@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Vyshyvanka } from "../types/Vyshyvanka";
 import { fetchFemaleVyshyvanky } from "../helper/fetch";
-import { VyshyvankaList } from "../components/ProductList";
+import { List } from "../components/List";
 import { Loader } from "../components/Loader";
 
 export const WomenPage = () => {
@@ -32,7 +32,7 @@ export const WomenPage = () => {
 
       {femaleProductsLoading && <Loader />}
 
-      <VyshyvankaList items={femaleVyshyvanky} />
+      <List items={femaleVyshyvanky} />
     </div>
   );
 };

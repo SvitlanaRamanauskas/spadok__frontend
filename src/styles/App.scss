@@ -15,7 +15,7 @@
   font-style: normal;
 }
 
-p, h1, h2, h3, h4, h5, ul {
+p, h1, h2, h3, h4, h5, h6, ul {
   margin: 0;
   padding: 0;
 }
@@ -121,53 +121,7 @@ button {
     }
   }
 
-  &__search {
-    display: flex;
-    gap: 10px;
-
-    &-icon {
-      transform: translateY(5px);
-    }
   
-    &-input {
-      background-color: transparent;
-      color: $text-color;
-      font-size: 15px;
-      padding-block: 5px;
-      padding-left: 4px;
-      width: 70px;
-
-      ::placeholder {
-        color: $text-color;
-        font-size: 24px;
-      }
-
-      &::-webkit-input-placeholder {
-        color: $text-color;
-      }
-    
-      &::-moz-placeholder {
-        color: $text-color;
-      }
-    
-      &:-ms-input-placeholder {
-        color: $text-color;
-      }
-    
-      &:-moz-placeholder {
-        color: $text-color;
-      }
-
-
-      @include on-Tablet {
-        width: 150px;
-      }
-
-      @include on-Desktop {
-        width: 250px;
-      }
-    }
-  }
 
   &__icons {
     display: flex;
@@ -245,7 +199,6 @@ button {
 }
 
 .main > :not(.home) {
-  margin-top: $headers-height;
   @include pagePaddings;
 
   @include on-Desktop {
@@ -255,32 +208,39 @@ button {
 }
 
 .footer {
+  @include pagePaddings;
+
   height: $footers-height;
-  padding-inline: 31px;
   background-color: $bg-color;
   border-top: 1px solid $choco;
-
 
   &__wrapper {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    flex-direction: column;
+    flex-direction: row;
 
     @include on-Tablet {
-      flex-direction: row;
+     
     }
   }
 
   &__left {
-    margin-top: 65px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+
+    @include on-Desktop {
+      margin-top: 65px;
+    }
   }
 
   &__right {
     display: flex;
-    flex-direction: row;
-    gap: 20px;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
 
     @include on-Tablet {
       flex-direction: row;
@@ -289,9 +249,8 @@ button {
 
     @include on-Desktop {
       gap: 100px;
+      margin-top: 80px;
     }
-
-    margin-top: 80px;
   }
 
   &__logo {
@@ -302,10 +261,24 @@ button {
 
   &__title {
     font-family: 'lev_type';
-    font-size: 22px;
+    font-size: $footer-title-size-mobile;
+    margin-bottom: 10px;
+
+    @include on-Tablet {
+      font-size: $footer-title-size-desktop;
+    }
+
+    @include on-Desktop {
+      font-size: $footer-title-size-desktop;
+    }
 
     &--logo {
-      font-size: 20px;
+      font-size: 10px;
+      display: inline-block;
+
+      @include on-Desktop {
+        font-size: 20px;
+      }
     }
   }
 
@@ -318,6 +291,25 @@ button {
       padding-right: 5px;
       border-right: 1px solid $choco;
       text-transform: uppercase;
+      font-size: $footer-text-size-mobile;
+
+      @include on-Tablet {
+        font-size: $footer-text-size-tablet;
+      }
+
+      @include on-Desktop {
+        font-size: $footer-text-size-desktop;
+      }
+    }
+
+    &-icon {
+      width: 10px;
+      height: 10px;
+
+      @include on-Desktop {
+        width: 15px;
+        height: 15px;
+      }
     }
   }
 
@@ -328,6 +320,7 @@ button {
     &--categories {
 
     }
+
     &--support {
 
     }
@@ -345,6 +338,25 @@ button {
   &__link {
     color: $choco;
     text-decoration: none;
+    font-size: $footer-text-size-mobile;
+    font-weight: 400;
+
+    @include on-Tablet {
+      font-size: $footer-text-size-tablet;
+    }
+
+    @include on-Desktop {
+      font-size: $footer-text-size-desktop;
+    }
+
+    &--gmail {
+      font-weight: 500;
+      text-transform: none;
+
+      @include on-Desktop {
+        text-transform: uppercase;
+      }
+    }
   }
 
   &__item {
@@ -358,7 +370,31 @@ button {
     margin-top: 35px;
 
     &-text {
+      font-size: 8px;
+      line-height: 10.63px;
+      font-weight: 500;
+      text-align: center;
       color: $choco;
+
+      @include on-Desktop {
+        font-size: 15px;
+        line-height: 19.94px;
+      }
+    }
+  }
+
+  &__phone-number {
+    font-weight: 500;
+    font-size: $footer-title-size-mobile;
+
+    @include on-Tablet {
+      font-size: $footer-title-size-tablet;
+    }
+
+    @include on-Desktop {
+      font-size: $footer-title-size-desktop;
+      font-weight: 500;
+      line-height: 33px; 
     }
   }
 }

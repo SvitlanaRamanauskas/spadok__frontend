@@ -3,7 +3,6 @@
 
 .details {
     // min-height: calc(100vh - #{$headers-height} - #{$footers-height} - 120px);
-
     @include on-Desktop {
         min-height: 0;
     }
@@ -231,6 +230,20 @@
 
     &__title {
         margin-bottom: 24px;
+        color: $gray-not-active;
+
+        &--active {
+            color: $choco; 
+        }
+    }
+
+    &__buttons-titles {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__body {
+        color: $choco; 
     }
 
     &__button {
@@ -253,6 +266,12 @@
         &-wrapper {
             display: flex;
             justify-content: center;
+        }
+
+        &--prod-added {
+            background-color: $bg-color;
+            color: $choco;
+            border: 1px solid $choco;
         }
     }
 }

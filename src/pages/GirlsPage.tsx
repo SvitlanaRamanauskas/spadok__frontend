@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Vyshyvanka } from "../types/Vyshyvanka";
 import { fetchGirlsVyshyvanky } from "../helper/fetch";
-import { VyshyvankaList } from "../components/ProductList";
+import { List } from "../components/List";
 import { Loader } from "../components/Loader";
 
 export const GirlsPage = () => {
@@ -27,7 +27,7 @@ export const GirlsPage = () => {
 
             {girlProductsLoading && <Loader />}
 
-            <VyshyvankaList items={girlVyshyvanky} />
+            <List items={girlVyshyvanky} />
         </div>
     )
 }

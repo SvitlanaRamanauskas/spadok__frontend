@@ -6,4 +6,5 @@ export type VyshyvankaDetails = {
     images: string[];
     price: number;
     category: string;
+    description: string;
   };
