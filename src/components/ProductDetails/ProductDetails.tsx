@@ -369,6 +369,7 @@ export const ProductDetails: React.FC = () => {
                     onClick={() => {
                       handleAddToCart(selectedProduct);
                     }}
+                    disabled={selectedProduct && addedToCart(cartItems, selectedProduct.id)} 
                   >
                     {`${selectedProduct && addedToCart(cartItems, selectedProduct.id) ? "Додано до кошика" : "Додати до кошика"}`}
                   </button>

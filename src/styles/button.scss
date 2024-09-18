@@ -1,6 +1,9 @@
+@import './utils/variables';
+
 .button {
-    background-color: #000;
-    color: white;
+    display: block;
+    background-color: $choco;
+    color: $bg-color;
     cursor: pointer;
     height: 60px;
     border: 0;

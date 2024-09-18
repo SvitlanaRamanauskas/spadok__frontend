@@ -18,6 +18,7 @@ import { Provider } from "react-redux";
 import { FavoritesPage } from "./pages/FavoritesPage";
 import { BooksPage } from "./pages/BooksPage";
 import { CatalogPage } from "./pages/CatalogPage";
+import { OrderPage } from "./pages/OrderPage";
 
 export const Root = () => {
   return (
@@ -58,6 +59,7 @@ export const Root = () => {
               </Route>
               <Route path="/favorites" element={<FavoritesPage />} />
               <Route path="/cart" element={<CartPage />} />
+              <Route path="/order" element={<OrderPage />} />
             </Route>
           </Routes>
         </Router>

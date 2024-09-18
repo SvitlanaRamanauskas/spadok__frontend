@@ -4,7 +4,7 @@
 .cart {
     &-container {
         margin: 0 auto;
-        min-height: calc(100vh - #{$headers-height} - #{$footers-height});
+        min-height: calc(100vh - #{$headers-height} - #{$footers-height} -  #{$header-margin});
     }
 
     &__title {
@@ -16,19 +16,15 @@
         color: $choco;
 
         &-wrapper {
-
             padding-block: 36px;
         }
     }
     
-
-
     &__wrapper {
         height: 100%;
         width: 100%;
         display: flex;
         flex-direction: column;
-    
     }
 
     &__order {
@@ -50,7 +46,6 @@
         display: flex;
         flex-direction: column;
         gap: 38px;
-
     }
     
     &__item {
@@ -64,7 +59,6 @@
             margin-bottom: 30px;
         }
     }
-
 }
 
 .item {
@@ -73,14 +67,19 @@
 
     &__info {
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        flex: 1;
+        flex-direction: column;
         height: 140px;
 
-        &--left {
+        @include on-Desktop {
+            height: 180px;
+        }
+
+        &--bottom {
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: left;
 
             font-family: "inter";
             font-size: 12px;
@@ -95,11 +94,24 @@
             }
         }
 
-        &--right {
-            height: 48px;
-            padding-top: 24px;
+        &--top {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+
+            font-family: "inter";
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 48px;
+            padding-right: 26px;
+
+            @include on-Desktop {
+                font-size: 22px;
+            }
         }
     }
+
     &__image {
         width: 100%;
         height: 100%;
@@ -142,6 +154,7 @@
             display: flex;
             align-items: center;
             gap: 5px;
+            padding-top: 10px;
         }
     
         &-setter {
@@ -162,12 +175,10 @@
 
 
     &__wrapper {
-        border: 1px solid $choco;
         padding: 20px;
         @include on-Tablet {
             height:300px;
         }
-        
     }
 
     &__title {
@@ -182,7 +193,14 @@
     }
 
     &__button {
+        text-decoration: none;
+        line-height: 56px;
         margin-top: 33px;
         width: 100%;
+
+        &--continue-purchases {
+            background-color: transparent;
+            color: $choco;
+        }
     }
 }

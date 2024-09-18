@@ -69,23 +69,24 @@ button {
   position: sticky;
   top: 0;
   margin-top: 10px;
-  margin-inline: 24px;
-  border-top: 1px solid $choco;
-  border-bottom: 1px solid $choco;
   height: $headers-height;
   background-color: $bg-color;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  &__container {
+    margin-inline: 24px;
+    border-top: 1px solid $choco;
+    border-bottom: 1px solid $choco;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-  padding-right: 10px;
-  padding-left: 20px;
-  transition: $bg-color 0.3s ease, margin-inline 0.3s ease;
+    padding-right: 10px;
+    padding-left: 20px;
+  
+  }
 
   &--scrolled {
     background-color: $bg-color;
-    margin-inline: 24px;
   }
 
   &__logo {

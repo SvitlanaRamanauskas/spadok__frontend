@@ -13,6 +13,7 @@ import "../../styles/button.scss";
 import { VyshyvankaDetails } from "../../types/VyshyvankaDetails";
 import { ArrowDecorBelow } from "../ArrowDecorBelow";
 import { ArrowDecorTop } from "../ArrowDecorTop";
+import { Link } from "react-router-dom";
 
 export const Cart = () => {
   const items: CartItem[] = useAppSelector(cartSelector);
@@ -56,8 +57,17 @@ export const Cart = () => {
                   </div>
 
                   <div className="item__info">
-                    <div className="item__info--left">
+
+                    <div className="item__info--top">
                       <h4 className="item__name">{item.item.name}</h4>
+
+                      <p className="item__price">
+                        {item.item.price * item.quantity}&#x20b4;
+                      </p>
+                    </div>
+                
+                    <div className="item__info--bottom">
+      
                       <p className="item__code">Арт.: {item.item.id}</p>
                       <p className="item__size">Розмір: {item.item.size}</p>
                       <div className="item__quantity-setters">
@@ -75,12 +85,6 @@ export const Cart = () => {
                           <div className="p">+</div>
                         </button>
                       </div>
-                    </div>
-
-                    <div className="item__info--right">
-                      <p className="item__price">
-                        {item.item.price * item.quantity}&#x20b4;
-                      </p>
                     </div>
                   </div>
 
@@ -110,9 +114,13 @@ export const Cart = () => {
                 <h5>Разом до сплати:</h5>
                 <p className="summary__result">{totalCartPrice} &#x20b4;</p>
               </div>
-              <button className="button summary__button">
+              <Link to="/order" className="button summary__button">
                 Перейти до оформлення
-              </button>
+              </Link>
+
+              <Link to="/catalog" className="summary__button summary__button--continue-purchases">
+                Продовжити покупки
+              </Link>
             </div>
           </div>
         </div>

@@ -54,7 +54,7 @@ export const cartSlice = createSlice({
             }
 
             saveCartToLocalStorage(state);
-            // localStorage.clear()
+            
         },
 
         removeItem: (state, action: PayloadAction<VyshyvankaDetails>) => {
@@ -69,6 +69,7 @@ export const cartSlice = createSlice({
             }
 
             saveCartToLocalStorage(state);
+            // localStorage.clear();
         },
 
         plusItem: (state, action: PayloadAction<VyshyvankaDetails>) => {

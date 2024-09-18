@@ -1,0 +1,79 @@
+@import '../../styles/utils/variables';
+@import '../../styles/utils/mixins';
+
+.order {
+    min-height: calc(100vh - #{$headers-height} - #{$footers-height} - #{$header-margin});
+
+    &__section-title {
+        font-family: 'inter';
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 16px;
+        text-align: left;
+        padding-block: 29px 25px;
+    }
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+       
+    }
+
+    &__confirm-button {
+        height: 60px;
+        background-color: $choco;
+        color: $bg-color;
+        width: 100%;
+
+        @include on-Tablet {
+            width: 30%;
+            align-self: center;
+        }
+    }
+
+}
+
+.buyer-info {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    column-gap: 9px;
+    row-gap: 10px;
+    margin-top: 40px;
+
+    @include on-Tablet {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 15px;
+    }
+
+    @include on-Desktop {
+        column-gap: 23px;
+    }
+
+    &__label{
+        grid-column: 1 / -1;
+       
+
+        @include on-Tablet {
+            grid-column: auto;
+
+
+        }
+
+        @include on-Desktop {
+
+        }
+    }
+
+    &__input {
+        background-color: #fff;
+        color: #000;
+        height: 60px;
+        width: 100%;
+        padding-left: 14px;
+
+        ::placeholder {
+            color: $placeholder-text;
+        }
+    }
+}
+

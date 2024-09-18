@@ -58,95 +58,89 @@ function App() {
   return (
     <div className="app">
       <header className={cn("header", { "header--scrolled": scrolled })}>
-        <div className="header__logo">
-          <ArrowDecorTop />
-
-          <Link to="/home" className="header__logo-link">
-            <img src={require("./styles/icons/Logo.svg").default} alt="Logo" />
-          </Link>
-
-          <ArrowDecorBelow />
-        </div>
-        <div className="header__right">
-          <ArrowDecorTop />
-
-          <nav className="header__nav">
-            <ul className="nav__list">
-              <li className="nav__item">
-                <Link to="/catalog/women" className="nav__link">
-                  жінкам
-                </Link>
-              </li>
-              <li className="nav__item">
-                <Link to="/catalog/men" className="nav__link">
-                  чоловікам
-                </Link>
-              </li>
-              <li className="nav__item">
-                <Link to="/catalog/boys" className="nav__link">
-                  хлопчикам
-                </Link>
-              </li>
-              <li className="nav__item">
-                <Link to="/catalog/girls" className="nav__link">
-                  дівчаткам
-                </Link>
-              </li>
-
-              <li className="nav__item">
-                <Link to="/catalog/books" className="nav__link">
-                  книгі
-                </Link>
-              </li>
-            </ul>
-          </nav>
-
-          <div className="header__icons">
-            <Link
-              to="/favorites"
-              className="header__icon header__icon--favorite"
-            >
-              <img
-                src={
-                  require("./styles/icons/Favourites-Heart-Like.svg").default
-                }
-                alt="heart"
-              />
+        <div className="header__container">
+          <div className="header__logo">
+            <ArrowDecorTop />
+            <Link to="/home" className="header__logo-link">
+              <img src={require("./styles/icons/Logo.svg").default} alt="Logo" />
             </Link>
-
-            <Link to="/cart" className="header__icon header__icon--cart">
-              <img
-                src={require("./styles/icons/bxs_cart.svg").default}
-                alt="cart"
-              />
-            </Link>
-
-            {asideIsOpen ? (
-              <button
-                type="button"
-                className="header__icon  header__icon--close"
-                onClick={toggleMenuButton}
-              >
-                <img
-                  src={require("./styles/icons/Close.svg").default}
-                  alt="close"
-                />
-              </button>
-            ) : (
-              <button
-                type="button"
-                className="header__icon  header__icon--burger"
-                onClick={toggleMenuButton}
-              >
-                <img
-                  src={require("./styles/icons/menu-burger.svg").default}
-                  alt="menu"
-                />
-              </button>
-            )}
+            <ArrowDecorBelow />
           </div>
-
-          <ArrowDecorBelow />
+          <div className="header__right">
+            <ArrowDecorTop />
+            <nav className="header__nav">
+              <ul className="nav__list">
+                <li className="nav__item">
+                  <Link to="/catalog/women" className="nav__link">
+                    жінкам
+                  </Link>
+                </li>
+                <li className="nav__item">
+                  <Link to="/catalog/men" className="nav__link">
+                    чоловікам
+                  </Link>
+                </li>
+                <li className="nav__item">
+                  <Link to="/catalog/boys" className="nav__link">
+                    хлопчикам
+                  </Link>
+                </li>
+                <li className="nav__item">
+                  <Link to="/catalog/girls" className="nav__link">
+                    дівчаткам
+                  </Link>
+                </li>
+                <li className="nav__item">
+                  <Link to="/catalog/books" className="nav__link">
+                    книгі
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+            <div className="header__icons">
+              <Link
+                to="/favorites"
+                className="header__icon header__icon--favorite"
+              >
+                <img
+                  src={
+                    require("./styles/icons/Favourites-Heart-Like.svg").default
+                  }
+                  alt="heart"
+                />
+              </Link>
+              <Link to="/cart" className="header__icon header__icon--cart">
+                <img
+                  src={require("./styles/icons/bxs_cart.svg").default}
+                  alt="cart"
+                />
+              </Link>
+              {asideIsOpen ? (
+                <button
+                  type="button"
+                  className="header__icon  header__icon--close"
+                  onClick={toggleMenuButton}
+                >
+                  <img
+                    src={require("./styles/icons/Close.svg").default}
+                    alt="close"
+                  />
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className="header__icon  header__icon--burger"
+                  onClick={toggleMenuButton}
+                >
+                  <img
+                    src={require("./styles/icons/menu-burger.svg").default}
+                    alt="menu"
+                  />
+                </button>
+              )}
+            </div>
+            <ArrowDecorBelow />
+          </div>
         </div>
       </header>
 
