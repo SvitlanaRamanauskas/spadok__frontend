@@ -1,5 +1,6 @@
 @import '../../styles/utils/variables';
 @import '../../styles/utils/mixins';
+@import '../../../node_modules/flag-icon-css/css/flag-icons.min.css';
 
 .order {
     min-height: calc(100vh - #{$headers-height} - #{$footers-height} - #{$header-margin});
@@ -49,25 +50,20 @@
         column-gap: 23px;
     }
 
-    &__label{
+    &__container {
         grid-column: 1 / -1;
        
 
         @include on-Tablet {
             grid-column: auto;
-
-
         }
 
         @include on-Desktop {
-
         }
     }
 
     &__input {
-        background-color: #fff;
-        color: #000;
-        height: 60px;
+        height: 100%;
         width: 100%;
         padding-left: 14px;
 
@@ -75,5 +71,65 @@
             color: $placeholder-text;
         }
     }
+}
+
+.phone {
+    background-color: #fff;
+    color: $choco;
+    height: 60px;
+
+    & > div:first-child {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    & > div:last-child {
+        position: relative;
+        border-radius: 1px solid $choco;
+    }
+
+    &--opened > div:last-child .select {
+        display: block;
+        border-top-width: 0;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        background-color: #fff;
+        list-style: none;
+      }
+
+    &__country-flag {
+        width: 20px;
+        height: 15px;
+    }
+
+    &__country-selector {
+        background-color: #fff;
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+        justify-content: center;
+        align-items: center;
+        padding: 1px 16px;
+        width: 60px;
+        height: 100%;
+
+    }
+    &__icon {
+        height: 16px;
+        width: 16px;
+        transform: rotate(90deg);
+        
+        &--focused {
+            transform: rotate(270deg);
+        }
+    }
+}
+
+.select {
+    position: absolute;
+    width: 100%;
+    display: none;
 }
 
