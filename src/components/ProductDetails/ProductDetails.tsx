@@ -72,7 +72,11 @@ export const ProductDetails: React.FC = () => {
         .then((productData) => {
           if (productData !== null) {
             setSelectedProduct(productData);
-            setActiveSize(productData.size || "");
+
+            if ("size" in productData) {
+              setActiveSize(productData.size);
+            }
+
             setCurrentImage(
               productData.images.length > 0 ? productData.images[0] : ""
             );
@@ -137,6 +141,16 @@ export const ProductDetails: React.FC = () => {
         setProductDetailsLoading(false);
         console.log(selectedProduct);
       }, 1000);
+    }
+  };
+
+  const selectedProductNameOrTitle = (
+    selectedProduct: VyshyvankaDetails | BookDetails
+  ) => {
+    if (selectedProduct) {
+      return "name" in selectedProduct
+        ? selectedProduct.name
+        : selectedProduct?.title;
     }
   };
 
@@ -214,52 +228,58 @@ export const ProductDetails: React.FC = () => {
                       Повернутися
                     </button>
                   </div>
-                  <h3 className="info__title">{selectedProduct.name}</h3>
+                  <h3 className="info__title">
+                    {selectedProductNameOrTitle(selectedProduct)}
+                  </h3>
                   <p className="info__price">
                     {" "}
                     &#x20b4; {selectedProduct.price}
                   </p>
-                  <div className="info__size size">
-                    <p className="size__title">Розмір</p>
-                    <div className="size__elements">
-                      {selectedProduct.sizesAvailable.map((size) => (
-                        <button
-                          type="button"
-                          onClick={() => {
-                            handleSizeClick(size);
-                            handleSetAnotherProductBySize(
-                              selectedProduct?.name,
-                              size
-                            );
-                          }}
-                          className={classNames("size__box", {
-                            "size__box--active": activeSize === size,
-                          })}
-                          key={size}
-                          aria-label={`Select ${size} size`}
-                        >
-                          <p
-                            className={classNames(
-                              "size__value",
-                              `size__value--${size}`,
-                              {
-                                "size__value--active": activeSize === size,
-                              }
-                            )}
+
+                  {"size" in selectedProduct && (
+                    <div className="info__size size">
+                      <p className="size__title">Розмір</p>
+                      <div className="size__elements">
+                        {selectedProduct.sizesAvailable.map((size) => (
+                          <button
+                            type="button"
+                            onClick={() => {
+                              handleSizeClick(size);
+                              handleSetAnotherProductBySize(
+                                selectedProduct?.name,
+                                size
+                              );
+                            }}
+                            className={classNames("size__box", {
+                              "size__box--active": activeSize === size,
+                            })}
+                            key={size}
+                            aria-label={`Select ${size} size`}
                           >
-                            {size}
-                          </p>
-                        </button>
-                      ))}
+                            <p
+                              className={classNames(
+                                "size__value",
+                                `size__value--${size}`,
+                                {
+                                  "size__value--active": activeSize === size,
+                                }
+                              )}
+                            >
+                              {size}
+                            </p>
+                          </button>
+                        ))}
+                      </div>
                     </div>
-                  </div>
+                  )}
 
                   <div className="description description--desktop">
                     <div className="description__buttons-titles">
                       <button
                         onClick={() => setSelectedChapter("characteristics")}
                         className={classNames("description__title", {
-                          "description__title--active": selectedChapter === "characteristics",
+                          "description__title--active":
+                            selectedChapter === "characteristics",
                         })}
                       >
                         Опис
@@ -267,7 +287,8 @@ export const ProductDetails: React.FC = () => {
                       <button
                         onClick={() => setSelectedChapter("care")}
                         className={classNames("description__title", {
-                          "description__title--active": selectedChapter === "care",
+                          "description__title--active":
+                            selectedChapter === "care",
                         })}
                       >
                         Особливості догляду
@@ -275,7 +296,8 @@ export const ProductDetails: React.FC = () => {
                       <button
                         onClick={() => setSelectedChapter("size-table")}
                         className={classNames("description__title", {
-                          "description__title--active": selectedChapter === "size-table",
+                          "description__title--active":
+                            selectedChapter === "size-table",
                         })}
                       >
                         Розмірна сітка
@@ -306,7 +328,9 @@ export const ProductDetails: React.FC = () => {
                     <button
                       type="button"
                       className={cn("button", "description__button", {
-                        "description__button--prod-added" : selectedProduct && addedToCart(cartItems, selectedProduct.id)
+                        "description__button--prod-added":
+                          selectedProduct &&
+                          addedToCart(cartItems, selectedProduct.id),
                       })}
                       onClick={() => {
                         handleAddToCart(selectedProduct);
@@ -366,12 +390,17 @@ export const ProductDetails: React.FC = () => {
                   <button
                     type="button"
                     className={cn("button", "description__button", {
-                      "description__button--prod-added" : selectedProduct && addedToCart(cartItems, selectedProduct.id)
+                      "description__button--prod-added":
+                        selectedProduct &&
+                        addedToCart(cartItems, selectedProduct.id),
                     })}
                     onClick={() => {
                       handleAddToCart(selectedProduct);
                     }}
-                    disabled={selectedProduct && addedToCart(cartItems, selectedProduct.id)} 
+                    disabled={
+                      selectedProduct &&
+                      addedToCart(cartItems, selectedProduct.id)
+                    }
                   >
                     {`${selectedProduct && addedToCart(cartItems, selectedProduct.id) ? "Додано до кошика" : "Додати до кошика"}`}
                   </button>

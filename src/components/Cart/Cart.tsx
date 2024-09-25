@@ -14,6 +14,7 @@ import { VyshyvankaDetails } from "../../types/VyshyvankaDetails";
 import { ArrowDecorBelow } from "../ArrowDecorBelow";
 import { ArrowDecorTop } from "../ArrowDecorTop";
 import { Link } from "react-router-dom";
+import { BookDetails } from "../../types/BookDetails";
 
 export const Cart = () => {
   const items: CartItem[] = useAppSelector(cartSelector);
@@ -22,17 +23,21 @@ export const Cart = () => {
 
   const dispatch = useAppDispatch();
 
-  const handlePlus = (item: VyshyvankaDetails) => {
+  const handlePlus = (item: VyshyvankaDetails | BookDetails) => {
     dispatch(plusItem(item));
   };
 
-  const handleMinus = (item: VyshyvankaDetails) => {
+  const handleMinus = (item: VyshyvankaDetails | BookDetails) => {
     dispatch(minusItem(item));
   };
 
-  const handleRemoveItem = (item: VyshyvankaDetails) => {
+  const handleRemoveItem = (item: VyshyvankaDetails | BookDetails) => {
     dispatch(removeItem(item));
   };
+
+  const getNameOrTitle = (item: CartItem) => {
+    return "name" in item.item ? item.item.name : item.item.title;
+  } 
 
   return (
     <>
@@ -59,7 +64,7 @@ export const Cart = () => {
 
                     <div className="item__info">
                       <div className="item__info--top">
-                        <h4 className="item__name">{item.item.name}</h4>
+                        <h4 className="item__name">{getNameOrTitle(item)}</h4>
 
                         <p className="item__price">
                           {item.item.price * item.quantity}&#x20b4;
@@ -68,7 +73,10 @@ export const Cart = () => {
 
                       <div className="item__info--bottom">
                         <p className="item__code">Арт.: {item.item.id}</p>
-                        <p className="item__size">Розмір: {item.item.size}</p>
+                        {"size" in item.item && (
+                          <p className="item__size">Розмір: {item.item.size}</p>
+                        )}
+                        
                         <div className="item__quantity-setters">
                           <button
                             className="item__quantity-setter"
