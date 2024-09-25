@@ -1,31 +1,5 @@
 .curve {
     position: absolute;
-    
-    &--top {
-      &-left {
-        top: -4.96px;
-        left: 0;
-      }
-  
-      &-right {
-        top: -4.96px;
-        right: 0;
-      }
-    }
-  
-    &--bottom {
-      &-left {
-        top: -1px;
-        left: 0;
-        transform: rotate(180deg);
-      }
-  
-      &-right {
-        top: -1px;
-        right: 0;
-        transform: rotate(180deg);
-      }
-    }
   
     &__below {
       &--top {

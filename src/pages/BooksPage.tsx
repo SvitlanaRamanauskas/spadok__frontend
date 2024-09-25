@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { fetchBooks, fetchGirlsVyshyvanky } from "../helper/fetch";
+import { fetchBooks } from "../helper/fetch";
 import { Loader } from "../components/Loader";
 import { Book } from "../types/Book";
 import { BookList } from "../components/BookList";
+import { List } from "../components/List";
 
 export const BooksPage = () => {
     const [books, setBooks] = useState<Book[]>([]);
@@ -27,7 +28,7 @@ export const BooksPage = () => {
             
             {booksProductsLoading && <Loader />}
 
-            <BookList items={books} />
+            <List items={books} />
         </div>
     )
 }

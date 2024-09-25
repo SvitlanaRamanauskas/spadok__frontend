@@ -5,11 +5,17 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
+    margin-bottom: 50px;
+
+    @include on-Tablet {
+        margin-bottom: 80px;
+    }
 
     @include on-Desktop {
         grid-template-columns: repeat(3, 1fr);
         gap: 24px;
         max-width: $max-content-width;
+        margin-bottom: 100px;
     }
 
     &__card {
@@ -24,15 +30,13 @@
 
     &__button {
         width: 255px;
-        height: 40px;
-        background-color: $choco;
-        color: #fff;
-        font-size: 18px;
+
+        @include on-Tablet {
+            width: 50%;
+        }
 
         @include on-Desktop {
             width: 100%;
-            height: 56px;
-            font-size: 22px;
         }
         
 

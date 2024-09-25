@@ -6,11 +6,17 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 16px;
+        margin-bottom: 50px;
+        
+        @include on-Tablet {
+            margin-bottom: 80px;
+        }
     
         @include on-Desktop {
             grid-template-columns: repeat(3, 1fr);
             gap: 24px;
             max-width: $max-content-width;
+            margin-bottom: 80px;
         }
 
         &-card {

@@ -7,7 +7,9 @@ import { Element } from "react-scroll";
 import { ThreadDecor } from "../components/ThreadDecor/ThreadDecor";
 import { PhotoSlider } from "../components/PhotoSlider";
 
+
 export const HomePage = () => {
+
   return (
     <div className="home">
       <section className="home__main-photo">

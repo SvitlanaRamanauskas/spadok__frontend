@@ -26,32 +26,4 @@
         transform: rotate(180deg);
       }
     }
-  
-    &__below {
-      &--top {
-        &-left {
-          bottom: -1px;
-          left: 0;
-        }
-    
-        &-right {
-          bottom: -1px;
-          right: 0;
-        }
-      }
-    
-      &--bottom {
-        &-left {
-          bottom: -4.96px;
-          left: 0;
-          transform: rotate(180deg);
-        }
-    
-        &-right {
-          bottom: -4.96px;
-          right: 0;
-          transform: rotate(180deg);
-        }
-      }
-    }
   }

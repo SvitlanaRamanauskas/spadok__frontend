@@ -2,9 +2,24 @@
 @import '../../styles/utils/variables';
 
 .cart {
+    &__empty {
+        font-family: "lev_type";
+        letter-spacing: 3px;
+        text-align: center;
+    }
+
     &-container {
         margin: 0 auto;
-        min-height: calc(100vh - #{$headers-height} - #{$footers-height} -  #{$header-margin});
+
+        min-height: calc(100vh - #{$headers-height-mobile} - #{$footers-height-mobile} - #{$header-margin});
+
+        @include on-Tablet {
+            min-height: calc(100vh - #{$headers-height-tablet} - #{$footers-height-tablet} - #{$header-margin});
+        }
+    
+        @include on-Desktop {
+            min-height: calc(100vh - #{$headers-height-tablet} - #{$footers-height-desktop} - #{$header-margin});
+        }
     }
 
     &__title {
@@ -170,12 +185,13 @@
 
 .summary {
     text-align: center;
-
     margin-bottom: 30px;
 
-
     &__wrapper {
+        display: flex;
+        flex-direction: column;
         padding: 20px;
+        
         @include on-Tablet {
             height:300px;
         }
@@ -198,9 +214,34 @@
         margin-top: 33px;
         width: 100%;
 
+        @include on-Tablet {
+            width: 50%;
+            align-self: center;
+        }
+
+        @include on-Desktop {
+            width: 30%;
+        }
+
         &--continue-purchases {
             background-color: transparent;
             color: $choco;
+            transition: transform 0.5s ease;
+
+            &:hover {
+              transform: scale(1.1);
+            }
+        }
+
+        &--start-purchases {
+            background-color: $choco;
+            color: $white;
+            transition: transform 0.5s ease, color 0.5s ease;
+
+            &:hover {
+              transform: scale(1.1);
+              color: $bg-color;
+            }
         }
     }
 }

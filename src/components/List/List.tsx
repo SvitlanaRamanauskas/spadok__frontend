@@ -1,4 +1,5 @@
 import { Vyshyvanka } from "../../types/Vyshyvanka";
+import "../../styles/button.scss";
 import "./List.scss";
 import "../../styles/App.scss";
 import { ProductCard } from "../ProductCard";
@@ -6,9 +7,10 @@ import { useState } from "react";
 import { SearchAndSort } from "../SearchAndSort";
 import { useSearchParams } from "react-router-dom";
 import { getPreparedVyshyvanky } from "../../helper/fetch";
+import { Book } from "../../types/Book";
 
 type Props = {
-  items: Vyshyvanka[];
+  items: Vyshyvanka[] | Book[];
 };
 
 export const List: React.FC<Props> = ({ items }) => {
@@ -31,7 +33,7 @@ export const List: React.FC<Props> = ({ items }) => {
       });
     }
   };
-  const preparedVyshyvanky = getPreparedVyshyvanky(items, Object.fromEntries(searchParams));
+  const preparedProducts = getPreparedVyshyvanky(items, Object.fromEntries(searchParams));
 
   return (
     <>
@@ -42,15 +44,15 @@ export const List: React.FC<Props> = ({ items }) => {
 
       {innerWidth < 1200 ? (
         <div className="list">
-          {preparedVyshyvanky.slice(0, visibleItemsCountMobile).map((item: Vyshyvanka) => (
+          {preparedProducts.slice(0, visibleItemsCountMobile).map((item: Vyshyvanka | Book) => (
             <div className="list__card" key={item.id}>
-              <ProductCard item={item} items={items} />
+              <ProductCard item={item} />
             </div>
           ))}
 
           {visibleItemsCountMobile < items.length && (
             <div className="list__button-wrapper">
-                <button className="list__button" onClick={handleShowMoreClick}>
+                <button className="list__button button" onClick={handleShowMoreClick}>
                   Show more
                 </button>
             </div>
@@ -58,15 +60,15 @@ export const List: React.FC<Props> = ({ items }) => {
         </div>
       ) : (
         <div className="list">
-          {preparedVyshyvanky.slice(0, visibleItemsCountDesktop).map((item: Vyshyvanka) => (
+          {preparedProducts.slice(0, visibleItemsCountDesktop).map((item: Vyshyvanka | Book) => (
             <div className="list__card" key={item.id}>
-              <ProductCard item={item} items={items} />
+              <ProductCard item={item} />
             </div>
           ))}
 
           {visibleItemsCountDesktop < items.length && (
             <div className="list__button-wrapper">
-                <button className="list__button" onClick={handleShowMoreClick}>
+                <button className="list__button button" onClick={handleShowMoreClick}>
                   Show more
                 </button>
             </div>

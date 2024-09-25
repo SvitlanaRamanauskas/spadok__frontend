@@ -19,12 +19,14 @@ import { FavoritesPage } from "./pages/FavoritesPage";
 import { BooksPage } from "./pages/BooksPage";
 import { CatalogPage } from "./pages/CatalogPage";
 import { OrderPage } from "./pages/OrderPage";
+import ScrollToTop from "./components/scrollToTop";
 
 export const Root = () => {
   return (
     <Provider store={store}>
       <AppProvider>
         <Router>
+          <ScrollToTop />
           <Routes>
             <Route element={<App />}>
               <Route path="home" element={<Navigate to="/" replace />} />

@@ -39,6 +39,7 @@ input {
     display: none;
   }
 }
+
 body {
   margin: 0;
   background-color: $bg-color;
@@ -48,7 +49,6 @@ body {
 
 html {
   scroll-behavior: smooth;
-
 }
 
 button {
@@ -69,20 +69,25 @@ button {
   position: sticky;
   top: 0;
   margin-top: 10px;
-  height: $headers-height;
+  height: $headers-height-mobile;
   background-color: $bg-color;
 
+  @include on-Tablet {
+    height: $headers-height-tablet;
+  }
+
   &__container {
-    margin-inline: 24px;
+    margin-inline: 16px;
     border-top: 1px solid $choco;
     border-bottom: 1px solid $choco;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-inline: 10px;
 
-    padding-right: 10px;
-    padding-left: 20px;
-  
+    @include on-Tablet {
+      margin-inline: 24px;
+    }
   }
 
   &--scrolled {
@@ -90,43 +95,99 @@ button {
   }
 
   &__logo {
-    height: $headers-height;
-    width: 100px;
-    line-height: $headers-height;
     position: relative;
-
-    &-link {
-      display: inline-block;
+    display: flex;
+    align-items: center;
+    width: 160px;
+    line-height: $headers-height-mobile;
+    height: $headers-height-mobile;
+  
+    @include on-Tablet {
+      width: 260px;
+      height: $headers-height-tablet;
+      line-height: $headers-height-mobile;
     }
 
+    &-text {
+      font-family: 'lev_type';
+      font-size: 18px;
+      font-weight: 600;
+      text-decoration: none;
+      color: $choco;
+      width: auto;
 
+      @media (min-width: 378px) {
+        font-size: 25px;
+      }
+
+      @include on-Tablet {
+        font-size: 40px;
+      }
+    }
   }
 
   &__right {
+    position: relative;
     display: flex;
     gap: 10px;
     align-items: center;
-    height: $headers-height;
-    position: relative;
+    padding-left: 10px;
+    height: $headers-height-mobile;
+    @include on-Tablet {
+      height: $headers-height-tablet;
+    }
 
     @include on-Desktop {
       gap: 20px;
     }
   }
 
-  &__nav {
-    display: none;
+  &__short {
+    &-navigation {
+      display: none;
+      
+      @include on-Tablet {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+      }
+    }
 
-    @include on-Tablet {
-      display: block;
+    &-nav-element {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+
+  
+      &-icon {
+        height: 16px;
+        width: 16px;
+        transform: rotate(90deg);
+        
+        &--focused {
+            transform: rotate(270deg);
+        }
+      }
     }
   }
 
-  
+  &__nav {
+    display: none;
+    position: absolute;
+    top: 60px;
+    background-color: #fff;
+    z-index: 200;
+
+    &--opened {
+      @include on-Tablet {
+        display: block;
+      }
+    }
+  }
 
   &__icons {
     display: flex;
-    gap: 8px;
+    gap: 5px;
 
     @include on-Tablet {
       gap: 10px;
@@ -138,13 +199,35 @@ button {
   }
 
   &__icon {
+    position: relative;
     padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    &--burger {
-      display: block;
-    }
     &--close {
       width: 44px;
+    }
+
+    &-picture {
+      width: 30px;
+      height: 30px;
+    }
+
+    &-circle {
+      position: absolute;
+      transform: translate(150%,-40%);
+      font-family: "inter";
+      font-size: 9px;
+      font-weight: 600;
+      line-height: 14px;
+      text-align: center;
+      color: black;
+      width: 15px;
+      height: 15px;
+      left: 15px;
+      background-color: white;
+      border-radius: 50%;
     }
   }
 }
@@ -154,20 +237,16 @@ button {
     list-style: none;
     display: flex;
     align-items: center;
-    flex-direction: row;
-    gap: 10px;
-    padding: 0;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
     margin: 0;
-
-
-    @include on-Desktop {
-      gap: 20px;
-    }
   }
 
   &__item {
     font-family: 'lev_type';
     position: relative;
+
     &::after {
       position: absolute;
       display: block;
@@ -175,8 +254,8 @@ button {
       width: 0;
       content: "";
       bottom: -3px;
-      background-color: $brown;
-      transition: width 0.5s ease, color 0.5s ease, background-color 0.5s ease;
+      background-color: $choco;
+      transition: width 0.5s ease, background-color 0.5s ease;
     }
 
     &:hover {
@@ -190,12 +269,9 @@ button {
     text-decoration: none;
     color: $choco;
     font-size: 17px;
+    font-weight: 600;
     transition: color 0.5s ease;
     text-transform: uppercase;
-
-    &:hover {
-      color: $brown;
-    }
   }
 }
 
@@ -209,11 +285,23 @@ button {
 }
 
 .footer {
-  @include pagePaddings;
-
-  height: $footers-height;
+  margin-inline: 16px;
+  height: $footers-height-mobile;
   background-color: $bg-color;
   border-top: 1px solid $choco;
+
+  @include on-Tablet {
+    height: $footers-height-tablet;
+    margin-inline: 24px;
+  }
+
+  @include on-Desktop {
+    height: $footers-height-desktop;
+  }
+
+  &__container {
+    padding-inline: 10px;
+  }
 
   &__wrapper {
     position: relative;
@@ -221,9 +309,14 @@ button {
     align-items: center;
     justify-content: space-around;
     flex-direction: row;
-
+    padding-top: 16px;
+    
     @include on-Tablet {
-     
+      padding-top: 26px;
+    }
+
+    @include on-Desktop {
+      padding-top: 0;
     }
   }
 
@@ -233,7 +326,7 @@ button {
     margin-top: 15px;
 
     @include on-Desktop {
-      margin-top: 65px;
+      margin-top: 50px;
     }
   }
 
@@ -245,7 +338,11 @@ button {
 
     @include on-Tablet {
       flex-direction: row;
-      gap: 40px;
+    }
+
+
+    @media(min-width: 768px) {
+      gap: 30px;
     }
 
     @include on-Desktop {
@@ -254,32 +351,20 @@ button {
     }
   }
 
-  &__logo {
-    position: relative;
-    border-bottom: 1px solid $choco;
-    padding-bottom: 20px;
-  }
-
   &__title {
-    font-family: 'lev_type';
+    font-family: "lev_type";
+    font-weight: 600;
     font-size: $footer-title-size-mobile;
-    margin-bottom: 10px;
+    line-height: 15px;
 
     @include on-Tablet {
-      font-size: $footer-title-size-desktop;
+      font-size: $footer-title-size-tablet;
+      line-height: 20px;
     }
 
     @include on-Desktop {
       font-size: $footer-title-size-desktop;
-    }
-
-    &--logo {
-      font-size: 10px;
-      display: inline-block;
-
-      @include on-Desktop {
-        font-size: 20px;
-      }
+      line-height: 33px;
     }
   }
 
@@ -292,14 +377,14 @@ button {
       padding-right: 5px;
       border-right: 1px solid $choco;
       text-transform: uppercase;
-      font-size: $footer-text-size-mobile;
+      font-size: 12px;
 
       @include on-Tablet {
-        font-size: $footer-text-size-tablet;
+        font-size: 16px;
       }
 
       @include on-Desktop {
-        font-size: $footer-text-size-desktop;
+        font-size: 20px;
       }
     }
 
@@ -317,6 +402,13 @@ button {
   &__block {
     color: $choco;
     align-self: baseline;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    
+    @include on-Tablet {
+      gap: 10px;
+    }
 
     &--categories {
 
@@ -332,8 +424,15 @@ button {
   }
 
   &__list {
+    display: flex;
     flex-direction: column;
     list-style: none;
+    gap: 8px;
+
+    @include on-Tablet {
+      gap: 8px;
+    }
+
   }
 
   &__link {
@@ -341,6 +440,11 @@ button {
     text-decoration: none;
     font-size: $footer-text-size-mobile;
     font-weight: 400;
+    transition: color 0.5s ease;
+
+    &:hover {
+      color: $brown;
+    }
 
     @include on-Tablet {
       font-size: $footer-text-size-tablet;
@@ -360,15 +464,19 @@ button {
     }
   }
 
-  &__item {
-    
-  }
-
   &__rights {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 35px;
+    margin-top: 10px;
+
+    @include on-Tablet {
+      margin-top: 20px;
+    }
+
+    @include on-Desktop {
+      margin-top: 50px;
+    }
 
     &-text {
       font-size: 8px;
@@ -385,7 +493,8 @@ button {
   }
 
   &__phone-number {
-    font-weight: 500;
+    font-family: 'lev_type';
+    font-weight: 600;
     font-size: $footer-title-size-mobile;
 
     @include on-Tablet {
@@ -394,7 +503,6 @@ button {
 
     @include on-Desktop {
       font-size: $footer-title-size-desktop;
-      font-weight: 500;
       line-height: 33px; 
     }
   }
@@ -417,68 +525,6 @@ button {
  
 }
 
-.catalog {
-  display: grid;
-  row-gap: 24px;
-  column-gap: 24px;
-  grid-template-columns: repeat(2, 1fr);
-
-  @include on-Desktop {
-    grid-template-columns: repeat(3, 1fr);
-    margin: 0 auto;
-  }
-
-  &__category {
-    display: block;
-    position: relative;
-    height: 197px;
-    opacity: 100%;
-    transition: opacity 0.3s ease;
-
-
-    @include on-Tablet {
-      height: 350px;
-    }
-
-    @include on-Desktop {
-      height: 492px;
-    }
-
-    &:hover {
-        opacity: 80%;
-    }
-
-    &-wrapper {
-      height: 197px;
-      width: 100%;
-
-
-      @include on-Tablet {
-        height: 350px;
-      }
-  
-      @include on-Desktop {
-        height: 492px;
-      }
-  }
-
-    &-title {
-      color: $brown;
-      transition: color 0.3s ease;
-      position: relative;
-  }
-}
-
-  &__image {
-    width: 100%;
-    height: 100%;
-    object-position: top;
-    object-fit: cover;
-  }
-}
-
-
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -488,3 +534,23 @@ button {
   }
 }
 
+.logo {
+  position: relative;
+  text-decoration: none;
+  color: $choco;
+  width: auto;
+  border-bottom: 1px solid $choco;
+  padding-bottom: 20px;
+  font-family: 'lev_type';
+  font-size: 18px;
+  font-weight: 500;
+  text-align: left;
+
+  @include on-Tablet {
+    font-size: 20px;
+  }
+
+  @include on-Desktop {
+    font-size: 40px;
+  }
+}

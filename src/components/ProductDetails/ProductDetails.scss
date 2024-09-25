@@ -247,19 +247,14 @@
     }
 
     &__button {
-        height: 40px;
         width: 100%;
-        background-color: $choco;
-        color: $bg-color;
         margin-top: 24px;
 
         @include on-Tablet {
-            height: 56px;
             width: 448px;
         }
 
         @include on-Desktop {
-            height: 56px;
             width: 100%;
         }
 
@@ -272,6 +267,13 @@
             background-color: $bg-color;
             color: $choco;
             border: 1px solid $choco;
+
+            transition: color 0.3s ease;
+
+            &:hover {
+              color: $gray-not-active;
+              border-color:  $gray-not-active;
+            }
         }
     }
 }

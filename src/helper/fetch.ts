@@ -1,4 +1,5 @@
 import { Book } from "../types/Book";
+import { BookDetails } from "../types/BookDetails";
 import { Vyshyvanka } from "../types/Vyshyvanka";
 import { VyshyvankaDetails } from "../types/VyshyvankaDetails";
 
@@ -29,7 +30,7 @@ export const fetchBooks = async() : Promise<Book[]> => {
 export const getProductDetails = async (
     productId: string,
     productCategory: string,
-  ): Promise<VyshyvankaDetails | null> => {
+  ): Promise<VyshyvankaDetails | BookDetails | null> => {
     try {
       const response = await fetch(`./api/${productCategory}.json`, {
         method: 'GET',
@@ -45,7 +46,7 @@ export const getProductDetails = async (
   
       const productDetails = await response.json();
       const product = productDetails.find(
-        (prod: VyshyvankaDetails) => prod.id === productId,
+        (prod: VyshyvankaDetails | BookDetails) => prod.id === productId,
       );
   
       return product || null;
@@ -78,26 +79,28 @@ export const includesQuery = (productsName: string | null, input: string) => {
   return productsName?.trim().toLowerCase().includes(input.trim().toLowerCase());
 };
 
-export const getPreparedVyshyvanky = (products: Vyshyvanka[], params: any) => {
+export const getPreparedVyshyvanky = (products: Vyshyvanka[] | Book[], params: any) => {
   const preparedProducts = [...products];
 
   if (params.query) {
     return preparedProducts.filter(prod => {
-      return includesQuery(prod.name, params.query);
+      const nameOrTitle = 'title' in prod ? prod.title : prod.name;
+      return includesQuery(nameOrTitle, params.query);
     });
   }
 
   if (params.sort) {
     return preparedProducts.sort((a, b) => {
-      switch (params.sort) {
-        case 'name':
-          return a.name.localeCompare(b.name);
-        case 'priceFromLow':
-          return a.price - b.price;
-        case 'priceFromHigh':
-          return b.price - a.price;
-          default:
-            return 0;
+      if (params.sort === 'name' && 'name' in a && 'name' in b) {
+        return a.name.localeCompare(b.name);
+      } else if (params.sort === 'title' && 'title' in a && 'title' in b) {
+        return a.title.localeCompare(b.title);
+      } else if (params.sort === 'priceFromLow') {
+        return a.price - b.price;
+      } else if (params.sort === 'priceFromHigh') {
+        return b.price - a.price;
+      } else {
+        return 0;
       }
     });
   }

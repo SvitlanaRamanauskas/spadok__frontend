@@ -1,34 +1,70 @@
-import { useEffect, useState } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
+import InputMask from "react-input-mask";
 import "./Order.scss";
 import cn from "classnames";
 
 type Country = {
-  value: string;
+  code: string;
   flag: string;
   label: string;
+  pattern: string;
 };
+
+const countries: Country[] = [
+  {
+    code: "+380",
+    flag: "ua",
+    label: "Ukraine (+380)",
+    pattern: "99 999 99 99",
+  },
+  {
+    code: "+1",
+    flag: "us",
+    label: "United States (+1)",
+    pattern: "999 999 9999",
+  },
+  {
+    code: "+44",
+    flag: "gb",
+    label: "United Kingdom (+44)",
+    pattern: "99 9999 9999",
+  },
+  { code: "+49", flag: "de", label: "Germany (+49)", pattern: "999 99999999" },
+  { code: "+48", flag: "pl", label: "Poland (+48)", pattern: "99 999 99 99" },
+  { code: "+1", flag: "ca", label: "Canada (+1)", pattern: "999 999 9999" },
+  { code: "+371", flag: "lv", label: "Latvia (+371)", pattern: "9999 9999" },
+  {
+    code: "+370",
+    flag: "lt",
+    label: "Lithuania (+370)",
+    pattern: "9 999 9999",
+  },
+  { code: "+372", flag: "ee", label: "Estonia (+372)", pattern: "999 9999" },
+  { code: "+359", flag: "bg", label: "Bulgaria (+359)", pattern: "9 999 9999" },
+];
+
+export const CustomInputMask = forwardRef<HTMLInputElement, any>(
+  (props, ref) => (
+    <InputMask {...props} inputRef={ref as React.Ref<HTMLInputElement>} />
+  )
+);
 
 export const Order = () => {
   const [buyerName, setBuyerName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [selectedCountry, setSelectedCountry] = useState("+38");
+  const [selectedCountry, setSelectedCountry] = useState<Country>(countries[0]);
   const [expanded, setExpanded] = useState(false);
 
-  const countries: Country[] = [
-    { value: "+38", flag: "ua", label: "Ukraine (+38)" },
-    { value: "+1", flag: "us", label: "United States (+1)" },
-    { value: "+44", flag: "gb", label: "United Kingdom (+44)" },
-    { value: "+49", flag: "de", label: "Germany (+49)" },
-    { value: "+91", flag: "in", label: "India (+91)" },
-  ];
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleCountryChange = (countryValue: string) => {
-    setSelectedCountry(countryValue);
+  const handleCountryChange = (country: Country) => {
+    setSelectedCountry(country);
+    setExpanded(false);
   };
 
   const getFlagUrl = (countries: Country[]) => {
     const flag =
-      countries.find((c) => c.value === selectedCountry)?.flag || "ua";
+      countries.find((c) => c.code === selectedCountry?.code)?.flag || "ua";
 
     if (flag) {
       return `https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/flags/4x3/${flag}.svg`;
@@ -36,10 +72,6 @@ export const Order = () => {
   };
 
   useEffect(() => {
-    if (expanded) {
-      return;
-    }
-
     const handleDocumentClick = () => {
       setExpanded(false);
     };
@@ -82,12 +114,13 @@ export const Order = () => {
         <section className="buyer-info">
           <div className="buyer-info__container">
             <input
-              type="tel"
-              id="phone-number"
+              type="text"
+              id="name"
               value={buyerName}
               onChange={handleBuyerNameChange}
               placeholder="Ім'я та прізвище"
               className="buyer-info__input"
+              required
             />
           </div>
 
@@ -104,7 +137,7 @@ export const Order = () => {
                   setExpanded((current) => !current);
                 }}
               >
-                {selectedCountry && (
+                {selectedCountry?.code && (
                   <img
                     className="phone__country-flag"
                     src={getFlagUrl(countries)}
@@ -123,22 +156,27 @@ export const Order = () => {
                 />
               </button>
 
-              <input
+              <CustomInputMask
+                mask={`${selectedCountry?.code} ${selectedCountry?.pattern}`}
                 type="tel"
                 id="phone-number"
                 value={phoneNumber}
                 onChange={handlePhoneNumberChange}
-                placeholder={`${selectedCountry} ...`}
+                placeholder={`${selectedCountry?.code} ...`}
                 className="buyer-info__input"
-              />
+                ref={inputRef}
+                required
+              ></CustomInputMask>
             </div>
 
             <div>
               <ul id="country__option" className="select">
                 {countries.map((country) => (
                   <li
+                    key={country.flag}
                     data-flag={country.flag}
-                    onClick={() => handleCountryChange(country.value)}
+                    onClick={() => handleCountryChange(country)}
+                    className="select__option"
                   >
                     <span className="select__flag">
                       <img
@@ -154,7 +192,7 @@ export const Order = () => {
             </div>
           </div>
         </section>
-        <button className="order__confirm-button">
+        <button className="button order__confirm-button">
           Підтвердити замовлення
         </button>
       </form>

@@ -2,36 +2,73 @@
 @import '../../styles/utils/mixins';
 @import '../../../node_modules/flag-icon-css/css/flag-icons.min.css';
 
+$padding-input: 14px;
+
 .order {
-    min-height: calc(100vh - #{$headers-height} - #{$footers-height} - #{$header-margin});
+    min-height: calc(100vh - #{$headers-height-mobile} - #{$footers-height-mobile} - #{$header-margin});
+
+    @include on-Tablet {
+        min-height: calc(100vh - #{$headers-height-tablet} - #{$footers-height-tablet} - #{$header-margin});
+    }
+
+    @include on-Desktop {
+        min-height: calc(100vh - #{$headers-height-tablet} - #{$footers-height-desktop} - #{$header-margin});
+    }
 
     &__section-title {
         font-family: 'inter';
         font-size: 16px;
         font-weight: 600;
         line-height: 16px;
-        text-align: left;
-        padding-block: 29px 25px;
+        text-align: center;
+        padding-block: 49px 29px;
+
+        @include on-Tablet {
+            font-size: 18px;
+            line-height: 18px;
+            padding-block: 70px 29px;
+        }
+
+        @include on-Desktop {
+            font-size: 22px;
+            line-height: 22px;
+            padding-block: 70px 29px;
+        }
     }
+
+    &__text {
+        font-family: "inter";
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 15px;
+        text-align: center;
+        color: $main-text-color;
+
+        @include on-Desktop {
+            font-size: 18px;
+            line-height: 22px;
+        }
+    }
+
     &__form {
         display: flex;
         flex-direction: column;
         gap: 50px;
-       
     }
 
     &__confirm-button {
-        height: 60px;
-        background-color: $choco;
-        color: $bg-color;
         width: 100%;
+        padding-inline: 10px;
 
         @include on-Tablet {
-            width: 30%;
+            width: 50%;
             align-self: center;
         }
-    }
 
+        @include on-Desktop {
+            width: 30%;
+        }
+    }
 }
 
 .buyer-info {
@@ -51,11 +88,13 @@
     }
 
     &__container {
+        height: 40px;
         grid-column: 1 / -1;
        
 
         @include on-Tablet {
             grid-column: auto;
+            height: 60px;
         }
 
         @include on-Desktop {
@@ -65,7 +104,7 @@
     &__input {
         height: 100%;
         width: 100%;
-        padding-left: 14px;
+        padding-left: $padding-input;
 
         ::placeholder {
             color: $placeholder-text;
@@ -76,7 +115,6 @@
 .phone {
     background-color: #fff;
     color: $choco;
-    height: 60px;
 
     & > div:first-child {
         display: flex;
@@ -88,6 +126,7 @@
     & > div:last-child {
         position: relative;
         border-radius: 1px solid $choco;
+        z-index: 100;
     }
 
     &--opened > div:last-child .select {
@@ -111,7 +150,7 @@
         gap: 5px;
         justify-content: center;
         align-items: center;
-        padding: 1px 16px;
+        padding-left: $padding-input;
         width: 60px;
         height: 100%;
 
@@ -131,5 +170,15 @@
     position: absolute;
     width: 100%;
     display: none;
+
+    &__option {
+        padding-block: 5px;
+        padding-left: $padding-input;
+        cursor: pointer;
+    }
+
+    &__flag {
+        margin-right: 10px;
+    }
 }
 

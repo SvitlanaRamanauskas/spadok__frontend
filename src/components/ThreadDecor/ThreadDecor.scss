@@ -1,3 +1,5 @@
+@import '../../styles/utils/mixins.scss';
+
 .curve {
     position: absolute;
     
@@ -59,6 +61,13 @@
   .thread {
     position: absolute;
     top: -35px;
+
+    &--tablet {
+      display: none;
+      @include on-Tablet {
+        display: block;
+      } 
+    }
   
     &--top {
       &-left {

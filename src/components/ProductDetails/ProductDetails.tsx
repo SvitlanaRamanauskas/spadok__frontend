@@ -6,6 +6,7 @@ import { AppContext } from "../appContext";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { fetchVyshyvanky, getProductDetails } from "../../helper/fetch";
 import "./ProductDetails.scss";
+import "../../styles/button.scss";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   addItem as addItemToCart,
@@ -20,6 +21,7 @@ import { FavoritesItem } from "../../types/FavoritesItem";
 import { CartItem } from "../../types/CartItem";
 import { Loader } from "../Loader";
 import { Vyshyvanka } from "../../types/Vyshyvanka";
+import { BookDetails } from "../../types/BookDetails";
 
 export const ProductDetails: React.FC = () => {
   const { selectedProduct, setSelectedProduct } = useContext(AppContext);
@@ -35,7 +37,7 @@ export const ProductDetails: React.FC = () => {
   const favoritesItems = useAppSelector(favoritesSelector);
   const dispatch = useAppDispatch();
 
-  const handleAddToCart = (product: VyshyvankaDetails) => {
+  const handleAddToCart = (product: VyshyvankaDetails | BookDetails) => {
     dispatch(addItemToCart(product));
   };
 
@@ -47,7 +49,7 @@ export const ProductDetails: React.FC = () => {
     return cartItemsAdded.some((itemInCart) => itemInCart.item.id === itemId);
   };
 
-  const handleAddToFavorites = (product: VyshyvankaDetails) => {
+  const handleAddToFavorites = (product: VyshyvankaDetails | BookDetails) => {
     if (addedToFavorites(favoritesItems, product.id)) {
       dispatch(removeItem(product));
     } else {
@@ -70,7 +72,7 @@ export const ProductDetails: React.FC = () => {
         .then((productData) => {
           if (productData !== null) {
             setSelectedProduct(productData);
-            setActiveSize(productData.size);
+            setActiveSize(productData.size || "");
             setCurrentImage(
               productData.images.length > 0 ? productData.images[0] : ""
             );
@@ -303,7 +305,7 @@ export const ProductDetails: React.FC = () => {
 
                     <button
                       type="button"
-                      className={cn("description__button", {
+                      className={cn("button", "description__button", {
                         "description__button--prod-added" : selectedProduct && addedToCart(cartItems, selectedProduct.id)
                       })}
                       onClick={() => {
@@ -363,7 +365,7 @@ export const ProductDetails: React.FC = () => {
                 <div className="description__button-wrapper">
                   <button
                     type="button"
-                    className={cn("description__button", {
+                    className={cn("button", "description__button", {
                       "description__button--prod-added" : selectedProduct && addedToCart(cartItems, selectedProduct.id)
                     })}
                     onClick={() => {
