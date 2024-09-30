@@ -54,17 +54,19 @@ export const Cart = () => {
               {items.length > 0 ? (
                 items.map((item) => (
                   <li key={item.id} className="cart__item item">
-                    <div className="item__image-wrap">
+                    <Link to={`/catalog/${item.item.category}/${item.item.id}`} className="item__image-wrap">
                       <img
                         src={item.item.images[0]}
                         alt=""
                         className="item__image"
                       />
-                    </div>
+                    </Link>
 
                     <div className="item__info">
                       <div className="item__info--top">
-                        <h4 className="item__name">{getNameOrTitle(item)}</h4>
+                        <Link to={`/catalog/${item.item.category}/${item.item.id}`} className="item__name-link">
+                          <h4 className="item__name">{getNameOrTitle(item)}</h4>
+                        </Link>
 
                         <p className="item__price">
                           {item.item.price * item.quantity}&#x20b4;
@@ -72,9 +74,9 @@ export const Cart = () => {
                       </div>
 
                       <div className="item__info--bottom">
-                        <p className="item__code">Арт.: {item.item.id}</p>
+                        <p className="item__detailed">Арт.: {item.item.id}</p>
                         {"size" in item.item && (
-                          <p className="item__size">Розмір: {item.item.size}</p>
+                          <p className="item__detailed">Розмір: {item.item.size}</p>
                         )}
                         
                         <div className="item__quantity-setters">
@@ -82,14 +84,14 @@ export const Cart = () => {
                             className="item__quantity-setter"
                             onClick={() => handleMinus(item.item)}
                           >
-                            <div className="p">-</div>
+                            <p className="item__quantity-sign">-</p>
                           </button>
                           <p className="item__quantity">{item.quantity}</p>
                           <button
                             className="item__quantity-setter"
                             onClick={() => handlePlus(item.item)}
                           >
-                            <div className="p">+</div>
+                            <p className="item__quantity-sign">+</p>
                           </button>
                         </div>
                       </div>

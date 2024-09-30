@@ -33,7 +33,7 @@ export const favoritesSlice = createSlice({
     name: 'favorites',
     initialState,
     reducers: {
-        addItem: (state, action: PayloadAction<VyshyvankaDetails | BookDetails>) => {
+        addItemToFavorites: (state, action: PayloadAction<VyshyvankaDetails | BookDetails>) => {
             const newItem = action.payload;
             const existingItem = state.favoritesItems.find(item => item.item.id === newItem.id);
             state.totalFavoritesQuantity += 1;
@@ -47,7 +47,7 @@ export const favoritesSlice = createSlice({
             saveFavoritesToLocalStorage(state);
         },
 
-        removeItem: (state, action: PayloadAction<VyshyvankaDetails | BookDetails>) => {
+        removeItemFromFavorites: (state, action: PayloadAction<VyshyvankaDetails | BookDetails>) => {
             const itemToDelete = action.payload;
             const existingItem = state.favoritesItems.find(item => item.item.id === itemToDelete.id);
             console.log(state.favoritesItems)
@@ -62,7 +62,7 @@ export const favoritesSlice = createSlice({
     }
 });
 
-export const { addItem, removeItem } = favoritesSlice.actions;
+export const { addItemToFavorites, removeItemFromFavorites } = favoritesSlice.actions;
 
 export default favoritesSlice.reducer;
 

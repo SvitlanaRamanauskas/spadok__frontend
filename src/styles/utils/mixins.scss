@@ -11,20 +11,20 @@
 }
 
 @mixin pageGrid {
-    --columns: 4;
+    --columns: 8;
     display: grid;
     column-gap: 16px;;
     grid-template-columns: repeat(var(--columns), 1fr);
 
 
     @include on-Tablet {
-        --columns: 12;
+        --columns: 10;
     }
 
 
     @include on-Desktop {
-        --columns: 24;
-      }
+        --columns: 12;
+    }
 }
 
 @mixin pagePaddings {

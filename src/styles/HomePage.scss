@@ -53,10 +53,6 @@
         }
     }
 
-    &__text {
-        
-    }
-
     &__about {
         &-sub-title {
             text-wrap: nowrap;
@@ -75,10 +71,15 @@
 
     &__find {
         @include pageGrid;
-        grid-template-rows: 281px 26px 16px 16px 396px 113px;
-        margin-bottom: 16px;
+        margin-bottom: 24px;
+        grid-template-rows: 79px 28px 86px 48.88px 68.12px 16px 16px;
         @include pagePaddings;
+
+        @include on-Tablet {
+            grid-template-rows: 95px 186px 26px 16px 16px 312.5px;
+        }
         @include on-Desktop {
+            grid-template-rows: 95px 186px 26px 16px 16px 396px 113px;
             margin-bottom: 24px;
             width: $max-content-width;
             margin-inline: auto;
@@ -99,9 +100,19 @@
 }
 
 .find {
-    &-sub-title {
-        text-align: center;
-        white-space: nowrap;
+    &__sub-title {
+        grid-row: 1 / 2;
+        grid-column: 5 / 8;
+
+        @include on-Tablet {
+            grid-row: 1 / 2;
+            grid-column: 6 / -1;
+        }
+
+        @include on-Desktop {
+            grid-row: 1 / 2;
+            grid-column: 6 / -1;
+        }
     }
 
     &__photo {
@@ -111,9 +122,21 @@
             background-position: center;
             background-size: cover;
             width: 100%;
-            height: 749px;
-            grid-row: 1 / 6;
-            grid-column: 1 / 11;
+            height: 193px;
+            grid-row: 1 / 4;
+            grid-column: 1 / 5;
+
+            @include on-Tablet {
+                height: 471px;
+                grid-row: 1 / 7;
+                grid-column: 1 / 6;
+            }
+
+            @include on-Desktop {
+                height: 749px;
+                grid-row: 1 / 7;
+                grid-column: 1 / 6;
+            }
         }
 
 
@@ -123,26 +146,77 @@
             background-position: center;
             background-size: cover;
             width: 100%;
-            height: 523px;
-            grid-row: 4 / 7;
-            grid-column: -1 / -9;
+            height: 134.88px;
+            grid-row: 3 / 5;
+            grid-column: 6 / -1;
+
+            @include on-Tablet {
+                height: 328.5px;
+                grid-row: 5 / 8;
+                grid-column: 8 / -1;
+            }
+
+            @include on-Desktop {
+                height: 523px;
+                grid-row: 5 / 8;
+                grid-column: 9 / -1;
+            }
         }
     }
 
     &__text {
-        grid-row: 1 / 2;
-        grid-column: 11 / -3;
+        font-family: 'inter';
+        font-size: 8px;
+        font-weight: 400;
+        line-height: 12px;
+        text-align: left;
+        color: $main-text-color;
+        padding-top: 10px;
+
+        grid-row: 4 / 6;
+        grid-column: 1 / 5;
+
+        @include on-Tablet {
+            font-size: 14px;
+            line-height: 20px;
+            grid-row: 2 / 3;
+            grid-column: 6 / -1;
+
+            @media(max-width: 820px) {
+                padding-top: 50px;
+                font-size: 12px;
+            }
+        }
+
+        @include on-Desktop {
+            font-size: 18px;
+            line-height: 27px;
+            grid-row: 2 / 3;
+            grid-column: 6 / 11;
+        }
     }
 
     &__open {
-        grid-row: 3 / 5;
-        grid-column: 11 / 14;
+        grid-row: 7 / 8;
+        grid-column: 1 / 8;
         display: flex;
+
+        @include on-Tablet {
+            grid-row: 4 / 6;
+            grid-column: 6 / 8;
+        }
+
+        @include on-Desktop {
+            grid-row: 4 / 6;
+            grid-column: 6 / 8;
+        }
+
 
         &-link {
             text-decoration: none;
             display: block;
             position: relative;
+
 
             &::after {
                 display: block;
@@ -151,17 +225,37 @@
                 width: 100%;
                 height: 1px;
                 background-color: $choco;
+                transition: background-color 0.5s ease;
+            }
+
+            &:hover {
+                &::after {
+
+                    background-color: $gray-not-active;
+                }
             }
 
         }
 
         &-text {
             font-family: 'lev_type';
-            font-size: 24px;
+            font-size: 12px;
             font-weight: 500;
-            line-height: 28.8px;
+            line-height: 14.4px;
             text-align: left;
             text-transform: uppercase;
+            text-decoration: none;
+            color: $choco;
+
+            @include on-Tablet {
+                font-size: 18px;
+                line-height: 20px;
+            }
+
+            @include on-Desktop {
+                font-size: 24px;
+                line-height: 28.8px;
+            }
         }
     }
 

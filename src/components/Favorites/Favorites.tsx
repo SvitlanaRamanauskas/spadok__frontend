@@ -1,40 +1,66 @@
-import { removeItem } from "../../redux/cart/reducerCart";
-import { favoritesSelector, totalFavoritesQuantitySelector } from "../../redux/cart/reducerFavorites";
+import "./Favorites.scss";
+import classNames from "classnames";
+import {
+  favoritesSelector,
+  removeItemFromFavorites,
+} from "../../redux/cart/reducerFavorites";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { BookDetails } from "../../types/BookDetails";
 import { FavoritesItem } from "../../types/FavoritesItem";
 import { VyshyvankaDetails } from "../../types/VyshyvankaDetails";
+import { Link } from "react-router-dom";
 
 export const Favorites = () => {
-    const items: FavoritesItem[] = useAppSelector(favoritesSelector);
-    const totalFavoritesQuantity: number = useAppSelector(totalFavoritesQuantitySelector);
-  
-    const dispatch = useAppDispatch();
-  
-    const handleRemoveItem = (item: VyshyvankaDetails | BookDetails) => {
-      dispatch(removeItem(item));
-    };
+  const favoriteItems: FavoritesItem[] = useAppSelector(favoritesSelector);
+  const dispatch = useAppDispatch();
 
-    return (
-        <>
-            <h1>Favorites</h1>
-            
-            <ul>
-              {items.map((item) => (
-                <li key={item.id}>
-                  {"name" in item.item ? (
-                    <h2>{item.item.name}</h2>
-                  ) : (
-                    <h2>{item.item.title}</h2>
-                  )}
-                 
-                  <p>ID: ${item.item.id}</p>
-                  <p>Price: ${item.item.price}</p>
-                  <button className="cart__remove" onClick={() => handleRemoveItem(item.item)}>Remove</button>
-                </li>
-              ))}
-            </ul>
-            <h2>Total Quantity: {totalFavoritesQuantity}</h2>
-        </>
-    )
-}
+  const handleRemoveItem = (item: VyshyvankaDetails | BookDetails) => {
+    dispatch(removeItemFromFavorites(item));
+  };
+
+  return (
+    <>
+      <h1>Favorites</h1>
+
+      <ul className="favorites">
+        {favoriteItems.map((favoriteItem) => (
+          <li className="favorites__card" key={favoriteItem.id}>
+            <Link
+              to={`/catalog/${favoriteItem.item.category}/${favoriteItem.item.id}`}
+              className="favorites__photo-link"
+            >
+              <img
+                src={`/${favoriteItem.item.images[0]}`}
+                alt="favoritesCard"
+                className="favorites__image"
+              />
+            </Link>
+
+            <button
+              type="button"
+              className="heart__icon-bg"
+              onClick={() => handleRemoveItem(favoriteItem.item)}
+            >
+              <img
+                src={
+                  require("../../styles/icons/red_heart_icon.svg")
+                    .default
+                }
+                alt=""
+                className="heart__icon"
+              />
+            </button>
+
+            {"name" in favoriteItem.item ? (
+              <h2>{favoriteItem.item.name}</h2>
+            ) : (
+              <h2>{favoriteItem.item.title}</h2>
+            )}
+
+            <div className="favorites__price">{`${favoriteItem.item.price} грн`}</div>
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+};

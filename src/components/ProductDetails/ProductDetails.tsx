@@ -13,9 +13,9 @@ import {
   cartSelector,
 } from "../../redux/cart/reducerCart";
 import {
-  addItem as addItemToFavorites,
+  addItemToFavorites,
   favoritesSelector,
-  removeItem,
+  removeItemFromFavorites,
 } from "../../redux/cart/reducerFavorites";
 import { FavoritesItem } from "../../types/FavoritesItem";
 import { CartItem } from "../../types/CartItem";
@@ -51,7 +51,7 @@ export const ProductDetails: React.FC = () => {
 
   const handleAddToFavorites = (product: VyshyvankaDetails | BookDetails) => {
     if (addedToFavorites(favoritesItems, product.id)) {
-      dispatch(removeItem(product));
+      dispatch(removeItemFromFavorites(product));
     } else {
       dispatch(addItemToFavorites(product));
     }

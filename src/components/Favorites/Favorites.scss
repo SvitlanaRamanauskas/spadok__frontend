@@ -1,0 +1,68 @@
+@import "../../styles/utils/mixins.scss";
+@import "../../styles/utils/variables.scss";
+
+.favorites {
+    display: grid;
+    
+    gap: 16px;
+    margin-bottom: 50px;
+    list-style: none;
+
+    @include on-Tablet {
+        margin-bottom: 80px;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include on-Desktop {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        max-width: $max-content-width;
+        margin-bottom: 100px;
+    }
+
+    &__card {
+        position: relative;
+        color: $choco;
+        width: 100%;
+        grid-column: 1 / -1;
+
+        @include on-Tablet {
+            grid-column: auto;
+        }
+    }
+    
+    &__photo-link {
+        display: block;
+    }
+
+    &__image {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.heart {
+    &__icon-bg {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        background-color: #f0f8ff;
+        opacity: 0.7;
+        z-index: 10;
+        top: 10px;
+        right: 10px;
+
+        &--active {
+          background-color: #b3b7b8;
+        }
+    }
+
+    &__icon {
+        height: 25px;
+        width: 25px;
+    }
+}

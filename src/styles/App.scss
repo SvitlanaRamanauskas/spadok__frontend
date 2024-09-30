@@ -6,13 +6,23 @@
   src: url('../fonts/static/Inter_18pt-Regular.ttf');
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'lev_type';
-  src: url('../fonts/LevType_Hryvnia_v.1.013/Static/WEB/LevTypeHryvnia-Regular.ttf');
+  src: url('../fonts/LevType_Hryvnia_v.1.013/Static/WEB/LevTypeHryvnia-Regular.woff2');
   font-weight: 500;
   font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'poppins';
+  src: url('../fonts/Poppins/Poppins-Regular.ttf');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
 }
 
 p, h1, h2, h3, h4, h5, h6, ul {
@@ -509,7 +519,7 @@ button {
 }
 
 .sub-title {
-  font-size: 48px;
+  font-size: 35px;
   font-family: 'lev_type';
 
   @include on-Tablet {

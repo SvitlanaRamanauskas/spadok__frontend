@@ -84,10 +84,10 @@
         display: flex;
         flex: 1;
         flex-direction: column;
-        height: 140px;
+        gap: 3px;
 
         @include on-Desktop {
-            height: 180px;
+            gap: 15px;
         }
 
         &--bottom {
@@ -95,7 +95,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: left;
-
+            gap: 3px;
             font-family: "inter";
             font-size: 12px;
             font-weight: 500;
@@ -106,6 +106,7 @@
                 font-size: 22px;
                 line-height: 42px;
                 width: auto;
+                gap: 15px;
             }
         }
 
@@ -118,12 +119,30 @@
             font-family: "inter";
             font-size: 12px;
             font-weight: 500;
-            line-height: 48px;
+            line-height: 24px;
+            height: 24px;
             padding-right: 26px;
 
             @include on-Desktop {
                 font-size: 22px;
             }
+        }
+    }
+
+    &__name {
+        font-family: "inter";
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 48px;
+        text-align: left;
+
+        @include on-Desktop {
+            font-size: 22px;
+        }
+
+        &-link {
+            text-decoration: none;
+            color: $choco;
         }
     }
 
@@ -158,6 +177,19 @@
         }
     }
 
+    &__detailed {
+        font-family: "inter";
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 24px;
+        text-align: left;
+        color: $choco;
+
+        @include on-Desktop {
+          font-size: 22px;
+        }
+    }
+
     &__remove {
         position: absolute;
         right: 0;
@@ -165,20 +197,58 @@
     }
 
     &__quantity {
+        font-family: "poppins", sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 18px;
+        text-align: center;
+        color: $choco;
+
+        @include on-Desktop {
+            font-size: 25.02px;
+            font-weight: 400;
+            line-height: 37.54px;
+        }
+
         &-setters {
             display: flex;
             align-items: center;
-            gap: 5px;
-            padding-top: 10px;
+            justify-content: space-around;
+            gap: 10px;
+            // padding-top: 10px;
+            border: 1px solid $choco;
+            border-radius: 3.5px;
+            width: 70px;
+            height: 23.45px;
+
+            @include on-Desktop {
+              gap: 20px;
+              width: 119px;
+              height: 41.3px;
+            }
         }
     
         &-setter {
             display: flex;
             justify-content: center;
             align-items: center;
-            border: 1px solid #000;
+            line-height: 25px;
             width: 25px;
             height: 25px;
+            color: $choco;
+        }
+
+        &-sign {
+            font-family: "poppins", sans-serif;
+            font-size: 25.02px;
+            font-weight: 500;
+
+            text-align: center;
+
+            @include on-Desktop {
+
+            }
+
         }
     }
 }
@@ -206,6 +276,12 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+
+
+        @include on-Desktop {
+            align-self: center;
+            width: 50%;
+        }
     }
 
     &__button {

@@ -43,6 +43,7 @@ $padding-input: 14px;
         line-height: 15px;
         text-align: center;
         color: $main-text-color;
+        margin-top: 20px;
 
         @include on-Desktop {
             font-size: 18px;
@@ -67,6 +68,43 @@ $padding-input: 14px;
 
         @include on-Desktop {
             width: 30%;
+        }
+    }
+
+    &__from-cart {
+        position: relative;
+        border-top: 1px solid $choco;
+        border-bottom: 1px solid $choco;
+        padding-block: 16px;
+    }
+
+    &__list {  
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    &__cart-item {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 10px;
+        align-items: center;
+
+        @include on-Tablet {
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+    }
+
+    &__checkout {
+        margin-bottom: 20px;
+
+        @include on-Tablet {
+            margin-bottom: 40px;
+        }
+        @include on-Desktop {
+            margin-bottom: 80px;
         }
     }
 }
@@ -180,5 +218,80 @@ $padding-input: 14px;
     &__flag {
         margin-right: 10px;
     }
+}
+
+.cart-item {
+    position: relative;
+    font-size: 13px;
+
+    &__info {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        gap: 3px;
+
+        @include on-Desktop {
+            gap: 15px;
+        }
+
+    }
+
+    &__name {
+        font-family: "inter";
+        font-size: 8px;
+        font-weight: 600;
+        line-height: 12px;
+        text-align: left;
+
+        @include on-Desktop {
+            font-size: 12px;
+        }
+
+        &-link {
+            text-decoration: none;
+            color: $choco;
+        }
+    }
+
+    &__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    
+        display: block;
+        max-height: 100%;
+
+        &-wrap {
+            width: 24px;
+            height: 40px;
+
+            @include on-Desktop {
+                width: 34px;
+                height: 50px;        
+            }
+        }
+    }
+
+    &__price {
+        font-family: "inter";
+        font-size: 10px;
+        font-weight: 700;
+        line-height: 12px;
+        text-align: left;
+    }
+
+    &__detailed {
+        font-family: "inter";
+        font-size: 8px;
+        font-weight: 700;
+        line-height: 12px;
+        text-align: left;
+        color: $choco;
+
+        @include on-Desktop {
+            font-size: 12px;
+        }
+    }
+
 }
 
