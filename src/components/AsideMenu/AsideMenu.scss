@@ -21,7 +21,14 @@
     height: $half-menu-height;
     margin-left: 0;
     padding-left: 0;
-    justify-content: center;
+    justify-content: start;
+
+        
+    @include on-Tablet {
+      justify-content: start;
+      margin-left: 152px;
+      padding-left: 28px;
+    }
 
     @include on-Desktop {
       justify-content: start;
@@ -35,6 +42,7 @@
   &__list {
     flex-direction: column;
     gap: 24px;
+    padding-left: 24px;
   }
 
   &__item {

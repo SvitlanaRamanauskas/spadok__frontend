@@ -69,16 +69,12 @@ button {
   padding: 0;
 }
 
-.app {
-
-}
-
 .header {
   box-sizing: content-box;
   z-index: 1000;
   position: sticky;
   top: 0;
-  margin-top: 10px;
+  padding-top: 10px;
   height: $headers-height-mobile;
   background-color: $bg-color;
 
@@ -98,10 +94,6 @@ button {
     @include on-Tablet {
       margin-inline: 24px;
     }
-  }
-
-  &--scrolled {
-    background-color: $bg-color;
   }
 
   &__logo {
@@ -254,7 +246,6 @@ button {
   }
 
   &__item {
-    font-family: 'lev_type';
     position: relative;
 
     &::after {
@@ -276,10 +267,12 @@ button {
   }
 
   &__link {
-    text-decoration: none;
-    color: $choco;
+    font-family: 'lev_type';
     font-size: 17px;
     font-weight: 600;
+    letter-spacing: 1px;
+    text-decoration: none;
+    color: $choco;
     transition: color 0.5s ease;
     text-transform: uppercase;
   }
@@ -366,6 +359,7 @@ button {
     font-weight: 600;
     font-size: $footer-title-size-mobile;
     line-height: 15px;
+    letter-spacing: 1px;
 
     @include on-Tablet {
       font-size: $footer-title-size-tablet;

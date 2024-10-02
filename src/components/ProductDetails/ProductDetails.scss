@@ -80,6 +80,11 @@
     &__image-button {
         height: 62px;
         width: 100%;
+        transition: opacity 0.3s ease;
+
+        &:hover {
+          opacity: 80%;
+        }
 
         @include on-Tablet {
             height: 120px;
@@ -149,6 +154,7 @@
         line-height: 16px;
         text-align: left;
         color: $gray-not-active;
+        transition: color 0.3s ease ;
 
         &--active {
             color: $choco;
@@ -164,6 +170,14 @@
         height: 18px;
         width: 18px;
         border: 1px solid $gray-not-active;
+        transition: border-color 0.3s ease ;
+        
+        &:hover {
+            border-color: $brown;
+            .size__value {
+                color: $brown;
+            }
+        }
 
         @include on-Desktop {
             height: 23px;
@@ -172,6 +186,10 @@
 
         &--active {
             border-color: $choco;
+
+            &:hover {
+                border-color: $choco;
+            }
         }
     }
 }

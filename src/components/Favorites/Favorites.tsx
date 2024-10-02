@@ -9,6 +9,7 @@ import { BookDetails } from "../../types/BookDetails";
 import { FavoritesItem } from "../../types/FavoritesItem";
 import { VyshyvankaDetails } from "../../types/VyshyvankaDetails";
 import { Link } from "react-router-dom";
+import { ArrowDecorTop } from "../ArrowDecorTop";
 
 export const Favorites = () => {
   const favoriteItems: FavoritesItem[] = useAppSelector(favoritesSelector);
@@ -20,9 +21,12 @@ export const Favorites = () => {
 
   return (
     <>
-      <h1>Favorites</h1>
+      <div className="favorites__title-wrapper">
+        <h3 className="favorites__title">Favorites</h3>
+      </div>
 
-      <ul className="favorites">
+      <ul className="favorites__list">
+        <ArrowDecorTop />
         {favoriteItems.map((favoriteItem) => (
           <li className="favorites__card" key={favoriteItem.id}>
             <Link
@@ -42,22 +46,19 @@ export const Favorites = () => {
               onClick={() => handleRemoveItem(favoriteItem.item)}
             >
               <img
-                src={
-                  require("../../styles/icons/red_heart_icon.svg")
-                    .default
-                }
+                src={require("../../styles/icons/red_heart_icon.svg").default}
                 alt=""
                 className="heart__icon"
               />
             </button>
 
             {"name" in favoriteItem.item ? (
-              <h2>{favoriteItem.item.name}</h2>
+              <h3 className="favorites__title-price">{favoriteItem.item.name}</h3>
             ) : (
-              <h2>{favoriteItem.item.title}</h2>
+              <h3 className="favorites__title-price">{favoriteItem.item.title}</h3>
             )}
 
-            <div className="favorites__price">{`${favoriteItem.item.price} грн`}</div>
+            <div className="favorites__title-price">{`${favoriteItem.item.price} грн`}</div>
           </li>
         ))}
       </ul>

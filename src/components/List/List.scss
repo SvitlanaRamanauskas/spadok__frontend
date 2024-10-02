@@ -22,6 +22,11 @@
         color: $choco;
         width: 100%;
         grid-column: 1 / -1;
+        transition: opacity 0.3s ease;
+        
+        &:hover {
+            opacity: 80%;
+          }
 
         @include on-Tablet {
             grid-column: auto;

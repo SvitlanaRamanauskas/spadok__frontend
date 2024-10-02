@@ -31,9 +31,9 @@ export const ProductCard: React.FC<Props> = ({ item }) => {
         </Link>
 
       </div>
-      <h3 className="card__title">{nameOrTitle}</h3>
+      <h3 className="card__title-price">{nameOrTitle}</h3>
 
-      <div className="card__price">{`${item.price} грн`}</div>
+      <div className="card__title-price">{`${item.price} грн`}</div>
     </div>
   );
 };

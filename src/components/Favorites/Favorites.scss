@@ -2,22 +2,41 @@
 @import "../../styles/utils/variables.scss";
 
 .favorites {
-    display: grid;
-    
-    gap: 16px;
-    margin-bottom: 50px;
-    list-style: none;
 
-    @include on-Tablet {
-        margin-bottom: 80px;
-        grid-template-columns: repeat(2, 1fr);
+    &__title {
+        font-family: "inter";
+        font-size: 22px;
+        font-weight: 500;
+        line-height: 32px;
+        text-align: left;
+        color: $choco;
+
+        &-wrapper {
+            padding-block: 20px;
+        }
     }
 
-    @include on-Desktop {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
-        max-width: $max-content-width;
-        margin-bottom: 100px;
+    &__list {
+        position: relative;
+        list-style: none;
+        display: grid;
+        gap: 16px;
+        border-top: 1px solid $choco;
+        padding-block: 36px;
+        margin-bottom: 50px;
+
+        @include on-Tablet {
+            margin-bottom: 80px;
+            grid-template-columns: repeat(2, 1fr);
+        }
+    
+        @include on-Desktop {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: $max-content-width;
+            margin-bottom: 100px;
+        
+        }
     }
 
     &__card {
@@ -38,6 +57,19 @@
     &__image {
         width: 100%;
         height: auto;
+    }
+
+    &__title-price {
+        font-family: "lev_type";
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 18px;
+        text-align: center;
+        letter-spacing: 1px;
+
+        @include on-Desktop {
+            font-size: 22px;
+        }
     }
 }
 

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useLayoutEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import cn from "classnames";
 import "./styles/App.scss";
 import { Link, Outlet } from "react-router-dom";
@@ -7,7 +7,6 @@ import { AsideMenu } from "./components/AsideMenu";
 import { AppContext } from "./components/appContext";
 import { ArrowDecorTop } from "./components/ArrowDecorTop";
 import { ArrowDecorBelow } from "./components/ArrowDecorBelow";
-import { useSelector } from "react-redux";
 import { useAppSelector } from "./redux/hooks";
 import { totalCartQuantitySelector } from "./redux/cart/reducerCart";
 import { totalFavoritesQuantitySelector } from "./redux/cart/reducerFavorites";
@@ -33,7 +32,6 @@ export const handleNavigation = (section: any) => {
 function App() {
   const [vyshyvListExpanded, setVyshyvListExpanded] = useState(false);
   const { setAsideIsOpen, asideIsOpen } = useContext(AppContext);
-  const [scrolled, setScrolled] = useState(false);
 
   const totalCartQuanity: number = useAppSelector(totalCartQuantitySelector);
   const totalFavoritesQuantity: number = useAppSelector(totalFavoritesQuantitySelector)
@@ -41,24 +39,6 @@ function App() {
   const toggleMenuButton = () => {
     setAsideIsOpen(!asideIsOpen);
   };
-
-  useLayoutEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-
-    handleScroll();
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   useEffect(() => {
     const handleDocumentClick = () => {
@@ -72,11 +52,9 @@ function App() {
     };
   }, [vyshyvListExpanded]);
 
-
-
   return (
     <div className="app">
-      <header className={cn("header", { "header--scrolled": scrolled })}>
+      <header className="header">
         <div className="header__container">
           <div className="header__logo">
             <ArrowDecorTop />
@@ -215,8 +193,10 @@ function App() {
                   href="https://www.instagram.com/julia_hapeka/"
                   target="_blank"
                   className=""
+                  rel="noreferrer"
                 >
                   <img
+                    alt="follow"
                     className="footer__follow-icon"
                     src={require("./styles/icons/instagram21.svg").default}
                   />

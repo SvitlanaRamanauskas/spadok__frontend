@@ -2,15 +2,14 @@ import { useEffect, useState } from "react";
 import { fetchBooks } from "../helper/fetch";
 import { Loader } from "../components/Loader";
 import { Book } from "../types/Book";
-import { BookList } from "../components/BookList";
 import { List } from "../components/List";
 
 export const BooksPage = () => {
     const [books, setBooks] = useState<Book[]>([]);
-    const [booksProductsLoading, setbooksProductsLoading] = useState(false);
+    const [booksProductsLoading, setBooksProductsLoading] = useState(false);
     
     useEffect(() => {
-        setbooksProductsLoading(true);
+        setBooksProductsLoading(true);
         setTimeout(()=> {
             fetchBooks()
             .then(bookProducts => setBooks(bookProducts))
@@ -18,7 +17,7 @@ export const BooksPage = () => {
                 throw new Error('Error fetching books:', error);
               }
             )
-            .finally(() => setbooksProductsLoading(false))
+            .finally(() => setBooksProductsLoading(false))
         }, 1000);
     
     }, [])

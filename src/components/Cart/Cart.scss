@@ -31,7 +31,7 @@
         color: $choco;
 
         &-wrapper {
-            padding-block: 36px;
+            padding-block: 20px;
         }
     }
     
@@ -56,7 +56,7 @@
         position: relative;
         border-top: 1px solid $choco;
         border-bottom: 1px solid $choco;
-        padding-block: 36px;
+        padding-block: 20px;
         list-style: none;
         display: flex;
         flex-direction: column;
@@ -66,12 +66,12 @@
     &__item {
         display: flex;
         gap: 16px;
-        margin-bottom: 50px;
+        margin-bottom: 10px;
         align-items: center;
 
         @include on-Tablet {
             gap: 26px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
     }
 }
@@ -130,11 +130,12 @@
     }
 
     &__name {
-        font-family: "inter";
+        font-family: "lev_type";
         font-size: 12px;
         font-weight: 600;
         line-height: 48px;
         text-align: left;
+        letter-spacing: 1px;
 
         @include on-Desktop {
             font-size: 22px;
@@ -180,13 +181,13 @@
     &__detailed {
         font-family: "inter";
         font-size: 12px;
-        font-weight: 700;
+        font-weight: 500;
         line-height: 24px;
         text-align: left;
         color: $choco;
 
         @include on-Desktop {
-          font-size: 22px;
+          font-size: 18px;
         }
     }
 
@@ -263,13 +264,57 @@
         padding: 20px;
         
         @include on-Tablet {
-            height:300px;
+            // height: 300px;
+            gap: 10px;
         }
     }
 
     &__title {
         padding-top: 5px;
         margin-bottom: 21px;
+        font-family: 'lev_type';
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        color: $choco;
+
+        @include on-Tablet {
+            font-size: 18px;
+        }
+
+        @include on-Desktop {
+            font-size: 24px;
+        }
+    }
+
+    &__header {
+        font-family: 'inter';
+        font-size: 14px;
+        font-weight: 600;
+        color: $choco;
+
+        @include on-Tablet {
+            font-size: 16px;
+        }
+
+        @include on-Desktop {
+            font-size: 18px;
+        }
+    }
+
+    &__result {
+        font-family: 'inter';
+        font-size: 14px;
+        font-weight: 500;
+        color: $choco;
+
+        @include on-Tablet {
+            font-size: 16px;
+        }
+
+        @include on-Desktop {
+            font-size: 18px;
+        }
     }
 
     &__group {
@@ -278,7 +323,7 @@
         justify-content: space-between;
 
 
-        @include on-Desktop {
+        @include on-Tablet {
             align-self: center;
             width: 50%;
         }
@@ -303,6 +348,8 @@
             background-color: transparent;
             color: $choco;
             transition: transform 0.5s ease;
+            height: 30px;
+            line-height: 30px;
 
             &:hover {
               transform: scale(1.1);

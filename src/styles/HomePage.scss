@@ -6,13 +6,6 @@
     row-gap: 24px;
     margin-bottom: 16px;
 
-    &__section {
-        position: relative;
-        padding-top: 111px;         
-        border-top: 1px solid black;
-        margin-inline: 24px;
-    }
-
     @include on-Tablet {
         margin-bottom: 40px;
         row-gap: 50px;
@@ -53,19 +46,35 @@
         }
     }
 
-    &__about {
-        &-sub-title {
-            text-wrap: nowrap;
+    
+    &__section {
+        position: relative;
+        padding-top: 24px;         
+        border-top: 1px solid black;
+        margin-inline: 16px;
+
+        @include on-Tablet {
+            padding-top: 64px;  
+            margin-inline: 24px;
         }
 
-        display: flex;
-        gap: 50px;
-        align-items: flex-start;
-        @include pagePaddings;
-
         @include on-Desktop {
+            padding-top: 111px;  
             width: $max-content-width;
             margin-inline: auto;
+        }
+    }
+
+    &__blog {
+        @include pageGrid;
+        grid-template-rows: 46px 114px 92px 58px 60px;
+
+        @include on-Tablet {
+            grid-template-rows: 92px 200px 250px 90px 80px;
+        }
+
+        @include on-Desktop {
+            grid-template-rows: 142px 284px 392px 137px 108px;
         }
     }
 
@@ -73,16 +82,13 @@
         @include pageGrid;
         margin-bottom: 24px;
         grid-template-rows: 79px 28px 86px 48.88px 68.12px 16px 16px;
-        @include pagePaddings;
 
         @include on-Tablet {
             grid-template-rows: 95px 186px 26px 16px 16px 312.5px;
         }
         @include on-Desktop {
             grid-template-rows: 95px 186px 26px 16px 16px 396px 113px;
-            margin-bottom: 24px;
-            width: $max-content-width;
-            margin-inline: auto;
+
         }
       }
 
@@ -91,10 +97,178 @@
         &-sub-title {
             text-align: center;
         }
-        @include pagePaddings;
+
         @include on-Desktop {
-            width: $max-content-width;
-            margin-inline: auto;
+
+        }
+    }
+}
+
+.blog {
+    &__sub-title {
+        grid-row: 1 / 2;
+        grid-column: 1 / -1;
+
+        @include on-Tablet {
+            grid-row: 1 / 2;
+            grid-column: 1 / -1;
+        }
+
+        @include on-Desktop {
+            grid-row: 1 / 2;
+            grid-column: 1 / -1;
+        }
+    }
+
+    &__photo {
+        &--1 {
+            background-image: url(../../public/img/women_images/blog-1.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            width: 100%;
+            height: 206px;
+            grid-row: 2 / 4;
+            grid-column: 1 / 4;
+
+            @include on-Tablet {
+                height: 371px;
+                grid-row: 2 / 4;
+                grid-column: 1 / 6;
+            }
+
+            @include on-Desktop {
+                height: 676px;
+                grid-row: 2 / 4;
+                grid-column: 1 / 6;
+            }
+        }
+
+
+        &--2 {
+            background-image: url(../../public/img/women_images/blog-2.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            width: 100%;
+            height: 150px;
+            grid-row: 3 / 5;
+            grid-column: 5 / -1;
+
+            @include on-Tablet {
+                height: 340px;
+                grid-row: 3 / 5;
+                grid-column: 7 / -1;
+            }
+
+            @include on-Desktop {
+                height: 529px;
+                grid-row: 3 / 5;
+                grid-column: 8 / -1;
+            }
+        }
+    }
+
+    &__description {
+        &--1 {
+            grid-row: 2 / 3;
+            grid-column: 4 / -1;
+
+            @include on-Tablet {
+                grid-row: 2 / 3;
+                grid-column: 6 / 11;
+            }
+
+            @include on-Desktop {
+                grid-row: 2 / 3;
+                grid-column: 6 / 11;
+            }
+
+        }
+
+        &--2 {
+             grid-row: 4 / 6;
+             grid-column: 1 / 5;
+
+             @include on-Tablet {
+                grid-row: 4 / 6;
+                grid-column: 1 / 5;
+            }
+
+            @include on-Desktop {
+                grid-row: 4 / 6;
+                grid-column: 1 / 5;
+            }
+        }
+    }
+
+    &__text {
+        font-family: 'inter';
+        font-size: 8px;
+        font-weight: 400;
+        line-height: 12px;
+        text-align: left;
+        color: $main-text-color;
+        padding-top: 10px;
+
+        @include on-Tablet {
+            font-size: 14px;
+            line-height: 20px;
+        }
+        @include on-Desktop {
+            font-size: 18px;
+            line-height: 27px;
+        }
+    }
+
+    &__open {
+        display: flex;
+        margin-top: 16px;
+
+        &-link {
+            text-decoration: none;
+            display: block;
+            position: relative;
+
+
+            &::after {
+                display: block;
+                position: absolute;
+                content: '';
+                width: 100%;
+                height: 1px;
+                background-color: $choco;
+                transition: background-color 0.5s ease;
+            }
+
+            &:hover {
+                &::after {
+
+                    background-color: $gray-not-active;
+                }
+            }
+
+        }
+
+        &-text {
+            font-family: 'lev_type';
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 14.4px;
+            text-align: left;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: $choco;
+
+            @include on-Tablet {
+                font-size: 18px;
+                line-height: 20px;
+            }
+
+            @include on-Desktop {
+                font-size: 24px;
+                line-height: 28.8px;
+            }
         }
     }
 }

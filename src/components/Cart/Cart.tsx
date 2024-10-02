@@ -69,7 +69,7 @@ export const Cart = () => {
                         </Link>
 
                         <p className="item__price">
-                          {item.item.price * item.quantity}&#x20b4;
+                          {item.item.price * item.quantity} &#x20b4;
                         </p>
                       </div>
 
@@ -121,11 +121,11 @@ export const Cart = () => {
                 <>
                   <h4 className="summary__title">Ваше замовлення</h4>
                   <div className="summary__group">
-                    <h5 className="summary__header">Кількість товарів:</h5>
+                    <p className="summary__header">Кількість товарів:</p>
                     <p className="summary__result">{totalCartQuantity}</p>
                   </div>
                   <div className="summary__group">
-                    <h5>Разом до сплати:</h5>
+                    <p className="summary__header">Разом до сплати:</p>
                     <p className="summary__result">{totalCartPrice} &#x20b4;</p>
                   </div>
                   <Link to="/order" className="button summary__button">

@@ -7,9 +7,7 @@ import { Element } from "react-scroll";
 import { ThreadDecor } from "../components/ThreadDecor/ThreadDecor";
 import { PhotoSlider } from "../components/PhotoSlider";
 
-
 export const HomePage = () => {
-
   return (
     <div className="home">
       <section className="home__main-photo">
@@ -18,24 +16,39 @@ export const HomePage = () => {
         </div>
       </section>
 
-      <Element name="about_us" className="home__section  home__about">
+      <Element name="about_us" className="home__section  home__blog">
         <ThreadDecor />
 
-        <h2 className="sub-title home__about-sub-title">Про нас </h2>
-        <p className="home__text">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero,
-          voluptatem fugiat, necessitatibus dolorum culpa vitae reprehenderit
-          recusandae quo deleniti fugit ullam neque repellendus cum earum
-          possimus magni voluptas illo quidem tempore veniam numquam qui
-          explicabo, perspiciatis aliquam. Nihil amet modi cum vel incidunt
-          aliquid deleniti possimus alias laborum, esse ipsa perspiciatis iusto
-          itaque tempora, porro molestiae cumque eaque odit? Dolore dolores hic
-          praesentium voluptatibus nostrum. Amet exercitationem autem, fugiat
-          porro optio excepturi cum vitae perspiciatis unde laboriosam. Neque,
-          sunt illo quod officia laudantium consequuntur ducimus soluta ut quasi
-          doloribus maiores velit veniam, magni in sed animi quibusdam provident
-          modi nam.
-        </p>
+        <div className="blog__photo blog__photo--1"></div>
+
+        <div className="blog__photo blog__photo--2"></div>
+
+        <h2 className="sub-title blog__sub-title">Вишивані історії</h2>
+
+        <div className="blog__description blog__description--1">
+          <p className="blog__text">
+            Техніка виготовлення вишивки передається з покоління в покоління.Вишиванка – це
+            не просто одяг, а оберіг, який захищає свого власника від негативної
+            енергії та злих сил.
+          </p>
+          <div className="blog__open">
+            <Link to="/catalog" className="blog__open-link">
+              <p className="blog__open-text">Детальніше</p>
+            </Link>
+          </div>
+        </div>
+
+        <div className="blog__description blog__description--2">
+          <p className="blog__text">
+            Сьогодні вишиванка набула популярності в усьому світі, ставши модним
+            трендом, який поєднує традиційні мотиви з сучасними стилями.
+          </p>
+          <div className="blog__open">
+            <Link to="/catalog" className="blog__open-link">
+              <p className="blog__open-text">Детальніше</p>
+            </Link>
+          </div>
+        </div>
       </Element>
 
       <Element name="catalog" className="home__section home__find">
@@ -45,7 +58,6 @@ export const HomePage = () => {
 
         <div className="find__photo find__photo--2"></div>
 
-
         <h2 className="sub-title find__sub-title">Знайди своє</h2>
 
         <p className="find__text">
@@ -54,7 +66,6 @@ export const HomePage = () => {
           та гордості. Вишиті сорочки виготовляють у різних регіонах України,
           кожен з яких має свої неповторні орнаменти та кольори.
         </p>
-
 
         <div className="find__open">
           <Link to="/catalog" className="find__open-link">
