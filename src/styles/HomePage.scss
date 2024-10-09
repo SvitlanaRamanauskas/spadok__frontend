@@ -21,7 +21,7 @@
         background-repeat: no-repeat;
         background-size: cover;
         background-position: top;
-        background-image: url(./images/Rectangle1118.png);
+        background-image: url(../../public/img/women_images/main.png);
         opacity: 90%;
         margin-top: $main-picture-padding-top;
     }
@@ -44,6 +44,80 @@
           font-size: 150px;
           padding-left: 50px;
         }
+    }
+
+    &__text {
+        font-family: 'inter';
+        font-size: 8px;
+        font-weight: 400;
+        line-height: 12px;
+        text-align: left;
+        color: $main-text-color;
+
+        @include on-Tablet {
+            font-size: 14px;
+            line-height: 20px;
+        }
+        @include on-Desktop {
+            font-size: 18px;
+            line-height: 27px;
+        }
+    }
+
+    &__open {
+        display: flex;
+        margin-top: 16px;
+
+        &-link {
+            text-decoration: none;
+            display: block;
+            position: relative;
+
+
+            &::after {
+                display: block;
+                position: absolute;
+                content: '';
+                width: 100%;
+                height: 1px;
+                background-color: $choco;
+                transition: background-color 0.5s ease;
+            }
+
+            &:hover {
+                &::after {
+                    background-color: $gray-not-active;
+                }
+            }
+        }
+
+        &-text {
+            font-family: 'lev_type';
+            font-size: 12px;
+            font-weight: lighter;
+            line-height: 14.4px;
+            text-align: left;
+            // text-transform: uppercase;
+            text-decoration: none;
+            color: $choco;
+
+            @include on-Tablet {
+                font-size: 18px;
+                line-height: 20px;
+            }
+
+            @include on-Desktop {
+                font-size: 24px;
+                line-height: 28.8px;
+            }
+        }
+    }
+
+    &__photo {
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        width: 100%;
     }
 
     
@@ -78,17 +152,29 @@
         }
     }
 
+    &__bestseller {
+        @include pageGrid;
+        margin-bottom: 24px;
+        grid-template-rows: 42px 39px 70px 50px 34px 16px;
+
+        @include on-Tablet {
+            grid-template-rows: 80px 90px 230px 120px 90px;
+        }
+        @include on-Desktop {
+            grid-template-rows: 126px 162px 288px 206px 138px;
+        }
+      }
+
     &__find {
         @include pageGrid;
         margin-bottom: 24px;
-        grid-template-rows: 79px 28px 86px 48.88px 68.12px 16px 16px;
+        grid-template-rows: 79px 28px 86px 48.88px 74.12px;
 
         @include on-Tablet {
             grid-template-rows: 95px 186px 26px 16px 16px 312.5px;
         }
         @include on-Desktop {
             grid-template-rows: 95px 186px 26px 16px 16px 396px 113px;
-
         }
       }
 
@@ -123,10 +209,6 @@
     &__photo {
         &--1 {
             background-image: url(../../public/img/women_images/blog-1.png);
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover;
-            width: 100%;
             height: 206px;
             grid-row: 2 / 4;
             grid-column: 1 / 4;
@@ -147,10 +229,6 @@
 
         &--2 {
             background-image: url(../../public/img/women_images/blog-2.png);
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover;
-            width: 100%;
             height: 150px;
             grid-row: 3 / 5;
             grid-column: 5 / -1;
@@ -201,76 +279,6 @@
             }
         }
     }
-
-    &__text {
-        font-family: 'inter';
-        font-size: 8px;
-        font-weight: 400;
-        line-height: 12px;
-        text-align: left;
-        color: $main-text-color;
-        padding-top: 10px;
-
-        @include on-Tablet {
-            font-size: 14px;
-            line-height: 20px;
-        }
-        @include on-Desktop {
-            font-size: 18px;
-            line-height: 27px;
-        }
-    }
-
-    &__open {
-        display: flex;
-        margin-top: 16px;
-
-        &-link {
-            text-decoration: none;
-            display: block;
-            position: relative;
-
-
-            &::after {
-                display: block;
-                position: absolute;
-                content: '';
-                width: 100%;
-                height: 1px;
-                background-color: $choco;
-                transition: background-color 0.5s ease;
-            }
-
-            &:hover {
-                &::after {
-
-                    background-color: $gray-not-active;
-                }
-            }
-
-        }
-
-        &-text {
-            font-family: 'lev_type';
-            font-size: 12px;
-            font-weight: 500;
-            line-height: 14.4px;
-            text-align: left;
-            text-transform: uppercase;
-            text-decoration: none;
-            color: $choco;
-
-            @include on-Tablet {
-                font-size: 18px;
-                line-height: 20px;
-            }
-
-            @include on-Desktop {
-                font-size: 24px;
-                line-height: 28.8px;
-            }
-        }
-    }
 }
 
 .find {
@@ -292,10 +300,6 @@
     &__photo {
         &--1 {
             background-image: url(../styles/images/find_yours1.png);
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover;
-            width: 100%;
             height: 193px;
             grid-row: 1 / 4;
             grid-column: 1 / 5;
@@ -316,10 +320,6 @@
 
         &--2 {
             background-image: url(../styles/images/find_yours2.png);
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover;
-            width: 100%;
             height: 134.88px;
             grid-row: 3 / 5;
             grid-column: 6 / -1;
@@ -338,21 +338,12 @@
         }
     }
 
-    &__text {
-        font-family: 'inter';
-        font-size: 8px;
-        font-weight: 400;
-        line-height: 12px;
-        text-align: left;
-        color: $main-text-color;
+    &__description {
         padding-top: 10px;
-
         grid-row: 4 / 6;
         grid-column: 1 / 5;
 
         @include on-Tablet {
-            font-size: 14px;
-            line-height: 20px;
             grid-row: 2 / 3;
             grid-column: 6 / -1;
 
@@ -363,76 +354,97 @@
         }
 
         @include on-Desktop {
-            font-size: 18px;
-            line-height: 27px;
             grid-row: 2 / 3;
             grid-column: 6 / 11;
         }
     }
 
-    &__open {
-        grid-row: 7 / 8;
-        grid-column: 1 / 8;
-        display: flex;
+}
+
+.bestseller {
+    &__sub-title {
+        grid-row: 1 / 2;
+        grid-column: 4 / -1;
 
         @include on-Tablet {
-            grid-row: 4 / 6;
-            grid-column: 6 / 8;
+            grid-row: 1 / 2;
+            grid-column: 5 / -1;
         }
-
+        
         @include on-Desktop {
-            grid-row: 4 / 6;
-            grid-column: 6 / 8;
+            grid-row: 1 / 2;
+            grid-column: 5 / -1;
         }
 
+    }
 
-        &-link {
-            text-decoration: none;
-            display: block;
-            position: relative;
-
-
-            &::after {
-                display: block;
-                position: absolute;
-                content: '';
-                width: 100%;
-                height: 1px;
-                background-color: $choco;
-                transition: background-color 0.5s ease;
-            }
-
-            &:hover {
-                &::after {
-
-                    background-color: $gray-not-active;
-                }
-            }
-
-        }
-
-        &-text {
-            font-family: 'lev_type';
-            font-size: 12px;
-            font-weight: 500;
-            line-height: 14.4px;
-            text-align: left;
-            text-transform: uppercase;
-            text-decoration: none;
-            color: $choco;
+    &__photo {
+        &--1 {
+            background-image: url(../../public/img/women_images/bestseller-1.png);
+            height: 140px;
+            grid-row: 1 / 4;
+            grid-column: 1 / 4;
 
             @include on-Tablet {
-                font-size: 18px;
-                line-height: 20px;
+                height: 400px;
+                grid-row: 1 / 4;
+                grid-column: 1 / 5;
             }
-
+            
             @include on-Desktop {
-                font-size: 24px;
-                line-height: 28.8px;
+                height: 576px;
+                grid-row: 1 / 4;
+                grid-column: 1 / 5;
+            }
+        }
+
+        &--2 {
+            background-image: url(../../public/img/women_images/bestseller-2.png);
+            height: 120px;
+            grid-row: 3 / 5;
+            grid-column: 4 / 6;
+
+            @include on-Tablet {
+                height: 300px;
+                grid-row: 3 / 5;
+                grid-column: 5 / 8;
+            }
+            
+            @include on-Desktop {
+                height: 494px;
+                grid-row: 3 / 5;
+                grid-column: 5 / 8;
+            }
+        }
+
+        &--3 {
+            background-image: url(../../public/img/women_images/bestseller-3.png);
+            height: 193px;
+            grid-row: 2 / 6;
+            grid-column: 6 / -1;
+
+            @include on-Tablet {
+                height: 480px;
+                grid-row: 2 / 6;
+                grid-column: 8 / -1;
+            }
+            
+            @include on-Desktop {
+                height: 794px;
+                grid-row: 2 / 6;
+                grid-column: 8 / -1;
             }
         }
     }
 
+    &__description {
+        grid-row: 4 / 7;
+        grid-column: 1 / 4;
+    }
+
+    &__text {
+        padding-top: 10px;
+    }
 }
 
 .contact {

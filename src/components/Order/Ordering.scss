@@ -1,0 +1,339 @@
+@import '../../styles/utils/variables';
+@import '../../styles/utils/mixins';
+@import '../../../node_modules/flag-icon-css/css/flag-icons.min.css';
+
+$padding-input: 14px;
+
+.order {
+    min-height: calc(100vh - #{$headers-height-mobile} - #{$footers-height-mobile} - #{$header-margin});
+
+    @include on-Tablet {
+        min-height: calc(100vh - #{$headers-height-tablet} - #{$footers-height-tablet} - #{$header-margin});
+    }
+
+    @include on-Desktop {
+        min-height: calc(100vh - #{$headers-height-tablet} - #{$footers-height-desktop} - #{$header-margin});
+    }
+
+    &__section-title {
+        font-family: 'inter';
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 16px;
+        text-align: center;
+        padding-block: 49px 29px;
+
+        @include on-Tablet {
+            font-size: 18px;
+            line-height: 18px;
+            padding-block: 70px 29px;
+        }
+
+        @include on-Desktop {
+            font-size: 22px;
+            line-height: 22px;
+            padding-block: 70px 29px;
+        }
+    }
+
+    &__text {
+        font-family: "inter";
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 15px;
+        text-align: center;
+        color: $main-text-color;
+        margin-top: 20px;
+
+        @include on-Desktop {
+            font-size: 18px;
+            line-height: 22px;
+        }
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+    }
+
+    &__confirm-button {
+        width: 100%;
+        padding-inline: 10px;
+
+        @include on-Tablet {
+            width: 50%;
+            align-self: center;
+        }
+
+        @include on-Desktop {
+            width: 30%;
+        }
+    }
+
+    &__from-cart {
+        position: relative;
+        border-top: 1px solid $choco;
+        border-bottom: 1px solid $choco;
+        padding-block: 16px;
+    }
+
+    &__list {  
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    &__cart-item {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 10px;
+        align-items: center;
+
+        @include on-Tablet {
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+    }
+
+    &__checkout {
+        margin-bottom: 20px;
+
+        @include on-Tablet {
+            margin-bottom: 40px;
+        }
+        @include on-Desktop {
+            margin-bottom: 80px;
+        }
+    }
+}
+
+.buyer-info {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    column-gap: 9px;
+    row-gap: 10px;
+    margin-top: 40px;
+
+    @include on-Tablet {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 15px;
+    }
+
+    @include on-Desktop {
+        column-gap: 23px;
+    }
+
+    &__container {
+        height: 60px;
+        grid-column: 1 / -1;
+       
+        @include on-Tablet {
+            grid-column: auto;
+            height: 80px;
+        }
+
+        @include on-Desktop {
+        }
+    }
+
+    &__input {
+        height: 40px;
+        width: 100%;
+        padding-left: $padding-input;
+
+        ::placeholder {
+            color: $placeholder-text;
+        }
+
+        @include on-Tablet {
+            height: 60px;
+        }
+    }
+
+    &__error-message {
+        color: rgb(255, 47, 0);
+        font-size: 10px;
+        padding-left: 14px;
+    }
+}
+
+.phone {
+    color: $choco;
+
+    & > div:first-child {
+        height: 100%;
+    }
+
+    & > div:last-child {
+        position: relative;
+        border-radius: 1px solid $choco;
+        z-index: 100;
+    }
+
+    &__input-button-split {
+        display: flex;
+        justify-content: center;
+        // align-items: center;
+    }
+
+    &--opened > div:last-child .select {
+        display: block;
+        // border-top-width: 0;
+        // border-top-left-radius: 0;
+        // border-top-right-radius: 0;
+        background-color: #fff;
+        list-style: none;
+      }
+
+    &__country-flag {
+        width: 20px;
+        height: 15px;
+    }
+
+    &__country-selector {
+        background-color: #fff;
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+        justify-content: center;
+        align-items: center;
+        padding-left: $padding-input;
+        width: 60px;
+        height: 40px;
+        border: none;
+
+        @include on-Tablet {
+            height: 60px;
+        }
+    }
+
+    &__icon {
+        height: 16px;
+        width: 16px;
+        transform: rotate(90deg);
+        
+        &--focused {
+            transform: rotate(270deg);
+        }
+    }
+}
+
+.select {
+    position: absolute;
+    width: 100%;
+    display: none;
+
+    &__option {
+        padding-block: 5px;
+        padding-left: $padding-input;
+        cursor: pointer;
+    }
+
+    &__flag {
+        margin-right: 10px;
+    }
+}
+
+.cart-item {
+    position: relative;
+    font-size: 13px;
+
+    &__info {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        gap: 3px;
+
+        @include on-Desktop {
+            gap: 15px;
+        }
+
+    }
+
+    &__name {
+        font-family: "inter";
+        font-size: 8px;
+        font-weight: 600;
+        line-height: 12px;
+        text-align: left;
+
+        @include on-Desktop {
+            font-size: 12px;
+        }
+
+        &-link {
+            text-decoration: none;
+            color: $choco;
+        }
+    }
+
+    &__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    
+        display: block;
+        max-height: 100%;
+
+        &-wrap {
+            width: 24px;
+            height: 40px;
+
+            @include on-Desktop {
+                width: 34px;
+                height: 50px;        
+            }
+        }
+    }
+
+    &__price {
+        font-family: "inter";
+        font-size: 10px;
+        font-weight: 700;
+        line-height: 12px;
+        text-align: left;
+    }
+
+    &__detailed {
+        font-family: "inter";
+        font-size: 8px;
+        font-weight: 700;
+        line-height: 12px;
+        text-align: left;
+        color: $choco;
+
+        @include on-Desktop {
+            font-size: 12px;
+        }
+    }
+
+}
+
+.loader-circle {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  
+    &__content {
+      border-radius: 50%;
+      width: 2em;
+      height: 2em;
+      margin: 1em auto;
+      border: 0.3em solid #ddd;
+      border-left-color: #000;
+      animation: load8 1.2s infinite linear;
+    }
+  }
+  
+  @keyframes load8 {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+

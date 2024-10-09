@@ -1,7 +1,31 @@
 import { Book } from "../types/Book";
 import { BookDetails } from "../types/BookDetails";
+import { Order } from "../types/Order";
 import { Vyshyvanka } from "../types/Vyshyvanka";
 import { VyshyvankaDetails } from "../types/VyshyvankaDetails";
+
+export const createOrder = async({ buyerName, phoneNumber, orderedProducts }: Omit<Order, "orderId">) => {
+  try {
+    const response = await fetch('./api/orders', { 
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ buyerName, phoneNumber, orderedProducts }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`${response.status} ${response.statusText}`);
+    }
+
+    console.log('Order successfully posted');
+    const data = await response.json();
+    return data.orderId;
+  
+  } catch (error: any) {
+    throw new Error(`Error posting order: ${error.message}`);
+  }
+}
 
 export const fetchVyshyvanky = async() : Promise<Vyshyvanka[]> => {
     try {

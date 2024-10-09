@@ -59,6 +59,13 @@ body {
 
 html {
   scroll-behavior: smooth;
+
+  &:has(.menu) {
+
+    @media(max-width: 1200px) {
+      overflow-y: hidden;
+    }
+  }
 }
 
 button {
