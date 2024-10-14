@@ -23,20 +23,25 @@ import { Loader } from "../Loader";
 import { Vyshyvanka } from "../../types/Vyshyvanka";
 import { BookDetails } from "../../types/BookDetails";
 
+
 export const ProductDetails: React.FC = () => {
   const { selectedProduct, setSelectedProduct } = useContext(AppContext);
-  const [vyshyvanky, setVyshyvanky] = useState<Vyshyvanka[]>([]);
 
   const [activeSize, setActiveSize] = useState("");
   const [currentImage, setCurrentImage] = useState("");
   const [productDetailsLoading, setProductDetailsLoading] = useState(false);
   const [productNotFound, setProductNotFound] = useState(false);
+  const [productFetchError, setProductFetchError] = useState(false);
   const [selectedChapter, setSelectedChapter] = useState("characteristics");
 
   const cartItems = useAppSelector(cartSelector);
   const favoritesItems = useAppSelector(favoritesSelector);
   const dispatch = useAppDispatch();
 
+  const routerLocation = useLocation();
+  const { vyshyvankyFromServer } = routerLocation.state as { vyshyvankyFromServer: Vyshyvanka[] };
+
+  console.log(vyshyvankyFromServer)
   const handleAddToCart = (product: VyshyvankaDetails | BookDetails) => {
     dispatch(addItemToCart(product));
   };
@@ -63,44 +68,52 @@ export const ProductDetails: React.FC = () => {
 
   const { productId } = useParams<{ productId?: string }>();
 
-  useEffect(() => {
-    setProductNotFound(false);
-    setProductDetailsLoading(true);
-
-    if (productId) {
-      getProductDetails(productId, category)
-        .then((productData) => {
-          if (productData !== null) {
-            setSelectedProduct(productData);
-
-            if ("size" in productData) {
-              setActiveSize(productData.size);
-            }
-
-            setCurrentImage(
-              productData.images.length > 0 ? productData.images[0] : ""
-            );
-          } else {
-            setProductNotFound(true);
-          }
-        })
-        .catch((error) => {
-          console.error("Error fetching product details:", error);
-          setProductNotFound(true);
-        })
-        .finally(() => {
-          setProductDetailsLoading(false);
-        });
-    }
-
-    fetchVyshyvanky().then((fetchedProducts) => setVyshyvanky(fetchedProducts));
-  }, [productId]);
-
   const navigate = useNavigate();
 
   const goBack = () => {
     navigate(-1);
   };
+
+  useEffect(() => {
+    if (!productId) {
+      return;
+    }
+
+    setProductNotFound(false);
+    setProductFetchError(false);
+    setProductDetailsLoading(true);
+
+    getProductDetails(productId, category)
+      .then((productData) => {
+        if (productData !== null) {
+          setSelectedProduct(productData);
+
+          if ("size" in productData) {
+            setActiveSize(productData.size);
+          }
+
+          setCurrentImage(
+            productData.images.length > 0 ? productData.images[0] : ""
+          );
+        } else {
+          setProductNotFound(true);
+          // setTimeout(() => {
+          //   navigate("..");
+          // }, 5000);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching product details:", error);
+
+        setProductFetchError(true);
+        // setTimeout(() => {
+        //   navigate("..");
+        // }, 5000);
+      })
+      .finally(() => {
+        setProductDetailsLoading(false);
+      });
+  }, [productId]);
 
   const handleImageClick = (clickedImage: string) => {
     setCurrentImage(clickedImage);
@@ -110,12 +123,12 @@ export const ProductDetails: React.FC = () => {
     setActiveSize(clickedSize);
   };
 
-  const handleSetAnotherProductBySize = (
+  const handleSetAnotherVyshyvankaBySize = (
     currentProdName: string,
     clickedSize: string
   ) => {
     setProductDetailsLoading(true);
-    const anotherSizeProd = vyshyvanky.find(
+    const anotherSizeProd = vyshyvankyFromServer.find(
       (vyshyvanka) =>
         vyshyvanka.name === currentProdName && vyshyvanka.size === clickedSize
     );
@@ -131,7 +144,8 @@ export const ProductDetails: React.FC = () => {
               );
 
               navigate(
-                `/catalog/${anotherSizeProd?.category}/${anotherSizeProd?.id}`
+                `/catalog/${anotherSizeProd?.category}/${anotherSizeProd?.id}`,
+                { state: { vyshyvankyFromServer } } 
               );
             } else {
               setProductNotFound(true);
@@ -245,7 +259,7 @@ export const ProductDetails: React.FC = () => {
                             type="button"
                             onClick={() => {
                               handleSizeClick(size);
-                              handleSetAnotherProductBySize(
+                              handleSetAnotherVyshyvankaBySize(
                                 selectedProduct?.name,
                                 size
                               );
@@ -413,6 +427,21 @@ export const ProductDetails: React.FC = () => {
       {productDetailsLoading &&
         !productNotFound &&
         selectedProduct !== null && <Loader />}
+
+      {!productDetailsLoading &&
+        productNotFound &&
+        selectedProduct === null && (
+          <div className="details__not-found">
+            Товар не знайдено
+          </div>
+        )}
+
+      {!productDetailsLoading &&
+        productFetchError && (
+          <div className="details__not-found">
+            Сталася помилка, неможливо завантажити сторінку.
+          </div>
+        )}
     </>
   );
 };

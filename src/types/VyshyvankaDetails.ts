@@ -7,4 +7,5 @@ export type VyshyvankaDetails = {
     price: number;
     category: string;
     description: string;
+    isAvailable: boolean;
   };

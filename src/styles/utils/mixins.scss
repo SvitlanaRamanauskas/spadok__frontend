@@ -38,3 +38,15 @@
         padding-inline: 0;
     }
 }
+
+@mixin pageMinHeight {
+    min-height: calc(100vh - #{$headers-height-mobile} - #{$footers-height-mobile} - #{$header-margin});
+
+    @include on-Tablet {
+        min-height: calc(100vh - #{$headers-height-tablet} - #{$footers-height-tablet} - #{$header-margin});
+    }
+
+    @include on-Desktop {
+        min-height: calc(100vh - #{$headers-height-tablet} - #{$footers-height-desktop} - #{$header-margin});
+    }
+}

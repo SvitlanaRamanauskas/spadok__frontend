@@ -1,19 +1,15 @@
 import { Link } from "react-router-dom";
 import "./ProductCard.scss";
 import { Vyshyvanka } from "../../types/Vyshyvanka";
-import { useContext } from "react";
-import { AppContext } from "../appContext";
 import { Book } from "../../types/Book";
 
 export type Props = {
   item: Vyshyvanka | Book;
+  vyshyvankyFromServer: Vyshyvanka[];
 };
 
-export const ProductCard: React.FC<Props> = ({ item }) => {
-  // const { setSelectedCard } = useContext(AppContext);
-
+export const ProductCard: React.FC<Props> = ({ item, vyshyvankyFromServer }) => {
   const nameOrTitle = "name" in item ? item.name : item.title;
-
 
   return (
     <div className="card">
@@ -21,7 +17,7 @@ export const ProductCard: React.FC<Props> = ({ item }) => {
         <Link
           to={`/catalog/women/${item.id}`}
           className="card__photo-link"
-          // onClick={() => setSelectedCard(item)}
+          state={{ vyshyvankyFromServer }}
         >
           <img
             src={`/${item.image}`}
@@ -31,6 +27,7 @@ export const ProductCard: React.FC<Props> = ({ item }) => {
         </Link>
 
       </div>
+
       <h3 className="card__title-price">{nameOrTitle}</h3>
 
       <div className="card__title-price">{`${item.price} грн`}</div>

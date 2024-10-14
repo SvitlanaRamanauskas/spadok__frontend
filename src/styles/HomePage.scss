@@ -17,13 +17,21 @@
     }
 
     &__background-container {
-        height: $main-picture-height;
+        height: $main-picture-height-mobile;
         background-repeat: no-repeat;
         background-size: cover;
         background-position: top;
         background-image: url(../../public/img/women_images/main.png);
         opacity: 90%;
         margin-top: $main-picture-padding-top;
+
+        @include on-Tablet {
+            height: $main-picture-height-tablet;
+        }
+    
+        @include on-Desktop {
+            height: $main-picture-height-desktop;
+        }
     }
 
     &__title {
@@ -48,14 +56,15 @@
 
     &__text {
         font-family: 'inter';
-        font-size: 8px;
+        font-size: 10px;
         font-weight: 400;
-        line-height: 12px;
+        line-height: 15px;
+        letter-spacing: 0.5px;
         text-align: left;
         color: $main-text-color;
 
         @include on-Tablet {
-            font-size: 14px;
+            font-size: 16px;
             line-height: 20px;
         }
         @include on-Desktop {
@@ -141,24 +150,28 @@
 
     &__blog {
         @include pageGrid;
-        grid-template-rows: 46px 114px 92px 58px 60px;
+        grid-template-rows: 46px 152px 92px 178px 100px;
+
+        @media(min-width: 450px) {
+            grid-template-rows: 46px 152px 92px 178px;
+        }
 
         @include on-Tablet {
-            grid-template-rows: 92px 200px 250px 90px 80px;
+            grid-template-rows: 92px 200px 200px 240px;
         }
 
         @include on-Desktop {
-            grid-template-rows: 142px 284px 392px 137px 108px;
+            grid-template-rows: 142px 284px 392px 300px;
         }
     }
 
     &__bestseller {
         @include pageGrid;
         margin-bottom: 24px;
-        grid-template-rows: 42px 39px 70px 50px 34px 16px;
+        grid-template-rows: 42px 39px 70px 95px 34px 96px;
 
         @include on-Tablet {
-            grid-template-rows: 80px 90px 230px 120px 90px;
+            grid-template-rows: 80px 90px 230px 70px 90px;
         }
         @include on-Desktop {
             grid-template-rows: 126px 162px 288px 206px 138px;
@@ -168,13 +181,13 @@
     &__find {
         @include pageGrid;
         margin-bottom: 24px;
-        grid-template-rows: 79px 28px 86px 48.88px 74.12px;
+        grid-template-rows: 79px 28px 86px 88.88px 104.12px 20px;
 
         @include on-Tablet {
-            grid-template-rows: 95px 186px 26px 16px 16px 312.5px;
+            grid-template-rows: 95px 178px 215px 172.5px 40px;
         }
         @include on-Desktop {
-            grid-template-rows: 95px 186px 26px 16px 16px 396px 113px;
+            grid-template-rows: 95px 130px 180px 32px 396px 113px;
         }
       }
 
@@ -229,7 +242,7 @@
 
         &--2 {
             background-image: url(../../public/img/women_images/blog-2.png);
-            height: 150px;
+            height: 260px;
             grid-row: 3 / 5;
             grid-column: 5 / -1;
 
@@ -259,7 +272,7 @@
 
             @include on-Desktop {
                 grid-row: 2 / 3;
-                grid-column: 6 / 11;
+                grid-column: 7 / 12;
             }
 
         }
@@ -269,13 +282,14 @@
              grid-column: 1 / 5;
 
              @include on-Tablet {
-                grid-row: 4 / 6;
-                grid-column: 1 / 5;
+                grid-row: 4 / 5;
+                grid-column: 1 / 7;
             }
 
             @include on-Desktop {
-                grid-row: 4 / 6;
-                grid-column: 1 / 5;
+                padding-top: 15px;
+                grid-row: 4 / 5;
+                grid-column: 1 / 6;
             }
         }
     }
@@ -306,7 +320,7 @@
 
             @include on-Tablet {
                 height: 471px;
-                grid-row: 1 / 7;
+                grid-row: 1 / 4;
                 grid-column: 1 / 6;
             }
 
@@ -326,13 +340,13 @@
 
             @include on-Tablet {
                 height: 328.5px;
-                grid-row: 5 / 8;
+                grid-row: 3 / 6;
                 grid-column: 8 / -1;
             }
 
             @include on-Desktop {
-                height: 523px;
-                grid-row: 5 / 8;
+                height: 543px;
+                grid-row: 4 / 7;
                 grid-column: 9 / -1;
             }
         }
@@ -340,22 +354,57 @@
 
     &__description {
         padding-top: 10px;
-        grid-row: 4 / 6;
-        grid-column: 1 / 5;
 
-        @include on-Tablet {
-            grid-row: 2 / 3;
-            grid-column: 6 / -1;
+        &--1 {
+            grid-row: 4 / 5;
+            grid-column: 1 / 6;
 
-            @media(max-width: 820px) {
-                padding-top: 50px;
-                font-size: 12px;
+            @include on-Tablet {
+                grid-row: 2 / 3;
+                grid-column: 6 / -1;
+                @media(max-width: 770px) {
+                    padding-top: 55px;
+                }
+                padding-top: 30px;
+            }
+            @include on-Desktop {
+                grid-row: 2 / 3;
+                grid-column: 6 / 11;
+                padding-top: 10px;
             }
         }
 
+        &--2 {
+            grid-row: 5 / 6;
+            grid-column: 1 / -1;
+
+            @include on-Tablet {
+                grid-row: 4 / 5;
+                grid-column: 1 / 7;
+                padding-top: 25px;
+            }
+            @include on-Desktop {
+                grid-row: 3 / 4;
+                grid-column: 6 / 11;
+                padding-top: 0;
+            }
+        }
+    }
+
+    &__open {
+        grid-row: 6 / 7;
+        grid-column: 1 / 4;
+        margin-top: 10px;
+
+        @include on-Tablet {
+            grid-row: 5 / 6;
+            grid-column: 1 / 4;
+        }
+
         @include on-Desktop {
-            grid-row: 2 / 3;
-            grid-column: 6 / 11;
+            margin-top: 0;
+            grid-row: 4 / 5;
+            grid-column: 6 / 9;
         }
     }
 
@@ -438,8 +487,29 @@
     }
 
     &__description {
-        grid-row: 4 / 7;
-        grid-column: 1 / 4;
+        &--1 {
+            grid-row: 4 / 5;
+            grid-column: 1 / 4;
+    
+            @include on-Tablet {
+                grid-column: 1 / 5;
+            }
+            @include on-Desktop {
+                grid-column: 1 / 4;
+            }
+        }
+
+        &--2 {
+            grid-row: 5 / 7;
+            grid-column: 1 / 6;
+    
+            @include on-Tablet {
+                grid-column: 1 / 5;
+            }
+            @include on-Desktop {
+                grid-column: 1 / 8;
+            }
+        }
     }
 
     &__text {

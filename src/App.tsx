@@ -34,7 +34,9 @@ function App() {
   const { setAsideIsOpen, asideIsOpen } = useContext(AppContext);
 
   const totalCartQuanity: number = useAppSelector(totalCartQuantitySelector);
-  const totalFavoritesQuantity: number = useAppSelector(totalFavoritesQuantitySelector)
+  const totalFavoritesQuantity: number = useAppSelector(
+    totalFavoritesQuantitySelector
+  );
 
   const toggleMenuButton = () => {
     setAsideIsOpen(!asideIsOpen);
@@ -57,11 +59,70 @@ function App() {
       <header className="header">
         <div className="header__container">
           <div className="header__logo">
-            <ArrowDecorTop />
-              <Link to="/" className="header__logo-text">
-                  наш спадок
-              </Link>
-            <ArrowDecorBelow />
+            <>
+              <img
+                src={require("./styles/icons/curve_line.svg").default}
+                className="curve curve--top-left"
+                alt="Logo"
+              />
+              <img
+                src={require("./styles/icons/curve_line.svg").default}
+                className="curve curve--bottom-left"
+                alt="Logo"
+              />
+
+              <img
+                src={require("./styles/icons/curve_line.svg").default}
+                className="
+                curve 
+                curve--top-right
+                curve--top-right--mobile-header"
+                alt="Logo"
+              />
+              <img
+                src={require("./styles/icons/curve_line.svg").default}
+                className="
+                  curve 
+                  curve--bottom-right
+                  curve--bottom-right--mobile-header
+                "
+                alt="Logo"
+              />
+            </>
+            <Link to="/" className="header__logo-text">
+              наш спадок
+            </Link>
+            <>
+              <img
+                src={require("./styles/icons/curve_line.svg").default}
+                className="curve curve__below--top-left"
+                alt="Logo"
+              />
+              <img
+                src={require("./styles/icons/curve_line.svg").default}
+                className="curve curve__below--bottom-left"
+                alt="Logo"
+              />
+
+              <img
+                src={require("./styles/icons/curve_line.svg").default}
+                className="
+                  curve 
+                  curve__below--top-right
+                  curve__below--top-right--mobile-header
+                "
+                alt="Logo"
+              />
+              <img
+                src={require("./styles/icons/curve_line.svg").default}
+                className="
+                  curve 
+                  curve__below--bottom-right
+                  curve__below--bottom-right--mobile-header
+                "
+                alt="Logo"
+              />
+            </>
           </div>
           <div className="header__right">
             <ArrowDecorTop />
@@ -74,19 +135,24 @@ function App() {
                 }}
               >
                 <p className="nav__link">Вишиванки</p>
-                
+
                 <img
-                    className={cn("header__short-nav-element-icon", {
-                      "header__short-nav-element-icon--focused": vyshyvListExpanded,
-                    })}
-                    src={
-                      require("./styles/icons/Chevron-Arrow-Right--disabled.svg")
-                        .default
-                    }
-                    alt="clicker"
-                  />
+                  className={cn("header__short-nav-element-icon", {
+                    "header__short-nav-element-icon--focused":
+                      vyshyvListExpanded,
+                  })}
+                  src={
+                    require("./styles/icons/Chevron-Arrow-Right--disabled.svg")
+                      .default
+                  }
+                  alt="clicker"
+                />
               </button>
-              <nav className={cn("header__nav", {"header__nav--opened": vyshyvListExpanded})}>
+              <nav
+                className={cn("header__nav", {
+                  "header__nav--opened": vyshyvListExpanded,
+                })}
+              >
                 <ul className="nav__list">
                   <li className="nav__item">
                     <Link to="/catalog/women" className="nav__link">
@@ -116,7 +182,7 @@ function App() {
                 </Link>
               </button>
             </div>
-            
+
             <div className="header__icons">
               <Link
                 to="/favorites"
@@ -129,7 +195,9 @@ function App() {
                 />
 
                 {totalFavoritesQuantity > 0 && (
-                  <div className="header__icon-circle">{totalFavoritesQuantity}</div>
+                  <div className="header__icon-circle">
+                    {totalFavoritesQuantity}
+                  </div>
                 )}
               </Link>
 

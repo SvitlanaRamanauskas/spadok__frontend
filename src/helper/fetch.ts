@@ -29,7 +29,7 @@ export const createOrder = async({ buyerName, phoneNumber, orderedProducts }: Om
 
 export const fetchVyshyvanky = async() : Promise<Vyshyvanka[]> => {
     try {
-        const response = await fetch('./api/vyshyvanky.json', { method: 'GET'});
+        const response = await fetch('/api/shop/embroideries/', { method: 'GET'});
         if (!response.ok) {
             throw new Error(`${response.status} ${response.statusText}`);
         }
@@ -41,7 +41,7 @@ export const fetchVyshyvanky = async() : Promise<Vyshyvanka[]> => {
 
 export const fetchBooks = async() : Promise<Book[]> => {
   try {
-      const response = await fetch('./api/books.json', { method: 'GET'});
+      const response = await fetch('/api/shop/books/', { method: 'GET'});
       if (!response.ok) {
           throw new Error(`${response.status} ${response.statusText}`);
       }

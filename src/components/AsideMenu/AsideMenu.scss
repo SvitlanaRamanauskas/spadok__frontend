@@ -11,14 +11,14 @@
 
   @include on-Desktop {
     right: 0;
-    height: $main-picture-height + $main-picture-padding-top;
+    height: $main-picture-height-desktop + $main-picture-padding-top;
     width: 35%;
   }
 
   &__part {
     display: flex;
     align-items: center;
-    height: $half-menu-height;
+    height: $half-menu-height-mobile;
     margin-left: 0;
     padding-left: 0;
     justify-content: start;
@@ -28,12 +28,14 @@
       justify-content: start;
       margin-left: 152px;
       padding-left: 28px;
+      height: $half-menu-height-tablet;
     }
 
     @include on-Desktop {
       justify-content: start;
       margin-left: 152px;
       padding-left: 28px;
+      height: $half-menu-height-desktop;
     }
   };
 

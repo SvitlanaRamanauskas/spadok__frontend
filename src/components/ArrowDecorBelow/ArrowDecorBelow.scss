@@ -11,6 +11,12 @@
         &-right {
           bottom: -1px;
           right: 0;
+
+          &--mobile-header {
+            @media(max-width: 768px) {
+              display: none;
+            }
+          }
         }
       }
     
@@ -25,6 +31,12 @@
           bottom: -4.96px;
           right: 0;
           transform: rotate(180deg);
+
+          &--mobile-header {
+            @media(max-width: 768px) {
+              display: none;
+            }
+          }
         }
       }
     }

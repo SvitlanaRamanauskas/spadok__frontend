@@ -11,6 +11,11 @@ select {
     gap: 10px;
     align-items: center;
     margin-bottom: 20px;
+    margin-top: 30px;
+
+    @include on-Tablet {
+      margin-top: 60px;
+    }
   
     &__input {
       background-color: transparent;

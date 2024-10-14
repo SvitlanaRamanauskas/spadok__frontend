@@ -25,18 +25,30 @@ export const HomePage = () => {
 
         <h2 className="sub-title find__sub-title">Знайди своє</h2>
 
-        <div className="find__description">
+        <div className="find__description find__description--1">
           <p className="home__text find__text">
-            Вишиванка – традиційний український одяг, який відображає багату
-            культуру та історію народу. Вон є символом національної ідентичності
-            та гордості. Вишиті сорочки виготовляють у різних регіонах України,
-            кожен з яких має свої неповторні орнаменти та кольори.
+            У вас лишилися скарби від ваших бабусь?
+            <br />
+            <br /> У мене, на жаль, ні. Але всі ми родом із дитинства, і всі ми
+            колись станемо бабусями.
           </p>
-          <div className="home__open">
-            <Link to="/catalog" className="home__open-link">
-              <p className="home__open-text">до каталогу</p>
-            </Link>
-          </div>
+        </div>
+
+        <div className="find__description find__description--2">
+          <p className="home__text find__text">
+            І ми знаємо, що традиції оживають, коли ти у вишиванці. Це
+            енергетичне відчуття важко описати, його треба тільки відчути.
+            <br />
+            <br />
+            Вдягнути вишиванку і посміхнутися. І з середини буде проростати
+            зерно щастя. Круто, еге ж?
+          </p>
+        </div>
+
+        <div className="home__open find__open">
+          <Link to="/catalog" className="home__open-link">
+            <p className="home__open-text">до каталогу</p>
+          </Link>
         </div>
       </Element>
 
@@ -50,10 +62,16 @@ export const HomePage = () => {
 
         <div className="home__photo bestseller__photo--3"></div>
 
-
-        <div className="bestseller__description">
+        <div className="bestseller__description bestseller__description--1">
           <p className="home__text bestseller__text">
             Техніка виготовлення вишивки передається з покоління в покоління.
+          </p>
+        </div>
+
+        <div className="bestseller__description bestseller__description--2">
+          <p className="home__text bestseller__text">
+            Кожен вишивальний орнамент має своє значення, відображє традиційні
+            мотиви, символіку і регіональну приналежність.
           </p>
 
           <div className="home__open">
@@ -75,9 +93,14 @@ export const HomePage = () => {
 
         <div className="blog__description blog__description--1">
           <p className="home__text">
-            Техніка виготовлення вишивки передається з покоління в покоління.Вишиванка – це
-            не просто одяг, а оберіг, який захищає свого власника від негативної
-            енергії та злих сил.
+            Вишита сорочка це не одяг.
+            <br />
+            Це мистецтво.
+            <br />
+            Це оберіг, елемент культурної спадщини, витвір національного
+            декоративно-прикладного мистецтва.
+            <br />
+            Це любов, гордість, пам'ять.
           </p>
           <div className="home__open">
             <Link to="/catalog" className="home__open-link">
@@ -88,8 +111,11 @@ export const HomePage = () => {
 
         <div className="blog__description blog__description--2">
           <p className="home__text">
-            Сьогодні вишиванка набула популярності в усьому світі, ставши модним
-            трендом, який поєднує традиційні мотиви з сучасними стилями.
+            Носячи українську вишиванку люди несуть в світ українські звичаї та
+            традиції. І саме в цей момент кожен, хто у вишиванці, стає
+            амбасадором/послом/популяризатором української культури.
+            Тож, маючи в гардеробі хоча б одну вишиванку, ви маєте для себе і
+            своїх дітей, щось вічне. А це крутіше за будь-що інше, повірте.&#41;
           </p>
           <div className="home__open">
             <Link to="/catalog" className="home__open-link">

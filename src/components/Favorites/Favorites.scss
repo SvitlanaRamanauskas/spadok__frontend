@@ -2,6 +2,7 @@
 @import "../../styles/utils/variables.scss";
 
 .favorites {
+    @include pageMinHeight;
 
     &__title {
         font-family: "inter";

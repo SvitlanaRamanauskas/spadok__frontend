@@ -9,6 +9,7 @@ import { useSearchParams } from "react-router-dom";
 import { getPreparedVyshyvanky } from "../../helper/fetch";
 import { Book } from "../../types/Book";
 
+
 type Props = {
   items: Vyshyvanka[] | Book[];
 };
@@ -33,6 +34,12 @@ export const List: React.FC<Props> = ({ items }) => {
       });
     }
   };
+
+  const vyshyvankaItems = (items as Array<Vyshyvanka | Book>).filter((item: Vyshyvanka | Book): item is Vyshyvanka => {
+    return 'size' in item; 
+  });
+  console.log(vyshyvankaItems)
+
   const preparedProducts = getPreparedVyshyvanky(items, Object.fromEntries(searchParams));
 
   return (
@@ -46,7 +53,7 @@ export const List: React.FC<Props> = ({ items }) => {
         <div className="list">
           {preparedProducts.slice(0, visibleItemsCountMobile).map((item: Vyshyvanka | Book) => (
             <div className="list__card" key={item.id}>
-              <ProductCard item={item} />
+              <ProductCard item={item} vyshyvankyFromServer={vyshyvankaItems} />
             </div>
           ))}
 
@@ -62,7 +69,7 @@ export const List: React.FC<Props> = ({ items }) => {
         <div className="list">
           {preparedProducts.slice(0, visibleItemsCountDesktop).map((item: Vyshyvanka | Book) => (
             <div className="list__card" key={item.id}>
-              <ProductCard item={item} />
+              <ProductCard item={item} vyshyvankyFromServer={vyshyvankaItems} />
             </div>
           ))}
 

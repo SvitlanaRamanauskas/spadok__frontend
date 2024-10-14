@@ -20,7 +20,7 @@ export const Favorites = () => {
   };
 
   return (
-    <>
+    <div className="favorites">
       <div className="favorites__title-wrapper">
         <h3 className="favorites__title">Favorites</h3>
       </div>
@@ -62,6 +62,6 @@ export const Favorites = () => {
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 };

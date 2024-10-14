@@ -2,9 +2,17 @@
 @import '../../styles/utils/mixins';
 
 .details {
-    // min-height: calc(100vh - #{$headers-height} - #{$footers-height} - 120px);
+    margin-top: 30px;
+
     @include on-Desktop {
+        margin-top: 60px;
         min-height: 0;
+    }
+
+    &__not-found {
+        @include pageMinHeight;
+        text-align: center;
+        padding-block: 100px;
     }
 
     &__container {        
