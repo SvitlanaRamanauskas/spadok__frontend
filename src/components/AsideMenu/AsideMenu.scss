@@ -18,7 +18,8 @@
   &__part {
     display: flex;
     align-items: center;
-    height: $half-menu-height-mobile;
+    // height: $half-menu-height-mobile;
+    margin-block: 20px 60px;
     margin-left: 0;
     padding-left: 0;
     justify-content: start;
@@ -28,14 +29,15 @@
       justify-content: start;
       margin-left: 152px;
       padding-left: 28px;
-      height: $half-menu-height-tablet;
+      // height: $half-menu-height-tablet;
     }
 
     @include on-Desktop {
       justify-content: start;
+      margin-top: 40px;
       margin-left: 152px;
       padding-left: 28px;
-      height: $half-menu-height-desktop;
+      // height: $half-menu-height-desktop;
     }
   };
 
@@ -61,11 +63,15 @@
   &__link {
     color: $bg-color;
     font-family: "inter", serif;
-    font-size: 25px;
+    font-size: 18px;
     font-weight: 500;
     text-transform: capitalize;
     &:hover {
       color: white;
+    }
+
+    @include on-Tablet {
+      font-size: 25px;
     }
   }
 

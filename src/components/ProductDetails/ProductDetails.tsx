@@ -1,10 +1,11 @@
 import classNames from "classnames";
 import cn from "classnames";
+import { ImageModal } from "../ImageModal";
 import { VyshyvankaDetails } from "../../types/VyshyvankaDetails";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../appContext";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { fetchVyshyvanky, getProductDetails } from "../../helper/fetch";
+import { getProductDetails, getProductDetailsList } from "../../helper/fetch";
 import "./ProductDetails.scss";
 import "../../styles/button.scss";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
@@ -20,15 +21,21 @@ import {
 import { FavoritesItem } from "../../types/FavoritesItem";
 import { CartItem } from "../../types/CartItem";
 import { Loader } from "../Loader";
-import { Vyshyvanka } from "../../types/Vyshyvanka";
 import { BookDetails } from "../../types/BookDetails";
 
 
 export const ProductDetails: React.FC = () => {
   const { selectedProduct, setSelectedProduct } = useContext(AppContext);
-
   const [activeSize, setActiveSize] = useState("");
-  const [currentImage, setCurrentImage] = useState("");
+  const [productDetailsList, setProductDetailsList] = useState<VyshyvankaDetails[] | []>([]);
+  const [goToChoseSize, setGoToChoseSize] = useState(false);
+
+  const [currentImage, setCurrentImage] = useState(selectedProduct?.images[0]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState<null | number>(
+    null
+  );
+
   const [productDetailsLoading, setProductDetailsLoading] = useState(false);
   const [productNotFound, setProductNotFound] = useState(false);
   const [productFetchError, setProductFetchError] = useState(false);
@@ -38,12 +45,18 @@ export const ProductDetails: React.FC = () => {
   const favoritesItems = useAppSelector(favoritesSelector);
   const dispatch = useAppDispatch();
 
-  const routerLocation = useLocation();
-  const { vyshyvankyFromServer } = routerLocation.state as { vyshyvankyFromServer: Vyshyvanka[] };
+  const { pathname } = useLocation()
 
-  console.log(vyshyvankyFromServer)
+  const sizesRef = useRef<HTMLDivElement | null>(null);
+
   const handleAddToCart = (product: VyshyvankaDetails | BookDetails) => {
-    dispatch(addItemToCart(product));
+    if(!activeSize && sizesRef.current) {
+      sizesRef.current.scrollIntoView({ behavior: "smooth"});
+      // alert('Будь ласка, оберіть розмір перед додаванням товару в кошик');
+      setGoToChoseSize(true);
+    } else (
+      dispatch(addItemToCart(product))
+    )
   };
 
   const addedToFavorites = (itemsInFavorites: FavoritesItem[], id: string) => {
@@ -70,8 +83,12 @@ export const ProductDetails: React.FC = () => {
 
   const navigate = useNavigate();
 
+
   const goBack = () => {
-    navigate(-1);
+
+    const lastIndexOfSlash = location.pathname.lastIndexOf("/");
+    const newPath = location.pathname.slice(0, lastIndexOfSlash)
+    navigate(newPath);
   };
 
   useEffect(() => {
@@ -88,36 +105,76 @@ export const ProductDetails: React.FC = () => {
         if (productData !== null) {
           setSelectedProduct(productData);
 
-          if ("size" in productData) {
-            setActiveSize(productData.size);
-          }
+          // if ("size" in productData) {
+          //   setActiveSize(productData.size);
+          // }
 
           setCurrentImage(
             productData.images.length > 0 ? productData.images[0] : ""
           );
         } else {
           setProductNotFound(true);
-          // setTimeout(() => {
-          //   navigate("..");
-          // }, 5000);
+          setTimeout(() => {
+            navigate("..");
+          }, 5000);
         }
       })
       .catch((error) => {
         console.error("Error fetching product details:", error);
 
         setProductFetchError(true);
-        // setTimeout(() => {
-        //   navigate("..");
-        // }, 5000);
+        setTimeout(() => {
+          navigate("..");
+        }, 5000);
       })
       .finally(() => {
         setProductDetailsLoading(false);
       });
+
+
+
+      getProductDetailsList(category)
+      .then((data) => {
+        if (data !== null) {
+          setProductDetailsList(data);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching product details:", error);
+      })
   }, [productId]);
 
-  const handleImageClick = (clickedImage: string) => {
+
+  //#region Modal
+
+  const handleImageClick = (clickedImage: string, index: number) => {
     setCurrentImage(clickedImage);
+    setCurrentImageIndex(index);
+    setIsModalOpen(true);
   };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setCurrentImageIndex(null);
+  };
+
+  const handleNextImage = () => {
+    if (currentImageIndex !== null && selectedProduct !== null) {
+      setCurrentImageIndex(
+        (prevIndex) => (prevIndex! + 1) % selectedProduct.images.length
+      );
+    }
+  };
+
+  const handlePreviousImage = () => {
+    if (currentImageIndex !== null && selectedProduct !== null) {
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === 0 ? selectedProduct.images.length - 1 : prevIndex! - 1
+      );
+    }
+  };
+
+  //#endregion
 
   const handleSizeClick = (clickedSize: string) => {
     setActiveSize(clickedSize);
@@ -128,10 +185,13 @@ export const ProductDetails: React.FC = () => {
     clickedSize: string
   ) => {
     setProductDetailsLoading(true);
-    const anotherSizeProd = vyshyvankyFromServer.find(
+    setGoToChoseSize(false);
+
+    const anotherSizeProd = productDetailsList.find(
       (vyshyvanka) =>
         vyshyvanka.name === currentProdName && vyshyvanka.size === clickedSize
     );
+
     if (anotherSizeProd !== undefined) {
       setTimeout(() => {
         getProductDetails(anotherSizeProd?.id, anotherSizeProd?.category).then(
@@ -145,7 +205,6 @@ export const ProductDetails: React.FC = () => {
 
               navigate(
                 `/catalog/${anotherSizeProd?.category}/${anotherSizeProd?.id}`,
-                { state: { vyshyvankyFromServer } } 
               );
             } else {
               setProductNotFound(true);
@@ -168,12 +227,23 @@ export const ProductDetails: React.FC = () => {
     }
   };
 
+  console.log(pathname)
+
   return (
     <>
       {!productDetailsLoading &&
         !productNotFound &&
         selectedProduct !== null && (
           <div className="details">
+                  {isModalOpen && selectedProduct && (
+        <ImageModal
+          images={selectedProduct.images}
+          currentImageIndex={currentImageIndex}
+          onClose={handleCloseModal}
+          handleNext={handleNextImage}
+          handlePrevious={handlePreviousImage}
+        />
+      )}
             <div className="details__container">
               <div className="details__img-inf-wrapper">
                 <div className="details__images-wrapper">
@@ -183,8 +253,10 @@ export const ProductDetails: React.FC = () => {
                         src={currentImage}
                         alt="product"
                         className="details__picture"
+                        onClick={() => handleImageClick(currentImage!, 0)}
                       />
                     </div>
+
                     <button
                       type="button"
                       className={classNames("details__icon-bg", {
@@ -204,17 +276,18 @@ export const ProductDetails: React.FC = () => {
                       />
                     </button>
                   </div>
+
                   {selectedProduct.images.map((image, index) => (
                     <button
                       className={classNames(
                         "details__image-button",
-                        `details__image-button--${index + 1}`,
+                        // `details__image-button--${index + 1}`,
                         {
                           "details__image--active": currentImage === image,
                         }
                       )}
                       type="button"
-                      onClick={() => handleImageClick(image)}
+                      onClick={() => handleImageClick(image, index)}
                       key={image}
                     >
                       <img
@@ -225,7 +298,8 @@ export const ProductDetails: React.FC = () => {
                     </button>
                   ))}
                 </div>
-                <div className="details__info info">
+
+                <div ref={sizesRef} className="details__info info">
                   <div className="back details__back">
                     <img
                       src={require("../../styles/icons/arrow-back.svg").default}
@@ -235,7 +309,7 @@ export const ProductDetails: React.FC = () => {
                     />
                     <button
                       type="button"
-                      className="back__button"
+                      className="info__name"
                       onClick={goBack}
                       data-cy="backButton"
                     >
@@ -251,40 +325,55 @@ export const ProductDetails: React.FC = () => {
                   </p>
 
                   {"size" in selectedProduct && (
-                    <div className="info__size size">
-                      <p className="size__title">Розмір</p>
-                      <div className="size__elements">
-                        {selectedProduct.sizesAvailable.map((size) => (
-                          <button
-                            type="button"
-                            onClick={() => {
-                              handleSizeClick(size);
-                              handleSetAnotherVyshyvankaBySize(
-                                selectedProduct?.name,
-                                size
-                              );
-                            }}
-                            className={classNames("size__box", {
-                              "size__box--active": activeSize === size,
-                            })}
-                            key={size}
-                            aria-label={`Select ${size} size`}
-                          >
-                            <p
-                              className={classNames(
-                                "size__value",
-                                `size__value--${size}`,
-                                {
-                                  "size__value--active": activeSize === size,
-                                }
-                              )}
+                    <>         
+                      <div className="info__size size">
+                        {goToChoseSize && (
+                          <p className="info__name info__name--warn">Оберіть розмір, будь ласка</p>
+                        )}
+                        <p className="info__name">Розмір:</p>
+                        <div className="size__elements">
+                          {selectedProduct.sizesAvailable.map((size) => (
+                            <button
+                              type="button"
+                              onClick={() => {
+                                handleSizeClick(size);
+                                handleSetAnotherVyshyvankaBySize(
+                                  selectedProduct?.name,
+                                  size
+                                );
+                              }}
+                              className={classNames("size__box", {
+                                "size__box--active": activeSize === size,
+                              })}
+                              key={size}
+                              aria-label={`Select ${size} size`}
                             >
-                              {size}
-                            </p>
-                          </button>
-                        ))}
+                              <p
+                                className={classNames(
+                                  "size__value",
+                                  `size__value--${size}`,
+                                  {
+                                    "size__value--active": activeSize === size,
+                                  }
+                                )}
+                              >
+                                {size}
+                              </p>
+                            </button>
+                          ))}
+                        </div>
                       </div>
-                    </div>
+
+                      {activeSize && (
+                        <div>
+                          {selectedProduct.isAvailable ? (
+                        <p className="info__name info__name--available">В наявності</p>
+                        ) : (
+                        <p className="info__name info__name--preordered">Під замовлення</p>
+                      )}
+                        </div>
+                      )}
+                    </>
                   )}
 
                   <div className="description description--desktop">
@@ -349,6 +438,10 @@ export const ProductDetails: React.FC = () => {
                       onClick={() => {
                         handleAddToCart(selectedProduct);
                       }}
+                      disabled={
+                        (selectedProduct &&
+                        addedToCart(cartItems, selectedProduct.id))
+                      }
                     >
                       {`${selectedProduct && addedToCart(cartItems, selectedProduct.id) ? "Додано до кошика" : "Додати до кошика"}`}
                     </button>
@@ -412,8 +505,8 @@ export const ProductDetails: React.FC = () => {
                       handleAddToCart(selectedProduct);
                     }}
                     disabled={
-                      selectedProduct &&
-                      addedToCart(cartItems, selectedProduct.id)
+                      (selectedProduct &&
+                      addedToCart(cartItems, selectedProduct.id))
                     }
                   >
                     {`${selectedProduct && addedToCart(cartItems, selectedProduct.id) ? "Додано до кошика" : "Додати до кошика"}`}
@@ -431,17 +524,14 @@ export const ProductDetails: React.FC = () => {
       {!productDetailsLoading &&
         productNotFound &&
         selectedProduct === null && (
-          <div className="details__not-found">
-            Товар не знайдено
-          </div>
+          <div className="details__not-found">Товар не знайдено</div>
         )}
 
-      {!productDetailsLoading &&
-        productFetchError && (
-          <div className="details__not-found">
-            Сталася помилка, неможливо завантажити сторінку.
-          </div>
-        )}
+      {!productDetailsLoading && productFetchError && (
+        <div className="details__not-found">
+          Сталася помилка, неможливо завантажити сторінку.
+        </div>
+      )}
     </>
   );
 };

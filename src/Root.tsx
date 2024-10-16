@@ -20,6 +20,7 @@ import { BooksPage } from "./pages/BooksPage";
 import { CatalogPage } from "./pages/CatalogPage";
 import { OrderPage } from "./pages/OrderPage";
 import ScrollToTop from "./components/scrollToTop";
+import { BestsellersPage } from "./pages/BestsellerPage";
 
 export const Root = () => {
   return (
@@ -60,6 +61,8 @@ export const Root = () => {
                   element={<ProductDetailsPage />}
                 />
               </Route>
+
+              <Route path="/bestsellers" element={<BestsellersPage />} />
               <Route path="/favorites" element={<FavoritesPage />} />
               <Route path="/cart" element={<CartPage />} />
               <Route path="/order" element={<OrderPage />} />

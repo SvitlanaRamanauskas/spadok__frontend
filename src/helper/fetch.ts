@@ -29,7 +29,7 @@ export const createOrder = async({ buyerName, phoneNumber, orderedProducts }: Om
 
 export const fetchVyshyvanky = async() : Promise<Vyshyvanka[]> => {
     try {
-        const response = await fetch('/api/shop/embroideries/', { method: 'GET'});
+        const response = await fetch('../api/vyshyvanky.json', { method: 'GET'});
         if (!response.ok) {
             throw new Error(`${response.status} ${response.statusText}`);
         }
@@ -51,6 +51,30 @@ export const fetchBooks = async() : Promise<Book[]> => {
   }
 }
 
+export const getProductDetailsList = async (
+  productCategory: string,
+): Promise<VyshyvankaDetails[] | null> => {
+  try {
+    const response = await fetch(`./api/${productCategory}.json`, {
+      method: 'GET',
+    });
+
+    if (!response.ok) {
+      if (response.status === 404) {
+        return null;
+      }
+
+      throw new Error(`${response.status} ${response.statusText}`);
+    }
+
+    const productDetailsList = await response.json();
+
+    return productDetailsList || null;
+  } catch (error: any) {
+    throw new Error(`Error fetching product details: ${error.message}`);
+  }
+};
+
 export const getProductDetails = async (
     productId: string,
     productCategory: string,
@@ -70,7 +94,9 @@ export const getProductDetails = async (
   
       const productDetails = await response.json();
       const product = productDetails.find(
-        (prod: VyshyvankaDetails | BookDetails) => prod.id === productId,
+        (prod: VyshyvankaDetails | BookDetails) => {
+          return prod.id === productId;
+        }
       );
   
       return product || null;
@@ -98,6 +124,11 @@ export const fetchGirlsVyshyvanky = () => {
     return fetchVyshyvanky()
       .then(products => products.filter(product => product.category === 'girls'));
 }
+
+export const fetchBestsellers = () => {
+  return fetchVyshyvanky()
+    .then(products => products.filter(product => product.name === 'Сорочка "Дубки"'));
+} 
 
 export const includesQuery = (productsName: string | null, input: string) => {
   return productsName?.trim().toLowerCase().includes(input.trim().toLowerCase());

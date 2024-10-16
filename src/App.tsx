@@ -74,9 +74,9 @@ function App() {
               <img
                 src={require("./styles/icons/curve_line.svg").default}
                 className="
-                curve 
-                curve--top-right
-                curve--top-right--mobile-header"
+                  curve 
+                  curve--top-right
+                  curve--top-right--mobile-header"
                 alt="Logo"
               />
               <img

@@ -407,7 +407,6 @@
             grid-column: 6 / 9;
         }
     }
-
 }
 
 .bestseller {
@@ -507,7 +506,9 @@
                 grid-column: 1 / 5;
             }
             @include on-Desktop {
-                grid-column: 1 / 8;
+                padding-top: 100px;
+                grid-row: 4 / 5;
+                grid-column: 1 / 5;
             }
         }
     }

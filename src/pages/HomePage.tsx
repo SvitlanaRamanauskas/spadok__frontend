@@ -75,7 +75,7 @@ export const HomePage = () => {
           </p>
 
           <div className="home__open">
-            <Link to="/catalog" className="home__open-link">
+            <Link to="/bestsellers" className="home__open-link">
               <p className="home__open-text">Переглянути</p>
             </Link>
           </div>

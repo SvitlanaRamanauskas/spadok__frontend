@@ -1,69 +1,71 @@
 [
     {
-        "id": "waxs",
-        "name" : "Marichka",
+        "id": "Stefania-XS",
+        "name": "Сорочка жіноча \"Стефанія\"",
+        "category": "women",
+        "price": "5200",
+        "image": "img/womenVyshyvanky/Stefania27.jpg"
+    },
+    {
+        "id": "Marichka-XS",
+        "name" : "Сорочка жіноча \"Марічка\"",
+        "category": "women",
+        "price": "5100",
+        "image": "img/womenVyshyvanky/Marichka5.webp"
+    },
+    {
+        "id": "Solomia-XS",
+        "name" : "Сорочка жіноча \"Соломія\"",
         "category": "women",
         "size": "XS",
-        "price": "1000",
-        "image": "img/women_images/marichka.jpg"
+        "price": "6000",
+        "image": "img/womenVyshyvanky/Solomia1.webp"
     },
     {
-        "id": "was",
-        "name" : "Marichka",
+        "id": "Myrosia-XS",
+        "name" : "Сорочка жіноча \"Мирося\"",
         "category": "women",
-        "size": "S",
-        "price": "1000",
-        "image": "img/women_images/marichka.jpg"
+        "size": "XS",
+        "price": "5400",
+        "image": "img/womenVyshyvanky/Myrosia.webp"
     },
     {
-        "id": "wam",
-        "name" : "Marichka",
+        "id": "Agnelia-XS",
+        "name" : "Агнелія",
         "category": "women",
-        "size": "M",
-        "price": "1000",
-        "image": "img/women_images/marichka.jpg"
-    },
-    {
-        "id": "wal",
-        "name" : "Marichka",
-        "category": "women",
-        "size": "L",
-        "price": "1000",
-        "image": "img/women_images/marichka.jpg"
-    },
-    {
-        "id": "waxl",
-        "name" : "Marichka",
-        "category": "women",
-        "size": "XL",
-        "price": "1000",
-        "image": "img/women_images/marichka.jpg"
+        "size": "XS",
+        "price": "4900",
+        "image": "img/womenVyshyvanky/Agnelia1.webp"
     },
 
     {
-        "id": "wbxs",
-        "name" : "Myrosia",
+        "id": "Motria-XS",
+        "name" : "Мотря",
         "category": "women",
         "size": "XS",
-        "price": "1000",
-        "image": "img/women_images/Myrosia.jpeg"
+        "price": "3800",
+        "image": "img/womenVyshyvanky/Motria.webp"
     },
     {
-        "id": "wbs",
-        "name" : "Myrosia",
+        "id": "Malva-XS",
+        "name" : "Мальва",
         "category": "women",
-        "size": "S",
-        "price": "1000",
-        "image": "img/women_images/Myrosia.jpeg"
+        "size": "XS",
+        "price": "4500",
+        "image": "img/womenVyshyvanky/Malva1.webp"
     },
     {
-        "id": "wbm",
-        "name" : "Myrosia",
+        "id": "Nadia-XS",
+        "name" : "Надія",
         "category": "women",
-        "size": "M",
-        "price": "1000",
-        "image": "img/women_images/Myrosia.jpeg"
+        "size": "XS",
+        "price": "3900",
+        "image": "img/womenVyshyvanky/Nadia.webp"
     },
+
+
+
+
     {
         "id": "wbl",
         "name" : "Myrosia",

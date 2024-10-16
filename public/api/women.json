@@ -1,34 +1,495 @@
 [
   {
-    "id": "waxs",
-    "name": "Marichka",
+    "id": "Stefania-XS",
+    "name": "\"Стефанія\"",
     "size": "XS",
-    "sizesAvailable": ["XS", "S", "M"],
-    "images": ["img/women_images/marichka.jpg", "img/women_images/Zoriana.jpg", "img/women_images/Agnelia.jpg"],
-    "price": 1000,
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Stefania27.jpg","img/womenVyshyvanky/Stefania28.jpg", "img/womenVyshyvanky/Stefania29.jpg", "img/womenVyshyvanky/Stefania30.jpg", "img/womenVyshyvanky/Stefania31.jpg" ],
+    "price": 5200,
     "category": "women",
+    "isAvailable": true,
     "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - білий.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
   },
 
   {
-    "id": "was",
-    "name": "Marichka",
+    "id": "Stefania-S",
+    "name": "\"Стефанія\"",
     "size": "S",
-    "sizesAvailable": ["XS", "S", "M"],
-    "images": ["img/women_images/marichka.jpg", "img/women_images/Zoriana.jpg", "img/women_images/Agnelia.jpg"],
-    "price": 1000,
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Stefania27.jpg","img/womenVyshyvanky/Stefania28.jpg", "img/womenVyshyvanky/Stefania29.jpg", "img/womenVyshyvanky/Stefania30.jpg", "img/womenVyshyvanky/Stefania31.jpg" ],
+    "price": 5200,
     "category": "women",
+    "isAvailable": true,
     "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - білий.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
   },
 
   {
-    "id": "wam",
-    "name": "Marichka",
+    "id": "Stefania-M",
+    "name": "\"Стефанія\"",
     "size": "M",
-    "sizesAvailable": ["XS", "S", "M"],
-    "images": ["img/women_images/19281.png", "img/women_images/19304.png", "img/women_images/19305.png"],
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Stefania27.jpg","img/womenVyshyvanky/Stefania28.jpg", "img/womenVyshyvanky/Stefania29.jpg", "img/womenVyshyvanky/Stefania30.jpg", "img/womenVyshyvanky/Stefania31.jpg" ],
+    "price": 5200,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - білий.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Stefania-L",
+    "name": "\"Стефанія\"",
+    "size": "L",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Stefania27.jpg","img/womenVyshyvanky/Stefania28.jpg", "img/womenVyshyvanky/Stefania29.jpg", "img/womenVyshyvanky/Stefania30.jpg", "img/womenVyshyvanky/Stefania31.jpg" ],
+    "price": 5200,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - білий.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Stefania-XL",
+    "name": "\"Стефанія\"",
+    "size": "XL",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Stefania27.jpg","img/womenVyshyvanky/Stefania28.jpg", "img/womenVyshyvanky/Stefania29.jpg", "img/womenVyshyvanky/Stefania30.jpg", "img/womenVyshyvanky/Stefania31.jpg" ],
+    "price": 5200,
+    "category": "women",
+    "isAvailable": false,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - білий.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+
+
+
+
+  {
+    "id": "Marichka-XS",
+    "name": "Марічка",
+    "size": "XS",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Marichka1.webp","img/womenVyshyvanky/Marichka2.webp", "img/womenVyshyvanky/Marichka3.webp", "img/womenVyshyvanky/Marichka4.webp", "img/womenVyshyvanky/Marichka5.webp"],
     "price": 1000,
     "category": "women",
-    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - білий.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - чорний.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Marichka-S",
+    "name": "Марічка",
+    "size": "S",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Marichka1.webp","img/womenVyshyvanky/Marichka2.webp", "img/womenVyshyvanky/Marichka3.webp", "img/womenVyshyvanky/Marichka4.webp", "img/womenVyshyvanky/Marichka5.webp"],
+    "price": 1000,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - чорний.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+
+  {
+    "id": "Marichka-M",
+    "name": "Марічка",
+    "size": "M",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Marichka1.webp","img/womenVyshyvanky/Marichka2.webp", "img/womenVyshyvanky/Marichka3.webp", "img/womenVyshyvanky/Marichka4.webp", "img/womenVyshyvanky/Marichka5.webp"],
+    "price": 1000,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - чорний.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Marichka-L",
+    "name": "Марічка",
+    "size": "L",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Marichka1.webp","img/womenVyshyvanky/Marichka2.webp", "img/womenVyshyvanky/Marichka3.webp", "img/womenVyshyvanky/Marichka4.webp", "img/womenVyshyvanky/Marichka5.webp"],
+    "price": 1000,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - чорний.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Marichka-XL",
+    "name": "Марічка",
+    "size": "XL",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Marichka1.webp","img/womenVyshyvanky/Marichka2.webp", "img/womenVyshyvanky/Marichka3.webp", "img/womenVyshyvanky/Marichka4.webp", "img/womenVyshyvanky/Marichka5.webp"],
+    "price": 1000,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - чорний.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Solomia-XS",
+    "name": "Соломія",
+    "size": "XS",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Solomia1.webp","img/womenVyshyvanky/Solomia2.jpg", "img/womenVyshyvanky/Solomia3.webp", "img/womenVyshyvanky/Solomia4.webp", "img/womenVyshyvanky/Solomia5.webp"],
+    "price": 6000,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - чорний.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Solomia-S",
+    "name": "Соломія",
+    "size": "S",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Solomia1.webp","img/womenVyshyvanky/Solomia2.jpg", "img/womenVyshyvanky/Solomia3.webp", "img/womenVyshyvanky/Solomia4.webp", "img/womenVyshyvanky/Solomia5.webp"],
+    "price": 6000,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - чорний.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Solomia-M",
+    "name": "Соломія",
+    "size": "M",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Solomia1.webp","img/womenVyshyvanky/Solomia2.jpg", "img/womenVyshyvanky/Solomia3.webp", "img/womenVyshyvanky/Solomia4.webp", "img/womenVyshyvanky/Solomia5.webp"],
+    "price": 6000,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - чорний.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Solomia-L",
+    "name": "Соломія",
+    "size": "L",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Solomia1.webp","img/womenVyshyvanky/Solomia2.jpg", "img/womenVyshyvanky/Solomia3.webp", "img/womenVyshyvanky/Solomia4.webp", "img/womenVyshyvanky/Solomia5.webp"],
+    "price": 6000,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - чорний.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Solomia-XL",
+    "name": "Соломія",
+    "size": "XL",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Solomia1.webp","img/womenVyshyvanky/Solomia2.jpg", "img/womenVyshyvanky/Solomia3.webp", "img/womenVyshyvanky/Solomia4.webp", "img/womenVyshyvanky/Solomia5.webp"],
+    "price": 6000,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - чорний.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+
+
+
+  {
+    "id": "Myrosia-XS",
+    "name": "Мирося",
+    "size": "XS",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Myrosia.webp","img/womenVyshyvanky/Myrosia2.webp", "img/womenVyshyvanky/Myrosia3.jpg", "img/womenVyshyvanky/Myrosia4.webp", "img/womenVyshyvanky/Myrosia1.jpg"],
+    "price": 6000,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - чорний.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Myrosia-S",
+    "name": "Мирося",
+    "size": "S",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Myrosia.webp","img/womenVyshyvanky/Myrosia2.webp", "img/womenVyshyvanky/Myrosia3.jpg", "img/womenVyshyvanky/Myrosia4.webp", "img/womenVyshyvanky/Myrosia1.jpg"],
+    "price": 6000,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - чорний.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Myrosia-M",
+    "name": "Мирося",
+    "size": "M",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Myrosia.webp","img/womenVyshyvanky/Myrosia2.webp", "img/womenVyshyvanky/Myrosia3.jpg", "img/womenVyshyvanky/Myrosia4.webp", "img/womenVyshyvanky/Myrosia1.jpg"],
+    "price": 6000,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - чорний.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Myrosia-L",
+    "name": "Мирося",
+    "size": "L",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Myrosia.webp","img/womenVyshyvanky/Myrosia2.webp", "img/womenVyshyvanky/Myrosia3.jpg", "img/womenVyshyvanky/Myrosia4.webp", "img/womenVyshyvanky/Myrosia1.jpg"],
+    "price": 6000,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - чорний.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Myrosia-XL",
+    "name": "Мирося",
+    "size": "XL",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Myrosia.webp","img/womenVyshyvanky/Myrosia2.webp", "img/womenVyshyvanky/Myrosia3.jpg", "img/womenVyshyvanky/Myrosia4.webp", "img/womenVyshyvanky/Myrosia1.jpg"],
+    "price": 6000,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - чорний.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+
+
+  {
+    "id": "Agnelia-XS",
+    "name": "Агнелія",
+    "size": "XS",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Agnelia1.webp","img/womenVyshyvanky/Agnelia2.webp", "img/womenVyshyvanky/Agnelia3.webp", "img/womenVyshyvanky/Agnelia4.webp", "img/womenVyshyvanky/Agnelia5.webp"],
+    "price": 4900,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - чорний.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Agnelia-S",
+    "name": "Агнелія",
+    "size": "S",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Agnelia1.webp","img/womenVyshyvanky/Agnelia2.webp","img/womenVyshyvanky/Agnelia3.webp", "img/womenVyshyvanky/Agnelia4.webp", "img/womenVyshyvanky/Agnelia5.webp"],
+    "price": 4900,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - чорний.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Agnelia-M",
+    "name": "Агнелія",
+    "size": "M",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Agnelia1.webp","img/womenVyshyvanky/Agnelia2.webp", "img/womenVyshyvanky/Agnelia3.webp", "img/womenVyshyvanky/Agnelia4.webp", "img/womenVyshyvanky/Agnelia5.webp"],
+    "price": 4900,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - чорний.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Agnelia-L",
+    "name": "Агнелія",
+    "size": "L",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Agnelia1.webp","img/womenVyshyvanky/Agnelia2.webp", "img/womenVyshyvanky/Agnelia3.webp", "img/womenVyshyvanky/Agnelia4.webp", "img/womenVyshyvanky/Agnelia5.webp"],
+    "price": 4900,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - чорний.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Agnelia-XL",
+    "name": "Агнелія",
+    "size": "XL",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Agnelia1.webp","img/womenVyshyvanky/Agnelia2.webp", "img/womenVyshyvanky/Agnelia3.webp", "img/womenVyshyvanky/Agnelia4.webp", "img/womenVyshyvanky/Agnelia5.webp"],
+    "price": 4900,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - чорний.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+
+
+  {
+    "id": "Motria-XS",
+    "name": "Мотря",
+    "size": "XS",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Motria.webp","img/womenVyshyvanky/Motria1.webp", "img/womenVyshyvanky/Motria2.webp", "img/womenVyshyvanky/Motria3.webp", "img/womenVyshyvanky/Motria4.webp"],
+    "price": 3800,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - чорний.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Motria-S",
+    "name": "Мотря",
+    "size": "S",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Motria.webp","img/womenVyshyvanky/Motria1.webp", "img/womenVyshyvanky/Motria2.webp", "img/womenVyshyvanky/Motria3.webp", "img/womenVyshyvanky/Motria4.webp"],
+    "price": 3800,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - чорний.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Motria-M",
+    "name": "Мотря",
+    "size": "M",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Motria.webp","img/womenVyshyvanky/Motria1.webp", "img/womenVyshyvanky/Motria2.webp", "img/womenVyshyvanky/Motria3.webp", "img/womenVyshyvanky/Motria4.webp"],
+    "price": 3800,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - чорний.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Motria-L",
+    "name": "Мотря",
+    "size": "L",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Motria.webp","img/womenVyshyvanky/Motria1.webp", "img/womenVyshyvanky/Motria2.webp", "img/womenVyshyvanky/Motria3.webp", "img/womenVyshyvanky/Motria4.webp"],
+    "price": 3800,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - чорний.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Motria-XL",
+    "name": "Мотря",
+    "size": "XL",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Motria.webp","img/womenVyshyvanky/Motria1.webp", "img/womenVyshyvanky/Motria2.webp", "img/womenVyshyvanky/Motria3.webp", "img/womenVyshyvanky/Motria4.webp"],
+    "price": 3800,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - чорний.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+
+  {
+    "id": "Malva-XS",
+    "name": "Мальва",
+    "size": "XS",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Malva1.webp","img/womenVyshyvanky/Malva2.webp", "img/womenVyshyvanky/Malva3.webp", "img/womenVyshyvanky/Malva4.webp", "img/womenVyshyvanky/Malva5.webp"],
+    "price": 4500,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - чорний.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Malva-S",
+    "name": "Мальва",
+    "size": "S",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Malva1.webp","img/womenVyshyvanky/Malva2.webp", "img/womenVyshyvanky/Malva3.webp", "img/womenVyshyvanky/Malva4.webp", "img/womenVyshyvanky/Malva5.webp"],
+    "price": 4500,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - чорний.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Malva-M",
+    "name": "Мальва",
+    "size": "M",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Malva1.webp","img/womenVyshyvanky/Malva2.webp", "img/womenVyshyvanky/Malva3.webp", "img/womenVyshyvanky/Malva4.webp", "img/womenVyshyvanky/Malva5.webp"],
+    "price": 4500,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - чорний.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Malva-L",
+    "name": "Мальва",
+    "size": "L",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Malva1.webp","img/womenVyshyvanky/Malva2.webp", "img/womenVyshyvanky/Malva3.webp", "img/womenVyshyvanky/Malva4.webp", "img/womenVyshyvanky/Malva5.webp"],
+    "price": 4500,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - чорний.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Malva-XL",
+    "name": "Мальва",
+    "size": "XL",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Malva1.webp","img/womenVyshyvanky/Malva2.webp", "img/womenVyshyvanky/Malva3.webp", "img/womenVyshyvanky/Malva4.webp", "img/womenVyshyvanky/Malva5.webp"],
+    "price": 4500,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - чорний.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+
+  {
+    "id": "Nadia-XS",
+    "name": "Надія",
+    "size": "XS",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Nadia.webp","img/womenVyshyvanky/Nadia1.webp", "img/womenVyshyvanky/Nadia2.webp", "img/womenVyshyvanky/Nadia3.webp", "img/womenVyshyvanky/Nadia4.webp"],
+    "price": 3900,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - чорний.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Nadia-S",
+    "name": "Надія",
+    "size": "S",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Nadia.webp","img/womenVyshyvanky/Nadia1.webp", "img/womenVyshyvanky/Nadia2.webp", "img/womenVyshyvanky/Nadia3.webp", "img/womenVyshyvanky/Nadia4.webp"],
+    "price": 3900,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - чорний.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Nadia-M",
+    "name": "Надія",
+    "size": "M",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Nadia.webp","img/womenVyshyvanky/Nadia1.webp", "img/womenVyshyvanky/Nadia2.webp", "img/womenVyshyvanky/Nadia3.webp", "img/womenVyshyvanky/Nadia4.webp"],
+    "price": 3900,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - чорний.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Nadia-L",
+    "name": "Надія",
+    "size": "L",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Nadia.webp","img/womenVyshyvanky/Nadia1.webp", "img/womenVyshyvanky/Nadia2.webp", "img/womenVyshyvanky/Nadia3.webp", "img/womenVyshyvanky/Nadia4.webp"],
+    "price": 3900,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - чорний.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Nadia-XL",
+    "name": "Надія",
+    "size": "XL",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Nadia.webp","img/womenVyshyvanky/Nadia1.webp", "img/womenVyshyvanky/Nadia2.webp", "img/womenVyshyvanky/Nadia3.webp", "img/womenVyshyvanky/Nadia4.webp"],
+    "price": 3900,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - чорний.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
   }
 ]

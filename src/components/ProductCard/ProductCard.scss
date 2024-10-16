@@ -9,15 +9,22 @@
 
     &__photo-container {
         position: relative;
+        height: 400px;
+
+        @include on-Tablet {
+            height: 492px;
+        }
     }
     
     &__photo-link {
         display: block;
+        height: 100%;
     }
 
     &__image {
         width: 100%;
-        height: auto;
+        height: 100%;
+        object-fit: cover;
     }
 
     &__title-price {
