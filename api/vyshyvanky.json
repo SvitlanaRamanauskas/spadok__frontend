@@ -1,0 +1,411 @@
+[
+    {
+        "id": "Stefania-XS",
+        "name": "Сорочка жіноча \"Стефанія\"",
+        "category": "women",
+        "price": "5200",
+        "image": "img/womenVyshyvanky/Stefania27.jpg"
+    },
+    {
+        "id": "Marichka-XS",
+        "name" : "Сорочка жіноча \"Марічка\"",
+        "category": "women",
+        "price": "5100",
+        "image": "img/womenVyshyvanky/Marichka5.webp"
+    },
+    {
+        "id": "Solomia-XS",
+        "name" : "Сорочка жіноча \"Соломія\"",
+        "category": "women",
+        "size": "XS",
+        "price": "6000",
+        "image": "img/womenVyshyvanky/Solomia1.webp"
+    },
+    {
+        "id": "Myrosia-XS",
+        "name" : "Сорочка жіноча \"Мирося\"",
+        "category": "women",
+        "size": "XS",
+        "price": "5400",
+        "image": "img/womenVyshyvanky/Myrosia.webp"
+    },
+    {
+        "id": "Agnelia-XS",
+        "name" : "Агнелія",
+        "category": "women",
+        "size": "XS",
+        "price": "4900",
+        "image": "img/womenVyshyvanky/Agnelia1.webp"
+    },
+
+    {
+        "id": "Motria-XS",
+        "name" : "Мотря",
+        "category": "women",
+        "size": "XS",
+        "price": "3800",
+        "image": "img/womenVyshyvanky/Motria.webp"
+    },
+    {
+        "id": "Malva-XS",
+        "name" : "Мальва",
+        "category": "women",
+        "size": "XS",
+        "price": "4500",
+        "image": "img/womenVyshyvanky/Malva1.webp"
+    },
+    {
+        "id": "Nadia-XS",
+        "name" : "Надія",
+        "category": "women",
+        "size": "XS",
+        "price": "3900",
+        "image": "img/womenVyshyvanky/Nadia.webp"
+    },
+
+
+
+
+    {
+        "id": "wbl",
+        "name" : "Myrosia",
+        "category": "women",
+        "size": "L",
+        "price": "1000",
+        "image": "img/women_images/Myrosia.jpeg"
+    },
+    {
+        "id": "wbxl",
+        "name" : "Myrosia",
+        "category": "women",
+        "size": "XL",
+        "price": "1000",
+        "image": "img/women_images/Myrosia.jpeg"
+    },
+    
+    {
+        "id": "wcxs",
+        "name" : "Соломія",
+        "category": "women",
+        "size": "XS",
+        "price": "1000",
+        "image": "img/women_images/Solomia.jpeg"
+    },
+    {
+        "id": "wcs",
+        "name" : "Соломія",
+        "category": "women",
+        "size": "S",
+        "price": "1000",
+        "image": "img/women_images/Solomia.jpeg"
+    },
+    {
+        "id": "wcm",
+        "name" : "Соломія",
+        "category": "women",
+        "size": "M",
+        "price": "1000",
+        "image": "img/women_images/Solomia.jpeg"
+    },
+    {
+        "id": "wcl",
+        "name" : "Соломія",
+        "category": "women",
+        "size": "L",
+        "price": "1000",
+        "image": "img/women_images/Solomia.jpeg"
+    },
+    {
+        "id": "wcxl",
+        "name" : "Соломія",
+        "category": "women",
+        "size": "XL",
+        "price": "1000",
+        "image": "img/women_images/Solomia.jpeg"
+    },
+    {
+        "id": "wdxs",
+        "name" : "Агнелія",
+        "category": "women",
+        "size": "XS",
+        "price": "1000",
+        "image": "img/women_images/Agnelia.jpg"
+    },
+    {
+        "id": "wds",
+        "name" : "Агнелія",
+        "category": "women",
+        "size": "S",
+        "price": "1000",
+        "image": "img/women_images/Agnelia.jpg"
+    },
+    {
+        "id": "wdm",
+        "name" : "Агнелія",
+        "category": "women",
+        "size": "M",
+        "price": "1000",
+        "image": "img/women_images/Agnelia.jpg"
+    },
+    {
+        "id": "wdl",
+        "name" : "Агнелія",
+        "category": "women",
+        "size": "L",
+        "price": "1000",
+        "image": "img/women_images/Agnelia.jpg"
+    },
+    {
+        "id": "wdxl",
+        "name" : "Агнелія",
+        "category": "women",
+        "size": "XL",
+        "price": "1000",
+        "image": "img/women_images/Agnelia.jpg"
+    },
+
+    {
+        "id": "wexs",
+        "name" : "Зоряна",
+        "category": "women",
+        "size": "XS",
+        "price": "1000",
+        "image": "img/women_images/Zoriana.jpg"
+    },
+    {
+        "id": "wes",
+        "name" : "Зоряна",
+        "category": "women",
+        "size": "S",
+        "price": "1000",
+        "image": "img/women_images/Zoriana.jpg"
+    },
+    {
+        "id": "wem",
+        "name" : "Зоряна",
+        "category": "women",
+        "size": "M",
+        "price": "1000",
+        "image": "img/women_images/Zoriana.jpg"
+    },
+    {
+        "id": "wel",
+        "name" : "Зоряна",
+        "category": "women",
+        "size": "L",
+        "price": "1000",
+        "image": "img/women_images/Zoriana.jpg"
+    },
+    {
+        "id": "wexl",
+        "name" : "Зоряна",
+        "category": "women",
+        "size": "XL",
+        "price": "1000",
+        "image": "img/women_images/Zoriana.jpg"
+    },
+
+
+    {
+        "id": "maxs",
+        "name" : "Glib",
+        "category": "men",
+        "size": "XS",
+        "price": "1000",
+        "image": "img/women_images/Zoriana.jpg"
+    },
+    {
+        "id": "mas",
+        "name" : "Glib",
+        "category": "men",
+        "size": "S",
+        "price": "1000",
+        "image": "img/women_images/Zoriana.jpg"
+    },
+    {
+        "id": "mam",
+        "name" : "Glib",
+        "category": "men",
+        "size": "M",
+        "price": "1000"
+    },
+    {
+        "id": "mal",
+        "name" : "Glib",
+        "category": "men",
+        "size": "L",
+        "price": "1000",
+        "image": "img/women_images/Zoriana.jpg"
+    },
+    {
+        "id": "maxl",
+        "name" : "Glib",
+        "category": "men",
+        "size": "XL",
+        "price": "1000",
+        "image": "img/women_images/Zoriana.jpg"
+    },
+
+    {
+        "id": "mbxs",
+        "name" : "Myron",
+        "category": "men",
+        "size": "XS",
+        "price": "1000",
+        "image": "img/women_images/Zoriana.jpg"
+    },
+    {
+        "id": "mbs",
+        "name" : "Myron",
+        "category": "men",
+        "size": "S",
+        "price": "1000",
+        "image": "img/women_images/Zoriana.jpg"
+    },
+    {
+        "id": "mbm",
+        "name" : "Myron",
+        "category": "men",
+        "size": "M",
+        "price": "1000",
+        "image": "img/women_images/Zoriana.jpg"
+    },
+    {
+        "id": "mbl",
+        "name" : "Myron",
+        "category": "men",
+        "size": "L",
+        "price": "1000"
+    },
+    {
+        "id": "mbxl",
+        "name" : "Myron",
+        "category": "men",
+        "size": "XL",
+        "price": "1000",
+        "image": "img/women_images/Zoriana.jpg"
+    },
+    
+    {
+        "id": "mcxs",
+        "name" : "Bogdan",
+        "category": "men",
+        "size": "XS",
+        "price": "1000",
+        "image": "img/women_images/Zoriana.jpg"
+    },
+    {
+        "id": "mcs",
+        "name" : "Bogdan",
+        "category": "men",
+        "size": "S",
+        "price": "1000",
+        "image": "img/women_images/Zoriana.jpg"
+    },
+    {
+        "id": "mcm",
+        "name" : "Bogdan",
+        "category": "men",
+        "size": "M",
+        "price": "1000",
+        "image": "img/women_images/Zoriana.jpg"
+    },
+    {
+        "id": "mcl",
+        "name" : "Bogdan",
+        "category": "men",
+        "size": "L",
+        "price": "1000",
+        "image": "img/women_images/Zoriana.jpg"
+    },
+    {
+        "id": "mcxl",
+        "name" : "Bogdan",
+        "category": "men",
+        "size": "XL",
+        "price": "1000",
+        "image": "img/women_images/Zoriana.jpg"
+    },
+    {
+        "id": "mdxs",
+        "name" : "Омелян",
+        "category": "men",
+        "size": "XS",
+        "price": "1000",
+        "image": "img/women_images/Zoriana.jpg"
+    },
+    {
+        "id": "mds",
+        "name" : "Омелян",
+        "category": "men",
+        "size": "S",
+        "price": "1000",
+        "image": "img/women_images/Zoriana.jpg"
+    },
+    {
+        "id": "mdm",
+        "name" : "Омелян",
+        "category": "men",
+        "size": "M",
+        "price": "1000",
+        "image": "img/women_images/Zoriana.jpg"
+    },
+    {
+        "id": "mdl",
+        "name" : "Омелян",
+        "category": "men",
+        "size": "L",
+        "price": "1000",
+        "image": "img/women_images/Zoriana.jpg"
+    },
+    {
+        "id": "mdxl",
+        "name" : "Омелян",
+        "category": "men",
+        "size": "XL",
+        "price": "1000",
+        "image": "img/women_images/Zoriana.jpg"
+    },
+
+    {
+        "id": "mexs",
+        "name" : "Gnat",
+        "category": "men",
+        "size": "XS",
+        "price": "1000",
+        "image": "img/women_images/Zoriana.jpg"
+    },
+    {
+        "id": "mes",
+        "name" : "Gnat",
+        "category": "men",
+        "size": "S",
+        "price": "1000",
+        "image": "img/women_images/Zoriana.jpg"
+    },
+    {
+        "id": "mem",
+        "name" : "Gnat",
+        "category": "men",
+        "size": "M",
+        "price": "1000",
+        "image": "img/women_images/Zoriana.jpg"
+    },
+    {
+        "id": "mel",
+        "name" : "Gnat",
+        "category": "men",
+        "size": "L",
+        "price": "1000",
+        "image": "img/women_images/Zoriana.jpg"
+    },
+    {
+        "id": "mexl",
+        "name" : "Gnat",
+        "category": "men",
+        "size": "XL",
+        "price": "1000",
+        "image": "img/women_images/Zoriana.jpg"
+    }
+]
+
