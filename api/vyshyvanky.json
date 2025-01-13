@@ -401,11 +401,11 @@
     },
     {
         "id": "mexl",
-        "name" : "Gnat",
-        "category": "men",
-        "size": "XL",
+        "name" : "Сорочка \"Дубки\"",
+        "category": "boys",
+        "size": "XS",
         "price": "1000",
-        "image": "img/women_images/Zoriana.jpg"
+        "image": "img/boys_images/dubki/02.jpg"
     }
 ]
 
