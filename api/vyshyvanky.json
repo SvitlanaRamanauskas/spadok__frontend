@@ -405,7 +405,7 @@
         "category": "boys",
         "size": "XS",
         "price": "1000",
-        "image": "./img/boys_images/dubki/02.jpg"
+        "image": "img/boys_images/dubki/02.jpg"
     }
 ]
 
