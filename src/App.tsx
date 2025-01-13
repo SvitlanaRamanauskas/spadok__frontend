@@ -26,7 +26,7 @@ export const handleNavigation = (section: any) => {
       delay: 0,
       smooth: "easeInOutQuart",
     });
-  }, 100); // Delay to ensure the page is loaded
+  }, 1000); // Delay to ensure the page is loaded
 };
 
 function App() {

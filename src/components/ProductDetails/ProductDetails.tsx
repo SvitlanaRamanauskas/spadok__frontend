@@ -1,8 +1,15 @@
 import classNames from "classnames";
 import cn from "classnames";
+import '../../styles/Heart.scss';
 import { ImageModal } from "../ImageModal";
 import { VyshyvankaDetails } from "../../types/VyshyvankaDetails";
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { AppContext } from "../appContext";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { getProductDetails, getProductDetailsList } from "../../helper/fetch";
@@ -23,11 +30,12 @@ import { CartItem } from "../../types/CartItem";
 import { Loader } from "../Loader";
 import { BookDetails } from "../../types/BookDetails";
 
-
 export const ProductDetails: React.FC = () => {
   const { selectedProduct, setSelectedProduct } = useContext(AppContext);
   const [activeSize, setActiveSize] = useState("");
-  const [productDetailsList, setProductDetailsList] = useState<VyshyvankaDetails[] | []>([]);
+  const [productDetailsList, setProductDetailsList] = useState<
+    VyshyvankaDetails[] | []
+  >([]);
   const [goToChoseSize, setGoToChoseSize] = useState(false);
 
   const [currentImage, setCurrentImage] = useState(selectedProduct?.images[0]);
@@ -45,27 +53,28 @@ export const ProductDetails: React.FC = () => {
   const favoritesItems = useAppSelector(favoritesSelector);
   const dispatch = useAppDispatch();
 
-  const { pathname } = useLocation()
-
   const sizesRef = useRef<HTMLDivElement | null>(null);
 
   const handleAddToCart = (product: VyshyvankaDetails | BookDetails) => {
-    if(!activeSize && sizesRef.current) {
-      sizesRef.current.scrollIntoView({ behavior: "smooth"});
-      // alert('Будь ласка, оберіть розмір перед додаванням товару в кошик');
+    if (!activeSize && sizesRef.current) {
+      sizesRef.current.scrollIntoView({ behavior: "smooth" });
       setGoToChoseSize(true);
-    } else (
-      dispatch(addItemToCart(product))
-    )
+    } else dispatch(addItemToCart(product));
   };
 
-  const addedToFavorites = (itemsInFavorites: FavoritesItem[], id: string) => {
-    return itemsInFavorites.some((item) => item.item.id === id);
-  };
+  const addedToFavorites = useCallback(
+    (itemsInFavorites: FavoritesItem[], id: string) => {
+      return itemsInFavorites.some((item) => item.item.id === id);
+    },
+    []
+  );
 
-  const addedToCart = (cartItemsAdded: CartItem[], itemId: string) => {
-    return cartItemsAdded.some((itemInCart) => itemInCart.item.id === itemId);
-  };
+  const addedToCart = useCallback(
+    (cartItemsAdded: CartItem[], itemId: string) => {
+      return cartItemsAdded.some((itemInCart) => itemInCart.item.id === itemId);
+    },
+    []
+  );
 
   const handleAddToFavorites = (product: VyshyvankaDetails | BookDetails) => {
     if (addedToFavorites(favoritesItems, product.id)) {
@@ -83,11 +92,9 @@ export const ProductDetails: React.FC = () => {
 
   const navigate = useNavigate();
 
-
   const goBack = () => {
-
     const lastIndexOfSlash = location.pathname.lastIndexOf("/");
-    const newPath = location.pathname.slice(0, lastIndexOfSlash)
+    const newPath = location.pathname.slice(0, lastIndexOfSlash);
     navigate(newPath);
   };
 
@@ -104,10 +111,6 @@ export const ProductDetails: React.FC = () => {
       .then((productData) => {
         if (productData !== null) {
           setSelectedProduct(productData);
-
-          // if ("size" in productData) {
-          //   setActiveSize(productData.size);
-          // }
 
           setCurrentImage(
             productData.images.length > 0 ? productData.images[0] : ""
@@ -131,9 +134,7 @@ export const ProductDetails: React.FC = () => {
         setProductDetailsLoading(false);
       });
 
-
-
-      getProductDetailsList(category)
+    getProductDetailsList(category)
       .then((data) => {
         if (data !== null) {
           setProductDetailsList(data);
@@ -141,9 +142,8 @@ export const ProductDetails: React.FC = () => {
       })
       .catch((error) => {
         console.error("Error fetching product details:", error);
-      })
-  }, [productId]);
-
+      });
+  }, []);
 
   //#region Modal
 
@@ -204,7 +204,7 @@ export const ProductDetails: React.FC = () => {
               );
 
               navigate(
-                `/catalog/${anotherSizeProd?.category}/${anotherSizeProd?.id}`,
+                `/catalog/${anotherSizeProd?.category}/${anotherSizeProd?.id}`
               );
             } else {
               setProductNotFound(true);
@@ -227,7 +227,7 @@ export const ProductDetails: React.FC = () => {
     }
   };
 
-  console.log(pathname)
+  console.log(productId);
 
   return (
     <>
@@ -235,15 +235,15 @@ export const ProductDetails: React.FC = () => {
         !productNotFound &&
         selectedProduct !== null && (
           <div className="details">
-                  {isModalOpen && selectedProduct && (
-        <ImageModal
-          images={selectedProduct.images}
-          currentImageIndex={currentImageIndex}
-          onClose={handleCloseModal}
-          handleNext={handleNextImage}
-          handlePrevious={handlePreviousImage}
-        />
-      )}
+            {isModalOpen && (
+              <ImageModal
+                images={selectedProduct.images}
+                currentImageIndex={currentImageIndex}
+                onClose={handleCloseModal}
+                handleNext={handleNextImage}
+                handlePrevious={handlePreviousImage}
+              />
+            )}
             <div className="details__container">
               <div className="details__img-inf-wrapper">
                 <div className="details__images-wrapper">
@@ -259,21 +259,32 @@ export const ProductDetails: React.FC = () => {
 
                     <button
                       type="button"
-                      className={classNames("details__icon-bg", {
+                      className={classNames("heart__icon-bg", "details__icon-bg", {
                         "details__icon-bg--active":
                           selectedProduct &&
                           addedToFavorites(favoritesItems, selectedProduct?.id),
                       })}
                       onClick={() => handleAddToFavorites(selectedProduct)}
                     >
-                      <img
-                        src={
-                          require("../../styles/icons/Favourites-Heart-Like.svg")
-                            .default
-                        }
-                        alt=""
-                        className="details__icon details__icon--favorites"
-                      />
+                      {addedToFavorites(favoritesItems, selectedProduct?.id) ? (
+                        <img
+                          src={
+                            require("../../styles/icons/red_heart_icon.svg")
+                              .default
+                          }
+                          alt=""
+                          className="heart__icon details__icon"
+                        />
+                      ) : (
+                        <img
+                          src={
+                            require("../../styles/icons/Favourites-Heart-Like.svg")
+                              .default
+                          }
+                          alt=""
+                          className="heart__icon details__icon"
+                        />
+                      )}
                     </button>
                   </div>
 
@@ -325,10 +336,12 @@ export const ProductDetails: React.FC = () => {
                   </p>
 
                   {"size" in selectedProduct && (
-                    <>         
+                    <>
                       <div className="info__size size">
                         {goToChoseSize && (
-                          <p className="info__name info__name--warn">Оберіть розмір, будь ласка</p>
+                          <p className="info__name info__name--warn">
+                            Оберіть розмір, будь ласка
+                          </p>
                         )}
                         <p className="info__name">Розмір:</p>
                         <div className="size__elements">
@@ -367,10 +380,14 @@ export const ProductDetails: React.FC = () => {
                       {activeSize && (
                         <div>
                           {selectedProduct.isAvailable ? (
-                        <p className="info__name info__name--available">В наявності</p>
-                        ) : (
-                        <p className="info__name info__name--preordered">Під замовлення</p>
-                      )}
+                            <p className="info__name info__name--available">
+                              В наявності
+                            </p>
+                          ) : (
+                            <p className="info__name info__name--preordered">
+                              Під замовлення
+                            </p>
+                          )}
                         </div>
                       )}
                     </>
@@ -439,8 +456,8 @@ export const ProductDetails: React.FC = () => {
                         handleAddToCart(selectedProduct);
                       }}
                       disabled={
-                        (selectedProduct &&
-                        addedToCart(cartItems, selectedProduct.id))
+                        selectedProduct &&
+                        addedToCart(cartItems, selectedProduct.id)
                       }
                     >
                       {`${selectedProduct && addedToCart(cartItems, selectedProduct.id) ? "Додано до кошика" : "Додати до кошика"}`}
@@ -505,8 +522,8 @@ export const ProductDetails: React.FC = () => {
                       handleAddToCart(selectedProduct);
                     }}
                     disabled={
-                      (selectedProduct &&
-                      addedToCart(cartItems, selectedProduct.id))
+                      selectedProduct &&
+                      addedToCart(cartItems, selectedProduct.id)
                     }
                   >
                     {`${selectedProduct && addedToCart(cartItems, selectedProduct.id) ? "Додано до кошика" : "Додати до кошика"}`}

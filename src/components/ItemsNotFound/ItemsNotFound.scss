@@ -1,0 +1,62 @@
+@import '../../styles/utils/mixins';
+@import '../../styles/utils/variables';
+
+.no-items {
+    @include pageMinHeight;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-image: url(../../../public/img/showl.png);
+
+
+    &__title {
+        font-family: 'lev_type';
+        font-weight: 700;
+        font-size: 22px;
+        background-color: rgb(230, 226, 205, 0.5);
+        color: $forest-color;
+        padding: 5px;
+
+        @include on-Tablet {
+            padding: 10px;
+            font-size: 28px;
+        }
+
+        @include on-Desktop {
+            font-size: 34px;
+        }
+    }
+
+
+    &__button {
+        height: 40px;
+        width: 30%;
+        margin-top: 20px;
+        background-color: rgb(230, 226, 205, 0.8);
+    }
+
+    &__link {
+        color: $forest-color;
+        font-family: 'poppins';
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-decoration: none;
+        font-size: 10px;
+
+        @include on-Tablet {
+            font-size: 14px;
+        }
+
+        @include on-Desktop {
+            font-size: 16px;
+        }
+    }
+
+}

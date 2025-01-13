@@ -11,7 +11,7 @@ export const Catalog = () => {
             <div className="catalog__category-wrapper">
               <img
                 className="catalog__image"
-                src="/img/women_images/Solomia.jpeg"
+                src="/img/women_images/cat.webp"
                 alt="for_women"
               />
               <p className="catalog__category-title">жінкам</p>
@@ -25,7 +25,7 @@ export const Catalog = () => {
             <div className="catalog__category-wrapper">
               <img
                 className="catalog__image"
-                src="/img/women_images/Solomia.jpeg"
+                src="/img/menVyshyvanky/1.webp"
                 alt="for_men"
               />
               <p className="catalog__category-title">чоловикам</p>
@@ -39,7 +39,7 @@ export const Catalog = () => {
             <div className="catalog__category-wrapper">
               <img
                 className="catalog__image"
-                src="/img/women_images/Solomia.jpeg"
+                src="/img/agnesha2.jpg"
                 alt="for_girls"
               />
               <p className="catalog__category-title">дівчатам</p>
@@ -53,7 +53,7 @@ export const Catalog = () => {
             <div className="catalog__category-wrapper">
               <img
                 className="catalog__image"
-                src="/img/women_images/Solomia.jpeg"
+                src="/img/50.png"
                 alt="for_boys"
               />
               <p className="catalog__category-title">хлопчикам</p>
@@ -67,7 +67,7 @@ export const Catalog = () => {
             <div className="catalog__category-wrapper">
               <img
                 className="catalog__image"
-                src="/img/women_images/Solomia.jpeg"
+                src="/img/books/Bizhu.jpeg"
                 alt="books"
               />
               <p className="catalog__category-title">книги</p>

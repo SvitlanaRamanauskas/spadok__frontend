@@ -29,7 +29,7 @@ export const createOrder = async({ buyerName, phoneNumber, orderedProducts }: Om
 
 export const fetchVyshyvanky = async() : Promise<Vyshyvanka[]> => {
     try {
-        const response = await fetch('../api/vyshyvanky.json', { method: 'GET'});
+        const response = await fetch('/api/shop/embroideries/', { method: 'GET'});
         if (!response.ok) {
             throw new Error(`${response.status} ${response.statusText}`);
         }
@@ -107,22 +107,22 @@ export const getProductDetails = async (
 
 export const fetchFemaleVyshyvanky = () => {
     return fetchVyshyvanky()
-      .then(products => products.filter(product => product.category === 'women'));
+      .then(products => products.filter(product => product.category === 'FEMALE'));
 } 
 
 export const fetchMaleVyshyvanky = () => {
     return fetchVyshyvanky()
-      .then(products => products.filter(product => product.category === 'men'));
+      .then(products => products.filter(product => product.category === 'MALE'));
 } 
 
 export const fetchBoysVyshyvanky = () => {
     return fetchVyshyvanky()
-      .then(products => products.filter(product => product.category === 'boys'));
+      .then(products => products.filter(product => product.category === 'BOY'));
 } 
 
 export const fetchGirlsVyshyvanky = () => {
     return fetchVyshyvanky()
-      .then(products => products.filter(product => product.category === 'girls'));
+      .then(products => products.filter(product => product.category === 'GIRL'));
 }
 
 export const fetchBestsellers = () => {

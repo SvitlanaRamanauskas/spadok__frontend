@@ -13,7 +13,6 @@
     }
   
     @include on-Desktop {
-      grid-template-columns: repeat(3, 1fr);
       margin: 0 auto;
       margin-bottom: 100px;
     }
@@ -64,5 +63,6 @@
       height: 100%;
       object-position: top;
       object-fit: cover;
+      object-position: center;
     }
   }

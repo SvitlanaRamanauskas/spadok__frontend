@@ -73,29 +73,3 @@
         }
     }
 }
-
-.heart {
-    &__icon-bg {
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 50px;
-        width: 50px;
-        border-radius: 50%;
-        background-color: #f0f8ff;
-        opacity: 0.7;
-        z-index: 10;
-        top: 10px;
-        right: 10px;
-
-        &--active {
-          background-color: #b3b7b8;
-        }
-    }
-
-    &__icon {
-        height: 25px;
-        width: 25px;
-    }
-}

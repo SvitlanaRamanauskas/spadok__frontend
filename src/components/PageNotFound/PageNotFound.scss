@@ -1,0 +1,115 @@
+@import '../../styles/utils/mixins';
+@import '../../styles/utils/variables';
+
+.not-found {
+    @include pageMinHeight;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+
+    &__left {
+        height: 100%;
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        &-image {
+            height: 250px;
+            width: 200px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: top;
+            background-image: url(../../../public/img/notfound.png);
+
+            @include on-Tablet {
+                height: 300px;
+                width: 250px;
+            }
+
+            @include on-Desktop {
+                height: 300px;
+                width: 300px;
+            }
+        }
+    }
+
+    &__right {
+        height: 100%;
+        width: 50%;
+    }
+
+    &__title {
+        font-family: 'lev_type';
+        font-weight: 700;
+        font-size: 32px;
+
+        @include on-Tablet {
+            font-size: 56px;
+        }
+
+        @include on-Desktop {
+            font-size: 68px;
+        }
+    }
+
+    
+    &__sub-title {
+        font-family: 'lev_type';
+        font-weight: 700;
+        font-size: 12px;
+
+        @include on-Tablet {
+            font-size: 16px;
+        }
+
+        @include on-Desktop {
+            font-size: 18px;
+        }
+    }
+
+    &__text {
+        font-family: 'poppins';
+        padding-top: 10px;
+        font-size: 10px;
+
+        @include on-Tablet {
+            font-size: 14px;
+        }
+
+        @include on-Desktop {
+            font-size: 16px;
+        }
+    }
+
+    &__button {
+        height: 40px;
+        width: 100%;
+        margin-top: 20px;
+        background-color: #334232;
+
+        @include on-Tablet {
+            width: 50%;
+        }
+        
+    }
+
+    &__link {
+        color: $bg-color;
+        font-family: 'poppins';
+        letter-spacing: 1px;
+        text-decoration: none;
+        font-size: 10px;
+
+        @include on-Tablet {
+            font-size: 14px;
+        }
+
+        @include on-Desktop {
+            font-size: 16px;
+        }
+    }
+
+}

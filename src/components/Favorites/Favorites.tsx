@@ -1,5 +1,5 @@
 import "./Favorites.scss";
-import classNames from "classnames";
+import "../../styles/Heart.scss";
 import {
   favoritesSelector,
   removeItemFromFavorites,

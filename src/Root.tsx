@@ -21,6 +21,7 @@ import { CatalogPage } from "./pages/CatalogPage";
 import { OrderPage } from "./pages/OrderPage";
 import ScrollToTop from "./components/scrollToTop";
 import { BestsellersPage } from "./pages/BestsellerPage";
+import { NotFoundPage } from "./pages/NotFoundPage";
 
 export const Root = () => {
   return (
@@ -66,8 +67,8 @@ export const Root = () => {
               <Route path="/favorites" element={<FavoritesPage />} />
               <Route path="/cart" element={<CartPage />} />
               <Route path="/order" element={<OrderPage />} />
-{/* 
-              <Route path="*" element={<NotFoundPage /> }/> */}
+
+              <Route path="*" element={<NotFoundPage /> }/>
             </Route>
           </Routes>
         </Router>
