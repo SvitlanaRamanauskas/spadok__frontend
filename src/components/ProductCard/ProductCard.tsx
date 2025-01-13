@@ -20,7 +20,7 @@ export const ProductCard: React.FC<Props> = ({ item, vyshyvankyFromServer }) => 
           state={{ vyshyvankyFromServer }}
         >
           <img
-            src={`${item.image}`}
+            src={`${process.env.PUBLIC_URL}${item.image}`}
             alt="productCard"
             className="card__image"
           />
