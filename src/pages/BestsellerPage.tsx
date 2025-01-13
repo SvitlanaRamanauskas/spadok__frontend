@@ -24,7 +24,6 @@ export const BestsellersPage = () => {
     
     return  (
         <div>
-
             {bestsellersLoading && <Loader />}
 
             <List items={bestsellers} />

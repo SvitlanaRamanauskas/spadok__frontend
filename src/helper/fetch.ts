@@ -29,7 +29,7 @@ export const createOrder = async({ buyerName, phoneNumber, orderedProducts }: Om
 
 export const fetchVyshyvanky = async() : Promise<Vyshyvanka[]> => {
     try {
-        const response = await fetch('/api/shop/embroideries/', { method: 'GET'});
+        const response = await fetch('api/vyshyvanky.json', { method: 'GET'});
         if (!response.ok) {
             throw new Error(`${response.status} ${response.statusText}`);
         }
@@ -41,7 +41,7 @@ export const fetchVyshyvanky = async() : Promise<Vyshyvanka[]> => {
 
 export const fetchBooks = async() : Promise<Book[]> => {
   try {
-      const response = await fetch('/api/shop/books/', { method: 'GET'});
+      const response = await fetch('api/books.json', { method: 'GET'});
       if (!response.ok) {
           throw new Error(`${response.status} ${response.statusText}`);
       }
@@ -107,27 +107,27 @@ export const getProductDetails = async (
 
 export const fetchFemaleVyshyvanky = () => {
     return fetchVyshyvanky()
-      .then(products => products.filter(product => product.category === 'FEMALE'));
+      .then(products => products.filter(product => product.category === 'women'));
 } 
 
 export const fetchMaleVyshyvanky = () => {
     return fetchVyshyvanky()
-      .then(products => products.filter(product => product.category === 'MALE'));
+      .then(products => products.filter(product => product.category === 'men'));
 } 
 
 export const fetchBoysVyshyvanky = () => {
     return fetchVyshyvanky()
-      .then(products => products.filter(product => product.category === 'BOY'));
+      .then(products => products.filter(product => product.category === 'boy'));
 } 
 
 export const fetchGirlsVyshyvanky = () => {
     return fetchVyshyvanky()
-      .then(products => products.filter(product => product.category === 'GIRL'));
+      .then(products => products.filter(product => product.category === 'girl'));
 }
 
 export const fetchBestsellers = () => {
   return fetchVyshyvanky()
-    .then(products => products.filter(product => product.name === 'Сорочка "Дубки"'));
+    .then(products => products.filter(product => product.name === "Сорочка \"Дубки\""));
 } 
 
 export const includesQuery = (productsName: string | null, input: string) => {

@@ -1,4 +1,5 @@
 {
+  "homepage": ".",
   "name": "spadok__frontend",
   "version": "0.1.0",
   "private": true,
@@ -29,7 +30,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "proxy": "http://127.0.0.1:8000",
   "eslintConfig": {
@@ -62,6 +65,7 @@
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-testing-library": "^6.3.0",
+    "gh-pages": "^6.3.0",
     "prettier": "^3.3.3",
     "sass": "^1.77.8",
     "typescript": "^4.9.5"

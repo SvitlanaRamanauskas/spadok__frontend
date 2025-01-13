@@ -12,7 +12,7 @@ export const BoysPage = () => {
         setBoyProductsLoading(true);
         setTimeout(()=> {
             fetchBoysVyshyvanky()
-            .then(femaleProducts => setBoyVyshyvanky(femaleProducts))
+            .then(products => setBoyVyshyvanky(products))
             .catch(error => {
                 throw new Error('Error fetching boy`s vyshyvanky:', error);
               }
