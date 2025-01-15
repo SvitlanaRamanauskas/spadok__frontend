@@ -1,42 +1,29 @@
 [
     {
-        "id": "faaa",
+        "id": "bizhu",
         "title" : "Біжу аби бігти",
         "genre": "novel",
         "price": "350",
-        "image": "img/women_images/marichka.jpg"
+        "image": "img/books/Bizhu/аоко.jpg",
+        "category": "books"
     },
 
     {
-        "id": "wadfvfvxs",
-        "title" : "книга 2",
+        "id": "charokryl",
+        "title" : "Чарокрил",
         "genre": "novel",
         "price": "300",
-        "image": "img/women_images/marichka.jpg"
+        "image": "img/books/Charokryl/IMG_20240809_162949_883.png",
+        "category": "books"
     },
 
     {
-        "id": "ervsrv",
-        "title" : "книга 3",
+        "id": "VochikuvaniRizdva",
+        "title" : "В очікуванні Різдва",
         "genre": "novel",
         "price": "250",
-        "image": "img/women_images/marichka.jpg"
-    },
-
-    {
-        "id": "rvrbvrb",
-        "title" : "книга 4",
-        "genre": "novel",
-        "price": "200",
-        "image": "img/women_images/marichka.jpg"
-    },
-
-    {
-        "id": "rggbbrbg",
-        "title" : "книга 5",
-        "genre": "novel",
-        "price": "300",
-        "image": "img/women_images/marichka.jpg"
+        "image": "img/books/VochikuvaniRizdva/IMG_20240904_083605_096.jpg",
+        "category": "books"
     }
 ]
 

@@ -3,6 +3,11 @@
 
 .favorites {
     @include pageMinHeight;
+    &__empty {
+        font-family: "lev_type";
+        letter-spacing: 3px;
+        text-align: center;
+    }
 
     &__title {
         font-family: "inter";
@@ -23,6 +28,7 @@
         display: grid;
         gap: 16px;
         border-top: 1px solid $choco;
+        border-bottom: 1px solid $choco;
         padding-block: 36px;
         margin-bottom: 50px;
 
@@ -36,8 +42,14 @@
             gap: 24px;
             max-width: $max-content-width;
             margin-bottom: 100px;
-        
         }
+    }
+
+    &__cover {
+        border-top: 1px solid $choco;
+        border-bottom: 1px solid $choco;
+        position: relative;
+        padding-block: 20px;
     }
 
     &__card {
@@ -70,6 +82,49 @@
 
         @include on-Desktop {
             font-size: 22px;
+        }
+    }
+
+    &__bottom {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        margin-top: 30px;
+        width: 100%;
+        max-width: 100%;
+        text-align: center;
+        margin-bottom: 30px;
+        
+        @include on-Tablet {
+            // height: 300px;
+            gap: 10px;
+        }
+    }
+
+    &__button {
+        text-decoration: none;
+        line-height: 56px;
+        margin-top: 33px;
+        width: 100%;
+
+        @include on-Tablet {
+            width: 50%;
+            align-self: center;
+        }
+
+        @include on-Desktop {
+            width: 30%;
+        }
+
+        &--start-purchases {
+            background-color: $choco;
+            color: $white;
+            transition: transform 0.5s ease, color 0.5s ease;
+
+            &:hover {
+              transform: scale(1.1);
+              color: $bg-color;
+            }
         }
     }
 }

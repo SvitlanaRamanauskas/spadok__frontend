@@ -1,10 +1,17 @@
 [
     {
+        "id": "Julia-XS",
+        "name": "Сорочка жіноча \"Юлія\"",
+        "category": "women",
+        "price": "5200",
+        "image": "img/womenVyshyvanky/Julia.jpg"
+    },
+    {
         "id": "Stefania-XS",
         "name": "Сорочка жіноча \"Стефанія\"",
         "category": "women",
         "price": "5200",
-        "image": "img/womenVyshyvanky/Stefania27.jpg"
+        "image": "img/womenVyshyvanky/Stefania/IMG_0887.JPG"
     },
     {
         "id": "Marichka-XS",
@@ -62,7 +69,6 @@
         "price": "3900",
         "image": "img/womenVyshyvanky/Nadia.webp"
     },
-
 
 
 
@@ -392,20 +398,48 @@
         "image": "img/women_images/Zoriana.jpg"
     },
     {
-        "id": "mel",
-        "name" : "Gnat",
-        "category": "men",
-        "size": "L",
-        "price": "1000",
-        "image": "img/women_images/Zoriana.jpg"
+        "id": "Slava-XS",
+        "name" : "Сорочка \"Слава\"",
+        "category": "boys",
+        "size": "XS",
+        "price": "2400",
+        "image": "img/boys_images/Slava/41.jpg"
     },
     {
-        "id": "mexl",
+        "id": "Kashtan-XS",
+        "name" : "Сорочка \"Каштан\"",
+        "category": "boys",
+        "size": "XS",
+        "price": "2400",
+        "image": "img/boys_images/Kashtan/37.jpg"
+    },
+    {
+        "id": "Dubki-XS",
         "name" : "Сорочка \"Дубки\"",
         "category": "boys",
         "size": "XS",
         "price": "1000",
         "image": "img/boys_images/Dubki/02.jpg"
+    },
+
+
+
+    
+    {
+        "id": "Kvitoslava-XS",
+        "name" : "Сорочка \"Квітослава лілова\"",
+        "category": "girls",
+        "size": "XS",
+        "price": "2000",
+        "image": "img/girls_images/Kvitoslava_purple/09.jpg"
+    },
+    {
+        "id": "Kvitoslava2-XS",
+        "name" : "Сорочка \"Квітослава Рожева\"",
+        "category": "girls",
+        "size": "XS",
+        "price": "2000",
+        "image": "img/girls_images/Kvitoslava_pink/16.jpg"
     }
 ]
 

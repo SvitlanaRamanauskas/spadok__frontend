@@ -4,4 +4,5 @@ export type Book = {
     genre: string;
     price: number;
     image: string;
+    category: string;
 };

@@ -10,12 +10,15 @@ export type Props = {
 
 export const ProductCard: React.FC<Props> = ({ item, vyshyvankyFromServer }) => {
   const nameOrTitle = "name" in item ? item.name : item.title;
+  const url = window.location.href;
+  const categoryAsLastWordInURL = url.split('/').pop();
+  console.log(categoryAsLastWordInURL);
 
   return (
     <div className="card">
       <div className="card__photo-container">
         <Link
-          to={`/catalog/women/${item.id}`}
+          to={`/catalog/${categoryAsLastWordInURL}/${item.id}`}
           className="card__photo-link"
           state={{ vyshyvankyFromServer }}
         >

@@ -120,12 +120,12 @@ export const fetchMaleVyshyvanky = () => {
 
 export const fetchBoysVyshyvanky = () => {
     return fetchVyshyvanky()
-      .then(products => products.filter(product => product.category === 'boy'));
+      .then(products => products.filter(product => product.category === 'boys'));
 } 
 
 export const fetchGirlsVyshyvanky = () => {
     return fetchVyshyvanky()
-      .then(products => products.filter(product => product.category === 'girl'));
+      .then(products => products.filter(product => product.category === 'girls'));
 }
 
 export const fetchBestsellers = () => {
