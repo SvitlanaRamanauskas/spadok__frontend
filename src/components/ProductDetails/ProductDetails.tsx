@@ -38,7 +38,7 @@ export const ProductDetails: React.FC = () => {
   >([]);
   const [goToChoseSize, setGoToChoseSize] = useState(false);
 
-  const [currentImage, setCurrentImage] = useState(selectedProduct?.images[0]);
+  const [currentImage, setCurrentImage] = useState(`${process.env.PUBLIC_URL}/${selectedProduct?.images[0]}`);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState<null | number>(
     null
@@ -113,7 +113,7 @@ export const ProductDetails: React.FC = () => {
           setSelectedProduct(productData);
 
           setCurrentImage(
-            productData.images.length > 0 ? productData.images[0] : ""
+            productData.images.length > 0 ? `${process.env.PUBLIC_URL}/${productData.images[0]}` : ""
           );
         } else {
           setProductNotFound(true);
@@ -148,7 +148,7 @@ export const ProductDetails: React.FC = () => {
   //#region Modal
 
   const handleImageClick = (clickedImage: string, index: number) => {
-    setCurrentImage(clickedImage);
+    setCurrentImage(`${process.env.PUBLIC_URL}/${clickedImage}`);
     setCurrentImageIndex(index);
     setIsModalOpen(true);
   };
@@ -200,7 +200,7 @@ export const ProductDetails: React.FC = () => {
               setSelectedProduct(prodData);
 
               setCurrentImage(
-                prodData.images.length > 0 ? prodData.images[0] : ""
+                prodData.images.length > 0 ? `${process.env.PUBLIC_URL}/${prodData.images[0]}` : ""
               );
 
               navigate(
@@ -250,10 +250,10 @@ export const ProductDetails: React.FC = () => {
                   <div className="details__main-image-container">
                     <div className="details__main-image">
                       <img
-                        src={currentImage}
+                        src={`${currentImage}`}
                         alt="product"
                         className="details__picture"
-                        onClick={() => handleImageClick(currentImage!, 0)}
+                        onClick={() => handleImageClick(`${currentImage!}`, 0)}
                       />
                     </div>
 
@@ -302,7 +302,7 @@ export const ProductDetails: React.FC = () => {
                       key={image}
                     >
                       <img
-                        src={selectedProduct.images[index]}
+                        src={`${process.env.PUBLIC_URL}/${selectedProduct.images[index]}`}
                         alt={`item ${index}`}
                         className="details__picture"
                       />

@@ -1,3 +1,28 @@
+# Nash_spadok React+TypeScript project
+
+This is an e-commerce application for an online embroyderies store for an entrepreneur with the frontend part implemented.
+
+* [DEMO](https://svitlanaramanauskas.github.io/spadok__frontend)
+
+## Overview
+The project is built using the following technologies:
+- **React**: Core library for building the user interface.
+- **TypeScript**: Provides static type checking for JavaScript code.
+- **SCSS**: Preprocessor for writing CSS with additional features.
+- **BEM**: A clear naming convention for CSS classes, making the codebase more consistent.
+- **Redux**: A state management library used in this project to ensure consistent actions and state handling, particularly for the Cart component.
+
+## Features
+- **Responsive Design**: Optimized for different screen sizes and devices, responses on width 320px, 640px, 1200px.
+- **Navigation** `react-router-dom` library is used in the application to enable navigation between multiple pages, and URL-based search parameters saved when navigating.
+- **Favorites & Cart**: adding products to favorites or shopping cart, with total price calculation.
+- **Product Filtering**: Filter products by capacity and color inside product card.
+- **Sorting**: Sort products based on criterias: to higher price, to lower price, alphabeticaly.
+- **Search**: Filter products using query parameters.
+- **Sticky Header**: Keeps the header visible while you scroll.
+- **Scroll to Top Button**: Easily return to the top of the page.
+- **Loader**: Indicates loading status for a better user experience.
+
 # Running the Project Locally
 
 To run this project locally, follow these steps:

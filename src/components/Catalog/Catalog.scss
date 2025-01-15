@@ -50,11 +50,14 @@
       }
   
       &-title {
-        color: $brown;
-
+        color: #fff;
+        text-transform: uppercase;
         position: absolute;
+        padding-inline: 5px;
         top: 50%;
         left: 10px;
+        font-size: 60px;
+        background-color: rgb(230, 226, 205, 0.5);
       }
     }
   

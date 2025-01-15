@@ -56,7 +56,7 @@ export const ImageModal: React.FC<Props> = ({
 
       <div className="image-modal__content">
         <img
-          src={images[currentImageIndex]}
+          src={`${process.env.PUBLIC_URL}/${images[currentImageIndex]}`}
           alt="fullscreen"
           className="image-modal__img"
         />

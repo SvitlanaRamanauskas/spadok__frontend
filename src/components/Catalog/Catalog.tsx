@@ -11,10 +11,12 @@ export const Catalog = () => {
             <div className="catalog__category-wrapper">
               <img
                 className="catalog__image"
-                src="/img/women_images/cat.webp"
+                src={`${process.env.PUBLIC_URL}/img/women_images/cat.webp`}
                 alt="for_women"
               />
-              <p className="catalog__category-title">жінкам</p>
+              <div className="catalog__category-mask">
+                <p className="catalog__category-title">жінкам</p>
+              </div>
             </div>
           </Link>
           
@@ -25,10 +27,10 @@ export const Catalog = () => {
             <div className="catalog__category-wrapper">
               <img
                 className="catalog__image"
-                src="/img/menVyshyvanky/1.webp"
+                src={`${process.env.PUBLIC_URL}/img/menVyshyvanky/1.webp`}
                 alt="for_men"
               />
-              <p className="catalog__category-title">чоловикам</p>
+              <p className="catalog__category-title">чоловікам</p>
             </div>
           </Link>
 
@@ -39,7 +41,7 @@ export const Catalog = () => {
             <div className="catalog__category-wrapper">
               <img
                 className="catalog__image"
-                src="/img/agnesha2.jpg"
+                src={`${process.env.PUBLIC_URL}/img/agnesha2.jpg`}
                 alt="for_girls"
               />
               <p className="catalog__category-title">дівчатам</p>
@@ -53,7 +55,7 @@ export const Catalog = () => {
             <div className="catalog__category-wrapper">
               <img
                 className="catalog__image"
-                src="/img/50.png"
+                src={`${process.env.PUBLIC_URL}/img/50.png`}
                 alt="for_boys"
               />
               <p className="catalog__category-title">хлопчикам</p>
@@ -67,7 +69,7 @@ export const Catalog = () => {
             <div className="catalog__category-wrapper">
               <img
                 className="catalog__image"
-                src="/img/books/Bizhu.jpeg"
+                src={`${process.env.PUBLIC_URL}/img/books/Bizhu.jpeg`}
                 alt="books"
               />
               <p className="catalog__category-title">книги</p>

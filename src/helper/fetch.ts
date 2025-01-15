@@ -4,6 +4,8 @@ import { Order } from "../types/Order";
 import { Vyshyvanka } from "../types/Vyshyvanka";
 import { VyshyvankaDetails } from "../types/VyshyvankaDetails";
 
+const baseUrl = process.env.PUBLIC_URL || "";
+
 export const createOrder = async({ buyerName, phoneNumber, orderedProducts }: Omit<Order, "orderId">) => {
   try {
     const response = await fetch('./api/orders', { 
@@ -29,8 +31,9 @@ export const createOrder = async({ buyerName, phoneNumber, orderedProducts }: Om
 
 export const fetchVyshyvanky = async() : Promise<Vyshyvanka[]> => {
     try {
-        const response = await fetch('api/vyshyvanky.json', { method: 'GET'});
+        const response = await fetch(`${baseUrl}/api/vyshyvanky.json`, { method: 'GET'});
         if (!response.ok) {
+          console.error(`Failed to fetch: ${response.status} ${response.statusText}`);
             throw new Error(`${response.status} ${response.statusText}`);
         }
         return await response.json();
@@ -41,7 +44,7 @@ export const fetchVyshyvanky = async() : Promise<Vyshyvanka[]> => {
 
 export const fetchBooks = async() : Promise<Book[]> => {
   try {
-      const response = await fetch('api/books.json', { method: 'GET'});
+      const response = await fetch(`${baseUrl}/api/books.json`, { method: 'GET'});
       if (!response.ok) {
           throw new Error(`${response.status} ${response.statusText}`);
       }
@@ -55,7 +58,7 @@ export const getProductDetailsList = async (
   productCategory: string,
 ): Promise<VyshyvankaDetails[] | null> => {
   try {
-    const response = await fetch(`./api/${productCategory}.json`, {
+    const response = await fetch(`${baseUrl}/api/${productCategory}.json`, {
       method: 'GET',
     });
 
@@ -80,7 +83,7 @@ export const getProductDetails = async (
     productCategory: string,
   ): Promise<VyshyvankaDetails | BookDetails | null> => {
     try {
-      const response = await fetch(`./api/${productCategory}.json`, {
+      const response = await fetch(`${baseUrl}/api/${productCategory}.json`, {
         method: 'GET',
       });
   

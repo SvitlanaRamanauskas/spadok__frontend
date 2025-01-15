@@ -32,7 +32,7 @@ export const WomenPage = () => {
     <div>
       {femaleProductsLoading ? (
         <Loader />
-      ) : femaleVyshyvanky.length === 0 ? (
+      ) : femaleVyshyvanky.length === 0 && !femaleProductsLoading ? (
         <ItemsNotFound />
       ) : (<List items={femaleVyshyvanky} />)
       }  
