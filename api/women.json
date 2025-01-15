@@ -1,10 +1,73 @@
 [
   {
+    "id": "Julia-XS",
+    "name": "Сорочка \"Юлія\"",
+    "size": "XS",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Julia.jpg","img/womenVyshyvanky/Julia1.jpg", "img/womenVyshyvanky/Julia2.jpg", "img/womenVyshyvanky/Julia3.jpg", "img/womenVyshyvanky/Julia4.jpg" ],
+    "price": 5200,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - білий.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Julia-S",
+    "name": "Сорочка \"Юлія\"",
+    "size": "S",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Julia.jpg","img/womenVyshyvanky/Julia1.jpg", "img/womenVyshyvanky/Julia2.jpg", "img/womenVyshyvanky/Julia3.jpg", "img/womenVyshyvanky/Julia4.jpg" ],
+    "price": 5200,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - білий.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Julia-M",
+    "name": "Сорочка \"Юлія\"",
+    "size": "M",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Julia.jpg","img/womenVyshyvanky/Julia1.jpg", "img/womenVyshyvanky/Julia2.jpg", "img/womenVyshyvanky/Julia3.jpg", "img/womenVyshyvanky/Julia4.jpg" ],
+    "price": 5200,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - білий.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Julia-L",
+    "name": "Сорочка \"Юлія\"",
+    "size": "L",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Julia.jpg","img/womenVyshyvanky/Julia1.jpg", "img/womenVyshyvanky/Julia2.jpg", "img/womenVyshyvanky/Julia3.jpg", "img/womenVyshyvanky/Julia4.jpg" ],
+    "price": 5200,
+    "category": "women",
+    "isAvailable": true,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - білий.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Julia-XL",
+    "name": "Сорочка \"Юлія\"",
+    "size": "XL",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/womenVyshyvanky/Julia.jpg","img/womenVyshyvanky/Julia1.jpg", "img/womenVyshyvanky/Julia2.jpg", "img/womenVyshyvanky/Julia3.jpg", "img/womenVyshyvanky/Julia4.jpg" ],
+    "price": 5200,
+    "category": "women",
+    "isAvailable": false,
+    "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - білий.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+
+
+
+  {
     "id": "Stefania-XS",
     "name": "\"Стефанія\"",
     "size": "XS",
     "sizesAvailable": ["XS", "S", "M", "L", "XL"],
-    "images": ["img/womenVyshyvanky/Stefania27.jpg","img/womenVyshyvanky/Stefania28.jpg", "img/womenVyshyvanky/Stefania29.jpg", "img/womenVyshyvanky/Stefania30.jpg", "img/womenVyshyvanky/Stefania31.jpg" ],
+    "images": ["img/womenVyshyvanky/Stefania/IMG_0887.JPG","img/womenVyshyvanky/Stefania/IMG_9930.JPG", "img/womenVyshyvanky/Stefania/IMG_0903.JPG", "img/womenVyshyvanky/Stefania/IMG_9931.JPG", "img/womenVyshyvanky/Stefania/IMG_9933.JPG" ],
     "price": 5200,
     "category": "women",
     "isAvailable": true,
@@ -16,7 +79,7 @@
     "name": "\"Стефанія\"",
     "size": "S",
     "sizesAvailable": ["XS", "S", "M", "L", "XL"],
-    "images": ["img/womenVyshyvanky/Stefania27.jpg","img/womenVyshyvanky/Stefania28.jpg", "img/womenVyshyvanky/Stefania29.jpg", "img/womenVyshyvanky/Stefania30.jpg", "img/womenVyshyvanky/Stefania31.jpg" ],
+    "images": ["img/womenVyshyvanky/Stefania/IMG_0887.JPG","img/womenVyshyvanky/Stefania/IMG_9930.JPG", "img/womenVyshyvanky/Stefania/IMG_0903.JPG", "img/womenVyshyvanky/Stefania/IMG_9931.JPG", "img/womenVyshyvanky/Stefania/IMG_9933.JPG" ],
     "price": 5200,
     "category": "women",
     "isAvailable": true,
@@ -28,7 +91,7 @@
     "name": "\"Стефанія\"",
     "size": "M",
     "sizesAvailable": ["XS", "S", "M", "L", "XL"],
-    "images": ["img/womenVyshyvanky/Stefania27.jpg","img/womenVyshyvanky/Stefania28.jpg", "img/womenVyshyvanky/Stefania29.jpg", "img/womenVyshyvanky/Stefania30.jpg", "img/womenVyshyvanky/Stefania31.jpg" ],
+    "images": ["img/womenVyshyvanky/Stefania/IMG_0887.JPG","img/womenVyshyvanky/Stefania/IMG_9930.JPG", "img/womenVyshyvanky/Stefania/IMG_0903.JPG", "img/womenVyshyvanky/Stefania/IMG_9931.JPG", "img/womenVyshyvanky/Stefania/IMG_9933.JPG" ],
     "price": 5200,
     "category": "women",
     "isAvailable": true,
@@ -40,7 +103,7 @@
     "name": "\"Стефанія\"",
     "size": "L",
     "sizesAvailable": ["XS", "S", "M", "L", "XL"],
-    "images": ["img/womenVyshyvanky/Stefania27.jpg","img/womenVyshyvanky/Stefania28.jpg", "img/womenVyshyvanky/Stefania29.jpg", "img/womenVyshyvanky/Stefania30.jpg", "img/womenVyshyvanky/Stefania31.jpg" ],
+    "images": ["img/womenVyshyvanky/Stefania/IMG_0887.JPG","img/womenVyshyvanky/Stefania/IMG_9930.JPG", "img/womenVyshyvanky/Stefania/IMG_0903.JPG", "img/womenVyshyvanky/Stefania/IMG_9931.JPG", "img/womenVyshyvanky/Stefania/IMG_9933.JPG" ],
     "price": 5200,
     "category": "women",
     "isAvailable": true,
@@ -52,7 +115,7 @@
     "name": "\"Стефанія\"",
     "size": "XL",
     "sizesAvailable": ["XS", "S", "M", "L", "XL"],
-    "images": ["img/womenVyshyvanky/Stefania27.jpg","img/womenVyshyvanky/Stefania28.jpg", "img/womenVyshyvanky/Stefania29.jpg", "img/womenVyshyvanky/Stefania30.jpg", "img/womenVyshyvanky/Stefania31.jpg" ],
+    "images": ["img/womenVyshyvanky/Stefania/IMG_0887.JPG","img/womenVyshyvanky/Stefania/IMG_9930.JPG", "img/womenVyshyvanky/Stefania/IMG_0903.JPG", "img/womenVyshyvanky/Stefania/IMG_9931.JPG", "img/womenVyshyvanky/Stefania/IMG_9933.JPG" ],
     "price": 5200,
     "category": "women",
     "isAvailable": false,

@@ -1,0 +1,93 @@
+[
+  {
+    "id": "Kvitoslava-XS",
+    "name": "Сорочка \"Квітослава Лілова\"",
+    "size": "110-116",
+    "sizesAvailable": ["110-116", "S", "M", "L", "XL"],
+    "images": ["img/girls_images/Kvitoslava_purple/08.jpg","img/girls_images/Kvitoslava_purple/09.jpg", "img/girls_images/Kvitoslava_purple/10.jpg", "img/girls_images/Kvitoslava_purple/11.jpg", "img/girls_images/Kvitoslava_purple/12.jpg" ],
+    "price": 3000,
+    "category": "girls",
+    "isAvailable": true,
+    "description": "Взір на рукавах та уставка виконані технікою Коса рахункова гладь.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - лфловий.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина оброблена та зібрана у дрібну збижечку.\nПазушний розріз - прикрашений двома китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Kvitoslava-S",
+    "name": "Сорочка \"Квітослава лілова\"",
+    "size": "S",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/girls_images/Kvitoslava_purple/08.jpg","img/girls_images/Kvitoslava_purple/09.jpg", "img/girls_images/Kvitoslava_purple/10.jpg", "img/girls_images/Kvitoslava_purple/11.jpg", "img/girls_images/Kvitoslava_purple/12.jpg" ],
+    "price": 3000,
+    "category": "girls",
+    "isAvailable": true,
+    "description": "Взір на рукавах та уставка виконані технікою Коса рахункова гладь.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - лфловий.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина оброблена та зібрана у дрібну збижечку.\nПазушний розріз - прикрашений двома китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Kvitoslava-M",
+    "name": "Сорочка \"Квітослава лілова\"",
+    "size": "M",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/girls_images/Kvitoslava_purple/08.jpg","img/girls_images/Kvitoslava_purple/09.jpg", "img/girls_images/Kvitoslava_purple/10.jpg", "img/girls_images/Kvitoslava_purple/11.jpg", "img/girls_images/Kvitoslava_purple/12.jpg" ],
+    "price": 3000,
+    "category": "girls",
+    "isAvailable": true,
+    "description": "Взір на рукавах та уставка виконані технікою Коса рахункова гладь.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - лфловий.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина оброблена та зібрана у дрібну збижечку.\nПазушний розріз - прикрашений двома китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+
+  {
+    "id": "Kvitoslava-L",
+    "name": "Сорочка \"Квітослава лілова\"",
+    "size": "L",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/girls_images/Kvitoslava_purple/08.jpg","img/girls_images/Kvitoslava_purple/09.jpg", "img/girls_images/Kvitoslava_purple/10.jpg", "img/girls_images/Kvitoslava_purple/11.jpg", "img/girls_images/Kvitoslava_purple/12.jpg" ],
+    "price": 3000,
+    "category": "girls",
+    "isAvailable": true,
+    "description": "Взір на рукавах та уставка виконані технікою Коса рахункова гладь.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - лфловий.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина оброблена та зібрана у дрібну збижечку.\nПазушний розріз - прикрашений двома китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+  {
+    "id": "Kvitoslava2-XS",
+    "name": "Сорочка \"Квітослава Рожева\"",
+    "size": "XS",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/girls_images/Kvitoslava_pink/15.jpg","img/girls_images/Kvitoslava_pink/16.jpg", "img/girls_images/Kvitoslava_pink/17.jpg", "img/girls_images/Kvitoslava_pink/18.jpg", "img/girls_images/Kvitoslava_pink/19.jpg" ],
+    "price": 3000,
+    "category": "girls",
+    "isAvailable": true,
+    "description": "Взір на рукавах та уставка виконані технікою Коса рахункова гладь.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - лфловий.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина оброблена та зібрана у дрібну збижечку.\nПазушний розріз - прикрашений двома китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+  {
+    "id": "Kvitoslava2-S",
+    "name": "Сорочка \"Квітослава Рожева\"",
+    "size": "S",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/girls_images/Kvitoslava_pink/15.jpg","img/girls_images/Kvitoslava_pink/16.jpg", "img/girls_images/Kvitoslava_pink/17.jpg", "img/girls_images/Kvitoslava_pink/18.jpg", "img/girls_images/Kvitoslava_pink/19.jpg" ],
+    "price": 3000,
+    "category": "girls",
+    "isAvailable": true,
+    "description": "Взір на рукавах та уставка виконані технікою Коса рахункова гладь.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - лфловий.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина оброблена та зібрана у дрібну збижечку.\nПазушний розріз - прикрашений двома китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+  {
+    "id": "Kvitoslava2-M",
+    "name": "Сорочка \"Квітослава Рожева\"",
+    "size": "M",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/girls_images/Kvitoslava_pink/15.jpg","img/girls_images/Kvitoslava_pink/16.jpg", "img/girls_images/Kvitoslava_pink/17.jpg", "img/girls_images/Kvitoslava_pink/18.jpg", "img/girls_images/Kvitoslava_pink/19.jpg" ],
+    "price": 3000,
+    "category": "girls",
+    "isAvailable": true,
+    "description": "Взір на рукавах та уставка виконані технікою Коса рахункова гладь.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - лфловий.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина оброблена та зібрана у дрібну збижечку.\nПазушний розріз - прикрашений двома китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  },
+  {
+    "id": "Kvitoslava2-L",
+    "name": "Сорочка \"Квітослава Рожева\"",
+    "size": "L",
+    "sizesAvailable": ["XS", "S", "M", "L", "XL"],
+    "images": ["img/girls_images/Kvitoslava_pink/15.jpg","img/girls_images/Kvitoslava_pink/16.jpg", "img/girls_images/Kvitoslava_pink/17.jpg", "img/girls_images/Kvitoslava_pink/18.jpg", "img/girls_images/Kvitoslava_pink/19.jpg" ],
+    "price": 3000,
+    "category": "girls",
+    "isAvailable": true,
+    "description": "Взір на рукавах та уставка виконані технікою Коса рахункова гладь.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - лфловий.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина оброблена та зібрана у дрібну збижечку.\nПазушний розріз - прикрашений двома китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
+  }
+]
