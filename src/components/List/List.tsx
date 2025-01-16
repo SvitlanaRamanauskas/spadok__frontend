@@ -60,7 +60,7 @@ export const List: React.FC<Props> = ({ items }) => {
           {visibleItemsCountMobile < items.length && (
             <div className="list__button-wrapper">
                 <button className="list__button button" onClick={handleShowMoreClick}>
-                  Show more
+                  Більше товарів
                 </button>
             </div>
           )}
@@ -76,7 +76,7 @@ export const List: React.FC<Props> = ({ items }) => {
           {visibleItemsCountDesktop < items.length && (
             <div className="list__button-wrapper">
                 <button className="list__button button" onClick={handleShowMoreClick}>
-                  Show more
+                  Більше товарів
                 </button>
             </div>
           )}

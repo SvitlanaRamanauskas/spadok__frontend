@@ -37,7 +37,7 @@ const dispatch = useAppDispatch();
   //#region Modal
 
   const handleImageClick = (clickedImage: string, index: number) => {
-    setCurrentImage(`${process.env.PUBLIC_URL}/${clickedImage}`);
+    setCurrentImage(clickedImage);
     setCurrentImageIndex(index);
     setIsModalOpen(true);
   };
@@ -83,7 +83,7 @@ const dispatch = useAppDispatch();
               src={`${mainImage}`}
               alt="product"
               className="details__picture"
-              onClick={() => handleImageClick(`${mainImage!}`, 0)}
+              onClick={() => handleImageClick(mainImage!, 0)}
             />
           </div>
           <button

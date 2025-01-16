@@ -56,7 +56,7 @@ export const Cart = () => {
                   <li key={item.id} className="cart__item item">
                     <Link to={`/catalog/${item.item.category}/${item.item.id}`} className="item__image-wrap">
                       <img
-                        src={item.item.images[0]}
+                        src={`${process.env.PUBLIC_URL}/${item.item.images[0]}`}
                         alt=""
                         className="item__image"
                       />
