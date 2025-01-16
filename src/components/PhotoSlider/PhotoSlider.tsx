@@ -44,7 +44,7 @@ export const PhotoSlider = () => {
       <ul className="slider__images">
         {images.map((image, index) => (
           <li className={`slider__image ${visibleImages.includes(index) ? 'slider__image--visible' : 'slider__image--hidden'}`} key={image.url}>
-            <img src={image.url} alt="pict" className="slider__image-img" />
+            <img src={`${process.env.PUBLIC_URL}/${image.url}`} alt="pict" className="slider__image-img" />
           </li>
         ))}
       </ul>
