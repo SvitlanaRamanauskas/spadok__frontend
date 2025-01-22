@@ -1,13 +1,13 @@
 import classNames from "classnames";
-import "../../styles/Heart.scss";
+import "../../../styles/Heart.scss";
 import { useContext, useState } from "react";
-import { AppContext } from "../appContext";
+import { AppContext } from "../../appContext";
 import { ImageModal } from "../ImageModal";
-import { VyshyvankaDetails } from "../../types/VyshyvankaDetails";
-import { BookDetails } from "../../types/BookDetails";
-import { addedToFavorites } from "../../helper/productUtils";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { addItemToFavorites, favoritesSelector, removeItemFromFavorites } from "../../redux/cart/reducerFavorites";
+import { VyshyvankaDetails } from "../../../types/VyshyvankaDetails";
+import { BookDetails } from "../../../types/BookDetails";
+import { addedToFavorites } from "../../../helper/productUtils";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { addItemToFavorites, favoritesSelector, removeItemFromFavorites } from "../../../redux/cart/reducerFavorites";
 
 type Props = {
   mainImage: string;
@@ -97,14 +97,14 @@ const dispatch = useAppDispatch();
           >
             {addedToFavorites(favoritesItems, selectedProduct?.id) ? (
               <img
-                src={require("../../styles/icons/red_heart_icon.svg").default}
+                src={require("../../../styles/icons/red_heart_icon.svg").default}
                 alt=""
                 className="heart__icon details__icon"
               />
             ) : (
               <img
                 src={
-                  require("../../styles/icons/Favourites-Heart-Like.svg")
+                  require("../../../styles/icons/Favourites-Heart-Like.svg")
                     .default
                 }
                 alt=""

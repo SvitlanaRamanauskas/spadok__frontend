@@ -3,6 +3,7 @@ import { CartItem } from "../types/CartItem";
 import { VyshyvankaDetails } from "../types/VyshyvankaDetails";
 import { BookDetails } from "../types/BookDetails";
 
+
 export const addedToFavorites = (itemsInFavorites: FavoritesItem[], id: string) => {
     return itemsInFavorites.some((item) => item.item.id === id);
 };
@@ -20,3 +21,7 @@ export const selectedProductNameOrTitle = (
         : selectedProduct?.title;
     }
   };
+
+  export function isVyshyvanka(product: VyshyvankaDetails | BookDetails): product is VyshyvankaDetails {
+    return 'size' in product;
+  }

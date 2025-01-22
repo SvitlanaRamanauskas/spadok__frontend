@@ -4,13 +4,11 @@ import '../../styles/Heart.scss';
 import { VyshyvankaDetails } from "../../types/VyshyvankaDetails";
 import React, {
   useContext,
-  useEffect,
   useRef,
   useState,
 } from "react";
 import { AppContext } from "../appContext";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { getProductDetails, getProductDetailsList } from "../../helper/fetch";
 import "./ProductDetails.scss";
 import "../../styles/button.scss";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
@@ -22,43 +20,34 @@ import {
 
 import { Loader } from "../Loader";
 import { BookDetails } from "../../types/BookDetails";
-import { DetailsImages } from "../DetailsImages";
+import { DetailsImages } from "./DetailsImages";
 import { addedToCart, selectedProductNameOrTitle } from "../../helper/productUtils";
+import { Sizes } from "./Sizes";
+import { useProductDetails } from "../../helper/hooks/useProductDetails";
 
 export const ProductDetails: React.FC = () => {
-  const { selectedProduct, setSelectedProduct } = useContext(AppContext);
-  const [activeSize, setActiveSize] = useState("");
-  const [productDetailsList, setProductDetailsList] = useState<
-    VyshyvankaDetails[] | []
-  >([]);
-  const [goToChoseSize, setGoToChoseSize] = useState(false);
+  const { productId } = useParams<{ productId?: string }>();
+  const location = useLocation();
+
+  const { selectedProduct } = useContext(AppContext);
+  const categoryPath = location.pathname.split("/")[2];
+
+  const { productDetailsLoading, setProductDetailsLoading,  productNotFound, productFetchError, productDetailsList } = useProductDetails(
+    productId!,
+    categoryPath,
+  );
 
   const [currentImage, setCurrentImage] = useState(`${process.env.PUBLIC_URL}/${selectedProduct?.images[0]}`);
-
-
-  const [productDetailsLoading, setProductDetailsLoading] = useState(false);
-  const [productNotFound, setProductNotFound] = useState(false);
-  const [productFetchError, setProductFetchError] = useState(false);
   const [selectedChapter, setSelectedChapter] = useState("characteristics");
 
   const cartItems = useAppSelector(cartSelector);
-
   const dispatch = useAppDispatch();
 
   const sizesRef = useRef<HTMLDivElement | null>(null);
 
   const handleAddToCart = (product: VyshyvankaDetails | BookDetails) => {
-    if (!activeSize && sizesRef.current) {
-      sizesRef.current.scrollIntoView({ behavior: "smooth" });
-      setGoToChoseSize(true);
-    } else dispatch(addItemToCart(product));
+    dispatch(addItemToCart(product));
   };
-
-  const location = useLocation();
-  const pathArr = location.pathname.split("/");
-  const category = pathArr[2];
-
-  const { productId } = useParams<{ productId?: string }>();
 
   const navigate = useNavigate();
 
@@ -68,96 +57,7 @@ export const ProductDetails: React.FC = () => {
     navigate(newPath);
   };
 
-  useEffect(() => {
-    if (!productId) {
-      return;
-    }
-
-    setProductNotFound(false);
-    setProductFetchError(false);
-    setProductDetailsLoading(true);
-
-    getProductDetails(productId, category)
-      .then((productData) => {
-        if (productData !== null) {
-          setSelectedProduct(productData);
-
-          setCurrentImage(
-            productData.images.length > 0 ? `${process.env.PUBLIC_URL}/${productData.images[0]}` : ""
-          );
-        } else {
-          setProductNotFound(true);
-          setTimeout(() => {
-            navigate("..");
-          }, 5000);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching product details:", error);
-
-        setProductFetchError(true);
-        setTimeout(() => {
-          navigate("..");
-        }, 5000);
-      })
-      .finally(() => {
-        setProductDetailsLoading(false);
-      });
-
-    getProductDetailsList(category)
-      .then((data) => {
-        if (data !== null) {
-          setProductDetailsList(data);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching product details:", error);
-      });
-  }, []);
-
-
-  const handleSizeClick = (clickedSize: string) => {
-    setActiveSize(clickedSize);
-  };
-
-  const handleSetAnotherVyshyvankaBySize = (
-    currentProdName: string,
-    clickedSize: string
-  ) => {
-    setProductDetailsLoading(true);
-    setGoToChoseSize(false);
-
-    const anotherSizeProd = productDetailsList.find(
-      (vyshyvanka) =>
-        vyshyvanka.name === currentProdName && vyshyvanka.size === clickedSize
-    );
-
-    if (anotherSizeProd !== undefined) {
-      setTimeout(() => {
-        getProductDetails(anotherSizeProd?.id, anotherSizeProd?.category).then(
-          (prodData) => {
-            if (prodData) {
-              setSelectedProduct(prodData);
-
-              setCurrentImage(
-                prodData.images.length > 0 ? `${process.env.PUBLIC_URL}/${prodData.images[0]}` : ""
-              );
-
-              navigate(
-                `/catalog/${anotherSizeProd?.category}/${anotherSizeProd?.id}`
-              );
-            } else {
-              setProductNotFound(true);
-            }
-          }
-        );
-        setProductDetailsLoading(false);
-        console.log(selectedProduct);
-      }, 1000);
-    }
-  };
-
-  console.log(productId);
+  console.log(productId, selectedProduct);
 
   return (
     <>
@@ -198,62 +98,12 @@ export const ProductDetails: React.FC = () => {
                     &#x20b4; {selectedProduct.price}
                   </p>
 
-                  {"size" in selectedProduct && (
-                    <>
-                      <div className="info__size size">
-                        {goToChoseSize && (
-                          <p className="info__name info__name--warn">
-                            Оберіть розмір, будь ласка
-                          </p>
-                        )}
-                        <p className="info__name">Розмір:</p>
-                        <div className="size__elements">
-                          {selectedProduct.sizesAvailable.map((size) => (
-                            <button
-                              type="button"
-                              onClick={() => {
-                                handleSizeClick(size);
-                                handleSetAnotherVyshyvankaBySize(
-                                  selectedProduct?.name,
-                                  size
-                                );
-                              }}
-                              className={classNames("size__box", {
-                                "size__box--active": activeSize === size,
-                              })}
-                              key={size}
-                              aria-label={`Select ${size} size`}
-                            >
-                              <p
-                                className={classNames(
-                                  "size__value",
-                                  `size__value--${size}`,
-                                  {
-                                    "size__value--active": activeSize === size,
-                                  }
-                                )}
-                              >
-                                {size}
-                              </p>
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-
-                      {activeSize && (
-                        <div>
-                          {selectedProduct.isAvailable ? (
-                            <p className="info__name info__name--available">
-                              В наявності
-                            </p>
-                          ) : (
-                            <p className="info__name info__name--preordered">
-                              Під замовлення
-                            </p>
-                          )}
-                        </div>
-                      )}
-                    </>
+                  {"size" in selectedProduct !== 
+                  null && (
+                    <Sizes
+                      setProductDetailsLoading={setProductDetailsLoading}
+                      productDetailsList={productDetailsList}
+                    />
                   )}
 
                   <div className="description description--desktop">
@@ -373,6 +223,9 @@ export const ProductDetails: React.FC = () => {
                   </p>
                 )}
 
+                <p className="info__name info__name--warn">
+                  Переконайтеся, що Ви обрали вірний розмір, будь ласка
+                </p>
                 <div className="description__button-wrapper">
                   <button
                     type="button"

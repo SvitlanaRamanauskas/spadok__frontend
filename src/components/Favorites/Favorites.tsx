@@ -38,7 +38,7 @@ export const Favorites = () => {
                 className="favorites__photo-link"
               >
                 <img
-                  src={`/${favoriteItem.item.images[0]}`}
+                  src={`${process.env.PUBLIC_URL}/${favoriteItem.item.images[0]}`}
                   alt="favoritesCard"
                   className="favorites__image"
                 />

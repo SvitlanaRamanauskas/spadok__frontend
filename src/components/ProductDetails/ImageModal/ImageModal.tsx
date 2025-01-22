@@ -22,7 +22,7 @@ export const ImageModal: React.FC<Props> = ({
       <button className="image-modal__close" onClick={onClose}>
       <img
           src={
-            require("../../styles/icons/Close.svg")
+            require("../../../styles/icons/Close.svg")
               .default
           }
           alt="arrow-right"
@@ -33,7 +33,7 @@ export const ImageModal: React.FC<Props> = ({
       <button className="image-modal__prev" onClick={handlePrevious}>
         <img
           src={
-            require("../../styles/icons/Chevron-Arrow-Right--disabled.svg")
+            require("../../../styles/icons/Chevron-Arrow-Right--disabled.svg")
               .default
           }
           alt="arrow-left"
@@ -44,7 +44,7 @@ export const ImageModal: React.FC<Props> = ({
       <button className="image-modal__next" onClick={handleNext}>
         <img
           src={
-            require("../../styles/icons/Chevron-Arrow-Right--disabled.svg")
+            require("../../../styles/icons/Chevron-Arrow-Right--disabled.svg")
               .default
           }
           alt="arrow-right"
