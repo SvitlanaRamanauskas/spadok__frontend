@@ -1,11 +1,13 @@
 import { Book } from "../types/Book";
-import { BookDetails } from "../types/BookDetails";
 import { Order } from "../types/Order";
+import { Product } from "../types/Product";
 import { Vyshyvanka } from "../types/Vyshyvanka";
-import { VyshyvankaDetails } from "../types/VyshyvankaDetails";
+
+
 
 const baseUrl = process.env.PUBLIC_URL || "";
 
+//'http://localhost:8081'
 export const createOrder = async({ buyerName, phoneNumber, orderedProducts }: Omit<Order, "orderId">) => {
   try {
     const response = await fetch('./api/orders', { 
@@ -29,129 +31,82 @@ export const createOrder = async({ buyerName, phoneNumber, orderedProducts }: Om
   }
 }
 
-export const fetchVyshyvanky = async() : Promise<Vyshyvanka[]> => {
-    try {
-        const response = await fetch(`${baseUrl}/api/vyshyvanky.json`, { method: 'GET'});
-        if (!response.ok) {
-          console.error(`Failed to fetch: ${response.status} ${response.statusText}`);
-            throw new Error(`${response.status} ${response.statusText}`);
-        }
-        return await response.json();
-    } catch (error: any) {
-        throw new Error(`Error fetching products: ${error.message}`);
-    }
-}
-
-export const fetchBooks = async() : Promise<Book[]> => {
+export const fetchAllCategories = async() : Promise<Product[]> => {
   try {
-      const response = await fetch(`${baseUrl}/api/books.json`, { method: 'GET'});
-      if (!response.ok) {
-          throw new Error(`${response.status} ${response.statusText}`);
-      }
-      return await response.json();
+    const response = await fetch(`${baseUrl}/api/allCategories.json`, {method: "GET"} );
+    if (!response.ok) {
+      console.error(`Failed to fetch: ${response.status} ${response.statusText}`);
+        throw new Error(`${response.status} ${response.statusText}`);
+    }
+    return await response.json();
+
   } catch (error: any) {
       throw new Error(`Error fetching products: ${error.message}`);
   }
 }
 
-export const getProductDetailsList = async (
-  productCategory: string,
-): Promise<VyshyvankaDetails[] | null> => {
-  try {
-    const response = await fetch(`${baseUrl}/api/${productCategory}.json`, {
-      method: 'GET',
-    });
+export const getProductById = async (productId: string): Promise<Product | undefined> => {
+  const products = await fetchAllCategories();
+  return products.find((product: Product) => productId === product.id);
+}
 
-    if (!response.ok) {
-      if (response.status === 404) {
-        return null;
-      }
-
-      throw new Error(`${response.status} ${response.statusText}`);
-    }
-
-    const productDetailsList = await response.json();
-
-    return productDetailsList || null;
-  } catch (error: any) {
-    throw new Error(`Error fetching product details: ${error.message}`);
-  }
-};
-
-export const getProductDetails = async (
-    productId: string,
-    productCategory: string,
-  ): Promise<VyshyvankaDetails | BookDetails | null> => {
-    try {
-      const response = await fetch(`${baseUrl}/api/${productCategory}.json`, {
-        method: 'GET',
-      });
-  
-      if (!response.ok) {
-        if (response.status === 404) {
-          return null;
-        }
-  
-        throw new Error(`${response.status} ${response.statusText}`);
-      }
-  
-      const productDetails = await response.json();
-      const product = productDetails.find(
-        (prod: VyshyvankaDetails | BookDetails) => {
-          return prod.id === productId;
-        }
-      );
-  
-      return product || null;
-    } catch (error: any) {
-      throw new Error(`Error fetching product details: ${error.message}`);
-    }
-  };
-
-export const fetchFemaleVyshyvanky = () => {
-    return fetchVyshyvanky()
-      .then(products => products.filter(product => product.category === 'women'));
+export const fetchVyshyvanky = (): Promise<Vyshyvanka[]> => {
+  return fetchAllCategories()
+    .then(products => products.filter((product): product is Vyshyvanka => product.category === 'vyshyvanky'));
 } 
 
-export const fetchMaleVyshyvanky = () => {
+export const fetchFemaleVyshyvanky = (): Promise<Vyshyvanka[]> => {
     return fetchVyshyvanky()
-      .then(products => products.filter(product => product.category === 'men'));
+      .then(products => products.filter((product): product is Vyshyvanka => product.subcategory === 'women'));
+} 
+
+export const fetchMaleVyshyvanky = (): Promise<Vyshyvanka[]> => {
+    return fetchVyshyvanky()
+      .then(products => products.filter((product): product is Vyshyvanka => product.subcategory === 'men'));
 } 
 
 export const fetchBoysVyshyvanky = () => {
     return fetchVyshyvanky()
-      .then(products => products.filter(product => product.category === 'boys'));
+      .then(products => products.filter((product): product is Vyshyvanka => product.subcategory === 'boys'));
 } 
 
 export const fetchGirlsVyshyvanky = () => {
     return fetchVyshyvanky()
-      .then(products => products.filter(product => product.category === 'girls'));
+      .then(products => products.filter((product): product is Vyshyvanka => product.subcategory === 'girls'));
+}
+
+
+
+
+export const fetchBooks = ()  => {
+  return fetchAllCategories()
+    .then(products => products.filter((product) : product is Book => product.category === 'books'));
 }
 
 export const fetchBestsellers = () => {
-  return fetchVyshyvanky()
-    .then(products => products.filter(product => product.name === "Сорочка \"Дубки\""));
+  return fetchAllCategories()
+    .then(products => products.filter((product): product is Vyshyvanka => product.title === "Сорочка \"Дубки\""));
 } 
+
+
+
 
 export const includesQuery = (productsName: string | null, input: string) => {
   return productsName?.trim().toLowerCase().includes(input.trim().toLowerCase());
 };
 
-export const getPreparedVyshyvanky = (products: Vyshyvanka[] | Book[], params: any) => {
+export const getPreparedVyshyvanky = (products: Product[], params: any) => {
   const preparedProducts = [...products];
 
   if (params.query) {
     return preparedProducts.filter(prod => {
-      const nameOrTitle = 'title' in prod ? prod.title : prod.name;
-      return includesQuery(nameOrTitle, params.query);
+      return includesQuery(prod.title, params.query);
     });
   }
 
   if (params.sort) {
     return preparedProducts.sort((a, b) => {
-      if (params.sort === 'name' && 'name' in a && 'name' in b) {
-        return a.name.localeCompare(b.name);
-      } else if (params.sort === 'title' && 'title' in a && 'title' in b) {
+      if (params.sort === 'title') {
         return a.title.localeCompare(b.title);
       } else if (params.sort === 'priceFromLow') {
         return a.price - b.price;

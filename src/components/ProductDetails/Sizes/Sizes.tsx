@@ -3,29 +3,29 @@ import { AppContext } from "../../appContext";
 import classNames from "classnames";
 import { isVyshyvanka } from "../../../helper/productUtils";
 import {  useNavigate } from "react-router-dom";
-import { VyshyvankaDetails } from "../../../types/VyshyvankaDetails";
+import { Vyshyvanka } from "../../../types/Vyshyvanka";
 
 type Props = {
     setProductDetailsLoading: (value: boolean) => void,
-    productDetailsList: VyshyvankaDetails[],
+    vyshyvankyFromServer: Vyshyvanka[],
 };
 
 export const Sizes: React.FC<Props> = ({ 
     setProductDetailsLoading,
-    productDetailsList
+    vyshyvankyFromServer
 }) => {
     const { selectedProduct } = useContext(AppContext);
     const navigate = useNavigate();
 
     const handleSetAnotherVyshyvankaBySize = (
-        currentProdName: string,
+        currentProdTitle: string,
         clickedSize: string
     ) => {
         setProductDetailsLoading(true)
     
-        const anotherSizeProd = productDetailsList.find(
+        const anotherSizeProd = vyshyvankyFromServer.find(
           (vyshyvanka) =>
-            vyshyvanka.name === currentProdName && vyshyvanka.size === clickedSize
+            vyshyvanka.title === currentProdTitle && vyshyvanka.size === clickedSize
         );
     
         if (anotherSizeProd) {
@@ -49,7 +49,7 @@ export const Sizes: React.FC<Props> = ({
                   onClick={() => {
                     // handleSizeClick(size);
                     handleSetAnotherVyshyvankaBySize(
-                      selectedProduct?.name,
+                      selectedProduct?.title,
                       size
                     );
                   }}

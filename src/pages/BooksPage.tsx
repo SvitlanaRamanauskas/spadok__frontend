@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { fetchBooks } from "../helper/fetch";
 import { Loader } from "../components/Loader";
-import { Book } from "../types/Book";
 import { List } from "../components/List";
+import { Book } from "../types/Book";
 
 export const BooksPage = () => {
     const [books, setBooks] = useState<Book[]>([]);
@@ -13,7 +13,7 @@ export const BooksPage = () => {
         setTimeout(()=> {
             fetchBooks()
             .then(bookProducts => setBooks(bookProducts))
-            .catch(error => {
+            .catch((error: any) => {
                 throw new Error('Error fetching books:', error);
               }
             )

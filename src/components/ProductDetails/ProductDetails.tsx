@@ -1,7 +1,6 @@
 import classNames from "classnames";
 import cn from "classnames";
 import '../../styles/Heart.scss';
-import { VyshyvankaDetails } from "../../types/VyshyvankaDetails";
 import React, {
   useContext,
   useRef,
@@ -19,11 +18,11 @@ import {
 
 
 import { Loader } from "../Loader";
-import { BookDetails } from "../../types/BookDetails";
 import { DetailsImages } from "./DetailsImages";
-import { addedToCart, selectedProductNameOrTitle } from "../../helper/productUtils";
+import { addedToCart, isVyshyvanka } from "../../helper/productUtils";
 import { Sizes } from "./Sizes";
 import { useProductDetails } from "../../helper/hooks/useProductDetails";
+import { Product } from "../../types/Product";
 
 export const ProductDetails: React.FC = () => {
   const { productId } = useParams<{ productId?: string }>();
@@ -32,9 +31,8 @@ export const ProductDetails: React.FC = () => {
   const { selectedProduct } = useContext(AppContext);
   const categoryPath = location.pathname.split("/")[2];
 
-  const { productDetailsLoading, setProductDetailsLoading,  productNotFound, productFetchError, productDetailsList } = useProductDetails(
-    productId!,
-    categoryPath,
+  const { productDetailsLoading, setProductDetailsLoading,  productNotFound, productFetchError, vyshyvankyFromServer } = useProductDetails(
+    productId!
   );
 
   const [currentImage, setCurrentImage] = useState(`${process.env.PUBLIC_URL}/${selectedProduct?.images[0]}`);
@@ -45,7 +43,7 @@ export const ProductDetails: React.FC = () => {
 
   const sizesRef = useRef<HTMLDivElement | null>(null);
 
-  const handleAddToCart = (product: VyshyvankaDetails | BookDetails) => {
+  const handleAddToCart = (product: Product) => {
     dispatch(addItemToCart(product));
   };
 
@@ -91,18 +89,18 @@ export const ProductDetails: React.FC = () => {
                     </button>
                   </div>
                   <h3 className="info__title">
-                    {selectedProductNameOrTitle(selectedProduct)}
+                    {selectedProduct.title}
                   </h3>
                   <p className="info__price">
                     {" "}
                     &#x20b4; {selectedProduct.price}
                   </p>
 
-                  {"size" in selectedProduct !== 
-                  null && (
+                  {selectedProduct !== 
+                  null && isVyshyvanka(selectedProduct) && (
                     <Sizes
                       setProductDetailsLoading={setProductDetailsLoading}
-                      productDetailsList={productDetailsList}
+                      vyshyvankyFromServer={vyshyvankyFromServer}
                     />
                   )}
 

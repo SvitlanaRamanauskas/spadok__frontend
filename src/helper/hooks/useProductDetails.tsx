@@ -1,15 +1,13 @@
 import { useContext, useEffect, useState } from "react";
-import { VyshyvankaDetails } from "../../types/VyshyvankaDetails";
-import { getProductDetails, getProductDetailsList } from "../fetch";
+
+import { fetchVyshyvanky, getProductById } from "../fetch";
 import { AppContext } from "../../components/appContext";
+import { Vyshyvanka } from "../../types/Vyshyvanka";
 
 export const useProductDetails = (
     productId: string,
-    category: string
 ) => {
-    const [productDetailsList, setProductDetailsList] = useState<
-        VyshyvankaDetails[] | []
-      >([]);
+    const [vyshyvankyFromServer, setVyshyvankyFromServer] = useState<Vyshyvanka[]>([])
     const [productDetailsLoading, setProductDetailsLoading] = useState(false);
     const [productNotFound, setProductNotFound] = useState(false);
     const [productFetchError, setProductFetchError] = useState(false);
@@ -21,12 +19,12 @@ export const useProductDetails = (
         return;
         }
 
-        const fetchProductDetails = async () => {
+        const fetchVyshyvanka = async () => {
         try {
             setProductNotFound(false);
             setProductFetchError(false);
             setProductDetailsLoading(true);
-            const productData = await getProductDetails(productId, category);
+            const productData = await getProductById(productId);
             if(!productData) throw new Error("ProductNotFound");
             setSelectedProduct(productData);
         } catch(error) {
@@ -36,24 +34,27 @@ export const useProductDetails = (
             setProductDetailsLoading(false); //navigate?? 
         } 
         
-
         // setCurrentImage(
         //   productData.images.length > 0 ? `${process.env.PUBLIC_URL}/${productData.images[0]}` : ""
         // );
         }
 
-        const fetchProductList = async () => {
-        try {
-            const data = await getProductDetailsList(category);
-            setProductDetailsList(data ?? []);
-        } catch (error) {
-            console.error("Error fetching product list:", error);
-            }
+        const fetchAllVyshyvanky = async () => {
+            try {
+                const productData = await fetchVyshyvanky();
+                if(!productData) throw new Error("ProductNotFound");
+                setVyshyvankyFromServer(productData);
+            } catch(error) {
+                setProductNotFound(true);
+                throw error;
+            } finally {
+                setProductDetailsLoading(false); //navigate?? 
+            } 
         }
 
-        fetchProductDetails();
-        fetchProductList();
-    }, [productId, category]);
+        fetchVyshyvanka();
+        fetchAllVyshyvanky();
+    }, [productId]);
 
-    return { productDetailsLoading, setProductDetailsLoading, productNotFound, productFetchError, productDetailsList };
+    return { productDetailsLoading, setProductDetailsLoading, productNotFound, productFetchError, vyshyvankyFromServer };
   }

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { Vyshyvanka } from "../types/Vyshyvanka";
 import { fetchBestsellers } from "../helper/fetch";
 import { List } from "../components/List";
 import { Loader } from "../components/Loader";
+import { Vyshyvanka } from "../types/Vyshyvanka";
 
 export const BestsellersPage = () => {
     const [bestsellers, setBestsellers] = useState<Vyshyvanka[]>([]);
@@ -12,7 +12,7 @@ export const BestsellersPage = () => {
         setBestsellersLoading(true);
         setTimeout(()=> {
             fetchBestsellers()
-            .then(products => setBestsellers(products))
+            .then((products) => setBestsellers(products))
             .catch(error => {
                 throw new Error('Error fetching boy`s vyshyvanky:', error);
               }

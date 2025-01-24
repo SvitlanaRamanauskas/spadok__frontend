@@ -179,9 +179,6 @@ export const Ordering: React.FC = () => {
     setPhoneNumber("");
   };
 
-  const getNameOrTitle = (item: CartItem) => {
-    return "name" in item.item ? item.item.name : item.item.title;
-  };
   console.log(nameError, phoneNumberError);
 
   return (
@@ -213,7 +210,7 @@ export const Ordering: React.FC = () => {
                       className="cart-item__name-link"
                     >
                       <h4 className="cart-item__name">
-                        {getNameOrTitle(item)}
+                        {item.item.title}
                       </h4>
                     </Link>
                     <p className="cart-item__detailed">Арт.: {item.item.id}</p>

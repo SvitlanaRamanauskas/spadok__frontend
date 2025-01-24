@@ -1,8 +1,8 @@
-import { BookDetails } from "./BookDetails";
-import { VyshyvankaDetails } from "./VyshyvankaDetails";
+import { Book } from "./Book";
+import { Vyshyvanka } from "./Vyshyvanka";
 
 export type CartItem = {
     id: number;
     quantity: number;
-    item: VyshyvankaDetails | BookDetails;
+    item: Vyshyvanka | Book;
 }

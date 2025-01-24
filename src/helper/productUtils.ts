@@ -1,7 +1,7 @@
 import { FavoritesItem } from "../types/FavoritesItem";
 import { CartItem } from "../types/CartItem";
-import { VyshyvankaDetails } from "../types/VyshyvankaDetails";
-import { BookDetails } from "../types/BookDetails";
+import { Vyshyvanka } from "../types/Vyshyvanka";
+import { Product } from "../types/Product";
 
 
 export const addedToFavorites = (itemsInFavorites: FavoritesItem[], id: string) => {
@@ -12,16 +12,6 @@ export const addedToCart = (cartItemsAdded: CartItem[], itemId: string) => {
     return cartItemsAdded.some((itemInCart) => itemInCart.item.id === itemId);
 };
 
-export const selectedProductNameOrTitle = (
-    selectedProduct: VyshyvankaDetails | BookDetails
-  ) => {
-    if (selectedProduct) {
-      return "name" in selectedProduct
-        ? selectedProduct.name
-        : selectedProduct?.title;
-    }
-  };
-
-  export function isVyshyvanka(product: VyshyvankaDetails | BookDetails): product is VyshyvankaDetails {
-    return 'size' in product;
-  }
+export function isVyshyvanka(product: Product): product is Vyshyvanka {
+  return product.category === "vyshyvanka";
+}

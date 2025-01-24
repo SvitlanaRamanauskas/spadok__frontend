@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { Vyshyvanka } from "../types/Vyshyvanka";
 import { fetchBoysVyshyvanky } from "../helper/fetch";
 import { List } from "../components/List";
 import { Loader } from "../components/Loader";
+import { Vyshyvanka } from "../types/Vyshyvanka";
 
 export const BoysPage = () => {
     const [boyVyshyvanky, setBoyVyshyvanky] = useState<Vyshyvanka[]>([]);

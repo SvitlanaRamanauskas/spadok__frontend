@@ -1,4 +1,3 @@
-import { Vyshyvanka } from "../../types/Vyshyvanka";
 import "../../styles/button.scss";
 import "./List.scss";
 import "../../styles/App.scss";
@@ -7,11 +6,11 @@ import { useState } from "react";
 import { SearchAndSort } from "../SearchAndSort";
 import { useSearchParams } from "react-router-dom";
 import { getPreparedVyshyvanky } from "../../helper/fetch";
-import { Book } from "../../types/Book";
+import { Product } from "../../types/Product";
 
 
 type Props = {
-  items: Vyshyvanka[] | Book[];
+  items: Product[];
 };
 
 export const List: React.FC<Props> = ({ items }) => {
@@ -35,11 +34,6 @@ export const List: React.FC<Props> = ({ items }) => {
     }
   };
 
-  const vyshyvankaItems = (items as Array<Vyshyvanka | Book>).filter((item: Vyshyvanka | Book): item is Vyshyvanka => {
-    return 'size' in item; 
-  });
-  console.log(vyshyvankaItems)
-
   const preparedProducts = getPreparedVyshyvanky(items, Object.fromEntries(searchParams));
 
   return (
@@ -51,9 +45,9 @@ export const List: React.FC<Props> = ({ items }) => {
 
       {innerWidth < 1200 ? (
         <div className="list">
-          {preparedProducts.slice(0, visibleItemsCountMobile).map((item: Vyshyvanka | Book) => (
+          {preparedProducts.slice(0, visibleItemsCountMobile).map((item: Product) => (
             <div className="list__card" key={item.id}>
-              <ProductCard item={item} vyshyvankyFromServer={vyshyvankaItems} />
+              <ProductCard item={item} productsFromServer={items} />
             </div>
           ))}
 
@@ -67,9 +61,9 @@ export const List: React.FC<Props> = ({ items }) => {
         </div>
       ) : (
         <div className="list">
-          {preparedProducts.slice(0, visibleItemsCountDesktop).map((item: Vyshyvanka | Book) => (
+          {preparedProducts.slice(0, visibleItemsCountDesktop).map((item: Product) => (
             <div className="list__card" key={item.id}>
-              <ProductCard item={item} vyshyvankyFromServer={vyshyvankaItems} />
+              <ProductCard item={item} productsFromServer={items} />
             </div>
           ))}
 

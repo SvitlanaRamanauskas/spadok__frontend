@@ -3,11 +3,10 @@ import "../../../styles/Heart.scss";
 import { useContext, useState } from "react";
 import { AppContext } from "../../appContext";
 import { ImageModal } from "../ImageModal";
-import { VyshyvankaDetails } from "../../../types/VyshyvankaDetails";
-import { BookDetails } from "../../../types/BookDetails";
 import { addedToFavorites } from "../../../helper/productUtils";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { addItemToFavorites, favoritesSelector, removeItemFromFavorites } from "../../../redux/cart/reducerFavorites";
+import { Product } from "../../../types/Product";
 
 type Props = {
   mainImage: string;
@@ -16,7 +15,7 @@ type Props = {
 
 export const DetailsImages: React.FC<Props> = ({ mainImage, setCurrentImage }) => {
   const { selectedProduct } = useContext(AppContext) as {
-    selectedProduct: VyshyvankaDetails | BookDetails;
+    selectedProduct: Product;
   };;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState<null | number>(
@@ -26,7 +25,7 @@ export const DetailsImages: React.FC<Props> = ({ mainImage, setCurrentImage }) =
 const favoritesItems = useAppSelector(favoritesSelector);
 const dispatch = useAppDispatch();
 
-  const handleAddToFavorites = (product: VyshyvankaDetails | BookDetails) => {
+  const handleAddToFavorites = (product: Product) => {
     if (addedToFavorites(favoritesItems, product.id)) {
       dispatch(removeItemFromFavorites(product));
     } else {

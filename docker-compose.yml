@@ -1,0 +1,21 @@
+services:
+  backend:
+    restart: on-failure
+    image: 0z10ne/nash-spadok
+    build: .
+    env_file: ./.env
+    ports:
+      - $SPRING_LOCAL_PORT:8081
+      - $DEBUG_PORT:5005
+    environment:
+      SPRING_APPLICATION_JSON: '{     
+        "spring.datasource.url" : "$POSTGRES_URL",
+        "spring.datasource.username" : "$POSTGRES_USER",
+        "spring.datasource.password" : "$POSTGRES_PASSWORD",
+        "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.PostgreSQLDialect",
+        "spring.jpa.hibernate.ddl-auto" : "update",
+        "spring.jpa.generate-ddl" : "true",
+        "spring.jpa.show-sql" : "true",
+        "spring.jpa.open-in-view" : "false"
+      }'
+      JAVA_TOOL_OPTIONS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:$DEBUG_PORT"

@@ -1,7 +1,6 @@
-import { BookDetails } from "./BookDetails";
-import { VyshyvankaDetails } from "./VyshyvankaDetails";
+import { Product } from "./Product";
 
 export type FavoritesItem = {
     id: number;
-    item: VyshyvankaDetails | BookDetails;
+    item: Product;
 }

@@ -10,11 +10,10 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { CartItem } from "../../types/CartItem";
 import "./Cart.scss";
 import "../../styles/button.scss";
-import { VyshyvankaDetails } from "../../types/VyshyvankaDetails";
 import { ArrowDecorBelow } from "../ArrowDecorBelow";
 import { ArrowDecorTop } from "../ArrowDecorTop";
 import { Link } from "react-router-dom";
-import { BookDetails } from "../../types/BookDetails";
+import { Product } from "../../types/Product";
 
 export const Cart = () => {
   const items: CartItem[] = useAppSelector(cartSelector);
@@ -23,21 +22,17 @@ export const Cart = () => {
 
   const dispatch = useAppDispatch();
 
-  const handlePlus = (item: VyshyvankaDetails | BookDetails) => {
+  const handlePlus = (item: Product) => {
     dispatch(plusItem(item));
   };
 
-  const handleMinus = (item: VyshyvankaDetails | BookDetails) => {
+  const handleMinus = (item: Product) => {
     dispatch(minusItem(item));
   };
 
-  const handleRemoveItem = (item: VyshyvankaDetails | BookDetails) => {
+  const handleRemoveItem = (item: Product) => {
     dispatch(removeItem(item));
   };
-
-  const getNameOrTitle = (item: CartItem) => {
-    return "name" in item.item ? item.item.name : item.item.title;
-  } 
 
   return (
     <>
@@ -65,7 +60,7 @@ export const Cart = () => {
                     <div className="item__info">
                       <div className="item__info--top">
                         <Link to={`/catalog/${item.item.category}/${item.item.id}`} className="item__name-link">
-                          <h4 className="item__name">{getNameOrTitle(item)}</h4>
+                          <h4 className="item__name">{item.item.title}</h4>
                         </Link>
 
                         <p className="item__price">

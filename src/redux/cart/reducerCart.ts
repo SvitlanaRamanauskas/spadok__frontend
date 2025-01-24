@@ -1,8 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { CartItem } from "../../types/CartItem";
 import { RootState } from "../store";
-import { VyshyvankaDetails } from "../../types/VyshyvankaDetails";
-import { BookDetails } from "../../types/BookDetails";
+import { Product } from "../../types/Product";
 
 const saveCartToLocalStorage = (state: CartState) => {
     localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
@@ -38,7 +37,7 @@ export const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-        addItem: (state, action: PayloadAction<VyshyvankaDetails | BookDetails>) => {
+        addItem: (state, action: PayloadAction<Product>) => {
             const newItem = action.payload;
             const existingItem = state.cartItems.find(item => item.item.id === newItem.id);
             state.totalCartQuantity += 1;
@@ -58,7 +57,7 @@ export const cartSlice = createSlice({
             
         },
 
-        removeItem: (state, action: PayloadAction<VyshyvankaDetails | BookDetails>) => {
+        removeItem: (state, action: PayloadAction<Product>) => {
             const itemToDelete = action.payload;
             const existingItem = state.cartItems.find(item => item.item.id === itemToDelete.id);
 
@@ -73,7 +72,7 @@ export const cartSlice = createSlice({
             // localStorage.clear();
         },
 
-        plusItem: (state, action: PayloadAction<VyshyvankaDetails | BookDetails>) => {
+        plusItem: (state, action: PayloadAction<Product>) => {
             const itemToPlus = action.payload;
             const existingItem = state.cartItems.find(item => item.item.id === itemToPlus.id);
 
@@ -84,7 +83,7 @@ export const cartSlice = createSlice({
             }
         },
 
-        minusItem: (state, action: PayloadAction<VyshyvankaDetails | BookDetails>) => {
+        minusItem: (state, action: PayloadAction<Product>) => {
             const itemToMinus = action.payload;
             const existingItem = state.cartItems.find(item => item.item.id === itemToMinus.id);
 

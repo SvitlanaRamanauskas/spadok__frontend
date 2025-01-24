@@ -5,18 +5,17 @@ import {
   removeItemFromFavorites,
 } from "../../redux/cart/reducerFavorites";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { BookDetails } from "../../types/BookDetails";
 import { FavoritesItem } from "../../types/FavoritesItem";
-import { VyshyvankaDetails } from "../../types/VyshyvankaDetails";
 import { Link } from "react-router-dom";
 import { ArrowDecorTop } from "../ArrowDecorTop";
 import { ArrowDecorBelow } from "../ArrowDecorBelow";
+import { Product } from "../../types/Product";
 
 export const Favorites = () => {
   const favoriteItems: FavoritesItem[] = useAppSelector(favoritesSelector);
   const dispatch = useAppDispatch();
 
-  const handleRemoveItem = (item: VyshyvankaDetails | BookDetails) => {
+  const handleRemoveItem = (item: Product) => {
     dispatch(removeItemFromFavorites(item));
   };
 
@@ -58,7 +57,7 @@ export const Favorites = () => {
 
               {"name" in favoriteItem.item ? (
                 <h3 className="favorites__title-price">
-                  {favoriteItem.item.name}
+                  {favoriteItem.item.title}
                 </h3>
               ) : (
                 <h3 className="favorites__title-price">

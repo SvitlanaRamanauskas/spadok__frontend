@@ -1,15 +1,13 @@
 import { Link } from "react-router-dom";
 import "./ProductCard.scss";
-import { Vyshyvanka } from "../../types/Vyshyvanka";
-import { Book } from "../../types/Book";
+import { Product } from "../../types/Product";
 
 export type Props = {
-  item: Vyshyvanka | Book;
-  vyshyvankyFromServer: Vyshyvanka[];
+  item: Product;
+  productsFromServer: Product[];
 };
 
-export const ProductCard: React.FC<Props> = ({ item, vyshyvankyFromServer }) => {
-  const nameOrTitle = "name" in item ? item.name : item.title;
+export const ProductCard: React.FC<Props> = ({ item, productsFromServer }) => {
   const url = window.location.href;
   const categoryAsLastWordInURL = url.split('/').pop();
   console.log(categoryAsLastWordInURL);
@@ -20,10 +18,10 @@ export const ProductCard: React.FC<Props> = ({ item, vyshyvankyFromServer }) => 
         <Link
           to={`/catalog/${categoryAsLastWordInURL}/${item.id}`}
           className="card__photo-link"
-          state={{ vyshyvankyFromServer }}
+          state={{ productsFromServer }}
         >
           <img
-            src={`${process.env.PUBLIC_URL}/${item.image}`}
+            src={`${process.env.PUBLIC_URL}/${item.images[0]}`}
             alt="productCard"
             className="card__image"
           />
@@ -31,7 +29,7 @@ export const ProductCard: React.FC<Props> = ({ item, vyshyvankyFromServer }) => 
 
       </div>
 
-      <h3 className="card__title-price">{nameOrTitle}</h3>
+      <h3 className="card__title-price">{item.title}</h3>
 
       <div className="card__title-price">{`${item.price} грн`}</div>
     </div>

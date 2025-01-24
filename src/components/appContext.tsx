@@ -1,15 +1,12 @@
 import React, { useMemo, useState } from 'react';
-import { VyshyvankaDetails } from '../types/VyshyvankaDetails';
-import { Vyshyvanka } from '../types/Vyshyvanka';
-import { Book } from '../types/Book';
-import { BookDetails } from '../types/BookDetails';
+import { Product } from '../types/Product';
 
 
 type ContextType = {
-    selectedCard: Vyshyvanka | Book | null;
-    setSelectedCard: (value: Vyshyvanka | Book | null) => void;
-    selectedProduct: VyshyvankaDetails | BookDetails| null;
-    setSelectedProduct: (value: VyshyvankaDetails | BookDetails | null) => void;
+    selectedCard: Product | null;
+    setSelectedCard: (value: Product | null) => void;
+    selectedProduct: Product | null;
+    setSelectedProduct: (value: Product | null) => void;
     asideIsOpen: boolean;
     setAsideIsOpen: (value: boolean) => void;
 }
@@ -28,8 +25,8 @@ export const AppContext = React.createContext<ContextType>({
 });
 
 export const AppProvider: React.FC<Props> = ({ children }) => {
-    const [selectedCard, setSelectedCard] = useState<Vyshyvanka | Book | null>(null);
-    const [selectedProduct, setSelectedProduct] = useState<VyshyvankaDetails | BookDetails | null>(null);
+    const [selectedCard, setSelectedCard] = useState<Product | null>(null);
+    const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
     const [asideIsOpen, setAsideIsOpen] = useState(false);
     
 

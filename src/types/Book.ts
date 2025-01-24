@@ -1,8 +1,10 @@
 export type Book = {
     id: string;
-    title: string;
-    genre: string;
-    price: number;
-    image: string;
     category: string;
+    subcategory: string;
+    title: string;
+    price: number;
+    images: string[];
+    genre: string;
+    description: string;
 };
