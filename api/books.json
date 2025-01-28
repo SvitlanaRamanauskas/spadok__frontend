@@ -5,7 +5,8 @@
         "genre": "novel",
         "price": "350",
         "image": "img/books/Bizhu/аоко.jpg",
-        "category": "books"
+        "category": "books",
+        "subcategory": "books"
     },
 
     {

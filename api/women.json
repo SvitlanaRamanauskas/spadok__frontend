@@ -30,7 +30,8 @@
     "sizesAvailable": ["XS", "S", "M", "L", "XL"],
     "images": ["img/womenVyshyvanky/Julia.jpg","img/womenVyshyvanky/Julia1.jpg", "img/womenVyshyvanky/Julia2.jpg", "img/womenVyshyvanky/Julia3.jpg", "img/womenVyshyvanky/Julia4.jpg" ],
     "price": 5200,
-    "category": "women",
+    "category": "vyshyvanky",
+    "subcategory": "women",
     "isAvailable": true,
     "description": "Техніка вишивки - курячий брід, колодочки.\nВишивка - ручна.\nТканина - 100% бавовна.\nКолір тканини - білий.\nКолір вишивки - білий.\nДовжина рукава - довгий.\nРукава - прикрашені мережевою стрічкою.\nМанжет - на зап'ястях на ризинці.\nГорловина - на шнурівці.\nПазушний розріз - прикрашений китицями.\nНитки - водостійкі, DCM Perle.\n\nВсі деталі сорочок оброблені оверлоком та зшиті на машинці.\n\nЯ впевнена, що Ви оціните практичність та багатство української вишиванки."
   },
