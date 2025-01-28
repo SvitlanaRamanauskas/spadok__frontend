@@ -58,6 +58,36 @@ export const AsideMenu = () => {
               книжки
             </Link>
           </li>
+
+
+          <li className="nav__item menu__item">
+            <Link
+              to="catalog/boys"
+              className="nav__link menu__link"
+              onClick={() => setAsideIsOpen(false)}
+            >
+              хлопчикам
+            </Link>
+          </li>
+          <li className="nav__item menu__item">
+            <Link
+              to="catalog/girls"
+              className="nav__link menu__link"
+              onClick={() => setAsideIsOpen(false)}
+            >
+              дівчаткам
+            </Link>
+          </li>
+
+          <li className="nav__item menu__item">
+            <Link
+              to="catalog/books"
+              className="nav__link menu__link"
+              onClick={() => setAsideIsOpen(false)}
+            >
+              книжки
+            </Link>
+          </li>
         </ul>
       </section>
 

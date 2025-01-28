@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Product } from '../types/Product';
 
 
@@ -9,6 +9,8 @@ type ContextType = {
     setSelectedProduct: (value: Product | null) => void;
     asideIsOpen: boolean;
     setAsideIsOpen: (value: boolean) => void;
+    isAuthenticated: boolean;
+    setIsAuthenticated: (value: boolean) => void;
 }
 
 type Props = {
@@ -22,12 +24,20 @@ export const AppContext = React.createContext<ContextType>({
     setSelectedProduct: () => {},
     asideIsOpen: false,
     setAsideIsOpen: () => {},
+    isAuthenticated: false,
+    setIsAuthenticated: () => {},
 });
 
 export const AppProvider: React.FC<Props> = ({ children }) => {
     const [selectedCard, setSelectedCard] = useState<Product | null>(null);
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
     const [asideIsOpen, setAsideIsOpen] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+    useEffect(() => {
+        const token = localStorage.getItem('authToken');
+        setIsAuthenticated(!!token); // Якщо токен існує, вважаємо, що користувач авторизований
+    }, []);
     
 
     // useEffect(() => {
@@ -53,8 +63,11 @@ export const AppProvider: React.FC<Props> = ({ children }) => {
         setSelectedProduct,
         asideIsOpen,
         setAsideIsOpen,
+        isAuthenticated,
+        setIsAuthenticated,
 
-    }), [selectedCard, setSelectedCard, selectedProduct, setSelectedProduct, asideIsOpen, setAsideIsOpen]);
+    }), [selectedCard, setSelectedCard, selectedProduct,
+         setSelectedProduct, asideIsOpen, setAsideIsOpen, isAuthenticated, setIsAuthenticated]);
 
     return (
         <AppContext.Provider value={values}>{children}</AppContext.Provider>

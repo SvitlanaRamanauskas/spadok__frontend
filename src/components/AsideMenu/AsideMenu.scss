@@ -21,13 +21,13 @@
     // height: $half-menu-height-mobile;
     margin-block: 20px 60px;
     margin-left: 0;
-    padding-left: 0;
+    padding-left: 34px;
     justify-content: start;
 
         
     @include on-Tablet {
       justify-content: start;
-      margin-left: 152px;
+      margin-left: auto;
       padding-left: 28px;
       // height: $half-menu-height-tablet;
     }
@@ -35,18 +35,18 @@
     @include on-Desktop {
       justify-content: start;
       margin-top: 40px;
-      margin-left: 152px;
-      padding-left: 28px;
+      padding-left: 38px;
       // height: $half-menu-height-desktop;
     }
   };
 
-
-
   &__list {
+    box-sizing: content-box;
     flex-direction: column;
+    flex-wrap: wrap;
     gap: 24px;
-    padding-left: 24px;
+    height: 260px;
+    padding-left: 0;
   }
 
   &__item {

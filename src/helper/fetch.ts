@@ -3,8 +3,6 @@ import { Order } from "../types/Order";
 import { Product } from "../types/Product";
 import { Vyshyvanka } from "../types/Vyshyvanka";
 
-
-
 const baseUrl = process.env.PUBLIC_URL || "";
 
 //'http://localhost:8081'
@@ -31,7 +29,7 @@ export const createOrder = async({ buyerName, phoneNumber, orderedProducts }: Om
   }
 }
 
-export const fetchAllCategories = async() : Promise<Product[]> => {
+export const fetchAllProducts = async() : Promise<Product[]> => {
   try {
     const response = await fetch(`${baseUrl}/api/allCategories.json`, {method: "GET"} );
     if (!response.ok) {
@@ -45,13 +43,52 @@ export const fetchAllCategories = async() : Promise<Product[]> => {
   }
 }
 
+export const fetchCategoriesNameList = async () => {
+  try {
+    const response = await fetch(`${baseUrl}/api/categoryNames.json`, {method: "GET"} );
+    const categoryNames = await response.json();
+    const categories = categoryNames.categories || [];
+  
+    return categories;
+  } catch(error) {
+    console.error("Error fetching categories and subcategories:", error);
+    return [];
+  }
+}
+
+export const fetchSubcategoriesNameList = async () => {
+  try {
+    const response = await fetch(`${baseUrl}/api/categoryNames.json`, {method: "GET"} );
+    const categoryNames = await response.json();
+    const subcategories = categoryNames.subcategories || [];
+  
+    return subcategories;
+  } catch(error) {
+    console.error("Error fetching categories and subcategories:", error);
+    return [];
+  }
+}
+
+export const fetchSubcategoriesEngList = async () => {
+  try {
+    const response = await fetch(`${baseUrl}/api/categoryNames.json`, {method: "GET"} );
+    const categoryNames = await response.json();
+    const subcategoriesEng = categoryNames.subcategoriesEng || [];
+  
+    return subcategoriesEng;
+  } catch(error) {
+    console.error("Error fetching categories and subcategories:", error);
+    return [];
+  }
+}
+
 export const getProductById = async (productId: string): Promise<Product | undefined> => {
-  const products = await fetchAllCategories();
+  const products = await fetchAllProducts();
   return products.find((product: Product) => productId === product.id);
 }
 
 export const fetchVyshyvanky = (): Promise<Vyshyvanka[]> => {
-  return fetchAllCategories()
+  return fetchAllProducts()
     .then(products => products.filter((product): product is Vyshyvanka => product.category === 'vyshyvanky'));
 } 
 
@@ -79,12 +116,12 @@ export const fetchGirlsVyshyvanky = () => {
 
 
 export const fetchBooks = ()  => {
-  return fetchAllCategories()
+  return fetchAllProducts()
     .then(products => products.filter((product) : product is Book => product.category === 'books'));
 }
 
 export const fetchBestsellers = () => {
-  return fetchAllCategories()
+  return fetchAllProducts()
     .then(products => products.filter((product): product is Vyshyvanka => product.title === "Сорочка \"Дубки\""));
 } 
 

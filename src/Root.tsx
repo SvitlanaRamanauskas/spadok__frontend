@@ -22,6 +22,9 @@ import { OrderPage } from "./pages/OrderPage";
 import ScrollToTop from "./components/scrollToTop";
 import { BestsellersPage } from "./pages/BestsellerPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
+import { AdminPage } from "./pages/AdminPage";
+import { RequireAuth } from "./components/Auth/RequireAuth";
+import { LoginPage } from "./pages/LoginPage";
 
 export const Root = () => {
   return (
@@ -33,6 +36,8 @@ export const Root = () => {
             <Route element={<App />}>
               <Route path="home" element={<Navigate to="/" replace />} />
               <Route index element={<HomePage />} />
+              <Route path="login" element={<LoginPage />} />
+              <Route path="admin" element={<RequireAuth><AdminPage /></RequireAuth>} />
               <Route path="catalog" >
                 <Route index element={<CatalogPage />}/>
                 <Route path="women" element={<WomenPage />} />

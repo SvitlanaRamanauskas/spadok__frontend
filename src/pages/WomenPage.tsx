@@ -28,13 +28,15 @@ export const WomenPage = () => {
     }, 1000);
   }, []);
 
+  const filteredFemaleVyshyvanky = femaleVyshyvanky.filter(item => item.size === "XS");
+
   return (
     <div>
       {femaleProductsLoading ? (
         <Loader />
-      ) : femaleVyshyvanky.length === 0 && !femaleProductsLoading ? (
+      ) : filteredFemaleVyshyvanky.length === 0 && !femaleProductsLoading ? (
         <ItemsNotFound />
-      ) : (<List items={femaleVyshyvanky} />)
+      ) : (<List items={filteredFemaleVyshyvanky} />)
       }  
 
     </div>

@@ -1,18 +1,20 @@
-import { useState } from "react";
-import cn from "classnames";
+import { useContext, useState } from "react";
 import "./Auth.scss";
 import "../../styles/App.scss";
+import { Loader } from "../Loader";
+import { fakeAuthAPI } from "../../fakeAuthApi";
+import { useNavigate } from "react-router-dom";
+import { AppContext } from "../appContext";
 
-type Props = {
-    authIsOpen: boolean;
-    setAuthIsOpen: (value: boolean) => void;
-}
 
-
-export const Auth: React.FC<Props> = ({ authIsOpen, setAuthIsOpen }) => {
+export const Auth: React.FC = () => {
+  const { setIsAuthenticated } = useContext(AppContext);
   const [nameInput, setNameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
+
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const validateInput = (value: string) => {
     setError("");
@@ -30,32 +32,74 @@ export const Auth: React.FC<Props> = ({ authIsOpen, setAuthIsOpen }) => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!error && nameInput && passwordInput) {
-      console.log("Submitted:", nameInput, passwordInput);
-      // Handle form submission logic here
+
+    if(!nameInput || !passwordInput) {
+      setError("Please fill in all fields.");
+      return;
+    }
+
+    try {
+      setLoading(true);
+      setError("");
+
+      const response: any = await fakeAuthAPI(nameInput, passwordInput);
+      if (!error && nameInput && passwordInput) {
+        // Якщо успішно — зберігаємо токен (припустимо, тут він зберігається через HTTPOnly cookie)
+        console.log("Login successful, token:", response.token);
+
+        localStorage.setItem('authToken', 'mockToken'); // Mock token for testing
+        setIsAuthenticated(true);
+        navigate("/admin");
+      }
+
+      // const response = await fetch("api/auth/login/", { 
+      //   method: "POST", 
+      //   headers: { 
+      //     "Content-Type": "application/json"
+      //   },
+      //   credentials: "include",
+      //   body: JSON.stringify({
+      //     email: nameInput,
+      //     password: passwordInput
+      //   })
+      // })
+
+      // if(!response.ok) {
+      //   const errorData = await response.json();
+      //   setLoading(false);
+      //   setError(errorData.message || "Login Failed");
+      //   return;
+      // }
+
+    } catch (err){
+       setError("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-      <div className={cn( "auth", { 
-        "auth--visible" : authIsOpen, 
-        "auth--hidden" : !authIsOpen,
-        })}>
+      <div className="auth auth--visible">
         <div className="auth__content">
-          <button className="auth__button--close" onClick={() => setAuthIsOpen(false)}>x</button>
+
           <form onSubmit={handleSubmit} className="auth__form">
             <fieldset className="auth__fieldset">
               <h3 className="auth__title">Log In</h3>
+
               <div className="auth__input-container">
                 <label htmlFor="name"></label>
+
                 <input
                   id="name"
                   type="text"
                   className="auth__input auth__input--name"
                   placeholder="email or phone number"
-                  onChange={(e) => setNameInput(e.target.value)}
+                  onChange={(e) => {
+                    setNameInput(e.target.value)
+                    validateInput(e.target.value);
+                  }}
                   autoComplete="username"
                   required
                 />
@@ -63,6 +107,7 @@ export const Auth: React.FC<Props> = ({ authIsOpen, setAuthIsOpen }) => {
 
               <div className="auth__input-container">
                 <label htmlFor="password"></label>
+
                 <input
                   id="password"
                   type="password"
@@ -70,7 +115,6 @@ export const Auth: React.FC<Props> = ({ authIsOpen, setAuthIsOpen }) => {
                   placeholder="password"
                   onChange={(e) => {
                     setPasswordInput(e.target.value);
-                    validateInput(e.target.value);
                   }}
                   autoComplete="current-password"
                   required
@@ -78,15 +122,14 @@ export const Auth: React.FC<Props> = ({ authIsOpen, setAuthIsOpen }) => {
               </div>
 
               {error && <p style={{ color: "red" }}>{error}</p>}
-              <button className="button auth__button--submit" type="submit" disabled={!!error}>
-                Submit
+              <button 
+                className="button auth__button--submit" 
+                type="submit" 
+                disabled={!!error || loading}
+              >
+                {loading ? <Loader /> : "Submit"} 
               </button>
             </fieldset>
-
-            <div className="auth__options">
-              <button type="button" className="auth__reset-password">Забули пароль?</button>
-              <button type="button" className="auth__sign">Зареєструватися</button> 
-            </div>
           </form>
         </div>
       </div>

@@ -15,20 +15,20 @@ type Props = {
 
 export const List: React.FC<Props> = ({ items }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [visibleItemsCountMobile, setVisibleItemsCountMobile] = useState(6);
-  const [visibleItemsCountDesktop, setVisibleItemsCountDesktop] = useState(9);
+  const [visibleItemsCountMobile, setVisibleItemsCountMobile] = useState(4);
+  const [visibleItemsCountDesktop, setVisibleItemsCountDesktop] = useState(6);
 
   const innerWidth = window.innerWidth;
 
   const handleShowMoreClick = () => {
     if (innerWidth < 1200) {
       setVisibleItemsCountMobile((prevCount) => {
-        const newCount = prevCount + 6;
+        const newCount = prevCount + 4;
         return newCount >= items.length ? items.length : newCount;
       });
     } else {
       setVisibleItemsCountDesktop((prevCount) => {
-        const newCount = prevCount + 9;
+        const newCount = prevCount + 6;
         return newCount >= items.length ? items.length : newCount;
       });
     }

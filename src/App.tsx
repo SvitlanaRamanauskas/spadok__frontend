@@ -1,16 +1,9 @@
-import { useContext, useEffect, useState } from "react";
-import cn from "classnames";
 import "./styles/App.scss";
 import { Link, Outlet } from "react-router-dom";
 import { scroller } from "react-scroll";
-import { AsideMenu } from "./components/AsideMenu";
-import { AppContext } from "./components/appContext";
-import { ArrowDecorTop } from "./components/ArrowDecorTop";
 import { ArrowDecorBelow } from "./components/ArrowDecorBelow";
-import { useAppSelector } from "./redux/hooks";
-import { totalCartQuantitySelector } from "./redux/cart/reducerCart";
-import { totalFavoritesQuantitySelector } from "./redux/cart/reducerFavorites";
 import { ThreadDecor } from "./components/ThreadDecor";
+import { Header } from "./components/Header";
 
 export const scrollToTop = () => {
   window.scrollTo({
@@ -29,219 +22,15 @@ export const handleNavigation = (section: any) => {
   }, 1000); // Delay to ensure the page is loaded
 };
 
+console.log(process.env.PUBLIC_URL)
+
 function App() {
-  const [vyshyvListExpanded, setVyshyvListExpanded] = useState(false);
-  const { setAsideIsOpen, asideIsOpen } = useContext(AppContext);
 
-  const totalCartQuanity: number = useAppSelector(totalCartQuantitySelector);
-  const totalFavoritesQuantity: number = useAppSelector(
-    totalFavoritesQuantitySelector
-  );
-
-  const toggleMenuButton = () => {
-    setAsideIsOpen(!asideIsOpen);
-  };
-
-  useEffect(() => {
-    const handleDocumentClick = () => {
-      setVyshyvListExpanded(false);
-    };
-
-    document.addEventListener("click", handleDocumentClick);
-
-    return () => {
-      document.removeEventListener("click", handleDocumentClick);
-    };
-  }, [vyshyvListExpanded]);
 
   return (
     <div className="app">
-      <header className="header">
-        <div className="header__container">
-          <div className="header__logo">
-            <>
-              <img
-                src={require("./styles/icons/curve_line.svg").default}
-                className="curve curve--top-left"
-                alt="Logo"
-              />
-              <img
-                src={require("./styles/icons/curve_line.svg").default}
-                className="curve curve--bottom-left"
-                alt="Logo"
-              />
-
-              <img
-                src={require("./styles/icons/curve_line.svg").default}
-                className="
-                  curve 
-                  curve--top-right
-                  curve--top-right--mobile-header"
-                alt="Logo"
-              />
-              <img
-                src={require("./styles/icons/curve_line.svg").default}
-                className="
-                  curve 
-                  curve--bottom-right
-                  curve--bottom-right--mobile-header
-                "
-                alt="Logo"
-              />
-            </>
-            <Link to="/" className="header__logo-text">
-              наш спадок
-            </Link>
-            <>
-              <img
-                src={require("./styles/icons/curve_line.svg").default}
-                className="curve curve__below--top-left"
-                alt="Logo"
-              />
-              <img
-                src={require("./styles/icons/curve_line.svg").default}
-                className="curve curve__below--bottom-left"
-                alt="Logo"
-              />
-
-              <img
-                src={require("./styles/icons/curve_line.svg").default}
-                className="
-                  curve 
-                  curve__below--top-right
-                  curve__below--top-right--mobile-header
-                "
-                alt="Logo"
-              />
-              <img
-                src={require("./styles/icons/curve_line.svg").default}
-                className="
-                  curve 
-                  curve__below--bottom-right
-                  curve__below--bottom-right--mobile-header
-                "
-                alt="Logo"
-              />
-            </>
-          </div>
-          <div className="header__right">
-            <ArrowDecorTop />
-            <div className="header__short-navigation">
-              <button
-                className="nav__item header__short-nav-element"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setVyshyvListExpanded((current) => !current);
-                }}
-              >
-                <p className="nav__link">Вишиванки</p>
-
-                <img
-                  className={cn("header__short-nav-element-icon", {
-                    "header__short-nav-element-icon--focused":
-                      vyshyvListExpanded,
-                  })}
-                  src={
-                    require("./styles/icons/Chevron-Arrow-Right--disabled.svg")
-                      .default
-                  }
-                  alt="clicker"
-                />
-              </button>
-              <nav
-                className={cn("header__nav", {
-                  "header__nav--opened": vyshyvListExpanded,
-                })}
-              >
-                <ul className="nav__list">
-                  <li className="nav__item">
-                    <Link to="/catalog/women" className="nav__link">
-                      жінкам
-                    </Link>
-                  </li>
-                  <li className="nav__item">
-                    <Link to="/catalog/men" className="nav__link">
-                      чоловікам
-                    </Link>
-                  </li>
-                  <li className="nav__item">
-                    <Link to="/catalog/boys" className="nav__link">
-                      хлопчикам
-                    </Link>
-                  </li>
-                  <li className="nav__item">
-                    <Link to="/catalog/girls" className="nav__link">
-                      дівчаткам
-                    </Link>
-                  </li>
-                </ul>
-              </nav>
-              <button className="nav__item header__short-nav-element">
-                <Link to="/catalog/books" className="nav__link">
-                  книгі
-                </Link>
-              </button>
-            </div>
-
-            <div className="header__icons">
-              <Link
-                to="/favorites"
-                className="header__icon header__icon--favorite"
-              >
-                <img
-                  src={require("./styles/icons/heart.svg").default}
-                  alt="heart"
-                  className="header__icon-picture"
-                />
-
-                {totalFavoritesQuantity > 0 && (
-                  <div className="header__icon-circle">
-                    {totalFavoritesQuantity}
-                  </div>
-                )}
-              </Link>
-
-              <Link to="/cart" className="header__icon header__icon--cart">
-                <img
-                  src={require("./styles/icons/bxs_cart.svg").default}
-                  alt="cart"
-                />
-
-                {totalCartQuanity > 0 && (
-                  <div className="header__icon-circle">{totalCartQuanity}</div>
-                )}
-              </Link>
-              {asideIsOpen ? (
-                <button
-                  type="button"
-                  className="header__icon  header__icon--close"
-                  onClick={toggleMenuButton}
-                >
-                  <img
-                    src={require("./styles/icons/Close.svg").default}
-                    alt="close"
-                  />
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  className="header__icon  header__icon--burger"
-                  onClick={toggleMenuButton}
-                >
-                  <img
-                    src={require("./styles/icons/menu-burger.svg").default}
-                    alt="menu"
-                  />
-                </button>
-              )}
-            </div>
-            <ArrowDecorBelow />
-          </div>
-        </div>
-      </header>
-
-      {asideIsOpen && <AsideMenu />}
-
+      <Header />
+      
       <main className="main">
         <Outlet />
       </main>
