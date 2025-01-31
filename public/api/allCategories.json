@@ -712,7 +712,7 @@
     {
         "id": "bizhu",
         "category": "books",
-        "subcategory": "books-kids",
+        "subcategory": "books",
         "title" : "Біжу аби бігти",
         "genre": "novel",
         "price": "350",
@@ -722,7 +722,7 @@
     {
         "id": "charokryl",
         "category": "books",
-        "subcategory": "books-kids",
+        "subcategory": "books",
         "title" : "Чарокрил",
         "genre": "novel",
         "price": "300",
@@ -732,7 +732,7 @@
     {
         "id": "VochikuvaniRizdva",
         "category": "books",
-        "subcategory": "books-kids",
+        "subcategory": "books",
         "title" : "В очікуванні Різдва",
         "genre": "novel",
         "price": "250",

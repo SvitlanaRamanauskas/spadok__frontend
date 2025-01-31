@@ -38,8 +38,18 @@
       padding-left: 38px;
       // height: $half-menu-height-desktop;
     }
-  };
+  }
 
+  &__separator {
+    position: relative;
+    height: 1px;
+    width: 100%;
+    background-color: $bg-color;
+  }
+
+}
+
+#menu {
   &__list {
     box-sizing: content-box;
     flex-direction: column;
@@ -48,18 +58,18 @@
     height: 260px;
     padding-left: 0;
   }
-
+  
   &__item {
     align-self: baseline;
+  }
+  
     &::after {
-      background-color: $bg-color;
-
-      &:hover {
-        background-color: white;
-      }
+    background-color: $bg-color;
+    &:hover {
+      background-color: white;
     }
   }
-
+  
   &__link {
     color: $bg-color;
     font-family: "inter", serif;
@@ -69,16 +79,9 @@
     &:hover {
       color: white;
     }
-
+  
     @include on-Tablet {
       font-size: 25px;
     }
   }
-
-  &__separator {
-    position: relative;
-    height: 1px;
-    width: 100%;
-    background-color: $bg-color;
-  }
-}
+}  

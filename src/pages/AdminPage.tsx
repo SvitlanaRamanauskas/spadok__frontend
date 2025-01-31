@@ -1,9 +1,8 @@
+import { AdminPanel } from "../components/AdminPanel";
+
 export const AdminPage = () => {
 
-
     return (
-        <>
-            <p>зайшло</p>
-        </>
+        <AdminPanel />
     );
 }

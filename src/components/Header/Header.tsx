@@ -10,15 +10,19 @@ import { totalCartQuantitySelector } from "../../redux/cart/reducerCart";
 import { totalFavoritesQuantitySelector } from "../../redux/cart/reducerFavorites";
 import { AsideMenu } from "../AsideMenu";
 import { AppContext } from "../appContext";
-import { fetchCategoriesNameList, fetchSubcategoriesEngList, fetchSubcategoriesNameList } from "../../helper/fetch";
+import { fetchCategoriesNameList, fetchSubcategoriesKeyList, fetchSubcategoriesNameList } from "../../helper/fetch";
 
 export const Header = () => {
   const [vyshyvListExpanded, setVyshyvListExpanded] = useState(false);
   const [categories, setCategories] = useState<string[]>([]);
   const [subcategories, setSubcategories] = useState<string[]>([]);
-  const [subcategoriesEng, setSubcategoriesEng] = useState<string[]>([]);
+  const [subcategoriesKey, setSubcategoriesKey] = useState<string[]>([]);
 
   const { isAuthenticated, setIsAuthenticated } = useContext(AppContext);
+
+  const flattenSubcategories = subcategories.flat();
+  const flattenSubcategoriesKey = subcategoriesKey.flat();
+
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -51,8 +55,8 @@ export const Header = () => {
             setCategories(categories);
             const subcategories: any = await fetchSubcategoriesNameList();
             setSubcategories(subcategories);
-            const subcategoriesEng: any = await fetchSubcategoriesEngList();
-            setSubcategoriesEng(subcategoriesEng);
+            const subcategoriesEng: any = await fetchSubcategoriesKeyList();
+            setSubcategoriesKey(subcategoriesEng);
         } catch (error) {
             console.error("Failed to fetch categories:", error);
         }    
@@ -178,9 +182,9 @@ export const Header = () => {
                 })}
               >
                 <ul className="nav__list">{
-                  subcategories.map((subcategory, index) => (
-                    <li className="nav__item">
-                    <Link to={`/catalog/${subcategoriesEng[index]}`} className="nav__link">
+                  flattenSubcategories.map((subcategory, index) => (
+                    <li className="nav__item" key={subcategory}>
+                    <Link to={`/catalog/${flattenSubcategoriesKey[index]}`} className="nav__link">
                       {subcategory}
                     </Link>
                   </li>
@@ -272,7 +276,12 @@ export const Header = () => {
         </div>
       </header>
 
-      {asideIsOpen && <AsideMenu />}
+      {asideIsOpen && (
+        <AsideMenu 
+          categories={categories}
+          flattenSubcategories={flattenSubcategories}
+          flattenSubcategoriesKey={flattenSubcategoriesKey}
+        />)}
     </>
   );
 };

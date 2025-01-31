@@ -1,3 +1,4 @@
+import { AdminCategoriesData, AdminCategory, AdminSubcategory } from "../types/AdminNames";
 import { Book } from "../types/Book";
 import { Order } from "../types/Order";
 import { Product } from "../types/Product";
@@ -39,19 +40,23 @@ export const fetchAllProducts = async() : Promise<Product[]> => {
     return await response.json();
 
   } catch (error: any) {
-      throw new Error(`Error fetching products: ${error.message}`);
+      throw new Error(`Error fetching all products: ${error.message}`);
   }
+}
+
+export const fetchProductsBySubcategory = (subcategoryKey: string): Promise<Product[]> => {
+  return fetchAllProducts()
+    .then(products => products.filter(product => product.subcategory === subcategoryKey));
 }
 
 export const fetchCategoriesNameList = async () => {
   try {
     const response = await fetch(`${baseUrl}/api/categoryNames.json`, {method: "GET"} );
-    const categoryNames = await response.json();
-    const categories = categoryNames.categories || [];
-  
+    const data = await response.json();
+    const categories = data.categories.map((category: AdminCategory) => category.name) || [];
     return categories;
   } catch(error) {
-    console.error("Error fetching categories and subcategories:", error);
+    console.error("Error fetching Categories NameList:", error);
     return [];
   }
 }
@@ -59,25 +64,49 @@ export const fetchCategoriesNameList = async () => {
 export const fetchSubcategoriesNameList = async () => {
   try {
     const response = await fetch(`${baseUrl}/api/categoryNames.json`, {method: "GET"} );
-    const categoryNames = await response.json();
-    const subcategories = categoryNames.subcategories || [];
-  
+    const data = await response.json();
+    const subcategories = data.categories.map(
+      (category: AdminCategory) => category.subcategories.map(
+        ((subcategory: AdminSubcategory) => subcategory.name)
+      )
+    );
+
     return subcategories;
   } catch(error) {
-    console.error("Error fetching categories and subcategories:", error);
+    console.error("Error fetching Subcategories NameList:", error);
     return [];
   }
 }
 
-export const fetchSubcategoriesEngList = async () => {
+export const fetchSubcategoriesKeyList = async () => {
   try {
     const response = await fetch(`${baseUrl}/api/categoryNames.json`, {method: "GET"} );
-    const categoryNames = await response.json();
-    const subcategoriesEng = categoryNames.subcategoriesEng || [];
-  
-    return subcategoriesEng;
+    const data = await response.json();
+    const subcategoryKeys = data.categories.map(
+      (category: AdminCategory) => category.subcategories.map(
+        ((subcategory: AdminSubcategory) => subcategory.key)
+      )
+    );
+    
+    return subcategoryKeys;
   } catch(error) {
-    console.error("Error fetching categories and subcategories:", error);
+    console.error("Error fetching Subcategories Key List:", error);
+    return [];
+  }
+}
+
+
+export const fetchSubcategoriesNameListByCategory = async (category: string) => {
+  try {
+    const response = await fetch(`${baseUrl}/api/categoryNames.json`, {method: "GET"} );
+    const data = await response.json();
+    const categoryObj = data.categories.find(
+      (dataCategory: AdminCategory) => category === dataCategory.name);
+    const subcategories = categoryObj.subcategories.map((subcategory: AdminSubcategory) => subcategory.name)
+    
+    return subcategories;
+  } catch(error) {
+    console.error("Error fetching Subcategories NameList By Category:", error);
     return [];
   }
 }

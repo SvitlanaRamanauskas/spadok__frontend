@@ -5,89 +5,31 @@ import { AppContext } from "../appContext";
 import { handleNavigation } from "../../App";
 import { ThreadDecor } from "../ThreadDecor";
 
-export const AsideMenu = () => {
+type Props = {
+  categories: string[],
+  flattenSubcategories: string[],
+  flattenSubcategoriesKey: string[],
+}
+
+export const AsideMenu:React.FC<Props> = ({ categories, flattenSubcategories, flattenSubcategoriesKey }) => {
   const { setAsideIsOpen } = useContext(AppContext);
 
   return (
     <aside className="menu">
       <section className="menu__part">
-        <ul className="nav__list menu__list">
-          <li className="nav__item menu__item">
+        <ul id="menu__list" className="nav__list">
+          {flattenSubcategories.map((subcategory, index) => (
+            <li id="menu__item" className="nav__item">
             <Link
-              to="/catalog/women"
-              className="nav__link menu__link"
+              to={`/catalog/${flattenSubcategoriesKey[index]}`}
+              id="menu__link" 
+              className="nav__link"
               onClick={() => setAsideIsOpen(false)}
             >
-              жінкам
+              {subcategory}
             </Link>
           </li>
-          <li className="nav__item menu__item">
-            <Link
-              to="catalog/men"
-              className="nav__link menu__link"
-              onClick={() => setAsideIsOpen(false)}
-            >
-              чоловікам
-            </Link>
-          </li>
-          <li className="nav__item menu__item">
-            <Link
-              to="catalog/boys"
-              className="nav__link menu__link"
-              onClick={() => setAsideIsOpen(false)}
-            >
-              хлопчикам
-            </Link>
-          </li>
-          <li className="nav__item menu__item">
-            <Link
-              to="catalog/girls"
-              className="nav__link menu__link"
-              onClick={() => setAsideIsOpen(false)}
-            >
-              дівчаткам
-            </Link>
-          </li>
-
-          <li className="nav__item menu__item">
-            <Link
-              to="catalog/books"
-              className="nav__link menu__link"
-              onClick={() => setAsideIsOpen(false)}
-            >
-              книжки
-            </Link>
-          </li>
-
-
-          <li className="nav__item menu__item">
-            <Link
-              to="catalog/boys"
-              className="nav__link menu__link"
-              onClick={() => setAsideIsOpen(false)}
-            >
-              хлопчикам
-            </Link>
-          </li>
-          <li className="nav__item menu__item">
-            <Link
-              to="catalog/girls"
-              className="nav__link menu__link"
-              onClick={() => setAsideIsOpen(false)}
-            >
-              дівчаткам
-            </Link>
-          </li>
-
-          <li className="nav__item menu__item">
-            <Link
-              to="catalog/books"
-              className="nav__link menu__link"
-              onClick={() => setAsideIsOpen(false)}
-            >
-              книжки
-            </Link>
-          </li>
+          ))}
         </ul>
       </section>
 
