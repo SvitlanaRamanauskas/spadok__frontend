@@ -5,8 +5,47 @@ import { Product } from "../types/Product";
 import { Vyshyvanka } from "../types/Vyshyvanka";
 
 const baseUrl = process.env.PUBLIC_URL || "";
+// json-server --watch db.json --port 3001
 
 //'http://localhost:8081'
+
+export const createAdminCategory = async ({ name, key, id }: AdminCategory): Promise<AdminCategory> => {
+    try {
+      const response = await fetch('http://localhost:3001/categories', { 
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, key, id }),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`${response.status} ${response.statusText}`);
+      }
+  
+      console.log('Order successfully posted');
+      const data = await response.json();
+      return data.orderId;
+    
+    } catch (error: any) {
+      throw new Error(`Error posting order: ${error.message}`);
+    }
+
+}
+
+export const deleteProduct = async (productId: string) => {
+  try {
+    const response = await fetch(`http://localhost:3001/products/${productId}`, {method: "DELETE"});
+    if (!response.ok) {
+      throw new Error(`${response.status} ${response.statusText}`)
+    }
+
+    return response.json();
+  } catch (error: any) {
+    throw new Error(`Error posting order: ${error.message}`);
+  }
+}
+
 export const createOrder = async({ buyerName, phoneNumber, orderedProducts }: Omit<Order, "orderId">) => {
   try {
     const response = await fetch('./api/orders', { 
@@ -32,7 +71,7 @@ export const createOrder = async({ buyerName, phoneNumber, orderedProducts }: Om
 
 export const fetchAllProducts = async() : Promise<Product[]> => {
   try {
-    const response = await fetch(`${baseUrl}/api/allCategories.json`, {method: "GET"} );
+    const response = await fetch(`http://localhost:3001/products`, {method: "GET"} );
     if (!response.ok) {
       console.error(`Failed to fetch: ${response.status} ${response.statusText}`);
         throw new Error(`${response.status} ${response.statusText}`);
@@ -49,11 +88,12 @@ export const fetchProductsBySubcategory = (subcategoryKey: string): Promise<Prod
     .then(products => products.filter(product => product.subcategory === subcategoryKey));
 }
 
-export const fetchCategoriesNameList = async () => {
+export const fetchCategoriesList = async () => {
   try {
-    const response = await fetch(`${baseUrl}/api/categoryNames.json`, {method: "GET"} );
+    const response = await fetch(`http://localhost:3001/categories`, {method: "GET"} );
     const data = await response.json();
-    const categories = data.categories.map((category: AdminCategory) => category.name) || [];
+    const categories = data;
+
     return categories;
   } catch(error) {
     console.error("Error fetching Categories NameList:", error);
@@ -61,15 +101,11 @@ export const fetchCategoriesNameList = async () => {
   }
 }
 
-export const fetchSubcategoriesNameList = async () => {
+export const fetchSubcategoriesList = async () => {
   try {
-    const response = await fetch(`${baseUrl}/api/categoryNames.json`, {method: "GET"} );
+    const response = await fetch(`http://localhost:3001/subcategories`, {method: "GET"} );
     const data = await response.json();
-    const subcategories = data.categories.map(
-      (category: AdminCategory) => category.subcategories.map(
-        ((subcategory: AdminSubcategory) => subcategory.name)
-      )
-    );
+    const subcategories = data;
 
     return subcategories;
   } catch(error) {
@@ -82,10 +118,8 @@ export const fetchSubcategoriesKeyList = async () => {
   try {
     const response = await fetch(`${baseUrl}/api/categoryNames.json`, {method: "GET"} );
     const data = await response.json();
-    const subcategoryKeys = data.categories.map(
-      (category: AdminCategory) => category.subcategories.map(
-        ((subcategory: AdminSubcategory) => subcategory.key)
-      )
+    const subcategoryKeys = data.map(
+      ((subcategory: AdminSubcategory) => subcategory.key)
     );
     
     return subcategoryKeys;
@@ -96,13 +130,12 @@ export const fetchSubcategoriesKeyList = async () => {
 }
 
 
-export const fetchSubcategoriesNameListByCategory = async (category: string) => {
+export const fetchSubcategoriesByCategory = async (category: AdminCategory) => {
   try {
-    const response = await fetch(`${baseUrl}/api/categoryNames.json`, {method: "GET"} );
+    const response = await fetch(`http://localhost:3001/subcategories`, {method: "GET"} );
     const data = await response.json();
-    const categoryObj = data.categories.find(
-      (dataCategory: AdminCategory) => category === dataCategory.name);
-    const subcategories = categoryObj.subcategories.map((subcategory: AdminSubcategory) => subcategory.name)
+    const subcategories = data
+      .filter((subcategory: AdminSubcategory) => subcategory.category === category.id)
     
     return subcategories;
   } catch(error) {

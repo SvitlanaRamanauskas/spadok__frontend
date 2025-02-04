@@ -10,18 +10,15 @@ import { totalCartQuantitySelector } from "../../redux/cart/reducerCart";
 import { totalFavoritesQuantitySelector } from "../../redux/cart/reducerFavorites";
 import { AsideMenu } from "../AsideMenu";
 import { AppContext } from "../appContext";
-import { fetchCategoriesNameList, fetchSubcategoriesKeyList, fetchSubcategoriesNameList } from "../../helper/fetch";
+import { fetchCategoriesList, fetchSubcategoriesList } from "../../helper/fetch";
+import { AdminCategory, AdminSubcategory } from "../../types/AdminNames";
 
 export const Header = () => {
   const [vyshyvListExpanded, setVyshyvListExpanded] = useState(false);
-  const [categories, setCategories] = useState<string[]>([]);
-  const [subcategories, setSubcategories] = useState<string[]>([]);
-  const [subcategoriesKey, setSubcategoriesKey] = useState<string[]>([]);
+  const [categories, setCategories] = useState<AdminCategory[]>([]);
+  const [subcategories, setSubcategories] = useState<AdminSubcategory[]>([]);
 
   const { isAuthenticated, setIsAuthenticated } = useContext(AppContext);
-
-  const flattenSubcategories = subcategories.flat();
-  const flattenSubcategoriesKey = subcategoriesKey.flat();
 
   const navigate = useNavigate();
 
@@ -51,12 +48,11 @@ export const Header = () => {
   useEffect(() => {
     const loadSubcategories = async () => {
         try {
-            const categories: any = await fetchCategoriesNameList();
+            const categories: AdminCategory[] = await fetchCategoriesList();
             setCategories(categories);
-            const subcategories: any = await fetchSubcategoriesNameList();
+
+            const subcategories: AdminSubcategory[] = await fetchSubcategoriesList();
             setSubcategories(subcategories);
-            const subcategoriesEng: any = await fetchSubcategoriesKeyList();
-            setSubcategoriesKey(subcategoriesEng);
         } catch (error) {
             console.error("Failed to fetch categories:", error);
         }    
@@ -182,10 +178,10 @@ export const Header = () => {
                 })}
               >
                 <ul className="nav__list">{
-                  flattenSubcategories.map((subcategory, index) => (
-                    <li className="nav__item" key={subcategory}>
-                    <Link to={`/catalog/${flattenSubcategoriesKey[index]}`} className="nav__link">
-                      {subcategory}
+                  subcategories.map((subcategory) => (
+                    <li className="nav__item" key={subcategory.name}>
+                    <Link to={`/catalog/${subcategory.key}`} className="nav__link">
+                      {subcategory.name}
                     </Link>
                   </li>
                   ))
@@ -212,7 +208,7 @@ export const Header = () => {
 
               <button className="nav__item header__short-nav-element">
                 <Link to={`/catalog/books`} className="nav__link">
-                  {categories[1]}
+                  Книжки
                 </Link>
               </button>
             </div>
@@ -278,9 +274,7 @@ export const Header = () => {
 
       {asideIsOpen && (
         <AsideMenu 
-          categories={categories}
-          flattenSubcategories={flattenSubcategories}
-          flattenSubcategoriesKey={flattenSubcategoriesKey}
+          subcategories={subcategories}
         />)}
     </>
   );

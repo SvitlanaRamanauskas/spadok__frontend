@@ -1,117 +1,112 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import cn from "classnames";
 import {
-  fetchCategoriesNameList,
+  createAdminCategory,
+  fetchCategoriesList,
   fetchProductsBySubcategory,
-  fetchSubcategoriesNameListByCategory,
-  getProductById,
+  fetchSubcategoriesByCategory,
 } from "../../helper/fetch";
 import "./AdminPanel.scss";
 import { Product } from "../../types/Product";
 import { AdminProductDetails } from "./AdminProductDetails";
+import { AdminProductList } from "./AdminProductList";
+import { Loader } from "../Loader";
+import { AdminCategory, AdminSubcategory } from "../../types/AdminNames";
 
 export const AdminPanel = () => {
-  const [adminCategories, setAdminCategories] = useState<string[]>([]);
-  const [adminSubcategories, setAdminSubcategories] = useState<string[]>([]);
+  const [adminCategories, setAdminCategories] = useState<AdminCategory[]>([]);
+  const [adminSubcategories, setAdminSubcategories] = useState<
+    AdminSubcategory[]
+  >([]);
   const [adminProductList, setAdminProductList] = useState<Product[] | []>([]);
 
-  const [errorCategory, setErrorCategory] = useState(false);
-  const [errorSubcategory, setErrorSubcategory] = useState(false);
+  const [errorCategories, setErrorCategories] = useState(false);
+  const [errorSubcategories, setErrorSubcategories] = useState(false);
   const [errorProductList, setErrorProductList] = useState(false);
+  const [errorProductDetails, setErrorProductDetails] = useState(false);
 
   const [loadingAdminCategories, setLoadingAdminCategories] = useState(false);
   const [loadingAdminSubcategories, setLoadingAdminSubcategories] =
     useState(false);
   const [loadingAdminProductList, setLoadingAdminProductList] = useState(false);
+  const [loadingAdminProductDetails, setLoadingAdminProductDetails] =
+    useState(false);
 
   const [selectedAdminCategory, setSelectedAdminCategory] =
-    useState<string>("");
+    useState<AdminCategory | null>(null);
   const [selectedAdminSubcategory, setSelectedAdminSubcategory] =
-    useState<string>("");
+    useState<AdminSubcategory | null>(null);
   const [selectedAdminProduct, setSelectedAdminProduct] =
     useState<Product | null>(null);
 
-  const [subcategoriesVisible, setSubcategoriesVisible] = useState(false);
-  const [adminProductListVisible, setAdminProductListVisible] = useState(false);
+  const [newCategoryInputOpen, setNewCategoryInputOpen] = useState(false);
+
+  const [newCategoryName, setNewCategoryName] = useState("");
+  const [newCategoryKey, setNewCategoryKey] = useState("");
+  const [newCategoryId, setNewCategoryId] = useState("");
 
   useEffect(() => {
     setLoadingAdminCategories(true);
 
-    fetchCategoriesNameList()
+    fetchCategoriesList()
       .then((data) => {
         setAdminCategories(data);
       })
       .catch((error) => {
-        setErrorCategory(true);
+        setErrorCategories(true);
       })
       .finally(() => setLoadingAdminCategories(false));
   }, []);
 
-  const handleOpenCloseAdminSubcategory = (categoryName: string) => {
-    if (selectedAdminCategory === categoryName) {
-      setSelectedAdminCategory("");
-      setSelectedAdminSubcategory("");
+  const handleOpenCloseAdminSubcategory = (category: AdminCategory) => {
+    if (selectedAdminCategory === category) {
+      setSelectedAdminCategory(null);
+      setSelectedAdminSubcategory(null);
       setSelectedAdminProduct(null);
       setAdminSubcategories([]);
       setAdminProductList([]);
-      setSubcategoriesVisible(false);
-      setAdminProductListVisible(false);
       return;
     }
 
     setLoadingAdminSubcategories(true);
-    setSubcategoriesVisible(false);
-    setSelectedAdminCategory("");
-    setSelectedAdminSubcategory("");
+    setSelectedAdminCategory(null);
+    setSelectedAdminSubcategory(null);
     setSelectedAdminProduct(null);
     setAdminSubcategories([]);
     setAdminProductList([]);
-    setSubcategoriesVisible(false);
-    setAdminProductListVisible(false);
 
-    fetchSubcategoriesNameListByCategory(categoryName)
+    fetchSubcategoriesByCategory(category)
       .then((data) => {
         setAdminSubcategories(data);
-        setSubcategoriesVisible(true);
-        setSelectedAdminCategory(categoryName);
+        setSelectedAdminCategory(category);
       })
       .catch((error) => {
-        setErrorSubcategory(true);
+        setErrorSubcategories(true);
       })
       .finally(() => setLoadingAdminSubcategories(false));
   };
 
-  const handleOpenCloseProductsList = (subcategory: string) => {
+  const handleOpenCloseProductsList = (subcategory: AdminSubcategory) => {
     if (selectedAdminSubcategory === subcategory) {
-      setSelectedAdminSubcategory("");
+      setSelectedAdminSubcategory(null);
       setAdminProductList([]);
-      setAdminProductListVisible(false);
+      setErrorProductList(false);
       return;
     }
 
     setLoadingAdminProductList(true);
-    setAdminProductListVisible(false);
-    setSelectedAdminSubcategory("");
+    setErrorProductList(false);
+    setAdminProductList([]);
+    setSelectedAdminSubcategory(null);
 
-    const subcategoryKeyMap: Record<string, string> = {
-      жінкам: "women",
-      чоловікам: "men",
-      хлопчикам: "boys",
-      дівчатам: "girls",
-      книги: "books",
-    };
-
-    const mappedKey = subcategoryKeyMap[subcategory] || "";
-
-    if (!mappedKey) {
+    if (!subcategory.key) {
       setLoadingAdminProductList(false);
       return;
     }
 
-    fetchProductsBySubcategory(mappedKey)
+    fetchProductsBySubcategory(subcategory.key)
       .then((data) => {
         setAdminProductList(data);
-        setAdminProductListVisible(true);
         setSelectedAdminSubcategory(subcategory);
       })
       .catch(() => {
@@ -120,53 +115,127 @@ export const AdminPanel = () => {
       .finally(() => setLoadingAdminProductList(false));
   };
 
-  const handleOpenCloseProduct = (product: Product) => {
-    if (selectedAdminProduct?.id === product.id) {
-        setSelectedAdminProduct(null);
-        return;
-    }
+  //#region handlers-Input
 
-    setSelectedAdminProduct(product); // Set the product immediately
-    fetchProductDetails(product.id);
+  const handleInputCategoryChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setNewCategoryName(event.target.value);
   };
-  const fetchProductDetails = useMemo(
-    () => (id: string) => {
-      getProductById(id)
-        .then((data) => {
-          if (data) {
-            setSelectedAdminProduct(data); // Update product with fetched details
-          }
-        })
-        .catch((error) => {
-          console.error("Failed to fetch product details:", error);
-        });
-    },
-    [] // Empty array ensures this function doesn't get recreated on every render
-  );
-  console.log(selectedAdminProduct);
+
+  const handleInputCategoryKeyChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setNewCategoryKey(event.target.value);
+  };
+
+  const handleInputCategoryIdChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setNewCategoryId(event.target.value);
+  };
+
+  //#endregion
+
+  const addCategory = () => {
+    return createAdminCategory({
+      name: newCategoryName,
+      key: newCategoryKey,
+      id: "4",
+    }).then((newAdminCategory) =>
+      setAdminCategories((currentCategories) => [
+        ...currentCategories,
+        newAdminCategory,
+      ])
+    );
+  };
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    addCategory();
+    setNewCategoryInputOpen(false);
+    setNewCategoryName("");
+    setNewCategoryKey("");
+    setNewCategoryId("");
+  };
+
+  const handleReset = () => {
+    setNewCategoryName("");
+    setNewCategoryKey("");
+    setNewCategoryId("");
+  };
 
   return (
     <section className="admin">
+      {loadingAdminCategories && <Loader />}
+
       <ul className="admin__categories categories__list">
         {adminCategories.map((category) => (
-          <li className="categories__item" key={category}>
+          <li className="categories__item" key={category.name}>
             <button
               className={cn("categories__link", {
                 "categories__link--active": selectedAdminCategory === category,
               })}
               onClick={() => handleOpenCloseAdminSubcategory(category)}
             >
-              {category}
+              {category.name}
             </button>
           </li>
         ))}
       </ul>
 
-      {subcategoriesVisible &&
+      {newCategoryInputOpen && (
+        <form 
+          className="admin__categories-form" 
+          onSubmit={handleSubmit}
+          onReset={handleReset}
+        >
+          <input
+            type="text"
+            value={newCategoryName}
+            onChange={handleInputCategoryChange}
+            placeholder="Category Name"
+          />
+          <input
+            type="text"
+            value={newCategoryKey}
+            onChange={handleInputCategoryKeyChange}
+             placeholder="Category Key"
+          />
+          <input
+            type="text"
+            value={newCategoryId}
+            onChange={handleInputCategoryIdChange}
+             placeholder="Category Id"
+          />
+
+          <div className="admin__categories-buttons">
+            <button className="admin__categories-button" type="submit">
+              Зберегти
+            </button>
+            <button className="admin__categories-button" type="reset">
+              Очистити
+            </button>
+          </div>
+        </form>
+      )}
+
+      {!newCategoryInputOpen && (
+        <button
+          className="admin__button admin__button--close"
+          onClick={() => setNewCategoryInputOpen(true)}
+        >
+          додати категорію
+        </button>
+      )}
+
+      {adminSubcategories.length > 0 &&
+        !loadingAdminSubcategories &&
+        !errorSubcategories &&
         adminSubcategories.map((subcategory) => (
           <li
             className="admin__subcategories categories__item"
-            key={subcategory}
+            key={subcategory.name}
           >
             <button
               className={cn("categories__link", {
@@ -175,51 +244,40 @@ export const AdminPanel = () => {
               })}
               onClick={() => handleOpenCloseProductsList(subcategory)}
             >
-              {subcategory}
+              {subcategory.name}
             </button>
           </li>
-        ))
-      }
+        ))}
 
-      <div className="admin__container">
-        <div className={cn("admin__side", { "admin__side-open": !selectedAdminProduct })}>
-          {adminProductListVisible && (
-            <table className="admin-product__list">
-              <thead className="admin__thead">
-                <tr className="admin__thead-tr">
-                  <th className="admin__thead-tr-th">id</th>
-                  <th className="admin__thead-tr-th">title</th>
-                  <th className="admin__thead-tr-th">open/close</th>
-                </tr>
-              </thead>
+      {adminProductList.length > 0 &&
+        !errorProductList &&
+        !loadingAdminProductList && (
+          <div className="admin__container">
+            <AdminProductList
+              selectedAdminProduct={selectedAdminProduct}
+              adminProductList={adminProductList}
+              setSelectedAdminProduct={setSelectedAdminProduct}
+              setLoadingAdminProductDetails={setLoadingAdminProductDetails}
+              setErrorProductDetails={setErrorProductDetails}
+            />
 
-              <tbody className="admin__tbody">
-                {adminProductList.map((product) => (
-                    <tr className="admin__tbody-tr" key={product.id}>
-                    <td className="admin__tbody-tr-td">{product.id}</td>
-                    <td className="admin__tbody-tr-td">{product.title}</td>
-                    <td className="admin__tbody-tr-td">
-                      <button
-                        onClick={() => handleOpenCloseProduct(product)}
-                        className={cn("admin-product__button", {
-                            "admin-product__button--open" : selectedAdminProduct?.id !== product.id,
-                            "admin-product__button--close" : selectedAdminProduct?.id === product.id,
-                        })}
-                      >
-                        {selectedAdminProduct?.id === product.id ? "Close" : "Open"}
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
-        </div>
-
-        {!!selectedAdminProduct && (
-          <AdminProductDetails selectedAdminProduct={selectedAdminProduct} />
+            {!!selectedAdminProduct &&
+              !errorProductDetails &&
+              !loadingAdminProductDetails && (
+                <AdminProductDetails
+                  selectedAdminProduct={selectedAdminProduct}
+                  setAdminProductList={setAdminProductList}
+                />
+              )}
+          </div>
         )}
-      </div>
+
+      {adminProductList.length === 0 &&
+        selectedAdminSubcategory &&
+        !errorProductList &&
+        !loadingAdminProductList && <p>Поки немає товарів</p>}
+
+      {loadingAdminProductList && <Loader />}
     </section>
   );
 };

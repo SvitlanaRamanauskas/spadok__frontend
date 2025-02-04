@@ -4,29 +4,28 @@ import { Link } from "react-router-dom";
 import { AppContext } from "../appContext";
 import { handleNavigation } from "../../App";
 import { ThreadDecor } from "../ThreadDecor";
+import { AdminSubcategory } from "../../types/AdminNames";
 
 type Props = {
-  categories: string[],
-  flattenSubcategories: string[],
-  flattenSubcategoriesKey: string[],
+  subcategories: AdminSubcategory[],
 }
 
-export const AsideMenu:React.FC<Props> = ({ categories, flattenSubcategories, flattenSubcategoriesKey }) => {
+export const AsideMenu:React.FC<Props> = ({ subcategories }) => {
   const { setAsideIsOpen } = useContext(AppContext);
 
   return (
     <aside className="menu">
       <section className="menu__part">
         <ul id="menu__list" className="nav__list">
-          {flattenSubcategories.map((subcategory, index) => (
+          {subcategories.map((subcategory) => (
             <li id="menu__item" className="nav__item">
             <Link
-              to={`/catalog/${flattenSubcategoriesKey[index]}`}
+              to={`/catalog/${subcategory.key}`}
               id="menu__link" 
               className="nav__link"
               onClick={() => setAsideIsOpen(false)}
             >
-              {subcategory}
+              {subcategory.name}
             </Link>
           </li>
           ))}

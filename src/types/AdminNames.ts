@@ -1,14 +1,15 @@
 export type AdminSubcategory = {
     name: string,
-    key: string
+    key: string,
+    category: string,
 }
 
 export type AdminCategory = {
     name: string,
     key: string,
-    subcategories: AdminCategory[];
+    id: string,
 }
 
 export type AdminCategoriesData = {
-    categories: AdminCategory[];
+    categories: AdminCategory[] | AdminSubcategory[];
 }
