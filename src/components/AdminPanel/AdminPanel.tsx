@@ -12,6 +12,7 @@ import { AdminProductDetails } from "./AdminProductDetails";
 import { AdminProductList } from "./AdminProductList";
 import { Loader } from "../Loader";
 import { AdminCategory, AdminSubcategory } from "../../types/AdminNames";
+import { AddCategory } from "./AddCategory";
 
 export const AdminPanel = () => {
   const [adminCategories, setAdminCategories] = useState<AdminCategory[]>([]);
@@ -39,11 +40,7 @@ export const AdminPanel = () => {
   const [selectedAdminProduct, setSelectedAdminProduct] =
     useState<Product | null>(null);
 
-  const [newCategoryInputOpen, setNewCategoryInputOpen] = useState(false);
-
-  const [newCategoryName, setNewCategoryName] = useState("");
-  const [newCategoryKey, setNewCategoryKey] = useState("");
-  const [newCategoryId, setNewCategoryId] = useState("");
+    
 
   useEffect(() => {
     setLoadingAdminCategories(true);
@@ -59,12 +56,16 @@ export const AdminPanel = () => {
   }, []);
 
   const handleOpenCloseAdminSubcategory = (category: AdminCategory) => {
+    if (!category) {
+      return;
+    }
     if (selectedAdminCategory === category) {
       setSelectedAdminCategory(null);
       setSelectedAdminSubcategory(null);
       setSelectedAdminProduct(null);
       setAdminSubcategories([]);
       setAdminProductList([]);
+
       return;
     }
 
@@ -74,6 +75,7 @@ export const AdminPanel = () => {
     setSelectedAdminProduct(null);
     setAdminSubcategories([]);
     setAdminProductList([]);
+    // setNewCategoryInputOpen(false);
 
     fetchSubcategoriesByCategory(category)
       .then((data) => {
@@ -87,6 +89,9 @@ export const AdminPanel = () => {
   };
 
   const handleOpenCloseProductsList = (subcategory: AdminSubcategory) => {
+    if (!subcategory) {
+      return;
+    }
     if (selectedAdminSubcategory === subcategory) {
       setSelectedAdminSubcategory(null);
       setAdminProductList([]);
@@ -115,144 +120,68 @@ export const AdminPanel = () => {
       .finally(() => setLoadingAdminProductList(false));
   };
 
-  //#region handlers-Input
-
-  const handleInputCategoryChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setNewCategoryName(event.target.value);
-  };
-
-  const handleInputCategoryKeyChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setNewCategoryKey(event.target.value);
-  };
-
-  const handleInputCategoryIdChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setNewCategoryId(event.target.value);
-  };
-
-  //#endregion
-
-  const addCategory = () => {
-    return createAdminCategory({
-      name: newCategoryName,
-      key: newCategoryKey,
-      id: "4",
-    }).then((newAdminCategory) =>
-      setAdminCategories((currentCategories) => [
-        ...currentCategories,
-        newAdminCategory,
-      ])
-    );
-  };
-
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    addCategory();
-    setNewCategoryInputOpen(false);
-    setNewCategoryName("");
-    setNewCategoryKey("");
-    setNewCategoryId("");
-  };
-
-  const handleReset = () => {
-    setNewCategoryName("");
-    setNewCategoryKey("");
-    setNewCategoryId("");
-  };
-
   return (
     <section className="admin">
       {loadingAdminCategories && <Loader />}
 
-      <ul className="admin__categories categories__list">
-        {adminCategories.map((category) => (
-          <li className="categories__item" key={category.name}>
-            <button
-              className={cn("categories__link", {
-                "categories__link--active": selectedAdminCategory === category,
-              })}
-              onClick={() => handleOpenCloseAdminSubcategory(category)}
-            >
-              {category.name}
-            </button>
-          </li>
-        ))}
-      </ul>
+      <div className="admin__top">
+        <ul className="categories__list">
+          <h3 className="categories__title">Категорії</h3>
+          {adminCategories.map((category) => (
+            <li className="categories__item" key={category.name}>
+              <button
+                className={cn("categories__link", {
+                  "categories__link--active": selectedAdminCategory === category,
+                })}
+                onClick={() => handleOpenCloseAdminSubcategory(category)}
+              >
+                {category.name}
+              </button>
+            </li>
+          ))}
+        </ul>
 
-      {newCategoryInputOpen && (
-        <form 
-          className="admin__categories-form" 
-          onSubmit={handleSubmit}
-          onReset={handleReset}
-        >
-          <input
-            type="text"
-            value={newCategoryName}
-            onChange={handleInputCategoryChange}
-            placeholder="Category Name"
-          />
-          <input
-            type="text"
-            value={newCategoryKey}
-            onChange={handleInputCategoryKeyChange}
-             placeholder="Category Key"
-          />
-          <input
-            type="text"
-            value={newCategoryId}
-            onChange={handleInputCategoryIdChange}
-             placeholder="Category Id"
-          />
+        <AddCategory<AdminCategory>
+          type={"category"} 
+          adminCategories={adminCategories} 
+          setAdminCategories={setAdminCategories}
+         />
 
-          <div className="admin__categories-buttons">
-            <button className="admin__categories-button" type="submit">
-              Зберегти
-            </button>
-            <button className="admin__categories-button" type="reset">
-              Очистити
-            </button>
-          </div>
-        </form>
-      )}
+        <ul className="categories__list">
+          <h3 className="categories__title">Субкатегорії</h3>
+          {adminSubcategories &&
+            adminSubcategories.length > 0 &&
+            !loadingAdminSubcategories &&
+            !errorSubcategories &&
+            adminSubcategories.map((subcategory) => (
+              <li
+                className="admin__subcategories categories__item"
+                key={subcategory.name}
+              >
+                <button
+                  className={cn("categories__link", {
+                    "categories__link--active":
+                      selectedAdminSubcategory === subcategory,
+                  })}
+                  onClick={() => handleOpenCloseProductsList(subcategory)}
+                >
+                  {subcategory.name}
+                </button>
+              </li>
+            ))}
+        </ul>
 
-      {!newCategoryInputOpen && (
-        <button
-          className="admin__button admin__button--close"
-          onClick={() => setNewCategoryInputOpen(true)}
-        >
-          додати категорію
-        </button>
-      )}
-
-      {adminSubcategories.length > 0 &&
-        !loadingAdminSubcategories &&
-        !errorSubcategories &&
-        adminSubcategories.map((subcategory) => (
-          <li
-            className="admin__subcategories categories__item"
-            key={subcategory.name}
-          >
-            <button
-              className={cn("categories__link", {
-                "categories__link--active":
-                  selectedAdminSubcategory === subcategory,
-              })}
-              onClick={() => handleOpenCloseProductsList(subcategory)}
-            >
-              {subcategory.name}
-            </button>
-          </li>
-        ))}
+        <AddCategory<AdminSubcategory>
+          type={"subcategory"} 
+          adminCategories={adminSubcategories} 
+          setAdminCategories={setAdminSubcategories}
+         />
+      </div>
 
       {adminProductList.length > 0 &&
         !errorProductList &&
         !loadingAdminProductList && (
-          <div className="admin__container">
+          <div className="admin__bottom">
             <AdminProductList
               selectedAdminProduct={selectedAdminProduct}
               adminProductList={adminProductList}

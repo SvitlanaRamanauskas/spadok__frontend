@@ -1,12 +1,23 @@
 {
   "products": [
-    
     {
       "id": "Julia-XS",
       "title": "Сорочка \"Юлія\"",
       "size": "XS",
-      "sizesAvailable": ["XS", "S", "M", "L", "XL"],
-      "images": ["img/womenVyshyvanky/Julia.jpg","img/womenVyshyvanky/Julia1.jpg", "img/womenVyshyvanky/Julia2.jpg", "img/womenVyshyvanky/Julia3.jpg", "img/womenVyshyvanky/Julia4.jpg" ],
+      "sizesAvailable": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "img/womenVyshyvanky/Julia.jpg",
+        "img/womenVyshyvanky/Julia1.jpg",
+        "img/womenVyshyvanky/Julia2.jpg",
+        "img/womenVyshyvanky/Julia3.jpg",
+        "img/womenVyshyvanky/Julia4.jpg"
+      ],
       "price": 5200,
       "category": "vyshyvanky",
       "subcategory": "women",
@@ -1295,27 +1306,90 @@
       ]
     }
   ],
-
-      
-  "categories":
-  [
-     {
-        "id": "1",
-        "name": "Вишиванки",
-        "key": "vyshyvanky"
-     },
-     {
-        "id": "2",
-        "name": "Книги",
-        "key": "books"
-     }
+  "categories": [
+    {
+      "id": "1",
+      "name": "Вишиванки",
+      "key": "vyshyvanky"
+    },
+    {
+      "id": "2",
+      "name": "Книги",
+      "key": "books"
+    },
+    {
+      "id": "ffff",
+      "name": "Свgg",
+      "key": "ffff"
+    },
+    {
+      "id": "ghn",
+      "name": "vb",
+      "key": "ghng"
+    },
+    {
+      "id": "hytyy",
+      "name": "rtgrdt",
+      "key": "tdh"
+    },
+    {
+      "id": "fggf",
+      "name": "dfvg",
+      "key": "fgf"
+    },
+    {
+      "id": "sh",
+      "name": "gg",
+      "key": "sgsffh"
+    },
+    {
+      "id": "hty",
+      "name": "th",
+      "key": "dh"
+    }
   ],
-
   "subcategories": [
-     {"name": "жінкам", "key": "women", "category": "1" },
-     {"name": "чоловікам", "key": "men", "category": "1"},
-     {"name": "хлопчикам", "key": "boys","category": "1"},
-     {"name": "дівчатам", "key": "girls","category": "1"},
-     {"name": "книги", "key": "books", "category": "2"}
+    {
+      "name": "жінкам",
+      "key": "women",
+      "category": "1",
+      "id": "ec59"
+    },
+    {
+      "name": "чоловікам",
+      "key": "men",
+      "category": "1",
+      "id": "50b6"
+    },
+    {
+      "name": "хлопчикам",
+      "key": "boys",
+      "category": "1",
+      "id": "60f5"
+    },
+    {
+      "name": "дівчатам",
+      "key": "girls",
+      "category": "1",
+      "id": "5810"
+    },
+    {
+      "name": "книги",
+      "key": "books",
+      "category": "2",
+      "id": "72c3"
+    },
+    {
+      "id": "gdf",
+      "name": "sdcdsc",
+      "key": "dfdg",
+      "category": "1"
+    },
+    {
+      "id": "ref",
+      "name": "frerf",
+      "key": "rfr",
+      "category": "1"
+    }
   ]
 }

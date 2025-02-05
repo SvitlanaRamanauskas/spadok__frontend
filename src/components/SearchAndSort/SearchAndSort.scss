@@ -18,44 +18,7 @@ select {
     }
   
     &__input {
-      background-color: transparent;
-      color: $choco;
-      font-size: 15px;
-      padding-block: 5px;
-      padding-left: 4px;
-      width: 70px;
-      font-weight: 500;
-      font-family: "lev_type";
-
-      ::placeholder {
-        color: $choco;
-        font-size: 24px;
-      }
-
-      &::-webkit-input-placeholder {
-        color: $choco;
-      }
-    
-      &::-moz-placeholder {
-        color: $choco;
-      }
-    
-      &:-ms-input-placeholder {
-        color: $choco;
-      }
-    
-      &:-moz-placeholder {
-        color: $choco;;
-      }
-
-
-      @include on-Tablet {
-        width: 150px;
-      }
-
-      @include on-Desktop {
-        width: 250px;
-      }
+     @include inputStyling;
     }
   }
 

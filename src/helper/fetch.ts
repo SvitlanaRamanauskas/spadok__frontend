@@ -25,12 +25,34 @@ export const createAdminCategory = async ({ name, key, id }: AdminCategory): Pro
   
       console.log('Order successfully posted');
       const data = await response.json();
-      return data.orderId;
+      return data;
     
     } catch (error: any) {
       throw new Error(`Error posting order: ${error.message}`);
     }
+}
 
+export const createAdminSubcategory = async ({ name, key, id, category }: AdminSubcategory): Promise<AdminSubcategory> => {
+  try {
+    const response = await fetch('http://localhost:3001/subcategories', { 
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name, key, id, category }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`${response.status} ${response.statusText}`);
+    }
+
+    console.log('Order successfully posted');
+    const data = await response.json();
+    return data;
+  
+  } catch (error: any) {
+    throw new Error(`Error posting order: ${error.message}`);
+  }
 }
 
 export const deleteProduct = async (productId: string) => {
@@ -135,7 +157,7 @@ export const fetchSubcategoriesByCategory = async (category: AdminCategory) => {
     const response = await fetch(`http://localhost:3001/subcategories`, {method: "GET"} );
     const data = await response.json();
     const subcategories = data
-      .filter((subcategory: AdminSubcategory) => subcategory.category === category.id)
+      .filter((subcategory: AdminSubcategory) => subcategory.category === category.id) || []
     
     return subcategories;
   } catch(error) {
