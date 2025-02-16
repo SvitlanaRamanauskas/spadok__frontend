@@ -1,5 +1,23 @@
-{   
-   "categories": ["Вишиванки", "Книги"],
-   "subcategories": ["жінкам", "чоловікам", "хлопчикам", "дівчатам", "книги"],
-   "subcategoriesEng": ["women", "men", "boys", "girls", "books"]
+{
+   "categories":
+   [
+      {
+         "id": "1",
+         "name": "Вишиванки",
+         "key": "vyshyvanky"
+      },
+      {
+         "id": "2",
+         "name": "Книги",
+         "key": "books"
+      }
+   ],
+
+   "subcategories": [
+      {"name": "жінкам", "key": "women", "category": "1" },
+      {"name": "чоловікам", "key": "men", "category": "1"},
+      {"name": "хлопчикам", "key": "boys","category": "1"},
+      {"name": "дівчатам", "key": "girls","category": "1"},
+      {"name": "книги", "key": "books", "category": "2"}
+   ]
 }
