@@ -22,7 +22,7 @@
     color: $choco;
   }
 
-  &__side {
+  &__left {
     flex: 1;
     transition: width 0.8s ease-in-out;
     width: 50%;
@@ -131,10 +131,6 @@
 
 
 .categories {
-  &__adding-place {
-    margin-top: 20px;
-  }
-
   &__title {
     font-family: "inter";
     text-transform: capitalize;

@@ -3,6 +3,7 @@ export type AdminSubcategory = {
     key: string,
     category: string,
     id: string,
+    image: string,
 }
 
 export type AdminCategory = {

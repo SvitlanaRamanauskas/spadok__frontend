@@ -1,16 +1,15 @@
 import { Link } from "react-router-dom";
 import "./ProductCard.scss";
-import { Product } from "../../types/Product";
+import { DynamicProduct } from "../../types/Product";
 
 export type Props = {
-  item: Product;
-  productsFromServer: Product[];
+  item: DynamicProduct;
+  productsFromServer: DynamicProduct[];
 };
 
 export const ProductCard: React.FC<Props> = ({ item, productsFromServer }) => {
   const url = window.location.href;
   const categoryAsLastWordInURL = url.split('/').pop();
-  console.log(categoryAsLastWordInURL);
 
   return (
     <div className="card">

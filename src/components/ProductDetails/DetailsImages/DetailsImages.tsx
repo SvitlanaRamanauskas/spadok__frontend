@@ -6,17 +6,13 @@ import { ImageModal } from "../ImageModal";
 import { addedToFavorites } from "../../../helper/productUtils";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { addItemToFavorites, favoritesSelector, removeItemFromFavorites } from "../../../redux/cart/reducerFavorites";
-import { Product } from "../../../types/Product";
+import { DynamicProduct } from "../../../types/Product";
 
-type Props = {
-  mainImage: string;
-  setCurrentImage: (newImage: string) => void;
-};
-
-export const DetailsImages: React.FC<Props> = ({ mainImage, setCurrentImage }) => {
+export const DetailsImages: React.FC = () => {
   const { selectedProduct } = useContext(AppContext) as {
-    selectedProduct: Product;
-  };;
+    selectedProduct: DynamicProduct;
+  };
+  const [currentImage, setCurrentImage] = useState(`${process.env.PUBLIC_URL}/${selectedProduct.images[0]}`);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState<null | number>(
     null
@@ -25,7 +21,7 @@ export const DetailsImages: React.FC<Props> = ({ mainImage, setCurrentImage }) =
 const favoritesItems = useAppSelector(favoritesSelector);
 const dispatch = useAppDispatch();
 
-  const handleAddToFavorites = (product: Product) => {
+  const handleAddToFavorites = (product: DynamicProduct) => {
     if (addedToFavorites(favoritesItems, product.id)) {
       dispatch(removeItemFromFavorites(product));
     } else {
@@ -36,7 +32,7 @@ const dispatch = useAppDispatch();
   //#region Modal
 
   const handleImageClick = (clickedImage: string, index: number) => {
-    setCurrentImage(clickedImage);
+    setCurrentImage(`${process.env.PUBLIC_URL}/${clickedImage}`);
     setCurrentImageIndex(index);
     setIsModalOpen(true);
   };
@@ -64,6 +60,7 @@ const dispatch = useAppDispatch();
 
   //#endregion
 
+  console.log("mainImage", currentImage);
   return (
     <>
       {isModalOpen && (
@@ -75,16 +72,18 @@ const dispatch = useAppDispatch();
           handlePrevious={handlePreviousImage}
         />
       )}
+
       <div className="details__images-wrapper">
         <div className="details__main-image-container">
           <div className="details__main-image">
             <img
-              src={`${mainImage}`}
+              src={`${currentImage}`}
               alt="product"
               className="details__picture"
-              onClick={() => handleImageClick(mainImage!, 0)}
+              onClick={() => handleImageClick(currentImage!, 0)}
             />
           </div>
+
           <button
             type="button"
             className={classNames("heart__icon-bg", "details__icon-bg", {
@@ -112,14 +111,12 @@ const dispatch = useAppDispatch();
             )}
           </button>
         </div>
+        
         {selectedProduct.images.map((image, index) => (
           <button
             className={classNames(
               "details__image-button",
-              // `details__image-button--${index + 1}`,
-              {
-                "details__image--active": mainImage === image,
-              }
+              { "details__image--active": currentImage === image }
             )}
             type="button"
             onClick={() => handleImageClick(image, index)}

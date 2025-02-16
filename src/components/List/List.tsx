@@ -6,11 +6,11 @@ import { useState } from "react";
 import { SearchAndSort } from "../SearchAndSort";
 import { useSearchParams } from "react-router-dom";
 import { getPreparedVyshyvanky } from "../../helper/fetch";
-import { Product } from "../../types/Product";
+import { DynamicProduct } from "../../types/Product";
 
 
 type Props = {
-  items: Product[];
+  items: DynamicProduct[];
 };
 
 export const List: React.FC<Props> = ({ items }) => {
@@ -45,7 +45,7 @@ export const List: React.FC<Props> = ({ items }) => {
 
       {innerWidth < 1200 ? (
         <div className="list">
-          {preparedProducts.slice(0, visibleItemsCountMobile).map((item: Product) => (
+          {preparedProducts.slice(0, visibleItemsCountMobile).map((item: DynamicProduct) => (
             <div className="list__card" key={item.id}>
               <ProductCard item={item} productsFromServer={items} />
             </div>
@@ -61,7 +61,7 @@ export const List: React.FC<Props> = ({ items }) => {
         </div>
       ) : (
         <div className="list">
-          {preparedProducts.slice(0, visibleItemsCountDesktop).map((item: Product) => (
+          {preparedProducts.slice(0, visibleItemsCountDesktop).map((item: DynamicProduct) => (
             <div className="list__card" key={item.id}>
               <ProductCard item={item} productsFromServer={items} />
             </div>

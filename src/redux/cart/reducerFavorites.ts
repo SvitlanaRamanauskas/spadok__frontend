@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import { FavoritesItem } from "../../types/FavoritesItem";
-import { Product } from "../../types/Product";
+import { DynamicProduct } from "../../types/Product";
 
 const saveFavoritesToLocalStorage = (state: FavoritesState) => {
     localStorage.setItem("favoritesItems", JSON.stringify(state.favoritesItems));
@@ -32,7 +32,7 @@ export const favoritesSlice = createSlice({
     name: 'favorites',
     initialState,
     reducers: {
-        addItemToFavorites: (state, action: PayloadAction<Product>) => {
+        addItemToFavorites: (state, action: PayloadAction<DynamicProduct>) => {
             const newItem = action.payload;
             const existingItem = state.favoritesItems.find(item => item.item.id === newItem.id);
             state.totalFavoritesQuantity += 1;
@@ -46,7 +46,7 @@ export const favoritesSlice = createSlice({
             saveFavoritesToLocalStorage(state);
         },
 
-        removeItemFromFavorites: (state, action: PayloadAction<Product>) => {
+        removeItemFromFavorites: (state, action: PayloadAction<DynamicProduct>) => {
             const itemToDelete = action.payload;
             const existingItem = state.favoritesItems.find(item => item.item.id === itemToDelete.id);
             console.log(state.favoritesItems)

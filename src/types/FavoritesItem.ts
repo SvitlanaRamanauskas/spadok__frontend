@@ -1,6 +1,6 @@
-import { Product } from "./Product";
+import { DynamicProduct } from "./Product";
 
 export type FavoritesItem = {
     id: number;
-    item: Product;
+    item: DynamicProduct;
 }

@@ -6,17 +6,14 @@ import {
 } from "react-router-dom";
 import App from "./App";
 import { HomePage } from "./pages/HomePage";
-import { WomenPage } from "./pages/WomenPage";
+import { SubcategoryPage } from "./pages/SubcategoryPage";
 import { AppProvider } from "./components/appContext";
-import { MenPage } from "./pages/MenPage";
-import { BoysPage } from "./pages/BoysPage";
-import { GirlsPage } from "./pages/GirlsPage";
+
 import { CartPage } from "./pages/CartPage";
 import { ProductDetailsPage } from "./pages/ProductDetailsPage";
 import store from "./redux/store";
 import { Provider } from "react-redux";
 import { FavoritesPage } from "./pages/FavoritesPage";
-import { BooksPage } from "./pages/BooksPage";
 import { CatalogPage } from "./pages/CatalogPage";
 import { OrderPage } from "./pages/OrderPage";
 import ScrollToTop from "./components/scrollToTop";
@@ -25,8 +22,30 @@ import { NotFoundPage } from "./pages/NotFoundPage";
 import { AdminPage } from "./pages/AdminPage";
 import { RequireAuth } from "./components/Auth/RequireAuth";
 import { LoginPage } from "./pages/LoginPage";
+import { useEffect, useState } from "react";
+import { AdminSubcategory } from "./types/AdminNames";
+import { fetchSubcategoriesList } from "./helper/fetch";
 
 export const Root = () => {
+
+  const [subcategories, setSubcategories] = useState<AdminSubcategory[] | []>([]);
+
+  useEffect(() => {
+  const loadSubcategories = async () => {
+    try {
+      // const categories: AdminCategory[] = await fetchCategoriesList();
+      // setCategories(categories);
+      const data: AdminSubcategory[] = await fetchSubcategoriesList();
+      setSubcategories(data);
+      console.log("in Root ", subcategories)
+    } catch (error) {
+        console.error("Failed to fetch categories:", error);
+    }    
+  }
+  loadSubcategories();
+  }, []);
+
+  console.log(subcategories);
   return (
     <Provider store={store}>
       <AppProvider>
@@ -37,43 +56,41 @@ export const Root = () => {
               <Route path="home" element={<Navigate to="/" replace />} />
               <Route index element={<HomePage />} />
               <Route path="login" element={<LoginPage />} />
-              <Route path="admin" element={<RequireAuth><AdminPage /></RequireAuth>} />
-              <Route path="catalog" >
-                <Route index element={<CatalogPage />}/>
-                <Route path="women" element={<WomenPage />} />
-                <Route
-                  path="women/:productId"
-                  element={<ProductDetailsPage />}
-                />
+              <Route
+                path="admin"
+                element={
+                  <RequireAuth>
+                    <AdminPage />
+                  </RequireAuth>
+                }
+              />
 
-                <Route path="men" element={<MenPage />} />
-                <Route path="men/:productId" element={<ProductDetailsPage />} />
+              <Route path="catalog">
+                <Route index element={<CatalogPage />} />
 
-                <Route path="boys" element={<BoysPage />} />
-                <Route
-                  path="boys/:productId"
-                  element={<ProductDetailsPage />}
-                />
+                {subcategories.map((subcategory) => (
+                  <Route
+                    key={subcategory.key}
+                    path=":subcategoryKey"
+                    element={<SubcategoryPage />}
+                  />
+                ))}
 
-                <Route path="girls" element={<GirlsPage />} />
-                <Route
-                  path="girls/:productId"
-                  element={<ProductDetailsPage />}
-                />
-
-                <Route path="books" element={<BooksPage />} />
-                <Route
-                  path="books/:productId"
-                  element={<ProductDetailsPage />}
-                />
+                {subcategories.map((subcategory) => (
+                  <Route
+                    key={`${subcategory.key}-details`}
+                    path=":subcategoryKey/:productId"
+                    element={<ProductDetailsPage />}
+                  />
+                ))}
               </Route>
-
+              
               <Route path="/bestsellers" element={<BestsellersPage />} />
               <Route path="/favorites" element={<FavoritesPage />} />
               <Route path="/cart" element={<CartPage />} />
               <Route path="/order" element={<OrderPage />} />
 
-              <Route path="*" element={<NotFoundPage /> }/>
+              <Route path="*" element={<NotFoundPage />} />
             </Route>
           </Routes>
         </Router>

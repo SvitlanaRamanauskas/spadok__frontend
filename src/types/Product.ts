@@ -1,4 +1,3 @@
-import { Book } from "./Book";
-import { Vyshyvanka } from "./Vyshyvanka";
+import { ProductBase } from "./ProductBase";
 
-export type Product = Vyshyvanka| Book;
+export type DynamicProduct = ProductBase & Record<string, any>;

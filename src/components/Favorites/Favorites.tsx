@@ -9,13 +9,13 @@ import { FavoritesItem } from "../../types/FavoritesItem";
 import { Link } from "react-router-dom";
 import { ArrowDecorTop } from "../ArrowDecorTop";
 import { ArrowDecorBelow } from "../ArrowDecorBelow";
-import { Product } from "../../types/Product";
+import { DynamicProduct } from "../../types/Product";
 
 export const Favorites = () => {
   const favoriteItems: FavoritesItem[] = useAppSelector(favoritesSelector);
   const dispatch = useAppDispatch();
 
-  const handleRemoveItem = (item: Product) => {
+  const handleRemoveItem = (item: DynamicProduct) => {
     dispatch(removeItemFromFavorites(item));
   };
 

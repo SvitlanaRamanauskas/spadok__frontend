@@ -1,7 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { CartItem } from "../../types/CartItem";
 import { RootState } from "../store";
-import { Product } from "../../types/Product";
+import { DynamicProduct } from "../../types/Product";
+import { Book } from "../../types/Book";
+import { Vyshyvanka } from "../../types/Vyshyvanka";
 
 const saveCartToLocalStorage = (state: CartState) => {
     localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
@@ -37,7 +39,7 @@ export const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-        addItem: (state, action: PayloadAction<Product>) => {
+        addItem: (state, action: PayloadAction<DynamicProduct>) => {
             const newItem = action.payload;
             const existingItem = state.cartItems.find(item => item.item.id === newItem.id);
             state.totalCartQuantity += 1;
@@ -57,7 +59,7 @@ export const cartSlice = createSlice({
             
         },
 
-        removeItem: (state, action: PayloadAction<Product>) => {
+        removeItem: (state, action: PayloadAction<DynamicProduct>) => {
             const itemToDelete = action.payload;
             const existingItem = state.cartItems.find(item => item.item.id === itemToDelete.id);
 
@@ -72,7 +74,7 @@ export const cartSlice = createSlice({
             // localStorage.clear();
         },
 
-        plusItem: (state, action: PayloadAction<Product>) => {
+        plusItem: (state, action: PayloadAction<DynamicProduct>) => {
             const itemToPlus = action.payload;
             const existingItem = state.cartItems.find(item => item.item.id === itemToPlus.id);
 
@@ -83,7 +85,7 @@ export const cartSlice = createSlice({
             }
         },
 
-        minusItem: (state, action: PayloadAction<Product>) => {
+        minusItem: (state, action: PayloadAction<DynamicProduct>) => {
             const itemToMinus = action.payload;
             const existingItem = state.cartItems.find(item => item.item.id === itemToMinus.id);
 

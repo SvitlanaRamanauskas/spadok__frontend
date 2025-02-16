@@ -56,9 +56,16 @@
         padding-inline: 5px;
         top: 50%;
         left: 10px;
-        font-size: 60px;
+        font-size: 25px;
         font-family: "lev_type";
         background-color: rgb(230, 226, 205, 0.5);
+
+        @include on-Tablet {
+          font-size: 40px;
+        }
+        @include on-Desktop {
+          font-size: 60px;
+        }
       }
     }
   

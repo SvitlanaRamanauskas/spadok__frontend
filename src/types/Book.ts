@@ -1,10 +1,5 @@
-export type Book = {
-    id: string;
-    category: string;
-    subcategory: string;
-    title: string;
-    price: number;
-    images: string[];
+import { ProductBase } from "./ProductBase";
+
+export type Book = ProductBase & {
     genre: string;
-    description: string;
 };

@@ -1,12 +1,12 @@
 import { useMemo } from "react";
-import { Product } from "../../../types/Product";
+import { DynamicProduct } from "../../../types/Product";
 import cn from "classnames";
 import { getProductById } from "../../../helper/fetch";
 
 export type Props = {
-  selectedAdminProduct: Product | null;
-  adminProductList: Product[];
-  setSelectedAdminProduct: (product: Product | null) => void;
+  selectedAdminProduct: DynamicProduct | null;
+  adminProductList: DynamicProduct[];
+  setSelectedAdminProduct: (product: DynamicProduct | null) => void;
   setLoadingAdminProductDetails: (value: boolean) => void;
   setErrorProductDetails: (value: boolean) => void;
 }
@@ -18,7 +18,7 @@ export const AdminProductList:React.FC<Props> = ({
   setLoadingAdminProductDetails,
   setErrorProductDetails,
 }) => {
-  const handleOpenCloseProduct = (product: Product) => {
+  const handleOpenCloseProduct = (product: DynamicProduct) => {
     if (selectedAdminProduct?.id === product.id) {
       setSelectedAdminProduct(null);
       return;
@@ -48,8 +48,8 @@ export const AdminProductList:React.FC<Props> = ({
 
   return (
     <div
-      className={cn("admin__side", "tile", {
-        "admin__side-open": !selectedAdminProduct,
+      className={cn("admin__left", "tile", {
+        "admin__left--open": !selectedAdminProduct,
       })}
     >
         <table className="admin-product__list">

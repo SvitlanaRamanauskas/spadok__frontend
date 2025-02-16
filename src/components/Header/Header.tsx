@@ -9,14 +9,15 @@ import { useAppSelector } from "../../redux/hooks";
 import { totalCartQuantitySelector } from "../../redux/cart/reducerCart";
 import { totalFavoritesQuantitySelector } from "../../redux/cart/reducerFavorites";
 import { AsideMenu } from "../AsideMenu";
-import { AppContext } from "../appContext";
+import { AppContext, AppProvider } from "../appContext";
 import { fetchCategoriesList, fetchSubcategoriesList } from "../../helper/fetch";
 import { AdminCategory, AdminSubcategory } from "../../types/AdminNames";
 
 export const Header = () => {
+  const { subcategories } = useContext(AppContext);
   const [vyshyvListExpanded, setVyshyvListExpanded] = useState(false);
   const [categories, setCategories] = useState<AdminCategory[]>([]);
-  const [subcategories, setSubcategories] = useState<AdminSubcategory[]>([]);
+  // const [subcategories, setSubcategories] = useState<AdminSubcategory[]>([]);
 
   const { isAuthenticated, setIsAuthenticated } = useContext(AppContext);
 
@@ -44,22 +45,6 @@ export const Header = () => {
       document.removeEventListener("click", handleDocumentClick);
     };
   }, [vyshyvListExpanded]);
-
-  useEffect(() => {
-    const loadSubcategories = async () => {
-        try {
-            const categories: AdminCategory[] = await fetchCategoriesList();
-            setCategories(categories);
-
-            const subcategories: AdminSubcategory[] = await fetchSubcategoriesList();
-            setSubcategories(subcategories);
-        } catch (error) {
-            console.error("Failed to fetch categories:", error);
-        }    
-    }
-
-    loadSubcategories();
-  }, []);
 
   const { setAsideIsOpen, asideIsOpen } = useContext(AppContext);
 
@@ -186,22 +171,6 @@ export const Header = () => {
                   </li>
                   ))
                   }
- 
-                  {/* <li className="nav__item">
-                    <Link to="/catalog/men" className="nav__link">
-                      чоловікам
-                    </Link>
-                  </li>
-                  <li className="nav__item">
-                    <Link to="/catalog/boys" className="nav__link">
-                      хлопчикам
-                    </Link>
-                  </li>
-                  <li className="nav__item">
-                    <Link to="/catalog/girls" className="nav__link">
-                      дівчаткам
-                    </Link>
-                  </li> */}
                 </ul>
               </nav>
 

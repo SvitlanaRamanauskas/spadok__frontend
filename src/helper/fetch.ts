@@ -1,13 +1,75 @@
+import { EntityStateAdapter } from "@reduxjs/toolkit";
 import { AdminCategoriesData, AdminCategory, AdminSubcategory } from "../types/AdminNames";
 import { Book } from "../types/Book";
 import { Order } from "../types/Order";
-import { Product } from "../types/Product";
+import { DynamicProduct } from "../types/Product";
 import { Vyshyvanka } from "../types/Vyshyvanka";
 
 const baseUrl = process.env.PUBLIC_URL || "";
-// json-server --watch db.json --port 3001
+// json-server --watch db.json --port 5000
 
 //'http://localhost:8081'
+
+export const updateEntity = async <T extends AdminCategory | AdminSubcategory | Vyshyvanka | Book>(
+  entityType: string,
+  { id, ...data }: { id: string } & Partial<T>
+): Promise<T> => {
+  try {
+    const response = await fetch(`http://localhost:3001/${entityType}/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error(`${response.status} ${response.statusText}`);
+    }
+
+    console.log(`${entityType.slice(0, -1)} successfully updated`);
+    return await response.json();
+  } catch (error: unknown) {
+    throw new Error(
+      error instanceof Error
+        ? `Error updating ${entityType.slice(0, -1)}: ${error.message}`
+        : `Unknown error occurred while updating ${entityType.slice(0, -1)}`
+    );
+  }
+};
+
+
+export const createProduct = async <T extends DynamicProduct>(product: T): Promise<T> => {
+  try {
+    const body = JSON.stringify(
+      Object.fromEntries(Object.entries(product).filter(([_, value]) => value !== undefined))
+    );
+
+    const response = await fetch("http://localhost:3001/products", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body,
+    });
+
+    if (!response.ok) {
+      throw new Error(`${response.status} ${response.statusText}`);
+    }
+
+    console.log("Product successfully created");
+    return await response.json();
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      throw new Error(`Error creating product: ${error.message}`);
+    } else {
+      throw new Error("Unknown error occurred while creating product");
+    }
+  }
+};
+
+export const createVyshyvanka = (product: Vyshyvanka) => createProduct(product);
+export const createBook = (product: Book) => createProduct(product);
 
 export const createAdminCategory = async ({ name, key, id }: AdminCategory): Promise<AdminCategory> => {
     try {
@@ -32,7 +94,7 @@ export const createAdminCategory = async ({ name, key, id }: AdminCategory): Pro
     }
 }
 
-export const createAdminSubcategory = async ({ name, key, id, category }: AdminSubcategory): Promise<AdminSubcategory> => {
+export const createAdminSubcategory = async ({ name, key, id, category, image }: AdminSubcategory): Promise<AdminSubcategory> => {
   try {
     const response = await fetch('http://localhost:3001/subcategories', { 
       method: "POST",
@@ -91,7 +153,7 @@ export const createOrder = async({ buyerName, phoneNumber, orderedProducts }: Om
   }
 }
 
-export const fetchAllProducts = async() : Promise<Product[]> => {
+export const fetchAllProducts = async() : Promise<DynamicProduct[]> => {
   try {
     const response = await fetch(`http://localhost:3001/products`, {method: "GET"} );
     if (!response.ok) {
@@ -105,7 +167,7 @@ export const fetchAllProducts = async() : Promise<Product[]> => {
   }
 }
 
-export const fetchProductsBySubcategory = (subcategoryKey: string): Promise<Product[]> => {
+export const fetchProductsBySubcategory = (subcategoryKey: string): Promise<DynamicProduct[]> => {
   return fetchAllProducts()
     .then(products => products.filter(product => product.subcategory === subcategoryKey));
 }
@@ -166,9 +228,9 @@ export const fetchSubcategoriesByCategory = async (category: AdminCategory) => {
   }
 }
 
-export const getProductById = async (productId: string): Promise<Product | undefined> => {
+export const getProductById = async (productId: string): Promise<DynamicProduct | undefined> => {
   const products = await fetchAllProducts();
-  return products.find((product: Product) => productId === product.id);
+  return products.find((product: DynamicProduct) => productId === product.id);
 }
 
 export const fetchVyshyvanky = (): Promise<Vyshyvanka[]> => {
@@ -216,7 +278,7 @@ export const includesQuery = (productsName: string | null, input: string) => {
   return productsName?.trim().toLowerCase().includes(input.trim().toLowerCase());
 };
 
-export const getPreparedVyshyvanky = (products: Product[], params: any) => {
+export const getPreparedVyshyvanky = (products: DynamicProduct[], params: any) => {
   const preparedProducts = [...products];
 
   if (params.query) {

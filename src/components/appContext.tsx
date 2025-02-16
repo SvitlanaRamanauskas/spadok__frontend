@@ -1,16 +1,20 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Product } from '../types/Product';
+import { DynamicProduct } from '../types/Product';
+import { AdminCategory, AdminSubcategory } from '../types/AdminNames';
+import { fetchSubcategoriesList } from '../helper/fetch';
 
 
 type ContextType = {
-    selectedCard: Product | null;
-    setSelectedCard: (value: Product | null) => void;
-    selectedProduct: Product | null;
-    setSelectedProduct: (value: Product | null) => void;
+    selectedCard: DynamicProduct | null;
+    setSelectedCard: (value: DynamicProduct | null) => void;
+    selectedProduct: DynamicProduct | null;
+    setSelectedProduct: (value: DynamicProduct | null) => void;
     asideIsOpen: boolean;
     setAsideIsOpen: (value: boolean) => void;
     isAuthenticated: boolean;
     setIsAuthenticated: (value: boolean) => void;
+    subcategories: AdminSubcategory[] | [];
+    setSubcategories: (value: AdminSubcategory[] | []) => void;
 }
 
 type Props = {
@@ -26,19 +30,38 @@ export const AppContext = React.createContext<ContextType>({
     setAsideIsOpen: () => {},
     isAuthenticated: false,
     setIsAuthenticated: () => {},
+    subcategories: [],
+    setSubcategories: () => {},
 });
 
 export const AppProvider: React.FC<Props> = ({ children }) => {
-    const [selectedCard, setSelectedCard] = useState<Product | null>(null);
-    const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+    const [selectedCard, setSelectedCard] = useState<DynamicProduct | null>(null);
+    const [selectedProduct, setSelectedProduct] = useState<DynamicProduct | null>(null);
     const [asideIsOpen, setAsideIsOpen] = useState(false);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [subcategories, setSubcategories] = useState<AdminSubcategory[] | []>([])
 
     useEffect(() => {
         const token = localStorage.getItem('authToken');
         setIsAuthenticated(!!token); // Якщо токен існує, вважаємо, що користувач авторизований
     }, []);
     
+    useEffect(() => {
+    const loadSubcategories = async () => {
+        try {
+            // const categories: AdminCategory[] = await fetchCategoriesList();
+            // setCategories(categories);
+
+            const subcategories: AdminSubcategory[] = await fetchSubcategoriesList();
+            setSubcategories(subcategories);
+            console.log("in app context ", subcategories)
+        } catch (error) {
+            console.error("Failed to fetch categories:", error);
+        }    
+    }
+
+    loadSubcategories();
+    }, []);
 
     // useEffect(() => {
     //     if (selectedProduct) {
@@ -65,9 +88,11 @@ export const AppProvider: React.FC<Props> = ({ children }) => {
         setAsideIsOpen,
         isAuthenticated,
         setIsAuthenticated,
-
+        subcategories,
+        setSubcategories,
     }), [selectedCard, setSelectedCard, selectedProduct,
-         setSelectedProduct, asideIsOpen, setAsideIsOpen, isAuthenticated, setIsAuthenticated]);
+        setSelectedProduct, asideIsOpen, setAsideIsOpen, isAuthenticated, setIsAuthenticated, 
+        subcategories, setSubcategories ]);
 
     return (
         <AppContext.Provider value={values}>{children}</AppContext.Provider>

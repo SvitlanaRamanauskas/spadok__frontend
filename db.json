@@ -1353,43 +1353,36 @@
       "name": "жінкам",
       "key": "women",
       "category": "1",
-      "id": "ec59"
+      "id": "ec59",
+      "image": "img/women_images/cat.webp"
     },
     {
       "name": "чоловікам",
       "key": "men",
       "category": "1",
-      "id": "50b6"
+      "id": "50b6",
+      "image": "img/menVyshyvanky/1.webp"
     },
     {
       "name": "хлопчикам",
       "key": "boys",
       "category": "1",
-      "id": "60f5"
+      "id": "60f5",
+      "image": "img/50.png"
     },
     {
       "name": "дівчатам",
       "key": "girls",
       "category": "1",
-      "id": "5810"
+      "id": "5810",
+      "image": "img/agnesha2.jpg"
     },
     {
       "name": "книги",
       "key": "books",
       "category": "2",
-      "id": "72c3"
-    },
-    {
-      "id": "gdf",
-      "name": "sdcdsc",
-      "key": "dfdg",
-      "category": "1"
-    },
-    {
-      "id": "ref",
-      "name": "frerf",
-      "key": "rfr",
-      "category": "1"
+      "id": "72c3",
+      "image": "img/books/Bizhu.jpeg"
     }
   ]
 }

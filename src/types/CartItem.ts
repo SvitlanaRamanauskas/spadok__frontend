@@ -1,8 +1,7 @@
-import { Book } from "./Book";
-import { Vyshyvanka } from "./Vyshyvanka";
+import { DynamicProduct } from "./Product";
 
 export type CartItem = {
     id: number;
     quantity: number;
-    item: Vyshyvanka | Book;
+    item: DynamicProduct;
 }

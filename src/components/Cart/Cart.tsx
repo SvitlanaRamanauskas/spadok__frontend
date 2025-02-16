@@ -13,7 +13,7 @@ import "../../styles/button.scss";
 import { ArrowDecorBelow } from "../ArrowDecorBelow";
 import { ArrowDecorTop } from "../ArrowDecorTop";
 import { Link } from "react-router-dom";
-import { Product } from "../../types/Product";
+import { DynamicProduct } from "../../types/Product";
 
 export const Cart = () => {
   const items: CartItem[] = useAppSelector(cartSelector);
@@ -22,15 +22,15 @@ export const Cart = () => {
 
   const dispatch = useAppDispatch();
 
-  const handlePlus = (item: Product) => {
+  const handlePlus = (item: DynamicProduct) => {
     dispatch(plusItem(item));
   };
 
-  const handleMinus = (item: Product) => {
+  const handleMinus = (item: DynamicProduct) => {
     dispatch(minusItem(item));
   };
 
-  const handleRemoveItem = (item: Product) => {
+  const handleRemoveItem = (item: DynamicProduct) => {
     dispatch(removeItem(item));
   };
 

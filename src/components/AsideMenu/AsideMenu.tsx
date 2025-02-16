@@ -7,10 +7,10 @@ import { ThreadDecor } from "../ThreadDecor";
 import { AdminSubcategory } from "../../types/AdminNames";
 
 type Props = {
-  subcategories: AdminSubcategory[],
-}
+  subcategories: AdminSubcategory[];
+};
 
-export const AsideMenu:React.FC<Props> = ({ subcategories }) => {
+export const AsideMenu: React.FC<Props> = ({ subcategories }) => {
   const { setAsideIsOpen } = useContext(AppContext);
 
   return (
@@ -18,16 +18,16 @@ export const AsideMenu:React.FC<Props> = ({ subcategories }) => {
       <section className="menu__part">
         <ul id="menu__list" className="nav__list">
           {subcategories.map((subcategory) => (
-            <li id="menu__item" className="nav__item">
-            <Link
-              to={`/catalog/${subcategory.key}`}
-              id="menu__link" 
-              className="nav__link"
-              onClick={() => setAsideIsOpen(false)}
-            >
-              {subcategory.name}
-            </Link>
-          </li>
+            <li key={subcategory.key} id="menu__item" className="nav__item">
+              <Link
+                to={`/catalog/${subcategory.key}`}
+                id="menu__link"
+                className="nav__link"
+                onClick={() => setAsideIsOpen(false)}
+              >
+                {subcategory.name}
+              </Link>
+            </li>
           ))}
         </ul>
       </section>

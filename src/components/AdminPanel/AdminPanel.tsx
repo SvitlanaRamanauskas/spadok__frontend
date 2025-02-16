@@ -7,19 +7,21 @@ import {
   fetchSubcategoriesByCategory,
 } from "../../helper/fetch";
 import "./AdminPanel.scss";
-import { Product } from "../../types/Product";
-import { AdminProductDetails } from "./AdminProductDetails";
+import { DynamicProduct } from "../../types/Product";
 import { AdminProductList } from "./AdminProductList";
 import { Loader } from "../Loader";
 import { AdminCategory, AdminSubcategory } from "../../types/AdminNames";
-import { AddCategory } from "./AddCategory";
+import { AddEntity } from "./AddEntity";
+import { Vyshyvanka } from "../../types/Vyshyvanka";
 
 export const AdminPanel = () => {
   const [adminCategories, setAdminCategories] = useState<AdminCategory[]>([]);
   const [adminSubcategories, setAdminSubcategories] = useState<
     AdminSubcategory[]
   >([]);
-  const [adminProductList, setAdminProductList] = useState<Product[] | []>([]);
+  const [adminProductList, setAdminProductList] = useState<
+    DynamicProduct[] | []
+  >([]);
 
   const [errorCategories, setErrorCategories] = useState(false);
   const [errorSubcategories, setErrorSubcategories] = useState(false);
@@ -38,9 +40,9 @@ export const AdminPanel = () => {
   const [selectedAdminSubcategory, setSelectedAdminSubcategory] =
     useState<AdminSubcategory | null>(null);
   const [selectedAdminProduct, setSelectedAdminProduct] =
-    useState<Product | null>(null);
+    useState<DynamicProduct | null>(null);
 
-    
+  const [openCreateProduct, setOpenCreateProduct] = useState(false);
 
   useEffect(() => {
     setLoadingAdminCategories(true);
@@ -120,6 +122,14 @@ export const AdminPanel = () => {
       .finally(() => setLoadingAdminProductList(false));
   };
 
+  const handleOpenCloseProductForm = () => {
+    if (openCreateProduct) {
+      setOpenCreateProduct(false);
+    } else {
+      setOpenCreateProduct(true);
+    }
+  };
+
   return (
     <section className="admin">
       {loadingAdminCategories && <Loader />}
@@ -131,7 +141,8 @@ export const AdminPanel = () => {
             <li className="categories__item" key={category.name}>
               <button
                 className={cn("categories__link", {
-                  "categories__link--active": selectedAdminCategory === category,
+                  "categories__link--active":
+                    selectedAdminCategory === category,
                 })}
                 onClick={() => handleOpenCloseAdminSubcategory(category)}
               >
@@ -141,11 +152,12 @@ export const AdminPanel = () => {
           ))}
         </ul>
 
-        <AddCategory<AdminCategory>
-          type={"category"} 
-          adminCategories={adminCategories} 
-          setAdminCategories={setAdminCategories}
-         />
+        <AddEntity<AdminCategory>
+          chosenCategory={"category"}
+          adminEntities={adminCategories}
+          setAdminEntities={setAdminCategories}
+          selectedAdminEntity={selectedAdminCategory}
+        />
 
         <ul className="categories__list">
           <h3 className="categories__title">Субкатегорії</h3>
@@ -171,12 +183,23 @@ export const AdminPanel = () => {
             ))}
         </ul>
 
-        <AddCategory<AdminSubcategory>
-          type={"subcategory"} 
-          adminCategories={adminSubcategories} 
-          setAdminCategories={setAdminSubcategories}
-         />
+        <AddEntity<AdminSubcategory>
+          chosenCategory={"subcategory"}
+          adminEntities={adminSubcategories}
+          setAdminEntities={setAdminSubcategories}
+          selectedAdminEntity={selectedAdminSubcategory}
+        />
       </div>
+
+      <button
+        onClick={handleOpenCloseProductForm}
+        className={cn("admin__button", {
+          "admin__button--close": !openCreateProduct,
+          "admin__button--open": openCreateProduct,
+        })}
+      >
+        {openCreateProduct ? "Close" : "Створити новий товар"}
+      </button>
 
       {adminProductList.length > 0 &&
         !errorProductList &&
@@ -190,16 +213,37 @@ export const AdminPanel = () => {
               setErrorProductDetails={setErrorProductDetails}
             />
 
-            {!!selectedAdminProduct &&
+            {(!!selectedAdminProduct || openCreateProduct) &&
               !errorProductDetails &&
               !loadingAdminProductDetails && (
-                <AdminProductDetails
-                  selectedAdminProduct={selectedAdminProduct}
-                  setAdminProductList={setAdminProductList}
-                />
+                <div
+                  className={cn("tile", "sidebar", {
+                    "sidebar--open": selectedAdminProduct || openCreateProduct,
+                  })}
+                >
+                  <AddEntity<DynamicProduct>
+                    chosenCategory={selectedAdminProduct?.category}
+                    adminEntities={adminProductList}
+                    setAdminEntities={setAdminProductList}
+                    selectedAdminEntity={selectedAdminProduct}
+                  />
+                </div>
               )}
           </div>
         )}
+
+      {openCreateProduct && (
+        <>
+          {adminCategories.map((category) => (
+            <AddEntity<DynamicProduct>
+              chosenCategory={category.name}
+              adminEntities={adminProductList}
+              setAdminEntities={setAdminProductList}
+              selectedAdminEntity={selectedAdminProduct}
+            />
+          ))}
+        </>
+      )}
 
       {adminProductList.length === 0 &&
         selectedAdminSubcategory &&

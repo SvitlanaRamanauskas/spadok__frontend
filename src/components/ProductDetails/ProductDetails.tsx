@@ -22,40 +22,34 @@ import { DetailsImages } from "./DetailsImages";
 import { addedToCart, isVyshyvanka } from "../../helper/productUtils";
 import { Sizes } from "./Sizes";
 import { useProductDetails } from "../../helper/hooks/useProductDetails";
-import { Product } from "../../types/Product";
+import { DynamicProduct } from "../../types/Product";
+import { Vyshyvanka } from "../../types/Vyshyvanka";
 
 export const ProductDetails: React.FC = () => {
   const { productId } = useParams<{ productId?: string }>();
   const location = useLocation();
-
   const { selectedProduct } = useContext(AppContext);
   const categoryPath = location.pathname.split("/")[2];
-
-  const { productDetailsLoading, setProductDetailsLoading,  productNotFound, productFetchError, vyshyvankyFromServer } = useProductDetails(
+  const { productDetailsLoading, setProductDetailsLoading,  productNotFound, productFetchError, productsFromServer } = useProductDetails(
     productId!
   );
-
-  const [currentImage, setCurrentImage] = useState(`${process.env.PUBLIC_URL}/${selectedProduct?.images[0]}`);
   const [selectedChapter, setSelectedChapter] = useState("characteristics");
-
   const cartItems = useAppSelector(cartSelector);
   const dispatch = useAppDispatch();
-
   const sizesRef = useRef<HTMLDivElement | null>(null);
-
-  const handleAddToCart = (product: Product) => {
+  const handleAddToCart = (product: DynamicProduct) => {
     dispatch(addItemToCart(product));
   };
-
   const navigate = useNavigate();
-
   const goBack = () => {
     const lastIndexOfSlash = location.pathname.lastIndexOf("/");
     const newPath = location.pathname.slice(0, lastIndexOfSlash);
     navigate(newPath);
   };
 
-  console.log(productId, selectedProduct);
+  const vyshyvankyFromServer = productsFromServer.filter(prod => prod.category === "vyshyvanky") as Vyshyvanka[];
+
+  console.log('curentImage');
 
   return (
     <>
@@ -66,10 +60,7 @@ export const ProductDetails: React.FC = () => {
 
             <div className="details__container">
               <div className="details__img-inf-wrapper">
-                <DetailsImages 
-                  mainImage={currentImage}
-                  setCurrentImage={setCurrentImage}
-                />
+                <DetailsImages />
                 
                 <div ref={sizesRef} className="details__info info">
                   <div className="back details__back">

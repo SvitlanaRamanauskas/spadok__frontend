@@ -1,12 +1,6 @@
-export type Vyshyvanka = {
-    id: string;
-    category: string;
-    subcategory: string;
-    title: string;
-    images: string[];
-    price: number;
-    description: string;
-    isAvailable: boolean;
+import { ProductBase } from "./ProductBase";
+
+export type Vyshyvanka = ProductBase & {
     size: string;
     sizesAvailable: string[];
   };
