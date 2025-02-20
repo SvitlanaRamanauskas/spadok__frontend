@@ -6,7 +6,7 @@ import { DynamicProduct } from "../types/Product";
 import { Vyshyvanka } from "../types/Vyshyvanka";
 
 const baseUrl = process.env.PUBLIC_URL || "";
-// json-server --watch db.json --port 5000
+// json-server --watch db.json --port 3001
 
 //'http://localhost:8081'
 

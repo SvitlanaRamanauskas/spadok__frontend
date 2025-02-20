@@ -1281,7 +1281,9 @@
       "price": "350",
       "images": [
         "img/books/Bizhu/аоко.jpg"
-      ]
+      ],
+      "description": "Книга про ...",
+      "isAvailable": "true"
     },
     {
       "id": "charokryl",
@@ -1292,7 +1294,9 @@
       "price": "300",
       "images": [
         "img/books/Charokryl/IMG_20240809_162949_883.png"
-      ]
+      ],
+      "description": "Книга про ...",
+      "isAvailable": "true"
     },
     {
       "id": "VochikuvaniRizdva",
@@ -1303,7 +1307,9 @@
       "price": "250",
       "images": [
         "img/books/VochikuvaniRizdva/IMG_20240904_083605_096.jpg"
-      ]
+      ],
+      "description": "Книга про ...",
+      "isAvailable": "true"
     }
   ],
   "categories": [
@@ -1316,36 +1322,6 @@
       "id": "2",
       "name": "Книги",
       "key": "books"
-    },
-    {
-      "id": "ffff",
-      "name": "Свgg",
-      "key": "ffff"
-    },
-    {
-      "id": "ghn",
-      "name": "vb",
-      "key": "ghng"
-    },
-    {
-      "id": "hytyy",
-      "name": "rtgrdt",
-      "key": "tdh"
-    },
-    {
-      "id": "fggf",
-      "name": "dfvg",
-      "key": "fgf"
-    },
-    {
-      "id": "sh",
-      "name": "gg",
-      "key": "sgsffh"
-    },
-    {
-      "id": "hty",
-      "name": "th",
-      "key": "dh"
     }
   ],
   "subcategories": [

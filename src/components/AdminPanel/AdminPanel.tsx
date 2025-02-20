@@ -42,7 +42,10 @@ export const AdminPanel = () => {
   const [selectedAdminProduct, setSelectedAdminProduct] =
     useState<DynamicProduct | null>(null);
 
-  const [openCreateProduct, setOpenCreateProduct] = useState(false);
+  const [newCategoryInputOpen, setNewCategoryInputOpen] = useState(false);
+  const [newSubcategoryInputOpen, setNewSubcategoryInputOpen] = useState(false);
+  const [productUpdateInputOpen, setProductUpdateInputOpen] = useState(false);
+  const [newProductInputOpen, setNewProductInputOpen] = useState(false);
 
   useEffect(() => {
     setLoadingAdminCategories(true);
@@ -122,12 +125,9 @@ export const AdminPanel = () => {
       .finally(() => setLoadingAdminProductList(false));
   };
 
-  const handleOpenCloseProductForm = () => {
-    if (openCreateProduct) {
-      setOpenCreateProduct(false);
-    } else {
-      setOpenCreateProduct(true);
-    }
+  const handleOpenCloseCreateForm = () => {
+    setNewProductInputOpen((prev) => !prev);
+    setSelectedAdminProduct(null);
   };
 
   return (
@@ -137,6 +137,7 @@ export const AdminPanel = () => {
       <div className="admin__top">
         <ul className="categories__list">
           <h3 className="categories__title">Категорії</h3>
+
           {adminCategories.map((category) => (
             <li className="categories__item" key={category.name}>
               <button
@@ -150,26 +151,36 @@ export const AdminPanel = () => {
               </button>
             </li>
           ))}
-        </ul>
 
-        <AddEntity<AdminCategory>
-          chosenCategory={"category"}
-          adminEntities={adminCategories}
-          setAdminEntities={setAdminCategories}
-          selectedAdminEntity={selectedAdminCategory}
-        />
+          {!newCategoryInputOpen && (
+            <button
+              className="admin__button admin__button--close"
+              onClick={() => setNewCategoryInputOpen(true)}
+            >
+              {`додати категорію`}
+            </button>
+          )}
+
+          <AddEntity<AdminCategory>
+            chosenEntityName={"category"}
+            adminEntities={adminCategories}
+            setAdminEntities={setAdminCategories}
+            selectedAdminEntity={selectedAdminCategory}
+            formOpen={newCategoryInputOpen}
+            setFormOpen={setNewCategoryInputOpen}
+            selectedSubcategForProdCreating={null}
+          />
+        </ul>
 
         <ul className="categories__list">
           <h3 className="categories__title">Субкатегорії</h3>
+
           {adminSubcategories &&
             adminSubcategories.length > 0 &&
             !loadingAdminSubcategories &&
             !errorSubcategories &&
             adminSubcategories.map((subcategory) => (
-              <li
-                className="admin__subcategories categories__item"
-                key={subcategory.name}
-              >
+              <li className="categories__item" key={subcategory.name}>
                 <button
                   className={cn("categories__link", {
                     "categories__link--active":
@@ -181,74 +192,94 @@ export const AdminPanel = () => {
                 </button>
               </li>
             ))}
-        </ul>
 
-        <AddEntity<AdminSubcategory>
-          chosenCategory={"subcategory"}
-          adminEntities={adminSubcategories}
-          setAdminEntities={setAdminSubcategories}
-          selectedAdminEntity={selectedAdminSubcategory}
-        />
+          {!newSubcategoryInputOpen && (
+            <button
+              className="admin__button admin__button--close"
+              onClick={() => setNewSubcategoryInputOpen(true)}
+            >
+              {`додати категорію`}
+            </button>
+          )}
+
+          <AddEntity<AdminSubcategory>
+            chosenEntityName={"subcategory"}
+            adminEntities={adminSubcategories}
+            setAdminEntities={setAdminSubcategories}
+            selectedAdminEntity={selectedAdminSubcategory}
+            formOpen={newSubcategoryInputOpen}
+            setFormOpen={setNewSubcategoryInputOpen}
+            selectedSubcategForProdCreating={null}
+          />
+        </ul>
       </div>
 
-      <button
-        onClick={handleOpenCloseProductForm}
-        className={cn("admin__button", {
-          "admin__button--close": !openCreateProduct,
-          "admin__button--open": openCreateProduct,
-        })}
-      >
-        {openCreateProduct ? "Close" : "Створити новий товар"}
-      </button>
-
-      {adminProductList.length > 0 &&
+      {selectedAdminSubcategory &&
         !errorProductList &&
         !loadingAdminProductList && (
           <div className="admin__bottom">
-            <AdminProductList
-              selectedAdminProduct={selectedAdminProduct}
-              adminProductList={adminProductList}
-              setSelectedAdminProduct={setSelectedAdminProduct}
-              setLoadingAdminProductDetails={setLoadingAdminProductDetails}
-              setErrorProductDetails={setErrorProductDetails}
-            />
+            <div className="admin__button-wrapper">
+              <button
+                onClick={handleOpenCloseCreateForm}
+                className={cn("admin__button", {
+                  "admin__button--close": !newProductInputOpen,
+                  "admin__button--open": newProductInputOpen,
+                })}
+              >
+                {newProductInputOpen ? "Close" : "Створити новий товар"}
+              </button>
+            </div>
 
-            {(!!selectedAdminProduct || openCreateProduct) &&
-              !errorProductDetails &&
-              !loadingAdminProductDetails && (
-                <div
-                  className={cn("tile", "sidebar", {
-                    "sidebar--open": selectedAdminProduct || openCreateProduct,
-                  })}
-                >
-                  <AddEntity<DynamicProduct>
-                    chosenCategory={selectedAdminProduct?.category}
-                    adminEntities={adminProductList}
-                    setAdminEntities={setAdminProductList}
-                    selectedAdminEntity={selectedAdminProduct}
-                  />
-                </div>
-              )}
+            {/* CREATE product FORM*/}
+            {newProductInputOpen && (
+              <AddEntity<DynamicProduct>
+                chosenEntityName={selectedAdminSubcategory.key}
+                adminEntities={adminProductList}
+                setAdminEntities={setAdminProductList}
+                selectedAdminEntity={selectedAdminProduct}
+                formOpen={newProductInputOpen}
+                setFormOpen={setNewProductInputOpen}
+                selectedSubcategForProdCreating={selectedAdminSubcategory}
+              />
+            )}
+
+            {adminProductList.length === 0 ? (
+              <p>Поки немає товарів</p>
+            ) : (
+              <div className="admin__bord">
+                <AdminProductList
+                  selectedAdminProduct={selectedAdminProduct}
+                  adminProductList={adminProductList}
+                  setSelectedAdminProduct={setSelectedAdminProduct}
+                  setLoadingAdminProductDetails={setLoadingAdminProductDetails}
+                  setErrorProductDetails={setErrorProductDetails}
+                  setProductUpdateFormOpen={setProductUpdateInputOpen}
+                />
+
+                {selectedAdminProduct &&
+                  !errorProductDetails &&
+                  !loadingAdminProductDetails && (
+                    <div
+                      className={cn("tile", "sidebar", {
+                        "sidebar--open": selectedAdminProduct,
+                      })}
+                    >
+                      {/* EDITE product FORM*/}
+                      <AddEntity<DynamicProduct>
+                        chosenEntityName={selectedAdminProduct?.category}
+                        adminEntities={adminProductList}
+                        setAdminEntities={setAdminProductList}
+                        selectedAdminEntity={selectedAdminProduct}
+                        formOpen={productUpdateInputOpen}
+                        setFormOpen={setProductUpdateInputOpen}
+                        selectedSubcategForProdCreating={null}
+                      />
+                    </div>
+                  )}
+              </div>
+            )}
           </div>
         )}
-
-      {openCreateProduct && (
-        <>
-          {adminCategories.map((category) => (
-            <AddEntity<DynamicProduct>
-              chosenCategory={category.name}
-              adminEntities={adminProductList}
-              setAdminEntities={setAdminProductList}
-              selectedAdminEntity={selectedAdminProduct}
-            />
-          ))}
-        </>
-      )}
-
-      {adminProductList.length === 0 &&
-        selectedAdminSubcategory &&
-        !errorProductList &&
-        !loadingAdminProductList && <p>Поки немає товарів</p>}
 
       {loadingAdminProductList && <Loader />}
     </section>

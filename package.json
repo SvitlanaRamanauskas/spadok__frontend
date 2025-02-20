@@ -14,6 +14,7 @@
     "@types/react-dom": "^18.3.0",
     "classnames": "^2.5.1",
     "flag-icon-css": "^4.1.7",
+    "lodash": "^4.17.21",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-input-mask": "^2.0.4",
@@ -54,6 +55,7 @@
   },
   "devDependencies": {
     "@types/classnames": "^2.3.1",
+    "@types/lodash": "^4.17.15",
     "@types/react-input-mask": "^3.0.5",
     "@types/react-scroll": "^1.8.10",
     "@types/react-slick": "^0.23.13",

@@ -9,6 +9,7 @@ export type Props = {
   setSelectedAdminProduct: (product: DynamicProduct | null) => void;
   setLoadingAdminProductDetails: (value: boolean) => void;
   setErrorProductDetails: (value: boolean) => void;
+  setProductUpdateFormOpen: (value: boolean) => void;
 }
 
 export const AdminProductList:React.FC<Props> = ({ 
@@ -17,13 +18,16 @@ export const AdminProductList:React.FC<Props> = ({
   setSelectedAdminProduct,
   setLoadingAdminProductDetails,
   setErrorProductDetails,
+  setProductUpdateFormOpen,
 }) => {
   const handleOpenCloseProduct = (product: DynamicProduct) => {
     if (selectedAdminProduct?.id === product.id) {
       setSelectedAdminProduct(null);
+      setProductUpdateFormOpen(false);
       return;
     }
     fetchProductDetails(product.id);
+    setProductUpdateFormOpen(true);
   };
   
   const fetchProductDetails = useMemo(
@@ -44,7 +48,6 @@ export const AdminProductList:React.FC<Props> = ({
         .finally(() => setLoadingAdminProductDetails(false))
     }, []
   );
-  console.log(selectedAdminProduct);
 
   return (
     <div
