@@ -29,16 +29,7 @@
 
     &__img-inf-wrapper {
         display: flex;
-        height: 204px;
-        
-
-        @include on-Tablet {
-            height: 400px;
-        }
-
-        @include on-Desktop {
-            height: 709px;
-        }
+       
     }
 
     &__info {
@@ -67,6 +58,17 @@
 
         @include on-Desktop {
             gap: 24px;
+        }
+
+        height: 204px;
+        
+
+        @include on-Tablet {
+            height: 400px;
+        }
+
+        @include on-Desktop {
+            height: 709px;
         }
     }
 

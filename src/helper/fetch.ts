@@ -155,12 +155,14 @@ export const createOrder = async({ buyerName, phoneNumber, orderedProducts }: Om
 
 export const fetchAllProducts = async() : Promise<DynamicProduct[]> => {
   try {
-    const response = await fetch(`http://localhost:3001/products`, {method: "GET"} );
+    const response = await fetch(`${baseUrl}/api/db.json`, {method: "GET"} );
     if (!response.ok) {
       console.error(`Failed to fetch: ${response.status} ${response.statusText}`);
         throw new Error(`${response.status} ${response.statusText}`);
     }
-    return await response.json();
+
+    const data = await response.json()
+    return data.products;
 
   } catch (error: any) {
       throw new Error(`Error fetching all products: ${error.message}`);
@@ -174,11 +176,11 @@ export const fetchProductsBySubcategory = (subcategoryKey: string): Promise<Dyna
 
 export const fetchCategoriesList = async () => {
   try {
-    const response = await fetch(`http://localhost:3001/categories`, {method: "GET"} );
+    const response = await fetch(`${baseUrl}/api/db.json`, {method: "GET"} );
     const data = await response.json();
     const categories = data;
 
-    return categories;
+    return categories.categories;
   } catch(error) {
     console.error("Error fetching Categories NameList:", error);
     return [];
@@ -187,11 +189,11 @@ export const fetchCategoriesList = async () => {
 
 export const fetchSubcategoriesList = async () => {
   try {
-    const response = await fetch(`http://localhost:3001/subcategories`, {method: "GET"} );
+    const response = await fetch(`${baseUrl}/api/db.json`, {method: "GET"} );
     const data = await response.json();
     const subcategories = data;
 
-    return subcategories;
+    return subcategories.subcategories;
   } catch(error) {
     console.error("Error fetching Subcategories NameList:", error);
     return [];
