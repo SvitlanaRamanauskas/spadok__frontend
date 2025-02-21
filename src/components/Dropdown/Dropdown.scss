@@ -1,0 +1,77 @@
+@import '../../styles/utils/variables.scss';
+@import '../../styles/utils/mixins';
+
+.dropdown {
+  &__input {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 24px;
+
+    &::after {
+      content: url(../../styles/icons/Chevron-Arrow-Right--disabled.svg);
+      position: absolute;
+      display: inline-block;
+      height: 16px;
+      width: 16px;
+      top: 50%;
+      left: 170px;
+      transform: translateY(-115%) rotate(90deg);
+    }
+
+    &--focused::after {
+      transform:translateY(-115%)  rotate(270deg);
+    }  
+
+    &-label {
+      font-family: "lev_type";
+      color: $choco;
+    }
+  }
+
+  &__select {
+    font-family: "inter";
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 30px;
+    color: $gray-not-active;
+    background-color: transparent;
+    height: 30px;
+    width: 120px;
+    padding-left: 8px;
+    border: 0.5px solid $gray-not-active;
+    border-radius: 8px;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+    &:hover {
+      border-color: $brown;
+    }
+    &:focus {
+      outline: none;
+      border-color: $choco;
+      color: $choco;
+    }
+  }
+
+  &__option {
+    border: 1px solid blue;
+    box-shadow: 0 2px 15px 0 #0000000D;
+    background-color: transparent;
+    border-radius: none;
+    color: $choco;
+    font-family: "inter";
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 21px;
+    text-align: left;
+    height: 32px;
+    padding-block: 5px;
+    &:hover {
+      color: red;
+      background-color: green;
+    }
+  }
+}

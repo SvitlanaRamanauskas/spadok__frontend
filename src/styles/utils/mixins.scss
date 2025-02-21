@@ -51,6 +51,24 @@
     }
 }
 
+@mixin textDescription {
+    font-family: 'inter';
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0.5px;
+    text-align: left;
+
+    @include on-Tablet {
+        font-size: 16px;
+        line-height: 20px;
+    }
+    @include on-Desktop {
+        font-size: 18px;
+        line-height: 27px;
+    }
+}
+
 @mixin inputStyling {
     background-color: transparent;
     color: $choco;

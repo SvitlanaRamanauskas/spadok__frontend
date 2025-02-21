@@ -1,25 +1,24 @@
 import classNames from "classnames";
 import "../../../styles/Heart.scss";
-import { useContext, useState } from "react";
+import { useCallback, useContext, useState } from "react";
 import { AppContext } from "../../appContext";
 import { ImageModal } from "../ImageModal";
 import { addedToFavorites } from "../../../helper/productUtils";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { addItemToFavorites, favoritesSelector, removeItemFromFavorites } from "../../../redux/cart/reducerFavorites";
+import {
+  addItemToFavorites,
+  favoritesSelector,
+  removeItemFromFavorites,
+} from "../../../redux/cart/reducerFavorites";
 import { DynamicProduct } from "../../../types/Product";
 
 export const DetailsImages: React.FC = () => {
   const { selectedProduct } = useContext(AppContext) as {
     selectedProduct: DynamicProduct;
   };
-  const [currentImage, setCurrentImage] = useState(`${process.env.PUBLIC_URL}/${selectedProduct.images[0]}`);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentImageIndex, setCurrentImageIndex] = useState<null | number>(
-    null
-  );
-
-const favoritesItems = useAppSelector(favoritesSelector);
-const dispatch = useAppDispatch();
+  const favoritesItems = useAppSelector(favoritesSelector);
+  const dispatch = useAppDispatch();
 
   const handleAddToFavorites = (product: DynamicProduct) => {
     if (addedToFavorites(favoritesItems, product.id)) {
@@ -29,47 +28,26 @@ const dispatch = useAppDispatch();
     }
   };
 
-  //#region Modal
-
-  const handleImageClick = (clickedImage: string, index: number) => {
-    setCurrentImage(`${process.env.PUBLIC_URL}/${clickedImage}`);
-    setCurrentImageIndex(index);
+  const handleOpenModal = useCallback(() => {
+    console.log("Opening modal - isModalOpen before:", isModalOpen);
     setIsModalOpen(true);
-  };
+    console.log("Opening modal - isModalOpen after:", isModalOpen);
+  }, []);
 
-  const handleCloseModal = () => {
+  const handleCloseModal = useCallback(() => {
+    console.log("Closing modal - isModalOpen before:", isModalOpen);
     setIsModalOpen(false);
-    setCurrentImageIndex(null);
-  };
+    console.log("Closing modal - isModalOpen after:", isModalOpen);
+  }, []);
 
-  const handleNextImage = () => {
-    if (currentImageIndex !== null && selectedProduct !== null) {
-      setCurrentImageIndex(
-        (prevIndex) => (prevIndex! + 1) % selectedProduct.images.length
-      );
-    }
-  };
+  console.log(isModalOpen);
 
-  const handlePreviousImage = () => {
-    if (currentImageIndex !== null && selectedProduct !== null) {
-      setCurrentImageIndex((prevIndex) =>
-        prevIndex === 0 ? selectedProduct.images.length - 1 : prevIndex! - 1
-      );
-    }
-  };
-
-  //#endregion
-
-  console.log("mainImage", currentImage);
   return (
     <>
       {isModalOpen && (
         <ImageModal
           images={selectedProduct.images}
-          currentImageIndex={currentImageIndex}
           onClose={handleCloseModal}
-          handleNext={handleNextImage}
-          handlePrevious={handlePreviousImage}
         />
       )}
 
@@ -77,10 +55,10 @@ const dispatch = useAppDispatch();
         <div className="details__main-image-container">
           <div className="details__main-image">
             <img
-              src={`${currentImage}`}
+              src={`${process.env.PUBLIC_URL}/${selectedProduct.images[0]}`}
               alt="product"
               className="details__picture"
-              onClick={() => handleImageClick(currentImage!, 0)}
+              onClick={handleOpenModal}
             />
           </div>
 
@@ -95,7 +73,9 @@ const dispatch = useAppDispatch();
           >
             {addedToFavorites(favoritesItems, selectedProduct?.id) ? (
               <img
-                src={require("../../../styles/icons/red_heart_icon.svg").default}
+                src={
+                  require("../../../styles/icons/red_heart_icon.svg").default
+                }
                 alt=""
                 className="heart__icon details__icon"
               />
@@ -111,15 +91,12 @@ const dispatch = useAppDispatch();
             )}
           </button>
         </div>
-        
+
         {selectedProduct.images.map((image, index) => (
           <button
-            className={classNames(
-              "details__image-button",
-              { "details__image--active": currentImage === image }
-            )}
+            className="details__image-button"
             type="button"
-            onClick={() => handleImageClick(image, index)}
+            onClick={handleOpenModal}
             key={image}
           >
             <img

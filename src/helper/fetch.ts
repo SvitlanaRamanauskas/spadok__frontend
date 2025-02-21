@@ -289,11 +289,11 @@ export const getPreparedVyshyvanky = (products: DynamicProduct[], params: any) =
 
   if (params.sort) {
     return preparedProducts.sort((a, b) => {
-      if (params.sort === 'title') {
+      if (params.sort === 'алфавітом') {
         return a.title.localeCompare(b.title);
-      } else if (params.sort === 'priceFromLow') {
+      } else if (params.sort === 'дешевші') {
         return a.price - b.price;
-      } else if (params.sort === 'priceFromHigh') {
+      } else if (params.sort === 'дорожчі') {
         return b.price - a.price;
       } else {
         return 0;

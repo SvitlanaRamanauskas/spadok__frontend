@@ -147,67 +147,28 @@
         }
     }
 
-}
-
-.size {
-    &__elements {
-        display: flex;
-        justify-content: flex-start;
-        flex-flow: row wrap;
-        gap: 15px;
-        margin-top: 14px;
-
-        @include on-Desktop {
-            margin-top: 24px;
-        }
-    }
-
-    &__value {
-        font-family: "inter", serif;
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 16px;
-        text-align: left;
-        color: $gray-not-active;
-        transition: color 0.3s ease ;
-
-        &--active {
-            color: $choco;
-        }
-    }
-
-    &__box {
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: transparent;
-        height: 18px;
-        width: 18px;
-        border: 1px solid $gray-not-active;
-        transition: border-color 0.3s ease ;
-        
-        &:hover {
-            border-color: $brown;
-            .size__value {
-                color: $brown;
+    &__description {
+        &--mobile {
+            display: block;
+            margin-top: 50px;
+      
+            @include on-Desktop {
+                display: none;
             }
         }
-
-        @include on-Desktop {
-            height: 23px;
-            width: 45px;
-        }
-
-        &--active {
-            border-color: $choco;
-
-            &:hover {
-                border-color: $choco;
+      
+        &--desktop {
+            display: none;
+      
+            @include on-Desktop {
+                display: block;
             }
         }
     }
+
 }
+
+
 
 .info {
     display: flex;
@@ -266,7 +227,9 @@
 
         &--warn {
             color: $warning-color;
-            padding-bottom: 3px;
+            padding: 7px 3px;
+            margin-top: 10px;
+            font-size: 0.75em;
         }
 
         &--available {
@@ -281,77 +244,7 @@
     }
 }
 
-.description {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
 
-    &--mobile {
-        display: block;
-        margin-top: 50px;
-
-        @include on-Desktop {
-            display: none;
-        }
-    }
-
-    &--desktop {
-        display: none;
-
-        @include on-Desktop {
-            display: block;
-        }
-    }
-
-    &__title {
-        margin-bottom: 24px;
-        color: $gray-not-active;
-
-        &--active {
-            color: $choco; 
-        }
-    }
-
-    &__buttons-titles {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    &__body {
-        color: $choco; 
-    }
-
-    &__button {
-        width: 100%;
-        margin-top: 24px;
-
-        @include on-Tablet {
-            width: 448px;
-        }
-
-        @include on-Desktop {
-            width: 100%;
-        }
-
-        &-wrapper {
-            display: flex;
-            justify-content: center;
-        }
-
-        &--prod-added {
-            background-color: $bg-color;
-            color: $choco;
-            border: 1px solid $choco;
-
-            transition: color 0.3s ease;
-
-            &:hover {
-              color: $gray-not-active;
-              border-color:  $gray-not-active;
-            }
-        }
-    }
-}
 
 .back {
     display: flex;

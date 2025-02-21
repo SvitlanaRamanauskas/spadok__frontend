@@ -1,0 +1,65 @@
+@import '../../../styles/utils/variables.scss';
+@import '../../../styles/utils/mixins';
+
+.description {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  &__title {
+      margin-bottom: 24px;
+      color: $gray-not-active;
+
+      &--active {
+          color: $choco; 
+      }
+  }
+
+  &__buttons-titles {
+      display: flex;
+      justify-content: space-between;
+
+  }
+
+  &__body {
+      color: $choco;
+      @include textDescription;
+
+      
+    &--size-table{
+        height: 300px;
+        width: 300px
+    }
+  }
+
+  &__button {
+      width: 100%;
+      margin-top: 24px;
+
+      @include on-Tablet {
+          width: 448px;
+      }
+
+      @include on-Desktop {
+          width: 100%;
+      }
+
+      &-wrapper {
+        display: flex;
+        justify-content: center;
+      }
+
+      &--prod-added {
+          background-color: $bg-color;
+          color: $choco;
+          border: 1px solid $choco;
+
+          transition: color 0.3s ease;
+
+          &:hover {
+            color: $gray-not-active;
+            border-color:  $gray-not-active;
+          }
+      }
+  }
+}

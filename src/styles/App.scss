@@ -172,6 +172,7 @@ button {
   &__left {
     display: flex;
     flex-direction: column;
+    align-items: center;
     margin-top: 15px;
 
     @include on-Desktop {
@@ -219,9 +220,14 @@ button {
   }
 
   &__follow {
+    position: relative;
+    color: $choco;
+    width: auto;
+    border-top: 1px solid $choco;
+    padding-top: 20px;
+    margin-top: 10px;
     display: flex;
     gap: 7px;
-    margin-top: 40px;
 
     &-text {
       padding-right: 5px;
@@ -236,6 +242,11 @@ button {
       @include on-Desktop {
         font-size: 20px;
       }
+    }
+
+    &-link {
+      display: flex;
+      align-items: center;
     }
 
     &-icon {
@@ -356,6 +367,28 @@ button {
       line-height: 33px; 
     }
   }
+
+  &__logo {
+    &-link {
+      display: flex;
+      align-items: center;
+      width: 70px;
+      height: $headers-height-mobile;
+
+      @media (min-width: 378px) {
+        width: 80px;
+      }
+
+      @include on-Tablet {
+        width: 100px;
+        height: $headers-height-tablet;
+      }
+    }
+
+    &-image {
+      width: 100%;
+    }
+  }
 }
 
 .sub-title {
@@ -384,27 +417,6 @@ button {
   }
 }
 
-.logo {
-  position: relative;
-  text-decoration: none;
-  color: $choco;
-  width: auto;
-  border-bottom: 1px solid $choco;
-  padding-bottom: 20px;
-  font-family: 'lev_type';
-  font-size: 18px;
-  font-weight: 500;
-  text-align: left;
-
-  @include on-Tablet {
-    font-size: 20px;
-  }
-
-  @include on-Desktop {
-    font-size: 40px;
-  }
-}
-
 .login-page {
   @include pageMinHeight;
 
@@ -412,4 +424,8 @@ button {
     text-align: center;
     padding-top: 10px;
   }
+}
+
+.logo {
+
 }

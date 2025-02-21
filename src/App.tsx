@@ -4,6 +4,7 @@ import { scroller } from "react-scroll";
 import { ArrowDecorBelow } from "./components/ArrowDecorBelow";
 import { ThreadDecor } from "./components/ThreadDecor";
 import { Header } from "./components/Header";
+import { ArrowDecorTop } from "./components/ArrowDecorTop";
 
 export const scrollToTop = () => {
   window.scrollTo({
@@ -22,15 +23,13 @@ export const handleNavigation = (section: any) => {
   }, 1000); // Delay to ensure the page is loaded
 };
 
-console.log(process.env.PUBLIC_URL)
+console.log(process.env.PUBLIC_URL);
 
 function App() {
-
-
   return (
     <div className="app">
       <Header />
-      
+
       <main className="main">
         <Outlet />
       </main>
@@ -40,16 +39,21 @@ function App() {
           <div className="footer__wrapper">
             <ThreadDecor />
             <div className="footer__block footer__left">
-              <Link to="/" className="logo">
-                наш спадок
-                <ArrowDecorBelow />
+              <Link className="footer__logo footer__logo-link" to="/">
+                <img
+                  className="footer__logo-image"
+                  src={`${process.env.PUBLIC_URL}/Logo/Logo_bottom_mokko.png`}
+                  alt=""
+                />
               </Link>
               <div className="footer__follow">
+                <ArrowDecorTop />
                 <div className="footer__follow-text">Стежити</div>
+
                 <a
                   href="https://www.instagram.com/julia_hapeka/"
                   target="_blank"
-                  className=""
+                  className="footer__follow-link"
                   rel="noreferrer"
                 >
                   <img

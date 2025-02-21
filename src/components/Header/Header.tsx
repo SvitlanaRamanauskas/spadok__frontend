@@ -10,7 +10,10 @@ import { totalCartQuantitySelector } from "../../redux/cart/reducerCart";
 import { totalFavoritesQuantitySelector } from "../../redux/cart/reducerFavorites";
 import { AsideMenu } from "../AsideMenu";
 import { AppContext, AppProvider } from "../appContext";
-import { fetchCategoriesList, fetchSubcategoriesList } from "../../helper/fetch";
+import {
+  fetchCategoriesList,
+  fetchSubcategoriesList,
+} from "../../helper/fetch";
 import { AdminCategory, AdminSubcategory } from "../../types/AdminNames";
 
 export const Header = () => {
@@ -24,7 +27,7 @@ export const Header = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem('authToken');
+    localStorage.removeItem("authToken");
     setIsAuthenticated(false);
     navigate("/login");
   };
@@ -87,9 +90,15 @@ export const Header = () => {
                 alt="Logo"
               />
             </>
-            <Link to="/" className="header__logo-text">
-              наш спадок
+
+            <Link to="/" className="header__logo-link">
+              <img
+                className="header__logo-image"
+                src={`${process.env.PUBLIC_URL}/Logo/Logo_mokko.png`}
+                alt=""
+              />
             </Link>
+
             <>
               <img
                 src={require("../../styles/icons/curve_line.svg").default}
@@ -126,15 +135,16 @@ export const Header = () => {
           <div className="header__right">
             <ArrowDecorTop />
             <div className="header__short-navigation">
-              {isAuthenticated && (             
-                <button 
-                  type="button" 
+              {isAuthenticated && (
+                <button
+                  type="button"
                   className="nav__item header__short-nav-element"
                   onClick={handleLogout}
                 >
                   Вийти
-                </button>)}
- 
+                </button>
+              )}
+
               <button
                 className="nav__item header__short-nav-element"
                 onClick={(e) => {
@@ -162,18 +172,19 @@ export const Header = () => {
                   "header__nav--opened": vyshyvListExpanded,
                 })}
               >
-                <ul className="nav__list">{
-                  subcategories.map((subcategory) => (
+                <ul className="nav__list">
+                  {subcategories.map((subcategory) => (
                     <li className="nav__item" key={subcategory.name}>
-                    <Link to={`/catalog/${subcategory.key}`} className="nav__link">
-                      {subcategory.name}
-                    </Link>
-                  </li>
-                  ))
-                  }
+                      <Link
+                        to={`/catalog/${subcategory.key}`}
+                        className="nav__link"
+                      >
+                        {subcategory.name}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               </nav>
-
 
               <button className="nav__item header__short-nav-element">
                 <Link to={`/catalog/books`} className="nav__link">
@@ -241,10 +252,7 @@ export const Header = () => {
         </div>
       </header>
 
-      {asideIsOpen && (
-        <AsideMenu 
-          subcategories={subcategories}
-        />)}
+      {asideIsOpen && <AsideMenu subcategories={subcategories} />}
     </>
   );
 };

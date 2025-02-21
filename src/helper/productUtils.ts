@@ -13,5 +13,14 @@ export const addedToCart = (cartItemsAdded: CartItem[], itemId: string) => {
 };
 
 export function isVyshyvanka(product: DynamicProduct): product is Vyshyvanka {
-  return product.category === "vyshyvanka";
+  return product.category === "vyshyvanky";
+}
+
+export function isForKids(product: DynamicProduct): product is Vyshyvanka {
+  return product.subcategory === "girls" || product.subcategory === "boys";
+}
+
+
+export function isForAdults(product: DynamicProduct): product is Vyshyvanka {
+  return product.subcategory === "women" || product.subcategory === "men";
 }

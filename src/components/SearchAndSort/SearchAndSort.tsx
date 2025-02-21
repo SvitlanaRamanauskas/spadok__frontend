@@ -2,6 +2,9 @@ import { useState } from "react";
 import "./SearchAndSort.scss";
 import cn from "classnames";
 import { getSearchWith } from "../../helper/getSearch";
+import { Dropdown } from "../Dropdown";
+
+const SORTING_OPTIONS = ["алфавітом", "дешевші", "дорожчі"];
 
 export function debounce(callback: (...args: string[]) => void, delay: number) {
   let timerId = 0;
@@ -17,20 +20,20 @@ export function debounce(callback: (...args: string[]) => void, delay: number) {
 type Props = {
   searchParams: any;
   setSearchParams: (value: any) => void;
-}
+};
 
-export const SearchAndSort: React.FC<Props> = ({ searchParams, setSearchParams }) => {
-  const [isSelectFocused, setIsSelectFocused] = useState(false);
-  const [searchValue, setSearchValue] = useState('');
+export const SearchAndSort: React.FC<Props> = ({
+  searchParams,
+  setSearchParams,
+}) => {
+  const [searchValue, setSearchValue] = useState("");
   const [searchActive, setSearchActive] = useState(false);
-
   const sort = searchParams.get("sort") || "";
-
   const setSearchWith = (params: any) => {
     const search = getSearchWith(searchParams, params);
 
     setSearchParams(search);
-  }
+  };
 
   const debounceQuery = debounce(setSearchWith, 1000);
 
@@ -43,7 +46,7 @@ export const SearchAndSort: React.FC<Props> = ({ searchParams, setSearchParams }
 
   const handleDeleteInput = () => {
     setSearchWith({ query: null });
-    setSearchValue('');
+    setSearchValue("");
     setSearchActive(false);
   };
 
@@ -60,15 +63,6 @@ export const SearchAndSort: React.FC<Props> = ({ searchParams, setSearchParams }
 
     setSearchParams(params);
   };
-
-  const handleSelectBlur = () => {
-    setIsSelectFocused(false);
-  };
-
-  const handleSelectFocus = () => {
-    setIsSelectFocused(!isSelectFocused);
-  };
-
 
   return (
     <>
@@ -88,47 +82,22 @@ export const SearchAndSort: React.FC<Props> = ({ searchParams, setSearchParams }
             />
           </button>
         )}
-        
-        <input 
-          type="search" 
-          className="search__input" 
+
+        <input
+          type="search"
+          className="search__input"
           placeholder="пошук"
           value={searchValue}
           onChange={handleInputChange}
-         />
+        />
       </div>
 
       <div className="sort">
-        <div
-          className={cn("sort__input", {
-            "sort__input--focused": isSelectFocused,
-          })}
-        >
-          <label htmlFor="sort" className="sort__input-label">
-            Обрати за
-          </label>
-
-          <select
-            className="sort__select"
-            name="sort-by"
-            id="sort"
-            onChange={(e) => {
-              handleSortBy(e.target.value);
-            }}
-            onClick={handleSelectFocus}
-            onBlur={handleSelectBlur}
-          >
-            <option className="sort__option" value="name">
-              алфавитом
-            </option>
-            <option className="sort__option" value="priceFromLow">
-              дешевші
-            </option>
-            <option className="sort__option" value="priceFromHigh">
-              дорожчи
-            </option>
-          </select>
-        </div>
+        <Dropdown
+          options={SORTING_OPTIONS}
+          onChoise={handleSortBy}
+          dropdownName={"Oбрати за"}
+        />
       </div>
     </>
   );
