@@ -23,7 +23,6 @@
         background-position: top;
         background-image: url(../../public/img/women_images/main.png);
         opacity: 90%;
-        margin-top: $main-picture-padding-top;
 
         @include on-Tablet {
             height: $main-picture-height-tablet;

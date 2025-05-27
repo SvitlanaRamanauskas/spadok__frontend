@@ -5,9 +5,8 @@ import { ProductCard } from "../ProductCard";
 import { useState } from "react";
 import { SearchAndSort } from "../SearchAndSort";
 import { useSearchParams } from "react-router-dom";
-import { getPreparedVyshyvanky } from "../../helper/fetch";
 import { DynamicProduct } from "../../types/Product";
-
+import { getPreparedProducts } from "../../helper/filterSearchPreparation";
 
 type Props = {
   items: DynamicProduct[];
@@ -19,6 +18,7 @@ export const List: React.FC<Props> = ({ items }) => {
   const [visibleItemsCountDesktop, setVisibleItemsCountDesktop] = useState(6);
 
   const innerWidth = window.innerWidth;
+  console.log("List");
 
   const handleShowMoreClick = () => {
     if (innerWidth < 1200) {
@@ -34,44 +34,57 @@ export const List: React.FC<Props> = ({ items }) => {
     }
   };
 
-  const preparedProducts = getPreparedVyshyvanky(items, Object.fromEntries(searchParams));
+  const preparedProducts = getPreparedProducts(
+    items,
+    Object.fromEntries(searchParams)
+  );
 
   return (
     <>
-      <SearchAndSort 
+      <SearchAndSort
         searchParams={searchParams}
         setSearchParams={setSearchParams}
       />
 
       {innerWidth < 1200 ? (
         <div className="list">
-          {preparedProducts.slice(0, visibleItemsCountMobile).map((item: DynamicProduct) => (
-            <div className="list__card" key={item.id}>
-              <ProductCard item={item} productsFromServer={items} />
-            </div>
-          ))}
+          {preparedProducts
+            .slice(0, visibleItemsCountMobile)
+            .map((item: DynamicProduct) => (
+              <div className="list__card" key={item.id}>
+                <ProductCard item={item} productsFromServer={items} />
+              </div>
+            ))}
 
           {visibleItemsCountMobile < items.length && (
             <div className="list__button-wrapper">
-                <button className="list__button button" onClick={handleShowMoreClick}>
-                  Більше товарів
-                </button>
+              <button
+                className="list__button button"
+                onClick={handleShowMoreClick}
+              >
+                Більше товарів
+              </button>
             </div>
           )}
         </div>
       ) : (
         <div className="list">
-          {preparedProducts.slice(0, visibleItemsCountDesktop).map((item: DynamicProduct) => (
-            <div className="list__card" key={item.id}>
-              <ProductCard item={item} productsFromServer={items} />
-            </div>
-          ))}
+          {preparedProducts
+            .slice(0, visibleItemsCountDesktop)
+            .map((item: DynamicProduct) => (
+              <div className="list__card" key={item.id}>
+                <ProductCard item={item} productsFromServer={items} />
+              </div>
+            ))}
 
           {visibleItemsCountDesktop < items.length && (
             <div className="list__button-wrapper">
-                <button className="list__button button" onClick={handleShowMoreClick}>
-                  Більше товарів
-                </button>
+              <button
+                className="list__button button"
+                onClick={handleShowMoreClick}
+              >
+                Більше товарів
+              </button>
             </div>
           )}
         </div>

@@ -15,9 +15,9 @@
     }
 
     &__link {
-        display: flex;           // Ensure the link element itself is a flex container
-        align-items: center;     // Align items within the link
-        text-decoration: none;   // Remove underline from the link
+        display: flex;
+        align-items: center;
+        text-decoration: none;
         margin-right: 8px;   
     }
     &__text {

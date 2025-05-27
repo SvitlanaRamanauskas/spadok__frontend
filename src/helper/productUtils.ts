@@ -1,26 +1,22 @@
 import { FavoritesItem } from "../types/FavoritesItem";
 import { CartItem } from "../types/CartItem";
-import { Vyshyvanka } from "../types/Vyshyvanka";
-import { DynamicProduct } from "../types/Product";
+import { VyshyvankaUI } from "../types/Vyshyvanka";
+import { DynamicProductUI } from "../types/Product";
 
 
-export const addedToFavorites = (itemsInFavorites: FavoritesItem[], id: string) => {
+export const addedToFavorites = (itemsInFavorites: FavoritesItem[], id: number) => {
     return itemsInFavorites.some((item) => item.item.id === id);
 };
 
-export const addedToCart = (cartItemsAdded: CartItem[], itemId: string) => {
+export const addedToCart = (cartItemsAdded: CartItem[], itemId: number) => {
     return cartItemsAdded.some((itemInCart) => itemInCart.item.id === itemId);
 };
 
-export function isVyshyvanka(product: DynamicProduct): product is Vyshyvanka {
-  return product.category === "vyshyvanky";
-}
-
-export function isForKids(product: DynamicProduct): product is Vyshyvanka {
+export function isForKids(product: DynamicProductUI): product is VyshyvankaUI {
   return product.subcategory === "girls" || product.subcategory === "boys";
 }
 
 
-export function isForAdults(product: DynamicProduct): product is Vyshyvanka {
+export function isForAdults(product: DynamicProductUI): product is VyshyvankaUI {
   return product.subcategory === "women" || product.subcategory === "men";
 }

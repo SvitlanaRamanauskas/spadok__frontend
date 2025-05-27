@@ -24,28 +24,28 @@ import { RequireAuth } from "./components/Auth/RequireAuth";
 import { LoginPage } from "./pages/LoginPage";
 import { useEffect, useState } from "react";
 import { AdminSubcategory } from "./types/AdminNames";
-import { fetchSubcategoriesList } from "./helper/fetch";
+import { fetchSubcategoriesList } from "./helper/fetch/adminFetch";
+import { ItemsNotFound } from "./components/ItemsNotFound";
 
 export const Root = () => {
-
-  const [subcategories, setSubcategories] = useState<AdminSubcategory[] | []>([]);
+  const [subcategories, setSubcategories] = useState<AdminSubcategory[] | []>(
+    []
+  );
 
   useEffect(() => {
-  const loadSubcategories = async () => {
-    try {
-      // const categories: AdminCategory[] = await fetchCategoriesList();
-      // setCategories(categories);
-      const data: AdminSubcategory[] = await fetchSubcategoriesList();
-      setSubcategories(data);
-      console.log("in Root ", subcategories)
-    } catch (error) {
+    const loadSubcategories = async () => {
+      try {
+        // const categories: AdminCategory[] = await fetchCategoriesList();
+        // setCategories(categories);
+        const data: AdminSubcategory[] = await fetchSubcategoriesList();
+        setSubcategories(data);
+      } catch (error) {
         console.error("Failed to fetch categories:", error);
-    }    
-  }
-  loadSubcategories();
+      }
+    };
+    loadSubcategories();
   }, []);
 
-  console.log(subcategories);
   return (
     <Provider store={store}>
       <AppProvider>
@@ -84,7 +84,7 @@ export const Root = () => {
                   />
                 ))}
               </Route>
-              
+
               <Route path="/bestsellers" element={<BestsellersPage />} />
               <Route path="/favorites" element={<FavoritesPage />} />
               <Route path="/cart" element={<CartPage />} />

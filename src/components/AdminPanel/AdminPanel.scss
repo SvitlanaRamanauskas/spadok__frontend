@@ -6,27 +6,25 @@
   @include pagePaddings;
   // border: $choco solid 1px;
   padding-block: 10px;
- 
-  &__top {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 20px;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 
-  &__bord {
-    box-sizing: border-box;
+  &__board {
     display: flex;
+    flex-direction: column;
+    gap: 30px;
+    box-sizing: border-box;
+    border: 1px solid gray;
     min-height: 240px;
     padding: 20px;
     color: $choco;
+
+    &-wrapper {
+      display: flex;
+    }
   }
 
-  &__bottom {
-    border: red solid 1px;
-    padding: 20px;
-    margin-top: 30px;
-  }
 
   &__left {
     flex: 1;
@@ -36,6 +34,14 @@
     &--open {
       width: 100%; 
     }
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
   }
 
   &__thead {
@@ -114,14 +120,14 @@
 
     &-wrapper {
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
     }
   }
 }
 
 .tile {
     padding: 10px;
-  }
+}
 
 .sidebar {
   overflow: hidden;
@@ -140,121 +146,8 @@
   }
 }
 
-.categories {
-  &__title {
-    font-family: "inter";
-    text-transform: capitalize;
-    padding: 12px 12px;
-    color: $button-admin-close;
-    margin-block: 20px;
-  }
 
-  &__list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
 
-  &__item {
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
-    align-items: center;
-  }
 
-  &__link {
-    border: #060608 solid 1px;
-    border-radius: 4px;
-    padding: 8px 12px;
-    font-family: 'inter';
-    font-size: 18px;
-    font-weight: 400;
-    color: $button-admin-close;
-    transition: weight 0.9s;
-
-    &:hover {
-      font-weight: 800;
-    }
-
-    &--active {
-      font-weight: 800;
-    }
-  }
-
-  &__form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  &__label {
-    font-size: 14px;
-    width: 350px;
-    color: $choco;
-  }
-
-  &__input {
-    border-radius: 4px;
-    margin-left: 10px;
-    width: 300px;
-    padding: 7px 5px 7px;
-    background-color: transparent;
-    border: 0.5px solid $gray-not-active;
-
-    &:hover {
-      border-color: $brown;
-    }
-    &:focus {
-      outline: none;
-      border-color: $choco;
-      color: $choco;
-    }
-
-    &--textarea {
-      width: 400px;
-    }
-  }
-
-  &__buttons {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-  }
-
-  &__add {
-    box-sizing: content-box;
-    height: 15px;
-    padding: 5px;
-    margin-top: 10px;
-    border: $brown solid 1px;
-    color: $white;
-    background-color: #0056b3;
-    line-height: 15px;
-  }
-}
-
-.admin-product {
-  &__list {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 16px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-  }
-
-  &__button {
-
-   
-  }
-}
-
-.checkbox {
-  &__label {
-    &--checked {
-      color: red;
-    }
-  }
-}
 
 

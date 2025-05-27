@@ -12,7 +12,6 @@ import {
 import { addedToCart } from "../../../helper/productUtils";
 import { ImageModal } from "../ImageModal";
 
-
 export const Description: React.FC = () => {
   const [selectedChapter, setSelectedChapter] = useState("characteristics");
   const { selectedProduct } = useContext(AppContext);
@@ -25,7 +24,7 @@ export const Description: React.FC = () => {
 
   const handleSizeTableModelClose = useCallback(() => {
     setSizeTableModalOpen(false);
-  }, [])
+  }, []);
 
   return (
     <>
@@ -42,23 +41,28 @@ export const Description: React.FC = () => {
               Опис
             </button>
 
-            <button
-              onClick={() => setSelectedChapter("care")}
-              className={classNames("description__title", {
-                "description__title--active": selectedChapter === "care",
-              })}
-            >
-              Особливості догляду
-            </button>
+            {selectedProduct.size && (
+              <>
+                <button
+                  onClick={() => setSelectedChapter("care")}
+                  className={classNames("description__title", {
+                    "description__title--active": selectedChapter === "care",
+                  })}
+                >
+                  Особливості догляду
+                </button>
 
-            <button
-              onClick={() => setSelectedChapter("size-table")}
-              className={classNames("description__title", {
-                "description__title--active": selectedChapter === "size-table",
-              })}
-            >
-              Розмірна сітка
-            </button>
+                <button
+                  onClick={() => setSelectedChapter("size-table")}
+                  className={classNames("description__title", {
+                    "description__title--active":
+                      selectedChapter === "size-table",
+                  })}
+                >
+                  Розмірна сітка
+                </button>
+              </>
+            )}
           </div>
 
           {selectedChapter === "characteristics" && (
@@ -81,12 +85,17 @@ export const Description: React.FC = () => {
           )}
 
           {selectedChapter === "size-table" && (
-            <button onClick={() => setSizeTableModalOpen(true)} className="description__button">
+            <button
+              onClick={() => setSizeTableModalOpen(true)}
+              className="description__button"
+            >
               <img
-                src={selectedProduct.subcategory === "boys" 
-                  || selectedProduct.subcategory === "girls"
-                  ? `${process.env.PUBLIC_URL}/img/kidsSizes.jpg` 
-                  : `${process.env.PUBLIC_URL}/img/kidsSizes.jpg`}
+                src={
+                  selectedProduct.subcategory === "boys" ||
+                  selectedProduct.subcategory === "girls"
+                    ? `${process.env.PUBLIC_URL}/img/kidsSizes.jpg`
+                    : `${process.env.PUBLIC_URL}/img/kidsSizes.jpg`
+                }
                 alt="kids sizes"
                 className="description__body--size-table"
               />
@@ -100,9 +109,11 @@ export const Description: React.FC = () => {
             />
           )}
 
-          <p className="info__name info__name--warn">
-            Переконайтеся, що Ви обрали вірний розмір, будь ласка
-          </p>
+          {selectedProduct.size && (
+            <p className="info__name info__name--warn">
+              Переконайтеся, що Ви обрали вірний розмір, будь ласка
+            </p>
+          )}
 
           <div className="description__button-wrapper">
             <button

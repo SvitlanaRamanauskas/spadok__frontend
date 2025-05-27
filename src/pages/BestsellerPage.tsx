@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchBestsellers } from "../helper/fetch";
+import { fetchBestsellers } from "../helper/fetch/fetch";
 import { List } from "../components/List";
 import { Loader } from "../components/Loader";
 import { Vyshyvanka } from "../types/Vyshyvanka";

@@ -1,0 +1,68 @@
+@import '../../../styles/utils/variables.scss';
+@import '../../../styles//utils/mixins.scss';
+
+.entity {
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  &__group {
+    &--checkbox {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  
+  &__label {
+    font-size: 14px;
+    width: 350px;
+    color: $choco;
+
+    &--checkbox {
+      display: flex;
+      align-items: center;
+      color: $gray-not-active;
+
+      &-checked {
+        color: $choco;
+      }
+    }
+  }
+  
+  &__input {
+    border-radius: 4px;
+    margin-left: 10px;
+    width: 300px;
+    padding: 7px 5px 7px;
+    background-color: transparent;
+    border: 0.5px solid $gray-not-active;
+  
+    &:hover {
+      border-color: $brown;
+    }
+    &:focus {
+      outline: none;
+      border-color: $choco;
+      color: $choco;
+    }
+
+    &--checkbox {
+      width: 10px;
+      height: 10px;
+      cursor: pointer;
+
+      &-checked {
+        background-color: $choco;
+      }
+    }
+  
+    &--textarea {
+      width: 400px;
+    }
+
+
+  }
+  
+}

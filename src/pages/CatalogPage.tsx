@@ -11,10 +11,10 @@ export const CatalogPage = () => {
   }, []);
 
   return (
-    <>
+    <div>
       <Breadcrumbs />
       
       <Catalog />
-    </>
+    </div>
   );
 };

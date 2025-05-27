@@ -29,18 +29,12 @@ export const DetailsImages: React.FC = () => {
   };
 
   const handleOpenModal = useCallback(() => {
-    console.log("Opening modal - isModalOpen before:", isModalOpen);
     setIsModalOpen(true);
-    console.log("Opening modal - isModalOpen after:", isModalOpen);
   }, []);
 
   const handleCloseModal = useCallback(() => {
-    console.log("Closing modal - isModalOpen before:", isModalOpen);
     setIsModalOpen(false);
-    console.log("Closing modal - isModalOpen after:", isModalOpen);
   }, []);
-
-  console.log(isModalOpen);
 
   return (
     <>

@@ -4,11 +4,19 @@
 .header {
     box-sizing: content-box;
     z-index: 1000;
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     padding-top: 10px;
     height: $headers-height-mobile;
-    background-color: $bg-color;
+    background-color: rgb(230,226,205, 0.7);
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: $bg-color;
+    }
+    
   
     @include on-Tablet {
       height: $headers-height-tablet;
@@ -143,6 +151,22 @@
   
       &--close {
         width: 44px;
+
+        &-image {
+          width: 20px;
+          height: 20px;
+
+          
+          @include on-Tablet {
+            width: 30px;
+            height: 30px;
+          }
+
+          @include on-Desktop {
+            width: 35px;
+            height: 35px;
+          }
+        }
       }
   
       &-picture {

@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import "./Catalog.scss";
 import { useEffect, useState } from "react";
-import { fetchSubcategoriesList } from "../../helper/fetch";
 import { Loader } from "../Loader";
 import { AdminSubcategory } from "../../types/AdminNames";
+import { fetchSubcategoriesList } from "../../helper/fetch/adminFetch";
 
 export const Catalog = () => {
   const [subcategories, setSubcategories] = useState<AdminSubcategory[]>([]);
@@ -33,11 +33,12 @@ export const Catalog = () => {
         <Link
           to={`/catalog/${subcategory.key}`}
           className="catalog__category"
+          key={subcategory.key}
         >
           <div className="catalog__category-wrapper">
             <img
               className="catalog__image"
-              src={subcategory.image}
+              src={`${process.env.PUBLIC_URL}/${subcategory.image}`}
               alt={`for_${subcategory.key}`}
             />
             <div className="catalog__category-mask">

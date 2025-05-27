@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import "./AsideMenu.scss";
 import { Link } from "react-router-dom";
 import { AppContext } from "../appContext";
@@ -11,10 +11,30 @@ type Props = {
 };
 
 export const AsideMenu: React.FC<Props> = ({ subcategories }) => {
-  const { setAsideIsOpen } = useContext(AppContext);
+  const { setAsideIsOpen, asideIsOpen } = useContext(AppContext);
+
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setTimeout(() => {
+          setAsideIsOpen(false);
+        }, 1000);
+        console.log("asiderendered", asideIsOpen);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    };
+
+  }, [setAsideIsOpen, asideIsOpen]);
 
   return (
-    <aside className="menu">
+    <aside className="menu" ref={menuRef}>
       <section className="menu__part">
         <ul id="menu__list" className="nav__list">
           {subcategories.map((subcategory) => (

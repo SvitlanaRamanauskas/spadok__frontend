@@ -1,57 +1,74 @@
 import { useContext, useEffect, useState } from "react";
-import { fetchAllProducts, getProductById } from "../fetch";
+import { fetchAllProducts, getProductById } from "../fetch/fetch";
 import { AppContext } from "../../components/appContext";
 import { DynamicProduct } from "../../types/Product";
+import { useNavigate } from "react-router-dom";
 
-export const useProductDetails = (
-    productId: string,
-) => {
-    const [productsFromServer, setProductsFromServer] = useState<DynamicProduct[]>([])
-    const [productDetailsLoading, setProductDetailsLoading] = useState(false);
-    const [productNotFound, setProductNotFound] = useState(false);
-    const [productFetchError, setProductFetchError] = useState(false);
+export const useProductDetails = (productId: number) => {
+  const [productsFromServer, setProductsFromServer] = useState<
+    DynamicProduct[]
+  >([]);
+  const [productDetailsLoading, setProductDetailsLoading] = useState(false);
+  const [productNotFound, setProductNotFound] = useState(false);
+  const [productFetchError, setProductFetchError] = useState(false);
+  const navigate = useNavigate();
 
-    const { setSelectedProduct } = useContext(AppContext);
+  const { setSelectedProduct } = useContext(AppContext);
 
-    useEffect(() => {
-        if (!productId) {
-            return;
-        }
+  useEffect(() => {
+    if (!productId) {
+      return;
+    }
 
-        const fetchProduct = async () => {
-            try {
-                setProductNotFound(false);
-                setProductFetchError(false);
-                setProductDetailsLoading(true);
+    const fetchProduct = async () => {
+      try {
+        setProductNotFound(false);
+        setProductFetchError(false);
+        setProductDetailsLoading(true);
 
-                const productData = await getProductById(productId);
-                if(!productData) throw new Error("ProductNotFound");
-                setSelectedProduct(productData);
-            } catch(error) {
-                setProductNotFound(true);
-                throw error;
-            } finally {
-                setProductDetailsLoading(false); //navigate?? 
-            } 
-        
-        }
+        const productData = await getProductById(productId);
+         console.log("productData", productData)
+        if (!productData) {
+          setSelectedProduct(null);
+          setProductNotFound(true);
+          return;
+        } 
 
-        const fetchProducts = async () => {
-            try {
-                const productData = await fetchAllProducts();
-                if(!productData) throw new Error("ProductNotFound");
-                setProductsFromServer(productData);
-            } catch(error) {
-                setProductNotFound(true);
-                throw error;
-            } finally {
-                setProductDetailsLoading(false); //navigate?? 
-            } 
-        }
+        setSelectedProduct(productData);
 
-        fetchProduct();
-        fetchProducts();
-    }, [productId]);
+      } catch (error) {
+        setProductNotFound(true);
+        throw error;
+      } finally {
+        setProductDetailsLoading(false);
+      }
+    };
 
-    return { productDetailsLoading, setProductDetailsLoading, productNotFound, productFetchError, productsFromServer };
-  }
+    const fetchProducts = async () => {
+      try {
+        const productsData = await fetchAllProducts();
+        if (!productsData) {throw new Error("ProductNotFound")};
+        setProductsFromServer(productsData);
+      } catch (error) {
+        setProductNotFound(true);
+        throw error;
+      } finally {
+        setProductDetailsLoading(false);
+      }
+    };
+
+    fetchProduct();
+    fetchProducts();
+  }, [productId, setSelectedProduct]);
+
+  console.log("UseProductDetailsHook")
+
+  return {
+    productDetailsLoading,
+    setProductDetailsLoading,
+    setProductNotFound,
+    productNotFound,
+    productFetchError,
+    productsFromServer,
+  };
+};

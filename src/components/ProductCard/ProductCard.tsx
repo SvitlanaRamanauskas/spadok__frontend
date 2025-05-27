@@ -10,6 +10,7 @@ export type Props = {
 export const ProductCard: React.FC<Props> = ({ item, productsFromServer }) => {
   const url = window.location.href;
   const categoryAsLastWordInURL = url.split('/').pop();
+  console.log("ProductCard");
 
   return (
     <div className="card">

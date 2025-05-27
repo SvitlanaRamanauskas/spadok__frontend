@@ -1,7 +1,8 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
 import { DynamicProduct } from '../types/Product';
 import { AdminCategory, AdminSubcategory } from '../types/AdminNames';
-import { fetchSubcategoriesList } from '../helper/fetch';
+import { fetchAllProducts } from '../helper/fetch/fetch';
+import { fetchCategoriesList, fetchSubcategoriesList } from '../helper/fetch/adminFetch';
 
 
 type ContextType = {
@@ -10,11 +11,15 @@ type ContextType = {
     selectedProduct: DynamicProduct | null;
     setSelectedProduct: (value: DynamicProduct | null) => void;
     asideIsOpen: boolean;
-    setAsideIsOpen: (value: boolean) => void;
+    setAsideIsOpen: Dispatch<SetStateAction<boolean>>;
     isAuthenticated: boolean;
     setIsAuthenticated: (value: boolean) => void;
-    subcategories: AdminSubcategory[] | [];
-    setSubcategories: (value: AdminSubcategory[] | []) => void;
+    categories: AdminCategory[];
+    setCategories: Dispatch<SetStateAction<AdminCategory[]>>;
+    subcategories: AdminSubcategory[];
+    setSubcategories: (value: AdminSubcategory[]) => void;
+    products: DynamicProduct[];
+    setProducts: (value: DynamicProduct[]) => void;
 }
 
 type Props = {
@@ -30,8 +35,13 @@ export const AppContext = React.createContext<ContextType>({
     setAsideIsOpen: () => {},
     isAuthenticated: false,
     setIsAuthenticated: () => {},
+    categories: [],
+    setCategories: () => {},
     subcategories: [],
     setSubcategories: () => {},
+    products: [],
+    setProducts: () => {},
+    
 });
 
 export const AppProvider: React.FC<Props> = ({ children }) => {
@@ -39,7 +49,9 @@ export const AppProvider: React.FC<Props> = ({ children }) => {
     const [selectedProduct, setSelectedProduct] = useState<DynamicProduct | null>(null);
     const [asideIsOpen, setAsideIsOpen] = useState(false);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [subcategories, setSubcategories] = useState<AdminSubcategory[] | []>([])
+    const [categories, setCategories] = useState<AdminCategory[]>([])
+    const [subcategories, setSubcategories] = useState<AdminSubcategory[]>([])
+    const [products, setProducts] = useState<DynamicProduct[]>([])
 
     useEffect(() => {
         const token = localStorage.getItem('authToken');
@@ -49,18 +61,34 @@ export const AppProvider: React.FC<Props> = ({ children }) => {
     useEffect(() => {
     const loadSubcategories = async () => {
         try {
-            // const categories: AdminCategory[] = await fetchCategoriesList();
-            // setCategories(categories);
-
             const subcategories: AdminSubcategory[] = await fetchSubcategoriesList();
             setSubcategories(subcategories);
-            console.log("in app context ", subcategories)
         } catch (error) {
             console.error("Failed to fetch categories:", error);
-        }    
+        }
     }
 
+    const loadCategories = async () => {
+        try {
+            const categories: AdminCategory[] = await fetchCategoriesList();
+            setCategories(categories);
+        } catch (error) {
+            console.error("Failed to fetch subcategories:", error);
+        }
+    }
+
+    const loadAllProducts = async () => {
+        try {
+            const products: DynamicProduct[] = await fetchAllProducts();
+            setProducts(products);
+        } catch (error) {
+            console.error("Failed to fetch products:", error);
+        }
+    }
+    
+    loadCategories();
     loadSubcategories();
+    loadAllProducts();
     }, []);
 
     // useEffect(() => {
@@ -88,11 +116,15 @@ export const AppProvider: React.FC<Props> = ({ children }) => {
         setAsideIsOpen,
         isAuthenticated,
         setIsAuthenticated,
+        categories,
+        setCategories,
         subcategories,
         setSubcategories,
+        products,
+        setProducts
     }), [selectedCard, setSelectedCard, selectedProduct,
         setSelectedProduct, asideIsOpen, setAsideIsOpen, isAuthenticated, setIsAuthenticated, 
-        subcategories, setSubcategories ]);
+        categories, setCategories, subcategories, setSubcategories, products, setProducts ]);
 
     return (
         <AppContext.Provider value={values}>{children}</AppContext.Provider>

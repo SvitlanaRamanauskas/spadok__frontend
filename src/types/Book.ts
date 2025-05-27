@@ -1,5 +1,9 @@
-import { ProductBase } from "./ProductBase";
+import { ProductBase, ProductBaseUI } from "./ProductBase";
 
 export type Book = ProductBase & {
-    genre: string;
+  genre: string;
+};
+
+export type BookUI = ProductBaseUI & {
+  genre: string;
 };

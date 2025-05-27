@@ -1,15 +1,15 @@
 export type AdminSubcategory = {
     name: string,
     key: string,
-    category: string,
-    id: string,
+    categoryId: number,
+    id: number,
     image: string,
 }
 
 export type AdminCategory = {
     name: string,
     key: string,
-    id: string,
+    id: number,
 }
 
 export type AdminCategoriesData = {

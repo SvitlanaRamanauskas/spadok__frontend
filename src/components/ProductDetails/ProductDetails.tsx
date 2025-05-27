@@ -7,24 +7,26 @@ import "../../styles/button.scss";
 
 import { Loader } from "../Loader";
 import { DetailsImages } from "./DetailsImages";
-import { isVyshyvanka } from "../../helper/productUtils";
 import { Sizes } from "./Sizes";
 import { useProductDetails } from "../../helper/hooks/useProductDetails";
-import { Vyshyvanka } from "../../types/Vyshyvanka";
+import { VyshyvankaUI } from "../../types/Vyshyvanka";
 import { Description } from "./Description/Description";
+import { transformToProductUI } from "../../helper/transformToProdIU";
 
 export const ProductDetails: React.FC = () => {
   const { productId } = useParams<{ productId?: string }>();
   const location = useLocation();
   const { selectedProduct } = useContext(AppContext);
-  const categoryPath = location.pathname.split("/")[2];
+  const numericProductId = productId ? Number(productId) : undefined;
+
   const {
     productDetailsLoading,
     setProductDetailsLoading,
+    setProductNotFound,
     productNotFound,
     productFetchError,
     productsFromServer,
-  } = useProductDetails(productId!);
+  } = useProductDetails(numericProductId!);
 
   const sizesRef = useRef<HTMLDivElement | null>(null);
 
@@ -35,12 +37,32 @@ export const ProductDetails: React.FC = () => {
     navigate(newPath);
   };
 
-  const vyshyvankyFromServer = productsFromServer.filter(
-    (prod) => prod.category === "vyshyvanky"
-  ) as Vyshyvanka[];
+  const vyshyvankyFromServer: VyshyvankaUI[] = productsFromServer
+    .map(transformToProductUI)
+    .filter((prod) => {
+      return prod.category === "vyshyvanky";
+    }) as VyshyvankaUI[];
+
+  console.log("ProductDetails");
 
   return (
     <>
+      {productDetailsLoading &&
+        !productNotFound &&
+        selectedProduct !== null && <Loader />}
+
+      {!productDetailsLoading &&
+        productNotFound &&
+        selectedProduct === null && (
+          <div className="details__not-found">Товар не знайдено</div>
+        )}
+
+      {!productDetailsLoading && productFetchError && (
+        <div className="details__not-found">
+          Сталася помилка, неможливо завантажити сторінку.
+        </div>
+      )}
+
       {!productDetailsLoading &&
         !productNotFound &&
         selectedProduct !== null && (
@@ -72,16 +94,17 @@ export const ProductDetails: React.FC = () => {
                     &#x20b4; {selectedProduct.price}
                   </p>
 
-                  {selectedProduct !== null &&
-                    isVyshyvanka(selectedProduct) && (
-                      <>
-                        <p className="info__name">Розмір:</p>
-                        <Sizes
-                          setProductDetailsLoading={setProductDetailsLoading}
-                          vyshyvankyFromServer={vyshyvankyFromServer}
-                        />
-                      </>
-                    )}
+                  {selectedProduct !== null && selectedProduct.size && (
+                    <>
+                      <p className="info__name">Розмір:</p>
+
+                      <Sizes
+                        setProductDetailsLoading={setProductDetailsLoading}
+                        vyshyvankyFromServer={vyshyvankyFromServer}
+                        setProductNotFound={setProductNotFound}
+                      />
+                    </>
+                  )}
 
                   <div className="details__description--desktop">
                     <Description />
@@ -95,22 +118,6 @@ export const ProductDetails: React.FC = () => {
             </div>
           </div>
         )}
-
-      {productDetailsLoading &&
-        !productNotFound &&
-        selectedProduct !== null && <Loader />}
-
-      {!productDetailsLoading &&
-        productNotFound &&
-        selectedProduct === null && (
-          <div className="details__not-found">Товар не знайдено</div>
-        )}
-
-      {!productDetailsLoading && productFetchError && (
-        <div className="details__not-found">
-          Сталася помилка, неможливо завантажити сторінку.
-        </div>
-      )}
     </>
   );
 };

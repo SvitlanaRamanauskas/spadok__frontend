@@ -1,6 +1,5 @@
 import { useState } from "react";
 import "./SearchAndSort.scss";
-import cn from "classnames";
 import { getSearchWith } from "../../helper/getSearch";
 import { Dropdown } from "../Dropdown";
 

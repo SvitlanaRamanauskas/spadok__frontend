@@ -1,0 +1,330 @@
+@import '../../styles/utils/variables.scss';
+@import '../../styles/utils/mixins.scss';
+
+.footer {
+  margin-inline: 16px;
+  height: $footers-height-mobile;
+  background-color: $bg-color;
+  border-top: 1px solid $choco;
+
+  @include on-Tablet {
+    height: $footers-height-tablet;
+    margin-inline: 24px;
+  }
+
+  @include on-Desktop {
+    height: $footers-height-desktop;
+  }
+
+  &__container {
+    padding-inline: 10px;
+  }
+
+  &__icon {
+    background-size: cover;
+    height: 14px;
+    width: 14px;
+
+    @include on-Tablet {
+      height: 18px;
+      width: 18px;
+    }
+
+    @include on-Desktop {
+      height: 22px;
+      width: 22px;
+    }
+
+    &--telegram {
+      background-image: url("../../styles/icons/telegram.png");
+    }
+
+    &--phone {
+      background-image: url("../../styles/icons/phone.png");
+    }
+
+    &--email {
+      background-image: url("../../styles/icons/email.png");
+    }
+
+    &--instagram {
+      background-image: url("../../styles/icons/instagram.png");
+    }
+
+    &--up {
+      background-image: url("../../styles/icons/arrow-up.png");
+    }
+  }
+
+  &__wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    padding-top: 16px;
+
+    @media(max-width: 350px) {
+      gap: 15px;
+    }
+    
+    @include on-Tablet {
+      padding-top: 26px;
+    }
+
+    @include on-Desktop {
+      padding-top: 0;
+    }
+  }
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+
+    @include on-Desktop {
+      margin-top: 50px;
+    }
+  }
+
+  &__right {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+
+    @include on-Tablet {
+      flex-direction: row;
+    }
+
+
+    @media(min-width: 768px) {
+      gap: 30px;
+    }
+
+    @include on-Desktop {
+      gap: 100px;
+      margin-top: 80px;
+    }
+  }
+
+  &__title {
+    font-family: "lev_type";
+    font-weight: 600;
+    font-size: $footer-title-size-mobile;
+    line-height: 15px;
+    letter-spacing: 1px;
+
+    @include on-Tablet {
+      font-size: $footer-title-size-tablet;
+      line-height: 20px;
+    }
+
+    @include on-Desktop {
+      font-size: $footer-title-size-desktop;
+      line-height: 33px;
+    }
+  }
+
+  &__follow {
+    position: relative;
+    color: $choco;
+    width: auto;
+    border-top: 1px solid $choco;
+    padding-top: 20px;
+    margin-top: 10px;
+    display: flex;
+    gap: 7px;
+
+    &-text {
+      padding-right: 5px;
+      border-right: 1px solid $choco;
+      text-transform: uppercase;
+      font-size: 12px;
+
+      @include on-Tablet {
+        font-size: 16px;
+      }
+
+      @include on-Desktop {
+        font-size: 20px;
+      }
+    }
+  }
+
+  &__block {
+    color: $choco;
+    align-self: baseline;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    
+    @include on-Tablet {
+      gap: 10px;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    gap: 8px;
+
+    @include on-Tablet {
+      gap: 8px;
+    }
+  }
+
+  &__link {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    color: $choco;
+    text-decoration: none;
+    font-size: $footer-text-size-mobile;
+    font-weight: 400;
+    transition: color 0.5s ease;
+
+    &:hover {
+      color: $brown;
+    }
+
+    &:hover .footer__icon--telegram {
+      color: $brown;
+      background-image: url("../../styles/icons/telegram-hover.png");
+    }
+
+    &:hover .footer__icon--phone {
+      color: $brown;
+      background-image: url("../../styles/icons/phone-hover.png");
+    }
+
+    &:hover .footer__icon--email {
+      color: $brown;
+      background-image: url("../../styles/icons/email-hover.png");
+    }
+    
+    &:hover .footer__icon--instagram {
+      color: $brown;
+      background-image: url("../../styles/icons/instagram-hover.png");
+    }
+
+    &:hover .footer__icon--up {
+      color: $brown;
+      background-image: url("../../styles/icons/arrow-up-hover.png");
+    }
+
+    @include on-Tablet {
+      font-size: $footer-text-size-tablet;
+      gap: 15px;
+    }
+
+    @include on-Desktop {
+      font-size: $footer-text-size-desktop;
+      gap: 20px;
+    }
+  }
+
+  &__rights {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+
+    @include on-Tablet {
+      margin-top: 20px;
+    }
+
+    @include on-Desktop {
+      margin-top: 50px;
+    }
+
+    &-text {
+      font-size: 8px;
+      line-height: 10.63px;
+      font-weight: 500;
+      text-align: center;
+      color: $choco;
+
+      @include on-Desktop {
+        font-size: 15px;
+        line-height: 19.94px;
+      }
+    }
+  }
+
+  &__contacts {
+    font-family: 'lev_type';
+    font-weight: 600;
+    font-size: $footer-title-size-mobile;
+
+    @include on-Tablet {
+      font-size: $footer-title-size-tablet;
+    }
+
+    @include on-Desktop {
+      font-size: $footer-title-size-desktop;
+      line-height: 33px; 
+    }
+  }
+
+  &__logo {
+    &-link {
+      display: flex;
+      align-items: center;
+      width: 70px;
+      height: $headers-height-mobile;
+
+      @media (min-width: 378px) {
+        width: 80px;
+      }
+
+      @include on-Tablet {
+        width: 100px;
+        height: $headers-height-tablet;
+      }
+    }
+
+    &-image {
+      width: 100%;
+    }
+  }
+
+  &__totop {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 70px;
+    right: 16px;
+    width: 60px;
+    height: 40px;
+    padding: 5px;
+    background-color: $choco;
+    border: 1px solid $bg-color;
+    border-radius: 4px;
+    font-family: 'inter';
+    font-weight: 300;
+    color: $bg-color;
+    text-transform: lowercase;
+
+    @include on-Tablet {
+      width: 70px;
+      height: 50px;
+      right: 24px;
+    }
+
+    @include on-Desktop {
+      width: 100px;
+      height: 80px;
+      font-size: 18px;
+      border-color: $brown;
+    }
+
+    &--hidden {
+      display: none;
+    }
+  }
+}

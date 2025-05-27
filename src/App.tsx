@@ -1,17 +1,8 @@
 import "./styles/App.scss";
-import { Link, Outlet } from "react-router-dom";
-import { scroller } from "react-scroll";
-import { ArrowDecorBelow } from "./components/ArrowDecorBelow";
-import { ThreadDecor } from "./components/ThreadDecor";
+import { Outlet } from "react-router-dom";
 import { Header } from "./components/Header";
-import { ArrowDecorTop } from "./components/ArrowDecorTop";
-
-export const scrollToTop = () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
-};
+import { Footer } from "./components/Footer";
+import { scroller } from "react-scroll";
 
 export const handleNavigation = (section: any) => {
   setTimeout(() => {
@@ -20,7 +11,14 @@ export const handleNavigation = (section: any) => {
       delay: 0,
       smooth: "easeInOutQuart",
     });
-  }, 1000); // Delay to ensure the page is loaded
+  }, 1000);
+};
+
+export const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
 };
 
 console.log(process.env.PUBLIC_URL);
@@ -34,130 +32,7 @@ function App() {
         <Outlet />
       </main>
 
-      <footer className="footer">
-        <div className="footer__container">
-          <div className="footer__wrapper">
-            <ThreadDecor />
-            <div className="footer__block footer__left">
-              <Link className="footer__logo footer__logo-link" to="/">
-                <img
-                  className="footer__logo-image"
-                  src={`${process.env.PUBLIC_URL}/Logo/Logo_bottom_mokko.png`}
-                  alt=""
-                />
-              </Link>
-              <div className="footer__follow">
-                <ArrowDecorTop />
-                <div className="footer__follow-text">Стежити</div>
-
-                <a
-                  href="https://www.instagram.com/julia_hapeka/"
-                  target="_blank"
-                  className="footer__follow-link"
-                  rel="noreferrer"
-                >
-                  <img
-                    alt="follow"
-                    className="footer__follow-icon"
-                    src={require("./styles/icons/instagram21.svg").default}
-                  />
-                </a>
-              </div>
-            </div>
-            <div className="footer__right">
-              <nav className="footer__block footer__block--categories">
-                <h3 className="footer__title">Категорії</h3>
-                <ul className="footer__list">
-                  <li className="footer__item">
-                    <Link
-                      to="/"
-                      className="footer__link"
-                      onClick={() => handleNavigation("about_us")}
-                    >
-                      Про нас
-                    </Link>
-                  </li>
-                  <li className="footer__item">
-                    <Link
-                      to="/catalog"
-                      className="footer__link"
-                      onClick={() => handleNavigation("catalog")}
-                    >
-                      Каталог
-                    </Link>
-                  </li>
-                  <li className="footer__item">
-                    <Link
-                      to="/"
-                      className="footer__link"
-                      onClick={() => handleNavigation("contact_us")}
-                    >
-                      Наші контакти
-                    </Link>
-                  </li>
-                  <li className="footer__item">
-                    <a href="@julia_hapeka" className="footer__link">
-                      <img src="" alt="" />
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-              <nav className="footer__block footer__block--support">
-                <h3 className="footer__title">Підтримка</h3>
-                <ul className="footer__list">
-                  <li className="footer__item">
-                    <Link
-                      to="/"
-                      className="footer__link"
-                      onClick={() => handleNavigation("about_us")}
-                    >
-                      Доставка & Оплата
-                    </Link>
-                  </li>
-                  <li className="footer__item">
-                    <Link
-                      to="/"
-                      className="footer__link"
-                      onClick={() => handleNavigation("about_us")}
-                    >
-                      Допомога & Підтримка
-                    </Link>
-                  </li>
-                </ul>
-              </nav>
-              <div className="footer__block footer__block--contact-data">
-                <ul className="footer__list">
-                  <li className="footer__item">
-                    <a
-                      href="tel:+380%2063%20415%2018%2053"
-                      className="nav__link footer__link"
-                    >
-                      <p className="footer__phone-number">+38 096 3061416</p>
-                    </a>
-                  </li>
-                  <li className="footer__item">
-                    <a
-                      href="jhapeka@gmail.com"
-                      className="
-                        nav__link
-                        footer__link
-                        footer__link--gmail
-                      "
-                    >
-                      jhapeka@gmail.com
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="footer__rights">
-            <p className="footer__rights-text">
-              Nash_Spadok ©Copyright 2024. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

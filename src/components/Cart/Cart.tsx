@@ -14,6 +14,7 @@ import { ArrowDecorBelow } from "../ArrowDecorBelow";
 import { ArrowDecorTop } from "../ArrowDecorTop";
 import { Link } from "react-router-dom";
 import { DynamicProduct } from "../../types/Product";
+import { transformToProductUI } from "../../helper/transformToProdIU";
 
 export const Cart = () => {
   const items: CartItem[] = useAppSelector(cartSelector);
@@ -47,63 +48,75 @@ export const Cart = () => {
               <ArrowDecorTop />
               <ArrowDecorBelow />
               {items.length > 0 ? (
-                items.map((item) => (
-                  <li key={item.id} className="cart__item item">
-                    <Link to={`/catalog/${item.item.category}/${item.item.id}`} className="item__image-wrap">
-                      <img
-                        src={`${process.env.PUBLIC_URL}/${item.item.images[0]}`}
-                        alt=""
-                        className="item__image"
-                      />
-                    </Link>
+                items.map((item) => {
+                  const itemForUI = transformToProductUI(item.item);
+                  console.log(itemForUI);
+                  return (
+                    <li key={item.id} className="cart__item item">
+                      <Link
+                        to={`/catalog/${itemForUI.category}/${item.item.id}`}
+                        className="item__image-wrap"
+                      >
+                        <img
+                          src={`${process.env.PUBLIC_URL}/${item.item.images[0]}`}
+                          alt=""
+                          className="item__image"
+                        />
+                      </Link>
 
-                    <div className="item__info">
-                      <div className="item__info--top">
-                        <Link to={`/catalog/${item.item.category}/${item.item.id}`} className="item__name-link">
-                          <h4 className="item__name">{item.item.title}</h4>
-                        </Link>
-
-                        <p className="item__price">
-                          {item.item.price * item.quantity} &#x20b4;
-                        </p>
-                      </div>
-
-                      <div className="item__info--bottom">
-                        <p className="item__detailed">Арт.: {item.item.id}</p>
-                        {"size" in item.item && (
-                          <p className="item__detailed">Розмір: {item.item.size}</p>
-                        )}
-                        
-                        <div className="item__quantity-setters">
-                          <button
-                            className="item__quantity-setter"
-                            onClick={() => handleMinus(item.item)}
+                      <div className="item__info">
+                        <div className="item__info--top">
+                          <Link
+                            to={`/catalog/${item.item.category}/${item.item.id}`}
+                            className="item__name-link"
                           >
-                            <p className="item__quantity-sign">-</p>
-                          </button>
-                          <p className="item__quantity">{item.quantity}</p>
-                          <button
-                            className="item__quantity-setter"
-                            onClick={() => handlePlus(item.item)}
-                          >
-                            <p className="item__quantity-sign">+</p>
-                          </button>
+                            <h4 className="item__name">{item.item.title}</h4>
+                          </Link>
+
+                          <p className="item__price">
+                            {item.item.price * item.quantity} &#x20b4;
+                          </p>
+                        </div>
+
+                        <div className="item__info--bottom">
+                          <p className="item__detailed">Арт.: {item.item.id}</p>
+                          {"size" in item.item && (
+                            <p className="item__detailed">
+                              Розмір: {item.item.size}
+                            </p>
+                          )}
+
+                          <div className="item__quantity-setters">
+                            <button
+                              className="item__quantity-setter"
+                              onClick={() => handleMinus(item.item)}
+                            >
+                              <p className="item__quantity-sign">-</p>
+                            </button>
+                            <p className="item__quantity">{item.quantity}</p>
+                            <button
+                              className="item__quantity-setter"
+                              onClick={() => handlePlus(item.item)}
+                            >
+                              <p className="item__quantity-sign">+</p>
+                            </button>
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                    <button
-                      className="item__remove"
-                      onClick={() => handleRemoveItem(item.item)}
-                    >
-                      <img
-                        src={require("../../styles/icons/Close.svg").default}
-                        alt="remove"
-                        className="item__remove-icon"
-                      />
-                    </button>
-                  </li>
-                ))
+                      <button
+                        className="item__remove"
+                        onClick={() => handleRemoveItem(item.item)}
+                      >
+                        <img
+                          src={require("../../styles/icons/Close.svg").default}
+                          alt="remove"
+                          className="item__remove-icon"
+                        />
+                      </button>
+                    </li>
+                  );
+                })
               ) : (
                 <p className="cart__empty">В кошику поки немає товарів</p>
               )}

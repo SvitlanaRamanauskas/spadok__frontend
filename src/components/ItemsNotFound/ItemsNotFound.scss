@@ -10,10 +10,15 @@
     align-items: center;
     height: 100%;
     width: 100%;
+    margin-bottom: 20px;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     background-image: url(../../../public/img/showl.png);
+
+    @include on-Tablet {
+        margin-bottom: 35px;
+    }
 
 
     &__title {

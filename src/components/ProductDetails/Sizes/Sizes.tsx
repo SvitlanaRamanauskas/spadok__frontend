@@ -2,21 +2,29 @@ import { useContext } from "react";
 import { AppContext } from "../../appContext";
 import "./Sizes.scss";
 import classNames from "classnames";
-import { isForAdults, isForKids, isVyshyvanka } from "../../../helper/productUtils";
+import { isForAdults, isForKids } from "../../../helper/productUtils";
 import { useNavigate } from "react-router-dom";
-import { Vyshyvanka } from "../../../types/Vyshyvanka";
+import { Vyshyvanka, VyshyvankaUI } from "../../../types/Vyshyvanka";
 import { Dropdown } from "../../Dropdown";
+import { transformToProductUI } from "../../../helper/transformToProdIU";
+import { DynamicProduct } from "../../../types/Product";
 
 type Props = {
   setProductDetailsLoading: (value: boolean) => void;
-  vyshyvankyFromServer: Vyshyvanka[];
+  vyshyvankyFromServer: VyshyvankaUI[];
+  setProductNotFound: (value: boolean) => void;
 };
 
 export const Sizes: React.FC<Props> = ({
   setProductDetailsLoading,
   vyshyvankyFromServer,
+  setProductNotFound,
 }) => {
   const { selectedProduct } = useContext(AppContext);
+  const selectedProductUI = transformToProductUI(
+    selectedProduct as DynamicProduct
+  );
+
   const navigate = useNavigate();
 
   const handleSetAnotherVyshyvankaBySize = (
@@ -25,42 +33,48 @@ export const Sizes: React.FC<Props> = ({
   ) => {
     setProductDetailsLoading(true);
 
-    const anotherSizeProd = vyshyvankyFromServer.find(
-      (vyshyvanka) =>
+    const anotherSizeProd = vyshyvankyFromServer.find((vyshyvanka) => {
+      return (
         vyshyvanka.title === currentProdTitle && vyshyvanka.size === clickedSize
-    );
+      );
+    });
 
     if (anotherSizeProd) {
+      console.log("anotherSizeProd1", anotherSizeProd)
       setTimeout(() => {
-        navigate(`/catalog/${anotherSizeProd.category}/${anotherSizeProd.id}`);
+        navigate(`/catalog/${anotherSizeProd.subcategory}/${anotherSizeProd.id}`);
         setProductDetailsLoading(false);
       }, 1000);
+    } else {
+      
+       console.log("anotherSizeProd2", anotherSizeProd)
+      return;
     }
+
+     console.log("anotherSizeProd3", anotherSizeProd)
   };
-  console.log("here", isForAdults(selectedProduct as Vyshyvanka) )
 
   const handleSizeChoise = (selectedSize: string) => {
-    if(selectedProduct === null) return;
-    handleSetAnotherVyshyvankaBySize(
-      selectedProduct.title,
-      selectedSize
-  )};
+    if (selectedProduct === null) return;
+    handleSetAnotherVyshyvankaBySize(selectedProduct.title, selectedSize);
+  };
+  console.log("Sizes");
 
   return (
     <>
-      {selectedProduct !== null && isVyshyvanka(selectedProduct as Vyshyvanka) && (
+      {selectedProduct !== null && (
         <>
-          {isForKids(selectedProduct) && 
-              <div className="size">
-                <Dropdown 
-                  options={selectedProduct.sizesAvailable}
-                  dropdownName={"Обрати розмір"}
-                  onChoise={handleSizeChoise}
-                />
-              </div>
-          } 
+          {isForKids(selectedProductUI) && (
+            <div className="size">
+              <Dropdown
+                options={selectedProduct.sizesAvailable}
+                dropdownName={"Обрати розмір"}
+                onChoise={handleSizeChoise}
+              />
+            </div>
+          )}
 
-          {isForAdults(selectedProduct) && 
+          {isForAdults(selectedProductUI) && (
             <div className="size">
               <div className="size__elements">
                 {(selectedProduct as Vyshyvanka).sizesAvailable.map((size) => (
@@ -93,10 +107,10 @@ export const Sizes: React.FC<Props> = ({
                 ))}
               </div>
             </div>
-          }
+          )}
 
           <div>
-            {selectedProduct.isAvailable ? (
+            {selectedProduct.isAvailable > 0 ? (
               <p className="info__name info__name--available">В наявності</p>
             ) : (
               <p className="info__name info__name--preordered">

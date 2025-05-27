@@ -2,7 +2,7 @@ import { forwardRef, useEffect, useRef, useState } from "react";
 import InputMask from "react-input-mask";
 import "./Ordering.scss";
 import cn from "classnames";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { useAppSelector } from "../../redux/hooks";
 import {
   cartSelector,
   totalCartPriceSelector,
@@ -14,7 +14,8 @@ import { ArrowDecorTop } from "../ArrowDecorTop";
 import { ArrowDecorBelow } from "../ArrowDecorBelow";
 import { OrderConfirmationModal } from "../OrderConfirmationModal";
 import { Order } from "../../types/Order";
-import { createOrder } from "../../helper/fetch";
+import { createOrder } from "../../helper/fetch/fetch";
+import { transformToProductUI } from "../../helper/transformToProdIU";
 
 type Country = {
   code: string;
@@ -192,21 +193,24 @@ export const Ordering: React.FC = () => {
 
           <ul className="order__list">
             {items.length > 0 ? (
-              items.map((item) => (
+              items.map((item) => { 
+                const itemForUI = transformToProductUI(item.item);
+
+                return (
                 <li key={item.id} className="order__cart-item cart-item">
                   <Link
-                    to={`/catalog/${item.item.category}/${item.item.id}`}
+                    to={`/catalog/${itemForUI.category}/${item.item.id}`}
                     className="cart-item__image-wrap"
                   >
                     <img
-                      src={item.item.images[0]}
-                      alt=""
+                      src={`${process.env.PUBLIC_URL}/${item.item.images[0]}`}
+                      alt="product"
                       className="cart-item__image"
                     />
                   </Link>
                   <div className="cart-item__info">
                     <Link
-                      to={`/catalog/${item.item.category}/${item.item.id}`}
+                      to={`/catalog/${itemForUI.category}/${item.item.id}`}
                       className="cart-item__name-link"
                     >
                       <h4 className="cart-item__name">
@@ -224,7 +228,7 @@ export const Ordering: React.FC = () => {
                     </p>
                   </div>
                 </li>
-              ))
+              )})
             ) : (
               <p className="cart__empty">
                 Немає товарів для оформлення замовлення

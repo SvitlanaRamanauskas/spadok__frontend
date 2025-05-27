@@ -8,6 +8,12 @@
   width: 100%;
   z-index: 10;
   background-color: $choco;
+  top: calc($headers-height-mobile + 20px);
+  border-radius: 10px;
+
+  @include on-Tablet {
+    top: calc($headers-height-tablet + 20px);
+  }
 
   @include on-Desktop {
     right: 0;
