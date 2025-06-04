@@ -1,193 +1,194 @@
-@import '../../styles//utils/variables.scss';
-@import '../../styles/utils/mixins.scss';
+@import "../../styles//utils/variables.scss";
+@import "../../styles/utils/mixins.scss";
 
 .header {
-    box-sizing: content-box;
-    z-index: 1000;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    padding-top: 10px;
-    height: $headers-height-mobile;
-    background-color: rgb(230,226,205, 0.7);
-    transition: background-color 0.3s;
+  box-sizing: content-box;
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding-top: 10px;
+  height: $headers-height-mobile;
+  background-color: rgb(230, 226, 205, 0.7);
+  transition: background-color 0.3s;
 
-    &:hover {
-      background-color: $bg-color;
+  &:hover {
+    background-color: $bg-color;
+  }
+
+  @include on-Tablet {
+    height: $headers-height-tablet;
+  }
+
+  &__container {
+    margin-inline: 16px;
+    border-top: 1px solid $choco;
+    border-bottom: 1px solid $choco;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @include on-Tablet {
+      margin-inline: 24px;
     }
-    
-  
+  }
+
+  &__logo {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 160px;
+    line-height: $headers-height-mobile;
+    height: $headers-height-mobile;
+
+    @include on-Tablet {
+      width: 260px;
+      height: $headers-height-tablet;
+      line-height: $headers-height-mobile;
+    }
+
+    &-link {
+      display: flex;
+      align-items: center;
+      width: 120px;
+      height: $headers-height-mobile;
+
+      @media (min-width: 378px) {
+        width: 150px;
+      }
+
+      @include on-Tablet {
+        width: 200px;
+        height: $headers-height-tablet;
+      }
+    }
+
+    &-image {
+      width: 100%;
+    }
+  }
+
+  &__right {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding-left: 10px;
+    height: $headers-height-mobile;
     @include on-Tablet {
       height: $headers-height-tablet;
     }
-  
-    &__container {
-      margin-inline: 16px;
-      border-top: 1px solid $choco;
-      border-bottom: 1px solid $choco;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-  
-      @include on-Tablet {
-        margin-inline: 24px;
+
+    @include on-Desktop {
+      gap: 20px;
+    }
+  }
+
+  &__short {
+    &-navigation {
+      display: none;
+
+      @include on-Desktop {
+        display: flex;
+        gap: 35px;
+        align-items: center;
       }
     }
-  
-    &__logo {
-      position: relative;
+
+    &-nav-element {
       display: flex;
+      gap: 5px;
       align-items: center;
-      width: 160px;
-      line-height: $headers-height-mobile;
-      height: $headers-height-mobile;
-    
+      padding-inline: 15px; 
+
+      &:nth-child(2) {
+        padding-inline: 0;
+      }
+    }
+
+    &-nav-list {
+      padding: 10px;
+    }
+  }
+
+  &__nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    background-color: #fff;
+    z-index: 200;
+    border-radius: 3px;
+
+    &-wrapper {
+      position: relative;
+    }
+
+    &--opened {
       @include on-Tablet {
-        width: 260px;
-        height: $headers-height-tablet;
-        line-height: $headers-height-mobile;
-      }
-  
-      &-link {
-        display: flex;
-        align-items: center;
-        width: 120px;
-        height: $headers-height-mobile;
-
-        @media (min-width: 378px) {
-          width: 150px;
-        }
-  
-        @include on-Tablet {
-          width: 200px;
-          height: $headers-height-tablet;
-        }
-      }
-
-      &-image {
+        display: block;
         width: 100%;
       }
     }
-  
-    &__right {
-      position: relative;
-      display: flex;
+  }
+
+  &__icons {
+    display: flex;
+    gap: 5px;
+
+    @include on-Tablet {
       gap: 10px;
-      align-items: center;
-      padding-left: 10px;
-      height: $headers-height-mobile;
-      @include on-Tablet {
-        height: $headers-height-tablet;
-      }
-  
-      @include on-Desktop {
-        gap: 20px;
-      }
     }
-  
-    &__short {
-      &-navigation {
-        display: none;
-        
-        @include on-Desktop {
-          display: flex;
-          gap: 15px;
-          align-items: center;
-        }
-      }
-  
-      &-nav-element {
-        display: flex;
-        gap: 5px;
-        align-items: center;
-  
-    
-        &-icon {
-          height: 16px;
-          width: 16px;
-          transform: rotate(90deg);
-          
-          &--focused {
-              transform: rotate(270deg);
-          }
-        }
-      }
-    }
-  
-    &__nav {
-      display: none;
-      position: absolute;
-      top: 60px;
-      background-color: #fff;
-      z-index: 200;
-  
-      &--opened {
-        @include on-Tablet {
-          display: block;
-        }
-      }
-    }
-  
-    &__icons {
-      display: flex;
-      gap: 5px;
-  
-      @include on-Tablet {
-        gap: 10px;
-      }
-      @include on-Desktop {
-        gap: 20px;
-      }
-     
-    }
-  
-    &__icon {
-      position: relative;
-      padding: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-  
-      &--close {
-        width: 44px;
-
-        &-image {
-          width: 20px;
-          height: 20px;
-
-          
-          @include on-Tablet {
-            width: 30px;
-            height: 30px;
-          }
-
-          @include on-Desktop {
-            width: 35px;
-            height: 35px;
-          }
-        }
-      }
-  
-      &-picture {
-        width: 30px;
-        height: 30px;
-      }
-  
-      &-circle {
-        position: absolute;
-        transform: translate(150%,-40%);
-        font-family: "inter";
-        font-size: 9px;
-        font-weight: 600;
-        line-height: 14px;
-        text-align: center;
-        color: black;
-        width: 15px;
-        height: 15px;
-        left: 15px;
-        background-color: white;
-        border-radius: 50%;
-      }
+    @include on-Desktop {
+      gap: 20px;
     }
   }
+
+  &__icon {
+    position: relative;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &--close {
+      width: 44px;
+
+      &-image {
+        width: 20px;
+        height: 20px;
+
+        @include on-Tablet {
+          width: 30px;
+          height: 30px;
+        }
+
+        @include on-Desktop {
+          width: 35px;
+          height: 35px;
+        }
+      }
+    }
+
+    &-picture {
+      width: 30px;
+      height: 30px;
+    }
+
+    &-circle {
+      position: absolute;
+      transform: translate(150%, -40%);
+      font-family: "inter";
+      font-size: 9px;
+      font-weight: 600;
+      line-height: 14px;
+      text-align: center;
+      color: black;
+      width: 15px;
+      height: 15px;
+      left: 15px;
+      background-color: white;
+      border-radius: 50%;
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import cn from "classnames";
-import "./Header.scss";
 import "../../styles/App.scss";
+import "./Header.scss";
 import { ArrowDecorBelow } from "../ArrowDecorBelow";
 import { ArrowDecorTop } from "../ArrowDecorTop";
 import { useContext, useEffect, useRef, useState } from "react";
@@ -34,8 +34,11 @@ export const Header = () => {
 
   useEffect(() => {
     const handleDocumentClick = (event: MouseEvent) => {
-      if (vyshyvankyListRef.current && !vyshyvankyListRef.current.contains(event.target as Node))
-      setVyshyvListExpanded(false);
+      if (
+        vyshyvankyListRef.current &&
+        !vyshyvankyListRef.current.contains(event.target as Node)
+      )
+        setVyshyvListExpanded(false);
     };
 
     document.addEventListener("click", handleDocumentClick);
@@ -141,47 +144,35 @@ export const Header = () => {
                 </button>
               )}
 
-              <button
-                className="nav__item header__short-nav-element"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setVyshyvListExpanded((current) => !current);
-                }}
+              <div
+                className="header__nav-wrapper"
+                onMouseEnter={() => setVyshyvListExpanded(true)}
+                onMouseLeave={() => setVyshyvListExpanded(false)}
               >
-                <p className="nav__link">Вишиванки</p>
+                <button className="header__short-nav-element">
+                  <p className="nav__link">Вишиванки</p>
+                </button>
 
-                <img
-                  className={cn("header__short-nav-element-icon", {
-                    "header__short-nav-element-icon--focused":
-                      vyshyvListExpanded,
+                <nav
+                  className={cn("header__nav", {
+                    "header__nav--opened": vyshyvListExpanded,
                   })}
-                  src={
-                    require("../../styles/icons/Chevron-Arrow-Right--disabled.svg")
-                      .default
-                  }
-                  alt="clicker"
-                />
-              </button>
-
-              <nav
-                className={cn("header__nav", {
-                  "header__nav--opened": vyshyvListExpanded,
-                })}
-              >
-                <ul className="nav__list">
-                  {subcategories.map((subcategory) => (
-                    <li className="nav__item" key={subcategory.name}>
-                      <Link
-                        to={`/catalog/${subcategory.key}`}
-                        className="nav__link"
-                        onClick={() => setVyshyvListExpanded(false)}
-                      >
-                        {subcategory.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
+                >
+                  <ul className="nav__list header__short-nav-list">
+                    {subcategories.map((subcategory) => (
+                      <li className="nav__item" key={subcategory.name}>
+                        <Link
+                          to={`/catalog/${subcategory.key}`}
+                          className="nav__link"
+                          onClick={() => setVyshyvListExpanded(false)}
+                        >
+                          {subcategory.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+              </div>
 
               <button className="nav__item header__short-nav-element">
                 <Link to={`/catalog/books`} className="nav__link">
@@ -223,17 +214,15 @@ export const Header = () => {
                 <button
                   type="button"
                   className="header__icon  header__icon--close"
-                  onClick={
-                    (e)=> {
-                      e.stopPropagation()
-                      setAsideIsOpen(false)
-                    }
-                  }
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setAsideIsOpen(false);
+                  }}
                   title="Закрити"
                 >
                   <img
                     src={require("../../styles/icons/Close.svg").default}
-                     className="header__icon--close-image"
+                    className="header__icon--close-image"
                     alt="close"
                   />
                 </button>
@@ -241,7 +230,7 @@ export const Header = () => {
                 <button
                   type="button"
                   className="header__icon  header__icon--burger"
-                  onClick={()=> setAsideIsOpen(true)}
+                  onClick={() => setAsideIsOpen(true)}
                   title="Меню"
                 >
                   <img
