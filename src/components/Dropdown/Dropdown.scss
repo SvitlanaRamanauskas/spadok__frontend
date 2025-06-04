@@ -1,14 +1,22 @@
-@import '../../styles/utils/variables.scss';
-@import '../../styles/utils/mixins';
+@import "../../styles/utils/variables.scss";
+@import "../../styles/utils/mixins";
 
 .dropdown {
   &__input {
-    position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 15px;
     padding-bottom: 24px;
+
+    &-label {
+      font-family: "lev_type";
+      color: $choco;
+    }
+  }
+
+  &__wrapper {
+    position: relative;
 
     &::after {
       content: url(../../styles/icons/Chevron-Arrow-Right--disabled.svg);
@@ -16,18 +24,13 @@
       display: inline-block;
       height: 16px;
       width: 16px;
-      top: 50%;
-      left: 170px;
-      transform: translateY(-115%) rotate(90deg);
+      top: 30%;
+      right: 7px;
+      transform: rotate(90deg);
     }
 
     &--focused::after {
-      transform:translateY(-115%)  rotate(270deg);
-    }  
-
-    &-label {
-      font-family: "lev_type";
-      color: $choco;
+      transform: rotate(270deg);
     }
   }
 
@@ -58,7 +61,7 @@
 
   &__option {
     border: 1px solid blue;
-    box-shadow: 0 2px 15px 0 #0000000D;
+    box-shadow: 0 2px 15px 0 #0000000d;
     background-color: transparent;
     border-radius: none;
     color: $choco;
