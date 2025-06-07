@@ -2,8 +2,6 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { CartItem } from "../../types/CartItem";
 import { RootState } from "../store";
 import { DynamicProduct } from "../../types/Product";
-import { Book } from "../../types/Book";
-import { Vyshyvanka } from "../../types/Vyshyvanka";
 
 const saveCartToLocalStorage = (state: CartState) => {
     localStorage.setItem("cartItems", JSON.stringify(state.cartItems));

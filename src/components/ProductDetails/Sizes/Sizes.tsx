@@ -27,38 +27,43 @@ export const Sizes: React.FC<Props> = ({
 
   const navigate = useNavigate();
 
+  console.log("selectedProduct", selectedProduct);
+  console.log("vysh fromServer", vyshyvankyFromServer);
+
   const handleSetAnotherVyshyvankaBySize = (
     currentProdTitle: string,
     clickedSize: string
   ) => {
+    console.log("currentProdTitle", currentProdTitle);
+    console.log("clickedSize", clickedSize);
     setProductDetailsLoading(true);
 
     const anotherSizeProd = vyshyvankyFromServer.find((vyshyvanka) => {
+      console.log("titles", vyshyvanka.title);
       return (
         vyshyvanka.title === currentProdTitle && vyshyvanka.size === clickedSize
       );
     });
+    console.log(anotherSizeProd);
 
     if (anotherSizeProd) {
-      console.log("anotherSizeProd1", anotherSizeProd)
       setTimeout(() => {
-        navigate(`/catalog/${anotherSizeProd.subcategory}/${anotherSizeProd.id}`);
+        navigate(
+          `/catalog/${anotherSizeProd.subcategory}/${anotherSizeProd.id}`
+        );
         setProductDetailsLoading(false);
       }, 1000);
     } else {
-      
-       console.log("anotherSizeProd2", anotherSizeProd)
       return;
     }
 
-     console.log("anotherSizeProd3", anotherSizeProd)
+    console.log("anotherSizeProd", anotherSizeProd);
   };
 
   const handleSizeChoise = (selectedSize: string) => {
     if (selectedProduct === null) return;
     handleSetAnotherVyshyvankaBySize(selectedProduct.title, selectedSize);
   };
-  console.log("Sizes");
 
   return (
     <>
@@ -70,6 +75,7 @@ export const Sizes: React.FC<Props> = ({
                 options={selectedProduct.sizesAvailable}
                 dropdownName={"Обрати розмір"}
                 onChoise={handleSizeChoise}
+                selectedValue={selectedProduct.size}
               />
             </div>
           )}

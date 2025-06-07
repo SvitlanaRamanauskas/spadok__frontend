@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { fetchBestsellers } from "../helper/fetch/fetch";
 import { List } from "../components/List";
 import { Loader } from "../components/Loader";
-import { Vyshyvanka } from "../types/Vyshyvanka";
+import { DynamicProduct } from "../types/Product";
 
 export const BestsellersPage = () => {
-    const [bestsellers, setBestsellers] = useState<Vyshyvanka[]>([]);
+    const [bestsellers, setBestsellers] = useState<DynamicProduct[]>([]);
     const [bestsellersLoading, setBestsellersLoading] = useState(false);
     
     useEffect(() => {
@@ -14,7 +14,7 @@ export const BestsellersPage = () => {
             fetchBestsellers()
             .then((products) => setBestsellers(products))
             .catch(error => {
-                throw new Error('Error fetching boy`s vyshyvanky:', error);
+                throw new Error('Error fetching bestsellers', error);
               }
             )
             .finally(() => setBestsellersLoading(false))

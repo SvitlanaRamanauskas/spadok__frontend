@@ -1,7 +1,5 @@
 import {
   cartSelector,
-  minusItem,
-  plusItem,
   removeItem,
   totalCartPriceSelector,
   totalCartQuantitySelector,
@@ -15,25 +13,18 @@ import { ArrowDecorTop } from "../ArrowDecorTop";
 import { Link } from "react-router-dom";
 import { DynamicProduct } from "../../types/Product";
 import { transformToProductUI } from "../../helper/transformToProdIU";
+import { QuantitySetter } from "../QuantitySetter";
 
 export const Cart = () => {
   const items: CartItem[] = useAppSelector(cartSelector);
   const totalCartQuantity: number = useAppSelector(totalCartQuantitySelector);
   const totalCartPrice: number = useAppSelector(totalCartPriceSelector);
-
   const dispatch = useAppDispatch();
-
-  const handlePlus = (item: DynamicProduct) => {
-    dispatch(plusItem(item));
-  };
-
-  const handleMinus = (item: DynamicProduct) => {
-    dispatch(minusItem(item));
-  };
 
   const handleRemoveItem = (item: DynamicProduct) => {
     dispatch(removeItem(item));
   };
+
 
   return (
     <>
@@ -86,21 +77,7 @@ export const Cart = () => {
                             </p>
                           )}
 
-                          <div className="item__quantity-setters">
-                            <button
-                              className="item__quantity-setter"
-                              onClick={() => handleMinus(item.item)}
-                            >
-                              <p className="item__quantity-sign">-</p>
-                            </button>
-                            <p className="item__quantity">{item.quantity}</p>
-                            <button
-                              className="item__quantity-setter"
-                              onClick={() => handlePlus(item.item)}
-                            >
-                              <p className="item__quantity-sign">+</p>
-                            </button>
-                          </div>
+                          <QuantitySetter item={item}/>
                         </div>
                       </div>
 

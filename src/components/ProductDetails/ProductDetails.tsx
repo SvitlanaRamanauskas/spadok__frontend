@@ -12,12 +12,24 @@ import { useProductDetails } from "../../helper/hooks/useProductDetails";
 import { VyshyvankaUI } from "../../types/Vyshyvanka";
 import { Description } from "./Description/Description";
 import { transformToProductUI } from "../../helper/transformToProdIU";
+import { addedToCart } from "../../helper/productUtils";
+import { QuantitySetter } from "../QuantitySetter";
+import { useAppSelector } from "../../redux/hooks";
+import { cartSelector } from "../../redux/cart/reducerCart";
+import { DynamicProduct } from "../../types/Product";
+import { CartItem } from "../../types/CartItem";
 
 export const ProductDetails: React.FC = () => {
   const { productId } = useParams<{ productId?: string }>();
   const location = useLocation();
   const { selectedProduct } = useContext(AppContext);
   const numericProductId = productId ? Number(productId) : undefined;
+  const cartItems = useAppSelector(cartSelector);
+
+  const getCartItem = (currentItem: DynamicProduct): CartItem | undefined => {
+    return cartItems.find((item) => item.item.id === currentItem.id) || undefined;
+  }
+    
 
   const {
     productDetailsLoading,
@@ -44,6 +56,8 @@ export const ProductDetails: React.FC = () => {
     }) as VyshyvankaUI[];
 
   console.log("ProductDetails");
+
+  const cartItem = selectedProduct ? getCartItem(selectedProduct) : undefined;
 
   return (
     <>
@@ -104,6 +118,10 @@ export const ProductDetails: React.FC = () => {
                         setProductNotFound={setProductNotFound}
                       />
                     </>
+                  )}
+
+                  {addedToCart(cartItems, selectedProduct.id) && cartItem &&(
+                    <QuantitySetter item={cartItem} />
                   )}
 
                   <div className="details__description--desktop">

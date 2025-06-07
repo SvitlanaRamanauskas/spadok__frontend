@@ -1,361 +1,360 @@
-@import '../../styles/utils/mixins.scss';
-@import '../../styles/utils/variables';
+@import "../../styles/utils/mixins.scss";
+@import "../../styles/utils/variables";
 
 .cart {
-    &__empty {
-        font-family: "lev_type";
-        letter-spacing: 3px;
-        text-align: center;
-    }
+  &__empty {
+    font-family: "lev_type";
+    letter-spacing: 3px;
+    text-align: center;
+  }
 
-    &-container {
-        margin: 0 auto;
-        @include pageMinHeight;
-    }
+  &-container {
+    margin: 0 auto;
+    @include pageMinHeight;
+  }
 
-    &__title {
-        font-family: "inter";
-        font-size: 22px;
-        font-weight: 500;
-        line-height: 32px;
-        text-align: left;
-        color: $choco;
+  &__title {
+    font-family: "inter";
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 32px;
+    text-align: left;
+    color: $choco;
 
-        &-wrapper {
-            padding-block: 20px;
-        }
+    &-wrapper {
+      padding-block: 20px;
     }
-    
-    &__wrapper {
-        height: 100%;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-    }
+  }
 
-    &__order {
-        width: 100%;
-    }
+  &__wrapper {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
 
-    &__summary {
-        margin-top: 30px;
-        width: 100%;
-        max-width: 100%;
-    }
+  &__order {
+    width: 100%;
+  }
 
-    &__list {
-        position: relative;
-        border-top: 1px solid $choco;
-        border-bottom: 1px solid $choco;
-        padding-block: 20px;
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        gap: 38px;
-    }
-    
-    &__item {
-        display: flex;
-        gap: 16px;
-        margin-bottom: 10px;
-        align-items: center;
+  &__summary {
+    margin-top: 30px;
+    width: 100%;
+    max-width: 100%;
+  }
 
-        @include on-Tablet {
-            gap: 26px;
-            margin-bottom: 20px;
-        }
+  &__list {
+    position: relative;
+    border-top: 1px solid $choco;
+    border-bottom: 1px solid $choco;
+    padding-block: 20px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 38px;
+  }
+
+  &__item {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 10px;
+    align-items: center;
+
+    @include on-Tablet {
+      gap: 26px;
+      margin-bottom: 20px;
     }
+  }
 }
 
 .item {
-    position: relative;
-    font-size: 13px;
+  position: relative;
+  font-size: 13px;
 
-    &__info {
-        display: flex;
-        flex: 1;
-        flex-direction: column;
-        gap: 3px;
+  &__info {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 3px;
 
-        @include on-Desktop {
-            gap: 15px;
-        }
-
-        &--bottom {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: left;
-            gap: 3px;
-            font-family: "inter";
-            font-size: 12px;
-            font-weight: 500;
-            line-height: 24px;
-            width: 121px;
-
-            @include on-Desktop {
-                font-size: 22px;
-                line-height: 42px;
-                width: auto;
-                gap: 15px;
-            }
-        }
-
-        &--top {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-
-            font-family: "inter";
-            font-size: 12px;
-            font-weight: 500;
-            line-height: 24px;
-            height: 24px;
-            padding-right: 26px;
-
-            @include on-Desktop {
-                font-size: 22px;
-            }
-        }
+    @include on-Desktop {
+      gap: 15px;
     }
 
-    &__name {
-        font-family: "lev_type";
-        font-size: 12px;
-        font-weight: 600;
-        line-height: 48px;
-        text-align: left;
-        letter-spacing: 1px;
+    &--bottom {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: left;
+      gap: 3px;
+      font-family: "inter";
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 24px;
+      width: 121px;
 
-        @include on-Desktop {
-            font-size: 22px;
-        }
-
-        &-link {
-            text-decoration: none;
-            color: $choco;
-        }
+      @include on-Desktop {
+        font-size: 22px;
+        line-height: 42px;
+        width: auto;
+        gap: 15px;
+      }
     }
 
-    &__image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    
-        display: block;
-        max-height: 100%;
+    &--top {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 5px;
+      font-family: "inter";
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 24px;
+      height: 24px;
 
-        &-wrap {
-            width: 124px;
-            height: 161px;
+      @include on-Desktop {
+        font-size: 22px;
+      }
+    }
+  }
 
-            @include on-Desktop {
-                width: 210px;
-                height: 267px;        
-            }
-        }
+  &__name {
+    font-family: "lev_type";
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 14px;
+    text-align: left;
+    letter-spacing: 1px;
+
+    @include on-Desktop {
+      font-size: 22px;
+      line-height: 48px;
     }
 
-    &__price {
-        font-family: "inter";
-        font-size: 12px;
-        font-weight: 700;
-        line-height: 24px;
-        text-align: left;
+    &-link {
+      text-decoration: none;
+      color: $choco;
+    }
+  }
 
-        @include on-Desktop {
-          font-size: 22px;
-        }
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    max-height: 100%;
+
+    &-wrap {
+      width: 124px;
+      height: 161px;
+
+      @include on-Desktop {
+        width: 210px;
+        height: 267px;
+      }
+    }
+  }
+
+  &__price {
+    font-family: "inter";
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 24px;
+    text-align: right;
+    min-width: 45px;
+
+    @include on-Desktop {
+      font-size: 22px;
+    }
+  }
+
+  &__detailed {
+    font-family: "inter";
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 24px;
+    text-align: left;
+    color: $choco;
+
+    @include on-Desktop {
+      font-size: 18px;
+    }
+  }
+
+  &__remove {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  &__quantity {
+    font-family: "poppins", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    text-align: center;
+    color: $choco;
+
+    @include on-Desktop {
+      font-size: 25.02px;
+      font-weight: 400;
+      line-height: 37.54px;
     }
 
-    &__detailed {
-        font-family: "inter";
-        font-size: 12px;
-        font-weight: 500;
-        line-height: 24px;
-        text-align: left;
-        color: $choco;
+    &-setters {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      gap: 10px;
+      // padding-top: 10px;
+      border: 1px solid $choco;
+      border-radius: 3.5px;
+      width: 70px;
+      height: 23.45px;
 
-        @include on-Desktop {
-          font-size: 18px;
-        }
+      @include on-Desktop {
+        gap: 20px;
+        width: 119px;
+        height: 41.3px;
+      }
     }
 
-    &__remove {
-        position: absolute;
-        right: 0;
-        top: 0;
+    &-setter {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      line-height: 25px;
+      width: 25px;
+      height: 25px;
+      color: $choco;
     }
 
-    &__quantity {
-        font-family: "poppins", sans-serif;
-        font-size: 12px;
-        font-weight: 400;
-        line-height: 18px;
-        text-align: center;
-        color: $choco;
+    &-sign {
+      font-family: "poppins", sans-serif;
+      font-size: 25.02px;
+      font-weight: 500;
 
-        @include on-Desktop {
-            font-size: 25.02px;
-            font-weight: 400;
-            line-height: 37.54px;
-        }
+      text-align: center;
 
-        &-setters {
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            gap: 10px;
-            // padding-top: 10px;
-            border: 1px solid $choco;
-            border-radius: 3.5px;
-            width: 70px;
-            height: 23.45px;
-
-            @include on-Desktop {
-              gap: 20px;
-              width: 119px;
-              height: 41.3px;
-            }
-        }
-    
-        &-setter {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            line-height: 25px;
-            width: 25px;
-            height: 25px;
-            color: $choco;
-        }
-
-        &-sign {
-            font-family: "poppins", sans-serif;
-            font-size: 25.02px;
-            font-weight: 500;
-
-            text-align: center;
-
-            @include on-Desktop {
-
-            }
-
-        }
+      @include on-Desktop {
+      }
     }
+  }
 }
 
 .summary {
-    text-align: center;
-    margin-bottom: 30px;
+  text-align: center;
+  margin-bottom: 30px;
 
-    &__wrapper {
-        display: flex;
-        flex-direction: column;
-        padding: 20px;
-        
-        @include on-Tablet {
-            // height: 300px;
-            gap: 10px;
-        }
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+
+    @include on-Tablet {
+      // height: 300px;
+      gap: 10px;
+    }
+  }
+
+  &__title {
+    padding-top: 5px;
+    margin-bottom: 21px;
+    font-family: "lev_type";
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: $choco;
+
+    @include on-Tablet {
+      font-size: 18px;
     }
 
-    &__title {
-        padding-top: 5px;
-        margin-bottom: 21px;
-        font-family: 'lev_type';
-        font-size: 18px;
-        font-weight: 600;
-        letter-spacing: 2px;
-        color: $choco;
+    @include on-Desktop {
+      font-size: 24px;
+    }
+  }
 
-        @include on-Tablet {
-            font-size: 18px;
-        }
+  &__header {
+    font-family: "inter";
+    font-size: 14px;
+    font-weight: 600;
+    color: $choco;
 
-        @include on-Desktop {
-            font-size: 24px;
-        }
+    @include on-Tablet {
+      font-size: 16px;
     }
 
-    &__header {
-        font-family: 'inter';
-        font-size: 14px;
-        font-weight: 600;
-        color: $choco;
+    @include on-Desktop {
+      font-size: 18px;
+    }
+  }
 
-        @include on-Tablet {
-            font-size: 16px;
-        }
+  &__result {
+    font-family: "inter";
+    font-size: 14px;
+    font-weight: 500;
+    color: $choco;
 
-        @include on-Desktop {
-            font-size: 18px;
-        }
+    @include on-Tablet {
+      font-size: 16px;
     }
 
-    &__result {
-        font-family: 'inter';
-        font-size: 14px;
-        font-weight: 500;
-        color: $choco;
+    @include on-Desktop {
+      font-size: 18px;
+    }
+  }
 
-        @include on-Tablet {
-            font-size: 16px;
-        }
+  &__group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 
-        @include on-Desktop {
-            font-size: 18px;
-        }
+    @include on-Tablet {
+      align-self: center;
+      width: 50%;
+    }
+  }
+
+  &__button {
+    text-decoration: none;
+    line-height: 56px;
+    margin-top: 33px;
+    width: 100%;
+
+    @include on-Tablet {
+      width: 50%;
+      align-self: center;
     }
 
-    &__group {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-
-
-        @include on-Tablet {
-            align-self: center;
-            width: 50%;
-        }
+    @include on-Desktop {
+      width: 30%;
     }
 
-    &__button {
-        text-decoration: none;
-        line-height: 56px;
-        margin-top: 33px;
-        width: 100%;
+    &--continue-purchases {
+      background-color: transparent;
+      color: $choco;
+      transition: transform 0.5s ease;
+      height: 30px;
+      line-height: 30px;
 
-        @include on-Tablet {
-            width: 50%;
-            align-self: center;
-        }
-
-        @include on-Desktop {
-            width: 30%;
-        }
-
-        &--continue-purchases {
-            background-color: transparent;
-            color: $choco;
-            transition: transform 0.5s ease;
-            height: 30px;
-            line-height: 30px;
-
-            &:hover {
-              transform: scale(1.1);
-            }
-        }
-
-        &--start-purchases {
-            background-color: $choco;
-            color: $white;
-            transition: transform 0.5s ease, color 0.5s ease;
-
-            &:hover {
-              transform: scale(1.1);
-              color: $bg-color;
-            }
-        }
+      &:hover {
+        transform: scale(1.1);
+      }
     }
+
+    &--start-purchases {
+      background-color: $choco;
+      color: $white;
+      transition:
+        transform 0.5s ease,
+        color 0.5s ease;
+
+      &:hover {
+        transform: scale(1.1);
+        color: $bg-color;
+      }
+    }
+  }
 }

@@ -159,7 +159,7 @@ export const Header = () => {
                   })}
                 >
                   <ul className="nav__list header__short-nav-list">
-                    {subcategories.filter(sub => sub.key !== "books").map((subcategory) => (
+                    {subcategories.filter(sub => sub.categoryId === 1).map((subcategory) => (
                       <li className="nav__item" key={subcategory.name}>
                         <Link
                           to={`/catalog/${subcategory.key}`}

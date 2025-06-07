@@ -12,11 +12,33 @@
     &-label {
       font-family: "lev_type";
       color: $choco;
+
+      &--size {
+        font-size: 12px;
+
+        @include on-Tablet {
+          font-size: 1rem;
+        }
+      }
+    }
+
+    &--size {
+      gap: 5px;
+
+      @include on-Tablet {
+        gap: 15px;
+      }
     }
   }
 
   &__wrapper {
     position: relative;
+    height: 30px;
+    width: 120px;
+
+    &--size {
+      width: 70px;
+    }
 
     &::after {
       content: url(../../styles/icons/Chevron-Arrow-Right--disabled.svg);
@@ -41,14 +63,15 @@
     line-height: 30px;
     color: $gray-not-active;
     background-color: transparent;
-    height: 30px;
-    width: 120px;
+    height: 100%;
+    width: 100%;
     padding-left: 8px;
     border: 0.5px solid $gray-not-active;
     border-radius: 8px;
     position: relative;
     z-index: 2;
     cursor: pointer;
+
     &:hover {
       border-color: $brown;
     }

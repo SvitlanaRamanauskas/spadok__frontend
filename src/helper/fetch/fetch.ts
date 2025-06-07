@@ -103,7 +103,7 @@ export const fetchBooks = () => {
 export const fetchBestsellers = () => {
   return fetchAllProducts().then((products) =>
     products.filter(
-      (product): product is Vyshyvanka => product.title === 'Сорочка "Дубки"'
+      (product): product is Vyshyvanka => (product.title === 'Сорочка "Дубки"' && product.size === "92" ) || product.title === 'Біжу аби бігти'
     )
   );
 };
